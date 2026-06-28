@@ -1,0 +1,23 @@
+# Node Modules
+node_modules/
+
+# Environment Variables
+.env
+
+# Uploaded Images
+uploads/
+
+# Logs
+logs/
+*.log
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+
+# VS Code Settings
+.vscode/
+
+# Temporary Files
+*.tmp
+*.temp

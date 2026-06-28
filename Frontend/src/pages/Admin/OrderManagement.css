@@ -1,0 +1,408 @@
+/* ==========================================
+   ORDER MANAGEMENT PAGE
+========================================== */
+
+.order-management-page{
+
+    width:90%;
+
+    max-width:1400px;
+
+    margin:40px auto 80px;
+
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.order-header{
+
+    text-align:center;
+
+    margin-bottom:40px;
+
+}
+
+.order-header h1{
+
+    font-size:46px;
+
+    color:#222;
+
+    margin-bottom:10px;
+
+}
+
+.order-header p{
+
+    color:#666;
+
+    font-size:18px;
+
+}
+
+/* ==========================================
+   TOOLBAR
+========================================== */
+
+.order-toolbar{
+
+    margin-bottom:30px;
+
+}
+
+.order-toolbar input{
+
+    width:100%;
+
+    max-width:450px;
+
+    padding:14px 18px;
+
+    border:1px solid #dddddd;
+
+    border-radius:10px;
+
+    outline:none;
+
+    font-size:16px;
+
+    transition:.3s;
+
+}
+
+.order-toolbar input:focus{
+
+    border-color:#ff5722;
+
+    box-shadow:0 0 8px rgba(255,87,34,.25);
+
+}
+
+/* ==========================================
+   TABLE CONTAINER
+========================================== */
+
+.orders-table{
+
+    background:#ffffff;
+
+    border-radius:20px;
+
+    padding:25px;
+
+    overflow-x:auto;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+/* ==========================================
+   ORDERS TABLE
+========================================== */
+
+.orders-table table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+.orders-table thead{
+
+    background:#ff5722;
+
+}
+
+.orders-table th{
+
+    color:#ffffff;
+
+    padding:16px;
+
+    text-align:left;
+
+    font-size:16px;
+
+    font-weight:600;
+
+}
+
+.orders-table td{
+
+    padding:16px;
+
+    border-bottom:1px solid #eeeeee;
+
+    color:#444;
+
+    font-size:15px;
+
+}
+
+.orders-table tbody tr{
+
+    transition:.3s;
+
+}
+
+.orders-table tbody tr:hover{
+
+    background:#fff7f4;
+
+}
+
+/* ==========================================
+   STATUS DROPDOWN
+========================================== */
+
+.orders-table select{
+
+    padding:10px 14px;
+
+    border:1px solid #dddddd;
+
+    border-radius:8px;
+
+    outline:none;
+
+    font-size:14px;
+
+    background:#ffffff;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.orders-table select:focus{
+
+    border-color:#ff5722;
+
+    box-shadow:0 0 6px rgba(255,87,34,.25);
+
+}
+/* ==========================================
+   DELETE BUTTON
+========================================== */
+
+.delete-btn{
+
+    border:none;
+
+    background:#dc3545;
+
+    color:#ffffff;
+
+    padding:10px 18px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.delete-btn:hover{
+
+    background:#c82333;
+
+    transform:translateY(-2px);
+
+}
+
+.delete-btn:active{
+
+    transform:scale(.98);
+
+}
+
+/* ==========================================
+   TABLE ANIMATION
+========================================== */
+
+.orders-table{
+
+    animation:fadeUp .7s ease;
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(30px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ==========================================
+   TABLE SCROLLBAR
+========================================== */
+
+.orders-table::-webkit-scrollbar{
+
+    height:8px;
+
+}
+
+.orders-table::-webkit-scrollbar-thumb{
+
+    background:#ff5722;
+
+    border-radius:20px;
+
+}
+
+.orders-table::-webkit-scrollbar-track{
+
+    background:#f5f5f5;
+
+}
+
+/* ==========================================
+   ROW TRANSITION
+========================================== */
+
+.orders-table tbody tr{
+
+    transition:background .3s ease;
+
+}
+/* ==========================================
+   RESPONSIVE DESIGN
+========================================== */
+
+@media (max-width:992px){
+
+    .orders-table table{
+
+        min-width:700px;
+
+    }
+
+}
+
+@media (max-width:768px){
+
+    .order-management-page{
+
+        width:95%;
+
+    }
+
+    .order-header h1{
+
+        font-size:34px;
+
+    }
+
+    .order-header p{
+
+        font-size:16px;
+
+    }
+
+    .orders-table{
+
+        padding:20px;
+
+    }
+
+    .order-toolbar input{
+
+        max-width:100%;
+
+    }
+
+}
+
+@media (max-width:480px){
+
+    .order-management-page{
+
+        width:96%;
+
+    }
+
+    .order-header h1{
+
+        font-size:28px;
+
+    }
+
+    .order-header p{
+
+        font-size:15px;
+
+    }
+
+    .orders-table{
+
+        padding:15px;
+
+    }
+
+    .orders-table th,
+
+    .orders-table td{
+
+        padding:12px;
+
+        font-size:14px;
+
+    }
+
+    .delete-btn{
+
+        width:100%;
+
+        padding:12px;
+
+    }
+
+}
+
+/* ==========================================
+   SMOOTH SCROLL
+========================================== */
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+/* ==========================================
+   TEXT SELECTION
+========================================== */
+
+::selection{
+
+    background:#ff5722;
+
+    color:#ffffff;
+
+}
+
+/* ==========================================
+   END OF ORDER MANAGEMENT
+========================================== */

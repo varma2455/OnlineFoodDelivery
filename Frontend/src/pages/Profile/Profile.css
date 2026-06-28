@@ -1,0 +1,592 @@
+/* ==========================================
+   PROFILE PAGE
+========================================== */
+
+.profile-page{
+
+    width:90%;
+
+    max-width:1400px;
+
+    margin:40px auto 80px;
+
+}
+
+/* ==========================================
+   PROFILE CARD
+========================================== */
+
+.profile-card{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:40px;
+
+    background:#ffffff;
+
+    border-radius:20px;
+
+    padding:40px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+    margin-bottom:40px;
+
+}
+
+/* ==========================================
+   PROFILE IMAGE
+========================================== */
+
+.profile-image{
+
+    flex-shrink:0;
+
+}
+
+.profile-image img{
+
+    width:180px;
+
+    height:180px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:5px solid #ff5722;
+
+}
+
+/* ==========================================
+   PROFILE INFO
+========================================== */
+
+.profile-info{
+
+    flex:1;
+
+}
+
+.profile-info h1{
+
+    font-size:36px;
+
+    color:#222;
+
+    margin-bottom:10px;
+
+}
+
+.profile-info p{
+
+    color:#666;
+
+    font-size:17px;
+
+    margin-bottom:30px;
+
+}
+
+/* ==========================================
+   PROFILE DETAILS
+========================================== */
+
+.profile-details{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:20px;
+
+}
+
+.detail-item{
+
+    background:#fafafa;
+
+    padding:20px;
+
+    border-radius:12px;
+
+    border-left:4px solid #ff5722;
+
+}
+
+.detail-item span{
+
+    display:block;
+
+    color:#777;
+
+    font-size:15px;
+
+    margin-bottom:8px;
+
+}
+
+.detail-item h3{
+
+    color:#222;
+
+    font-size:18px;
+
+    word-break:break-word;
+
+}
+/* ==========================================
+   PROFILE ACTION BUTTONS
+========================================== */
+
+.profile-actions{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-top:35px;
+
+    flex-wrap:wrap;
+
+}
+
+.edit-btn{
+
+    padding:14px 28px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#ff5722;
+
+    color:#ffffff;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.edit-btn:hover{
+
+    background:#e64a19;
+
+    transform:translateY(-3px);
+
+}
+
+.password-btn{
+
+    padding:14px 28px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#343a40;
+
+    color:#ffffff;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.password-btn:hover{
+
+    background:#212529;
+
+    transform:translateY(-3px);
+
+}
+
+/* ==========================================
+   PROFILE SECTIONS
+========================================== */
+
+.profile-sections{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:30px;
+
+}
+
+/* ==========================================
+   RECENT ORDERS
+========================================== */
+
+.recent-orders{
+
+    background:#ffffff;
+
+    border-radius:20px;
+
+    padding:30px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+
+}
+
+.recent-orders h2{
+
+    color:#222;
+
+    margin-bottom:25px;
+
+    font-size:28px;
+
+}
+
+.recent-orders ul{
+
+    list-style:none;
+
+    padding:0;
+
+    margin:0;
+
+}
+
+.recent-orders li{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:16px 0;
+
+    border-bottom:1px solid #eeeeee;
+
+    font-size:17px;
+
+}
+
+.recent-orders li:last-child{
+
+    border-bottom:none;
+
+}
+
+.recent-orders span{
+
+    background:#e8f5e9;
+
+    color:#2e7d32;
+
+    padding:6px 14px;
+
+    border-radius:20px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+/* ==========================================
+   FAVOURITE FOODS
+========================================== */
+
+.favorite-foods{
+
+    background:#ffffff;
+
+    border-radius:20px;
+
+    padding:30px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+
+}
+
+.favorite-foods h2{
+
+    color:#222;
+
+    font-size:28px;
+
+    margin-bottom:25px;
+
+}
+
+/* ==========================================
+   FAVORITES GRID
+========================================== */
+
+.favorites-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+
+    gap:20px;
+
+}
+
+.favorite-item{
+
+    background:#fff5f2;
+
+    border:2px solid #ffe0d6;
+
+    border-radius:15px;
+
+    padding:25px 15px;
+
+    text-align:center;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    color:#333;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.favorite-item:hover{
+
+    background:#ff5722;
+
+    color:#ffffff;
+
+    border-color:#ff5722;
+
+    transform:translateY(-6px);
+
+    box-shadow:0 12px 25px rgba(255,87,34,.25);
+
+}
+
+/* ==========================================
+   CARD HOVER EFFECT
+========================================== */
+
+.profile-card,
+.recent-orders,
+.favorite-foods{
+
+    transition:.35s;
+
+}
+
+.profile-card:hover,
+.recent-orders:hover,
+.favorite-foods:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 15px 35px rgba(0,0,0,.12);
+
+}
+
+/* ==========================================
+   BUTTON ACTIVE EFFECT
+========================================== */
+
+.edit-btn:active,
+.password-btn:active{
+
+    transform:scale(.98);
+
+}
+/* ==========================================
+   RESPONSIVE DESIGN
+========================================== */
+
+@media (max-width:992px){
+
+    .profile-card{
+
+        flex-direction:column;
+
+        text-align:center;
+
+    }
+
+    .profile-actions{
+
+        justify-content:center;
+
+    }
+
+    .profile-sections{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media (max-width:768px){
+
+    .profile-page{
+
+        width:95%;
+
+    }
+
+    .profile-card{
+
+        padding:30px 20px;
+
+    }
+
+    .profile-image img{
+
+        width:150px;
+
+        height:150px;
+
+    }
+
+    .profile-info h1{
+
+        font-size:30px;
+
+    }
+
+    .profile-details{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .favorites-grid{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+}
+
+@media (max-width:480px){
+
+    .profile-card{
+
+        padding:20px 15px;
+
+    }
+
+    .profile-image img{
+
+        width:120px;
+
+        height:120px;
+
+    }
+
+    .profile-info h1{
+
+        font-size:26px;
+
+    }
+
+    .profile-info p{
+
+        font-size:15px;
+
+    }
+
+    .edit-btn,
+    .password-btn{
+
+        width:100%;
+
+    }
+
+    .favorites-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .recent-orders li{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:10px;
+
+    }
+
+}
+
+/* ==========================================
+   ANIMATION
+========================================== */
+
+.profile-card,
+.recent-orders,
+.favorite-foods{
+
+    animation:fadeUp .7s ease;
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(30px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ==========================================
+   SMOOTH SCROLL
+========================================== */
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+/* ==========================================
+   TEXT SELECTION
+========================================== */
+
+::selection{
+
+    background:#ff5722;
+
+    color:#ffffff;
+
+}
+
+/* ==========================================
+   END OF PROFILE PAGE
+========================================== */

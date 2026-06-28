@@ -1,0 +1,247 @@
+/* ==========================================
+   FOOD CARD
+========================================== */
+
+.food-card{
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+
+    transition:.35s;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.food-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
+
+}
+
+.food-image{
+
+    position:relative;
+
+    width:100%;
+
+    height:230px;
+
+    overflow:hidden;
+
+}
+
+.food-image img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    transition:.5s;
+
+}
+
+.food-card:hover .food-image img{
+
+    transform:scale(1.08);
+
+}
+
+.discount-badge{
+
+    position:absolute;
+
+    top:15px;
+
+    left:15px;
+
+    background:#ff5722;
+
+    color:#fff;
+
+    padding:8px 14px;
+
+    border-radius:20px;
+
+    font-size:14px;
+
+    font-weight:700;
+
+}
+
+.food-content{
+
+    padding:22px;
+
+}
+
+.food-content h3{
+
+    font-size:24px;
+
+    color:#222;
+
+    margin-bottom:12px;
+
+}
+
+.food-content p{
+
+    color:#666;
+
+    font-size:15px;
+
+    line-height:26px;
+
+    margin-bottom:18px;
+
+    height:55px;
+
+    overflow:hidden;
+
+}
+
+.food-rating{
+
+    color:#ff9800;
+
+    font-size:17px;
+
+    margin-bottom:18px;
+
+    font-weight:600;
+
+}
+
+.food-price{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    margin-bottom:22px;
+
+}
+
+.old-price{
+
+    text-decoration:line-through;
+
+    color:#999;
+
+    font-size:18px;
+
+}
+
+.new-price{
+
+    color:#ff5722;
+
+    font-size:26px;
+
+    font-weight:bold;
+
+}
+
+.add-cart-btn{
+
+    width:100%;
+
+    border:none;
+
+    background:#ff5722;
+
+    color:#fff;
+
+    padding:14px;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.add-cart-btn:hover{
+
+    background:#e64a19;
+
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:768px){
+
+.food-image{
+
+    height:200px;
+
+}
+
+.food-content h3{
+
+    font-size:21px;
+
+}
+
+.new-price{
+
+    font-size:22px;
+
+}
+
+}
+
+@media(max-width:480px){
+
+.food-content{
+
+    padding:18px;
+
+}
+
+.food-image{
+
+    height:180px;
+
+}
+
+.food-content h3{
+
+    font-size:19px;
+
+}
+
+.food-content p{
+
+    font-size:14px;
+
+}
+
+.add-cart-btn{
+
+    font-size:15px;
+
+}
+
+}

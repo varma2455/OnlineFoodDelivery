@@ -1,0 +1,133 @@
+/* ===========================
+   Navbar
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+.navbar{
+    width:100%;
+    background:#ffffff;
+    box-shadow:0 2px 10px rgba(0,0,0,0.08);
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.navbar-container{
+    width:90%;
+    max-width:1400px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    height:80px;
+}
+
+.logo a{
+    text-decoration:none;
+    font-size:30px;
+    font-weight:bold;
+    color:#ff5722;
+}
+
+.nav-links{
+    display:flex;
+    list-style:none;
+    gap:30px;
+}
+
+.nav-links li a{
+    text-decoration:none;
+    color:#333;
+    font-size:18px;
+    font-weight:500;
+    transition:0.3s;
+}
+
+.nav-links li a:hover{
+    color:#ff5722;
+}
+
+.nav-links .active{
+    color:#ff5722;
+    font-weight:700;
+}
+
+.nav-buttons{
+    display:flex;
+    gap:15px;
+}
+
+.login-btn,
+.register-btn{
+    text-decoration:none;
+    padding:10px 22px;
+    border-radius:8px;
+    transition:0.3s;
+    font-weight:600;
+}
+
+.login-btn{
+    border:2px solid #ff5722;
+    color:#ff5722;
+}
+
+.login-btn:hover{
+    background:#ff5722;
+    color:#fff;
+}
+
+.register-btn{
+    background:#ff5722;
+    color:#fff;
+}
+
+.register-btn:hover{
+    background:#e64a19;
+}
+
+/* ===========================
+   Responsive
+=========================== */
+
+@media(max-width:900px){
+
+    .navbar-container{
+        flex-direction:column;
+        height:auto;
+        padding:20px 0;
+    }
+
+    .nav-links{
+        margin:20px 0;
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+}
+
+@media(max-width:600px){
+
+    .logo a{
+        font-size:24px;
+    }
+
+    .nav-links{
+        gap:15px;
+    }
+
+    .nav-links li a{
+        font-size:16px;
+    }
+
+    .login-btn,
+    .register-btn{
+        padding:8px 18px;
+        font-size:15px;
+    }
+
+}

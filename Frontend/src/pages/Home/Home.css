@@ -1,0 +1,743 @@
+/* ==========================================
+   HOME PAGE
+========================================== */
+
+.food-section{
+
+    width:90%;
+    max-width:1400px;
+
+    margin:80px auto;
+
+}
+
+.section-title{
+
+    text-align:center;
+
+    margin-bottom:50px;
+
+}
+
+.section-title h2{
+
+    font-size:42px;
+
+    color:#222;
+
+    margin-bottom:15px;
+
+}
+
+.section-title p{
+
+    color:#666;
+
+    font-size:18px;
+
+}
+
+.food-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+
+    gap:35px;
+
+}
+
+/* ==========================================
+   NO FOOD
+========================================== */
+
+.no-food{
+
+    width:100%;
+
+    grid-column:1/-1;
+
+    text-align:center;
+
+    padding:80px 20px;
+
+}
+
+.no-food h2{
+
+    color:#ff5722;
+
+    font-size:36px;
+
+    margin-bottom:15px;
+
+}
+
+.no-food p{
+
+    color:#777;
+
+    font-size:18px;
+
+}
+
+/* ==========================================
+   PROMOTION
+========================================== */
+
+.promo-section{
+
+    width:90%;
+
+    max-width:1400px;
+
+    margin:90px auto;
+
+}
+
+.promo-content{
+
+    background:linear-gradient(
+        135deg,
+        #ff5722,
+        #ff9800
+    );
+
+    border-radius:25px;
+
+    padding:70px;
+
+    color:white;
+
+    text-align:center;
+
+}
+
+.promo-content h2{
+
+    font-size:46px;
+
+    margin-bottom:20px;
+
+}
+
+.promo-content p{
+
+    font-size:20px;
+
+    line-height:34px;
+
+    margin-bottom:35px;
+
+}
+
+.promo-content strong{
+
+    color:#fff700;
+
+}
+
+.promo-content button{
+
+    border:none;
+
+    background:white;
+
+    color:#ff5722;
+
+    padding:16px 40px;
+
+    border-radius:12px;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.promo-content button:hover{
+
+    transform:translateY(-5px);
+
+}
+/* ==========================================
+   WHY CHOOSE US
+========================================== */
+
+.why-section{
+
+    width:90%;
+
+    max-width:1400px;
+
+    margin:90px auto;
+
+}
+
+.why-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+    gap:30px;
+
+}
+
+.why-card{
+
+    background:#ffffff;
+
+    padding:40px 30px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+    transition:.35s;
+
+    cursor:pointer;
+
+}
+
+.why-card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 20px 40px rgba(0,0,0,.15);
+
+}
+
+.why-icon{
+
+    width:90px;
+
+    height:90px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    background:#fff3ef;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:42px;
+
+    margin-bottom:25px;
+
+    transition:.3s;
+
+}
+
+.why-card:hover .why-icon{
+
+    background:#ff5722;
+
+    color:#ffffff;
+
+    transform:rotate(8deg);
+
+}
+
+.why-card h3{
+
+    font-size:26px;
+
+    color:#222;
+
+    margin-bottom:15px;
+
+}
+
+.why-card p{
+
+    font-size:17px;
+
+    color:#666;
+
+    line-height:30px;
+
+}
+
+/* ==========================================
+   SECTION SPACING
+========================================== */
+
+.food-section,
+.promo-section,
+.why-section{
+
+    animation:fadeUp .8s ease;
+
+}
+
+/* ==========================================
+   ANIMATION
+========================================== */
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(40px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+/* ==========================================
+   STATISTICS SECTION
+========================================== */
+
+.stats-section{
+
+    width:90%;
+
+    max-width:1400px;
+
+    margin:100px auto;
+
+}
+
+.stats-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:30px;
+
+}
+
+.stat-card{
+
+    background:#ffffff;
+
+    padding:45px 25px;
+
+    text-align:center;
+
+    border-radius:18px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+    transition:.35s;
+
+}
+
+.stat-card:hover{
+
+    transform:translateY(-10px);
+
+    background:#ff5722;
+
+    color:#ffffff;
+
+}
+
+.stat-card h2{
+
+    font-size:46px;
+
+    margin-bottom:15px;
+
+    color:#ff5722;
+
+    transition:.3s;
+
+}
+
+.stat-card:hover h2{
+
+    color:#ffffff;
+
+}
+
+.stat-card p{
+
+    font-size:18px;
+
+    color:#666;
+
+    transition:.3s;
+
+}
+
+.stat-card:hover p{
+
+    color:#ffffff;
+
+}
+
+/* ==========================================
+   NEWSLETTER
+========================================== */
+
+.newsletter{
+
+    width:90%;
+
+    max-width:1400px;
+
+    margin:100px auto;
+
+}
+
+.newsletter-content{
+
+    background:linear-gradient(
+        135deg,
+        #222,
+        #111
+    );
+
+    color:#ffffff;
+
+    text-align:center;
+
+    border-radius:25px;
+
+    padding:70px 40px;
+
+}
+
+.newsletter-content h2{
+
+    font-size:42px;
+
+    margin-bottom:20px;
+
+}
+
+.newsletter-content p{
+
+    font-size:18px;
+
+    color:#dddddd;
+
+    max-width:700px;
+
+    margin:auto;
+
+    line-height:32px;
+
+    margin-bottom:35px;
+
+}
+
+.newsletter-box{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+}
+
+.newsletter-box input{
+
+    width:420px;
+
+    max-width:100%;
+
+    padding:18px 22px;
+
+    border:none;
+
+    border-radius:10px;
+
+    outline:none;
+
+    font-size:17px;
+
+}
+
+.newsletter-box button{
+
+    border:none;
+
+    background:#ff5722;
+
+    color:#ffffff;
+
+    padding:18px 35px;
+
+    border-radius:10px;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.newsletter-box button:hover{
+
+    background:#e64a19;
+
+    transform:translateY(-3px);
+
+}
+/* ==========================================
+   RESPONSIVE DESIGN
+========================================== */
+
+@media (max-width: 1200px){
+
+    .food-grid{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+    .stats-grid{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+}
+
+@media (max-width:992px){
+
+    .promo-content{
+
+        padding:50px 30px;
+
+    }
+
+    .promo-content h2{
+
+        font-size:36px;
+
+    }
+
+    .section-title h2{
+
+        font-size:34px;
+
+    }
+
+    .newsletter-content{
+
+        padding:50px 25px;
+
+    }
+
+}
+
+@media (max-width:768px){
+
+    .food-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .why-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .stats-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .promo-content{
+
+        padding:40px 25px;
+
+    }
+
+    .promo-content h2{
+
+        font-size:30px;
+
+    }
+
+    .promo-content p{
+
+        font-size:17px;
+
+    }
+
+    .newsletter-content h2{
+
+        font-size:30px;
+
+    }
+
+    .newsletter-content p{
+
+        font-size:16px;
+
+        line-height:28px;
+
+    }
+
+    .newsletter-box{
+
+        flex-direction:column;
+
+    }
+
+    .newsletter-box input{
+
+        width:100%;
+
+    }
+
+    .newsletter-box button{
+
+        width:100%;
+
+    }
+
+}
+
+@media (max-width:480px){
+
+    .section-title h2{
+
+        font-size:28px;
+
+    }
+
+    .section-title p{
+
+        font-size:16px;
+
+    }
+
+    .promo-content{
+
+        padding:30px 20px;
+
+    }
+
+    .promo-content h2{
+
+        font-size:26px;
+
+    }
+
+    .promo-content p{
+
+        font-size:15px;
+
+        line-height:26px;
+
+    }
+
+    .promo-content button{
+
+        width:100%;
+
+        padding:14px;
+
+    }
+
+    .why-card{
+
+        padding:30px 20px;
+
+    }
+
+    .why-icon{
+
+        width:70px;
+
+        height:70px;
+
+        font-size:34px;
+
+    }
+
+    .why-card h3{
+
+        font-size:22px;
+
+    }
+
+    .stat-card{
+
+        padding:35px 20px;
+
+    }
+
+    .stat-card h2{
+
+        font-size:36px;
+
+    }
+
+    .newsletter-content{
+
+        padding:35px 20px;
+
+    }
+
+    .newsletter-content h2{
+
+        font-size:24px;
+
+    }
+
+}
+
+/* ==========================================
+   SMOOTH SCROLL
+========================================== */
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+/* ==========================================
+   CUSTOM SELECTION
+========================================== */
+
+::selection{
+
+    background:#ff5722;
+
+    color:#ffffff;
+
+}
+
+/* ==========================================
+   END OF HOME PAGE
+========================================== */

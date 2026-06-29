@@ -23,7 +23,7 @@ const Orders = () => {
 
             const { data } = await axios.get(
 
-                "http://localhost:5000/api/orders",
+                "https://onlinefooddelivery-9g60.onrender.com/api/orders",
 
                 {
 

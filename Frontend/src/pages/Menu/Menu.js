@@ -28,7 +28,7 @@ const Menu = () => {
         try {
 
             const { data } = await axios.get(
-                "http://localhost:5000/api/foods"
+                "https://onlinefooddelivery-9g60.onrender.com/api/foods"
             );
 
             const foodList = data.foods || [];

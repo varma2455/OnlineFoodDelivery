@@ -25,7 +25,7 @@ const UserManagement = () => {
 
             const { data } = await axios.get(
 
-                "http://localhost:5000/api/admin/users",
+                "https://onlinefooddelivery-9g60.onrender.com/api/admin/users",
 
                 {
 

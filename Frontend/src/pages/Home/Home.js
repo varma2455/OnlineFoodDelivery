@@ -27,7 +27,7 @@ const Home = () => {
         try {
 
             const { data } = await axios.get(
-                "http://localhost:5000/api/foods"
+                "https://onlinefooddelivery-9g60.onrender.com/api/foods"
             );
 
             setFoods(data.foods);

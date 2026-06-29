@@ -20,7 +20,7 @@ const ForgotPassword = () => {
 
             const { data } = await axios.post(
 
-                "http://localhost:5000/api/auth/forgot-password",
+                "https://onlinefooddelivery-9g60.onrender.com/api/auth/forgot-password",
 
                 {
 

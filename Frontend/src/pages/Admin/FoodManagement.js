@@ -25,7 +25,7 @@ const FoodManagement = () => {
 
             const { data } = await axios.get(
 
-                "http://localhost:5000/api/admin/foods",
+                "https://onlinefooddelivery-9g60.onrender.com/api/admin/foods",
 
                 {
 
@@ -135,7 +135,7 @@ const FoodManagement = () => {
 
                             <img
 
-                                src={`http://localhost:5000/uploads/${food.image}`}
+                                src={`https://onlinefooddelivery-9g60.onrender.com/uploads/${food.image}`}
 
                                 alt={food.name}
 

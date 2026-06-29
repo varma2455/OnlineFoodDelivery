@@ -51,20 +51,17 @@ const Navbar = () => {
 
                 </ul>
 
-                <div className="nav-buttons">
+                <div className="auth-buttons">
 
-                    <Link
-                        to="/login"
-                        className="login-btn"
-                    >
-                        Login
+                    <Link to="/login">
+
+                        <button className="auth-btn active"> Login </button>
                     </Link>
 
-                    <Link
-                        to="/register"
-                        className="register-btn"
-                    >
-                        Register
+                    <Link to="/register">
+
+                       <button className="auth-btn"> Register </button>
+ 
                     </Link>
 
                 </div>

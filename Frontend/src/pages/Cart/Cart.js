@@ -21,7 +21,7 @@ const Cart = () => {
         try {
 
             const { data } = await axios.get(
-                "http://localhost:5000/api/cart"
+                "https://onlinefooddelivery-9g60.onrender.com/api/cart"
             );
 
             setCartItems(data.cart || []);
@@ -182,7 +182,7 @@ const Cart = () => {
             <img
                 src={
                     item.image
-                        ? `http://localhost:5000/uploads/${item.image}`
+                        ? `https://onlinefooddelivery-9g60.onrender.com/uploads/${item.image}`
                         : "https://via.placeholder.com/150"
                 }
                 alt={item.name}

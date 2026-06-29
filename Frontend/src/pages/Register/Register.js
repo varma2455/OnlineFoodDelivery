@@ -1,45 +1,69 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
-
+import React, { useState } from "react";
 import "./Register.css";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+
+import {
+  FaUser,
+  FaEnvelope,
+  FaPhoneAlt,
+  FaMapMarkerAlt,
+  FaLock,
+  FaEye,
+  FaEyeSlash,
+  FaGoogle,
+  FaFacebookF,
+  FaHamburger,
+  FaMotorcycle,
+  FaStore,
+  FaGift
+} from "react-icons/fa";
+
+import burgerImage from "../../assets/images/burger.png";
 
 const Register = () => {
 
     const navigate = useNavigate();
 
-    const [loading, setLoading] = useState(false);
+    const [loading,setLoading]=useState(false);
 
-    const [showPassword, setShowPassword] = useState(false);
+    const [showPassword,setShowPassword]=useState(false);
 
-    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const [showConfirmPassword,setShowConfirmPassword]=useState(false);
 
-    const [formData, setFormData] = useState({
+    const [formData,setFormData]=useState({
+
         name:"",
+
         email:"",
+
         phone:"",
+
         address:"",
+
         password:"",
+
         confirmPassword:""
+
     });
-    
-    const handleChange = (e) => {
+
+    const handleChange=(e)=>{
 
         setFormData({
 
             ...formData,
 
-            [e.target.name]: e.target.value
+            [e.target.name]:e.target.value
 
         });
 
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit=async(e)=>{
 
         e.preventDefault();
 
-        if(formData.password !== formData.confirmPassword){
+        if(formData.password!==formData.confirmPassword){
 
             alert("Passwords do not match");
 
@@ -52,14 +76,23 @@ const Register = () => {
             setLoading(true);
 
             await axios.post(
-                "http://localhost:5000/api/auth/register",
+
+                "https://onlinefooddelivery-9g60.onrender.com/api/auth/register",
+
                 {
-                    fullName: formData.name,
-                    email: formData.email,
-                    phone: formData.phone,
-                    password: formData.password,
-                    address: formData.address
+
+                    fullName:formData.name,
+
+                    email:formData.email,
+
+                    phone:formData.phone,
+
+                    address:formData.address,
+
+                    password:formData.password
+
                 }
+
             );
 
             alert("Registration Successful");
@@ -90,286 +123,563 @@ const Register = () => {
 
     return(
 
-        <div className="register-page">
+<div className="register-page">
 
-            <div className="register-card">
+<div className="left-section">
 
-                <h1>
+<div className="logo-area">
 
-                    Create Account
+<div className="logo-circle">
 
-                </h1>
+<FaHamburger/>
 
-                <p>
+</div>
 
-                    Register to start ordering delicious food.
+<div>
 
-                </p>
+<h2>
 
-                <form
+Food<span>Express</span>
 
-                    onSubmit={handleSubmit}
+</h2>
 
-                >
+<p>
 
-                    <div className="input-group">
+Delicious food, delivered fast
 
-                        <label>
+</p>
 
-                            Full Name
+</div>
 
-                        </label>
+</div>
+ 
 
-                        <input
+<div className="dots dots-top"></div>
 
-                            type="text"
+<div className="dots dots-bottom"></div>
 
-                            name="name"
+<div className="burger-wrapper">
 
-                            value={formData.name}
+<img
 
-                            onChange={handleChange}
+src={burgerImage}
 
-                            placeholder="Enter your full name"
+alt="Burger"
 
-                            required
+className="burger-image"
 
-                        />
+/>
 
-                    </div>
+</div>
 
-                    <div className="input-group">
+<div className="hero-text">
 
-                        <label>
+<h1>
 
-                            Email Address
+Join
 
-                        </label>
+</h1>
 
-                        <input
+<h1 className="highlight">
 
-                            type="email"
+FoodExpress
 
-                            name="email"
+</h1>
 
-                            value={formData.email}
+<p>
 
-                            onChange={handleChange}
+Create your account and enjoy delicious food delivered directly to your doorstep.
 
-                            placeholder="Enter your email"
+</p>
 
-                            required
+</div>
 
-                        />
+<div className="feature-boxes">
 
-                    </div>
+<div className="feature-card">
 
-                    <div className="input-group">
+<div className="feature-icon">
 
-                        <label>
+<FaMotorcycle/>
 
-                            Mobile Number
+</div>
 
-                        </label>
+<h3>
 
-                        <input
+Fast Delivery
 
-                            type="tel"
+</h3>
 
-                            name="phone"
+<p>
 
-                            value={formData.phone}
+Hot & Fresh food
 
-                            onChange={handleChange}
+at your doorstep
 
-                            placeholder="Enter your mobile number"
+</p>
 
-                            required
+</div>
 
-                        />
+<div className="feature-card">
 
-                    </div>
+<div className="feature-icon">
 
+<FaStore/>
 
-                    <div className="input-group">
-                        <label>Address</label>
+</div>
 
-                        <input
-                            type="text"
-                            name="address"
-                            value={formData.address}
-                            onChange={handleChange}
-                            placeholder="Enter your address"
-                            required
-                        />
+<h3>
 
-                    </div>
+Top Restaurants
 
+</h3>
 
+<p>
 
-                    <div className="input-group">
+Choose from
 
-                        <label>
+Top Rated Restaurants
 
-                            Password
+</p>
 
-                        </label>
+</div>
 
-                        <div className="password-box">
+<div className="feature-card">
 
-                            <input
+<div className="feature-icon">
 
-                                type={
-                                    showPassword
-                                        ? "text"
-                                        : "password"
-                                }
+<FaGift/>
 
-                                name="password"
+</div>
 
-                                value={formData.password}
+<h3>
 
-                                onChange={handleChange}
+Amazing Offers
 
-                                placeholder="Enter your password"
+</h3>
 
-                                required
+<p>
 
-                            />
+Exciting Deals
 
-                            <button
+Everyday
 
-                                type="button"
+</p>
 
-                                className="show-btn"
+</div>
 
-                                onClick={() =>
-                                    setShowPassword(!showPassword)
-                                }
+</div>
 
-                            >
+</div>
+<div className="right-section">
 
-                                {
+<div className="register-card">
 
-                                    showPassword
+<div className="card-logo">
 
-                                        ? "Hide"
+<div className="card-logo-circle">
 
-                                        : "Show"
+<FaHamburger/>
 
-                                }
+</div>
 
-                            </button>
+<div>
 
-                        </div>
+<h2>
 
-                    </div>
+Food<span>Express</span>
 
-                    <div className="input-group">
+</h2>
 
-                        <label>
+<p>
 
-                            Confirm Password
+Delicious food, delivered fast
 
-                        </label>
+</p>
 
-                        <div className="password-box">
+</div>
 
-                            <input
+</div>
 
-                                type={
-                                    showConfirmPassword
-                                        ? "text"
-                                        : "password"
-                                }
+<h1>
 
-                                name="confirmPassword"
+Create Your Account
 
-                                value={formData.confirmPassword}
+</h1>
 
-                                onChange={handleChange}
+<p className="register-subtitle">
 
-                                placeholder="Confirm your password"
+Register to start ordering delicious food.
 
-                                required
+</p>
 
-                            />
+<form onSubmit={handleSubmit}>
 
-                            <button
+<div className="input-group">
 
-                                type="button"
+<label>
 
-                                className="show-btn"
+Full Name
 
-                                onClick={() =>
-                                    setShowConfirmPassword(
-                                        !showConfirmPassword
-                                    )
-                                }
+</label>
 
-                            >
+<div className="input-box">
 
-                                {
+<FaUser/>
 
-                                    showConfirmPassword
+<input
 
-                                        ? "Hide"
+type="text"
 
-                                        : "Show"
+name="name"
 
-                                }
+placeholder="Enter your full name"
 
-                            </button>
+value={formData.name}
 
-                        </div>
+onChange={handleChange}
 
-                    </div>
+required
 
-                    <button
+/>
 
-                        type="submit"
+</div>
 
-                        className="register-btn"
+</div>
 
-                        disabled={loading}
+<div className="input-group">
 
-                    >
+<label>
 
-                        {
+Email Address
 
-                            loading
+</label>
 
-                                ? "Creating Account..."
+<div className="input-box">
 
-                                : "Register"
+<FaEnvelope/>
 
-                        }
+<input
 
-                    </button>
+type="email"
 
-                    <div className="login-link">
+name="email"
 
-                        <p>
+placeholder="Enter your email"
 
-                            Already have an account?
+value={formData.email}
 
-                            <Link to="/login">
+onChange={handleChange}
 
-                                Login
+required
 
-                            </Link>
+/>
 
-                        </p>
+</div>
 
-                    </div>
+</div>
 
-                </form>
-            </div>
-            
+<div className="input-group">
 
-        </div>
+<label>
 
-    );
+Mobile Number
+
+</label>
+
+<div className="input-box">
+
+<FaPhoneAlt/>
+
+<input
+
+type="tel"
+
+name="phone"
+
+placeholder="Enter your mobile number"
+
+value={formData.phone}
+
+onChange={handleChange}
+
+required
+
+/>
+
+</div>
+
+</div>
+
+<div className="input-group">
+
+<label>
+
+Address
+
+</label>
+
+<div className="input-box">
+
+<FaMapMarkerAlt/>
+
+<input
+
+type="text"
+
+name="address"
+
+placeholder="Enter your address"
+
+value={formData.address}
+
+onChange={handleChange}
+
+required
+
+/>
+
+</div>
+
+</div>
+
+<div className="input-group">
+
+<label>
+
+Password
+
+</label>
+
+<div className="input-box">
+
+<FaLock/>
+
+<input
+
+type={showPassword ? "text" : "password"}
+
+name="password"
+
+placeholder="Enter your password"
+
+value={formData.password}
+
+onChange={handleChange}
+
+required
+
+/>
+
+<button
+
+type="button"
+
+className="eye-btn"
+
+onClick={() => setShowPassword(!showPassword)}
+
+>
+
+{
+
+showPassword
+
+?
+
+<FaEyeSlash/>
+
+:
+
+<FaEye/>
+
+}
+
+</button>
+
+</div>
+
+</div>
+
+<div className="input-group">
+
+<label>
+
+Confirm Password
+
+</label>
+
+<div className="input-box">
+
+<FaLock/>
+
+<input
+
+type={showConfirmPassword ? "text" : "password"}
+
+name="confirmPassword"
+
+placeholder="Confirm your password"
+
+value={formData.confirmPassword}
+
+onChange={handleChange}
+
+required
+
+/>
+
+<button
+
+type="button"
+
+className="eye-btn"
+
+onClick={() =>
+
+setShowConfirmPassword(
+
+!showConfirmPassword
+
+)
+
+}
+
+>
+
+{
+
+showConfirmPassword
+
+?
+
+<FaEyeSlash/>
+
+:
+
+<FaEye/>
+
+}
+
+</button>
+
+</div>
+
+</div>
+
+<button
+
+type="submit"
+
+className="register-btn"
+
+disabled={loading}
+
+>
+
+{
+
+loading
+
+?
+
+"Creating Account..."
+
+:
+
+"Create Account"
+
+}
+
+</button>
+
+<div className="divider">
+
+<span>
+
+or continue with
+
+</span>
+
+</div>
+
+<div className="social-buttons">
+
+<button
+
+type="button"
+
+className="google-btn"
+
+>
+
+<FaGoogle/>
+
+Google
+
+</button>
+
+<button
+
+type="button"
+
+className="facebook-btn"
+
+>
+
+<FaFacebookF/>
+
+Facebook
+
+</button>
+
+</div>
+
+<div className="password-box-info">
+
+<h4>
+
+🔒 Password Requirements
+
+</h4>
+
+<div className="password-grid">
+
+<div>✔ Minimum 8 characters</div>
+
+<div>✔ One uppercase letter</div>
+
+<div>✔ One lowercase letter</div>
+
+<div>✔ One number</div>
+
+<div>✔ One special character</div>
+
+</div>
+
+</div>
+
+<div className="login-link">
+
+Already have an account?
+
+<Link to="/login">
+
+Login
+
+</Link>
+
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+);
 
 };
 

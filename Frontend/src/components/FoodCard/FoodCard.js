@@ -11,7 +11,7 @@ const FoodCard = ({ food }) => {
                 <img
                     src={
                         food.image
-                            ? `http://localhost:5000/uploads/${food.image}`
+                            ? `https://onlinefooddelivery-9g60.onrender.com/uploads/${food.image}`
                             : "https://via.placeholder.com/300x220?text=Food"
                     }
                     alt={food.name}

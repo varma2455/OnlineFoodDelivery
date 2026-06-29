@@ -5,7 +5,7 @@ export const StoreContext = createContext(null);
 
 const StoreContextProvider = ({ children }) => {
 
-    const url = "http://localhost:5000";
+    const url = "https://onlinefooddelivery-9g60.onrender.com";
 
     const [token, setToken] = useState(
 

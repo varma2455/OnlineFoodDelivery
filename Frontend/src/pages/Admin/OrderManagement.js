@@ -25,7 +25,7 @@ const OrderManagement = () => {
 
             const { data } = await axios.get(
 
-                "http://localhost:5000/api/admin/orders",
+                "https://onlinefooddelivery-9g60.onrender.com/api/admin/orders",
 
                 {
 

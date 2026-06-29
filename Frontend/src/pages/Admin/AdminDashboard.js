@@ -33,7 +33,7 @@ const AdminDashboard = () => {
 
             const { data } = await axios.get(
 
-                "http://localhost:5000/api/admin/dashboard",
+                "https://onlinefooddelivery-9g60.onrender.com/api/admin/dashboard",
 
                 {
 

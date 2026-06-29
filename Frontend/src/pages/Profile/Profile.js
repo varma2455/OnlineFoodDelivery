@@ -29,7 +29,7 @@ const Profile = () => {
 
             const { data } = await axios.get(
 
-                "http://localhost:5000/api/auth/profile",
+                "https://onlinefooddelivery-9g60.onrender.com/api/auth/profile",
 
                 {
 
@@ -79,7 +79,7 @@ const Profile = () => {
 
                         src={
                             user.profileImage
-                                ? `http://localhost:5000/uploads/${user.profileImage}`
+                                ? `https://onlinefooddelivery-9g60.onrender.com/uploads/${user.profileImage}`
                                 : "https://via.placeholder.com/180"
                         }
 

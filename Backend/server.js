@@ -23,11 +23,15 @@ const app = express();
 // Middleware
 // ==============================
 
+import cors from "cors";
+
 app.use(cors({
-    origin: "http://localhost:3000",
+    origin: [
+        "http://localhost:3000",
+        "https://online-food-delivery-gray.vercel.app"
+    ],
     credentials: true
 }));
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());

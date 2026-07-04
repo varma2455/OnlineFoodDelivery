@@ -77,7 +77,7 @@ const Register = () => {
 
             await axios.post(
 
-                `${process.env.REACT_APP_API}/api/auth/login`,
+                `${process.env.REACT_APP_API}/api/auth/register`,
 
                 {
 
@@ -682,5 +682,7 @@ Login
 );
 
 };
+
+console.log(process.env.REACT_APP_API);
 
 export default Register;

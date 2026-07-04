@@ -77,7 +77,7 @@ const Register = () => {
 
             await axios.post(
 
-                "https://onlinefooddelivery-9g60.onrender.com/api/auth/register",
+                `${process.env.REACT_APP_API}/api/auth/login`,
 
                 {
 

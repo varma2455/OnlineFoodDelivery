@@ -4,6 +4,13 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
 import {
+    createUserWithEmailAndPassword,
+    updateProfile
+} from "firebase/auth";
+
+import { auth } from "../../firebase";
+
+import {
   FaUser,
   FaEnvelope,
   FaPhoneAlt,
@@ -59,66 +66,79 @@ const Register = () => {
 
     };
 
-    const handleSubmit=async(e)=>{
+    const handleSubmit = async (e) => {
 
         e.preventDefault();
-
-        if(formData.password!==formData.confirmPassword){
-
+    
+        if(formData.password !== formData.confirmPassword){
+    
             alert("Passwords do not match");
-
+    
             return;
-
+    
         }
-
+    
         try{
-
+    
             setLoading(true);
-
+    
+            // Step 1: Create user in Firebase Authentication
+            const userCredential = await createUserWithEmailAndPassword(
+                auth,
+                formData.email,
+                formData.password
+            );
+    
+            const firebaseUser = userCredential.user;
+    
+            // Step 2: Save display name in Firebase
+            await updateProfile(firebaseUser,{
+                displayName: formData.name
+            });
+    
+            // Step 3: Get Firebase UID
+            const firebaseUid = firebaseUser.uid;
+    
+            // Step 4: Get Firebase ID Token
+            const firebaseToken = await firebaseUser.getIdToken();
+    
+            // Step 5: Send user details to backend
             await axios.post(
-
                 `${process.env.REACT_APP_API}/api/auth/register`,
-
                 {
-
-                    fullName:formData.name,
-
-                    email:formData.email,
-
-                    phone:formData.phone,
-
-                    address:formData.address,
-
-                    password:formData.password
-
+                    firebaseUid,
+                    token: firebaseToken,
+                    fullName: formData.name,
+                    email: formData.email,
+                    phone: formData.phone,
+                    address: formData.address
                 }
-
             );
-
+    
             alert("Registration Successful");
-
+    
             navigate("/login");
-
+    
         }
-
+    
         catch(error){
-
+    
+            console.log(error);
+    
             alert(
-
                 error.response?.data?.message ||
-
+                error.message ||
                 "Registration Failed"
-
             );
-
+    
         }
-
+    
         finally{
-
+    
             setLoading(false);
-
+    
         }
-
+    
     };
 
     return(
@@ -683,6 +703,5 @@ Login
 
 };
 
-console.log(process.env.REACT_APP_API);
 
 export default Register;

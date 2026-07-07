@@ -130,21 +130,21 @@
 }
 
 .feature-card{
+    background: rgba(255,255,255,.12);
+    backdrop-filter: blur(12px);
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,.20);
 
-    background:rgba(255,255,255,.12);
+    min-height: 220px;
 
-    backdrop-filter:blur(12px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-    border-radius:18px;
-
-    padding:30px;
-
-    text-align:center;
-
-    transition:.4s;
-
-    border:1px solid rgba(255,255,255,.20);
-
+    padding: 25px;
+    text-align: center;
+    transition: .4s;
 }
 
 .feature-card:hover{
@@ -156,35 +156,25 @@
 }
 
 .feature-card{
-
-    font-size:40px;
-
+    font-size: 42px;
 }
 
 .feature-card h3{
-
-    color: #222;
-
-    opacity:1;
-
-    margin-top:15px;
-
-    font-size:28px;
-
+    margin-top: 15px;
+    font-size: 36px;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.2;
 }
 
 .feature-card span{
-
-    color:#ff5722;
-
-    display:block;
-
-    margin-top:10px;
-
-    color:#f3f3f3;
-
+    display: block;
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #ffffff;
+    line-height: 1.5;
 }
-
 /* ==========================================
    Responsive
 ========================================== */

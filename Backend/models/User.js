@@ -2,82 +2,81 @@ import mongoose from "mongoose";
 import validator from "validator";
 
 const userSchema = new mongoose.Schema(
-  {
+{
+    firebaseUid: {
+        type: String,
+        required: true,
+        unique: true,
+        index: true
+    },
+
     fullName: {
-      type: String,
-      required: [true, "Full name is required"],
-      trim: true,
-      minlength: 3,
-      maxlength: 50,
+        type: String,
+        required: true,
+        trim: true
     },
 
     email: {
-      type: String,
-      required: [true, "Email is required"],
-      unique: true,
-      lowercase: true,
-      trim: true,
-      validate: [validator.isEmail, "Please enter a valid email"],
+        type: String,
+        required: true,
+        unique: true,
+        lowercase: true,
+        validate: [validator.isEmail, "Invalid Email"]
     },
 
     password: {
-      type: String,
-      required: [true, "Password is required"],
-      minlength: 6,
-      select: false,
+        type: String,
+        select: false
     },
 
     phone: {
-      type: String,
-      required: [true, "Phone number is required"],
-      trim: true,
-      minlength: 10,
-      maxlength: 15,
+        type: String,
+        required: true
     },
 
     address: {
-      type: String,
-      required: [true, "Address is required"],
-      trim: true,
+        type: String,
+        required: true
     },
 
     profileImage: {
-      type: String,
-      default: "default-user.png",
+        type: String,
+        default: "default-user.png"
     },
 
     role: {
-      type: String,
-      enum: ["user", "admin"],
-      default: "user",
+        type: String,
+        enum: ["customer", "restaurant", "delivery", "admin"],
+        default: "customer"
     },
 
     isVerified: {
-      type: Boolean,
-      default: false,
+        type: Boolean,
+        default: false
     },
 
     isBlocked: {
-      type: Boolean,
-      default: false,
+        type: Boolean,
+        default: false
     },
 
     cart: [
-      {
-        food: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "Food",
-        },
-        quantity: {
-          type: Number,
-          default: 1,
-        },
-      },
-    ],
-  },
-  {
-    timestamps: true,
-  }
+        {
+            food: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "Food"
+            },
+            quantity: {
+                type: Number,
+                default: 1
+            }
+        }
+    ]
+
+},
+{
+    timestamps: true
+}
 );
 
 const User = mongoose.model("User", userSchema);

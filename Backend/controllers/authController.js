@@ -30,110 +30,102 @@ const generateToken = (userId) => {
  */
 
 export const registerUser = async (req, res, next) => {
+
     try {
 
         const {
             fullName,
             email,
-            password,
             phone,
-            address,
+            address
         } = req.body;
+
+        // Firebase UID comes from the verified token
+        const firebaseUid = req.firebaseUser.uid;
 
         // ==========================
         // Validation
         // ==========================
 
         if (
+            !firebaseUid ||
             !fullName ||
             !email ||
-            !password ||
             !phone ||
             !address
         ) {
+
             return res.status(400).json({
                 success: false,
-                message: "Please fill all required fields.",
+                message: "Please fill all required fields."
             });
+
         }
 
         if (!validator.isEmail(email)) {
-            return res.status(400).json({
-                success: false,
-                message: "Invalid email address.",
-            });
-        }
 
-        if (password.length < 6) {
             return res.status(400).json({
                 success: false,
-                message:
-                    "Password must be at least 6 characters.",
+                message: "Invalid email address."
             });
+
         }
 
         // ==========================
-        // Existing User
+        // Check Existing User
         // ==========================
 
         const existingUser = await User.findOne({
-            email: email.toLowerCase(),
+            firebaseUid
         });
 
         if (existingUser) {
+
             return res.status(409).json({
                 success: false,
-                message: "Email is already registered.",
+                message: "User already exists."
             });
+
         }
 
         // ==========================
-        // Hash Password
-        // ==========================
-
-        const salt = await bcrypt.genSalt(10);
-
-        const hashedPassword = await bcrypt.hash(
-            password,
-            salt
-        );
-
-        // ==========================
-        // Create User
+        // Create MongoDB User
         // ==========================
 
         const user = await User.create({
+
+            firebaseUid,
+
             fullName,
-            email: email.toLowerCase(),
-            password: hashedPassword,
+
+            email,
+
             phone,
+
             address,
+
+            role: "customer"
+
         });
-
-        // ==========================
-        // Generate JWT
-        // ==========================
-
-        const token = generateToken(user._id);
 
         return res.status(201).json({
+
             success: true,
-            message: "Registration successful.",
-            token,
-            user: {
-                id: user._id,
-                fullName: user.fullName,
-                email: user.email,
-                phone: user.phone,
-                address: user.address,
-                role: user.role,
-                profileImage: user.profileImage,
-            },
+
+            message: "Registration Successful",
+
+            user
+
         });
 
-    } catch (error) {
-        next(error);
     }
+
+    catch (error) {
+
+        next(error);
+
+    }
+
 };/**
 * ===========================================
 * Login User
@@ -142,92 +134,54 @@ export const registerUser = async (req, res, next) => {
 */
 
 export const loginUser = async (req, res, next) => {
-   try {
 
-       const { email, password } = req.body;
+    try {
 
-       // ==========================
-       // Validation
-       // ==========================
+        // Firebase middleware already verified the token
+        const firebaseUid = req.firebaseUser.uid;
 
-       if (!email || !password) {
-           return res.status(400).json({
-               success: false,
-               message: "Email and password are required.",
-           });
-       }
+        // Find user in MongoDB
+        const user = await User.findOne({
+            firebaseUid
+        });
 
-       if (!validator.isEmail(email)) {
-           return res.status(400).json({
-               success: false,
-               message: "Invalid email address.",
-           });
-       }
+        if (!user) {
 
-       // ==========================
-       // Find User
-       // ==========================
+            return res.status(404).json({
+                success: false,
+                message: "User not found."
+            });
 
-       const user = await User.findOne({
-           email: email.toLowerCase(),
-       }).select("+password");
+        }
 
-       if (!user) {
-           return res.status(401).json({
-               success: false,
-               message: "Invalid email or password.",
-           });
-       }
+        // Check account status
+        if (user.isBlocked) {
 
-       // ==========================
-       // Check Account Status
-       // ==========================
+            return res.status(403).json({
+                success: false,
+                message: "Your account has been blocked."
+            });
 
-       if (user.isBlocked) {
-           return res.status(403).json({
-               success: false,
-               message: "Your account has been blocked. Contact the administrator.",
-           });
-       }
+        }
 
-       // ==========================
-       // Verify Password
-       // ==========================
+        return res.status(200).json({
 
-       const isPasswordCorrect = await bcrypt.compare(
-           password,
-           user.password
-       );
+            success: true,
 
-       if (!isPasswordCorrect) {
-           return res.status(401).json({
-               success: false,
-               message: "Invalid email or password.",
-           });
-       }
+            message: "Login successful.",
 
-       // ==========================
-       // Generate JWT
-       // ==========================
+            user
 
-       const token = generateToken(user._id);
+        });
 
-       // ==========================
-       // Remove Password
-       // ==========================
+    }
 
-       user.password = undefined;
+    catch (error) {
 
-       return res.status(200).json({
-           success: true,
-           message: "Login successful.",
-           token,
-           user,
-       });
+        next(error);
 
-   } catch (error) {
-       next(error);
-   }
+    }
+
 };
 /**
  * ===========================================
@@ -237,27 +191,41 @@ export const loginUser = async (req, res, next) => {
  */
 
 export const getProfile = async (req, res, next) => {
+
     try {
 
-        const user = await User.findById(req.user._id).select("-password");
+        const firebaseUid = req.firebaseUser.uid;
 
-        if (!user) {
-            return res.status(404).json({
-                success: false,
-                message: "User not found."
-            });
-        }
-
-        return res.status(200).json({
-            success: true,
-            user
+        const user = await User.findOne({
+            firebaseUid
         });
 
-    } catch (error) {
-        next(error);
-    }
-};
+        if (!user) {
 
+            return res.status(404).json({
+                success: false,
+                message: "User not found"
+            });
+
+        }
+
+        res.status(200).json({
+
+            success: true,
+
+            user
+
+        });
+
+    }
+
+    catch (error) {
+
+        next(error);
+
+    }
+
+};
 /**
  * ===========================================
  * Update User Profile
@@ -266,7 +234,10 @@ export const getProfile = async (req, res, next) => {
  */
 
 export const updateProfile = async (req, res, next) => {
+
     try {
+
+        const firebaseUid = req.firebaseUser.uid;
 
         const {
             fullName,
@@ -275,13 +246,18 @@ export const updateProfile = async (req, res, next) => {
             profileImage
         } = req.body;
 
-        const user = await User.findById(req.user._id);
+        // Find user using Firebase UID
+        const user = await User.findOne({
+            firebaseUid
+        });
 
         if (!user) {
+
             return res.status(404).json({
                 success: false,
                 message: "User not found."
             });
+
         }
 
         // =============================
@@ -289,47 +265,76 @@ export const updateProfile = async (req, res, next) => {
         // =============================
 
         if (fullName) {
+
             if (fullName.trim().length < 3) {
+
                 return res.status(400).json({
                     success: false,
                     message: "Full name must contain at least 3 characters."
                 });
+
             }
 
             user.fullName = fullName.trim();
+
         }
 
         if (phone) {
+
             user.phone = phone.trim();
+
         }
 
         if (address) {
+
             user.address = address.trim();
+
         }
 
         if (profileImage) {
+
             user.profileImage = profileImage;
+
         }
 
         await user.save();
 
         return res.status(200).json({
+
             success: true,
+
             message: "Profile updated successfully.",
+
             user: {
+
                 id: user._id,
+
+                firebaseUid: user.firebaseUid,
+
                 fullName: user.fullName,
+
                 email: user.email,
+
                 phone: user.phone,
+
                 address: user.address,
+
                 role: user.role,
+
                 profileImage: user.profileImage
+
             }
+
         });
 
-    } catch (error) {
-        next(error);
     }
+
+    catch (error) {
+
+        next(error);
+
+    }
+
 };
 /**
  * ===========================================
@@ -338,66 +343,16 @@ export const updateProfile = async (req, res, next) => {
  * ===========================================
  */
 
-export const changePassword = async (req, res, next) => {
-    try {
+export const changePassword = async (req, res) => {
 
-        const {
-            currentPassword,
-            newPassword
-        } = req.body;
+    return res.status(400).json({
 
-        if (!currentPassword || !newPassword) {
-            return res.status(400).json({
-                success: false,
-                message: "Current password and new password are required."
-            });
-        }
+        success: false,
 
-        if (newPassword.length < 6) {
-            return res.status(400).json({
-                success: false,
-                message: "New password must be at least 6 characters."
-            });
-        }
+        message: "Password changes are managed by Firebase Authentication."
 
-        const user = await User.findById(req.user._id).select("+password");
+    });
 
-        if (!user) {
-            return res.status(404).json({
-                success: false,
-                message: "User not found."
-            });
-        }
-
-        const isMatch = await bcrypt.compare(
-            currentPassword,
-            user.password
-        );
-
-        if (!isMatch) {
-            return res.status(400).json({
-                success: false,
-                message: "Current password is incorrect."
-            });
-        }
-
-        const salt = await bcrypt.genSalt(10);
-
-        user.password = await bcrypt.hash(
-            newPassword,
-            salt
-        );
-
-        await user.save();
-
-        return res.status(200).json({
-            success: true,
-            message: "Password changed successfully."
-        });
-
-    } catch (error) {
-        next(error);
-    }
 };
 
 /**

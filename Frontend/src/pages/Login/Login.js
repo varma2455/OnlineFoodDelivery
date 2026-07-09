@@ -3,6 +3,9 @@ import "./Login.css";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase";
+
 import {
   FaEnvelope,
   FaLock,
@@ -50,73 +53,88 @@ const Login = () => {
     const handleSubmit = async (e) => {
 
         e.preventDefault();
-
-        if(!formData.email || !formData.password){
-
+    
+        if (!formData.email || !formData.password) {
+    
             alert("Please fill all fields");
-
+    
             return;
-
+    
         }
-
-        try{
-
+    
+        try {
+    
             setLoading(true);
-
-            const {data} = await axios.post(
-
-                "https://onlinefooddelivery-9g60.onrender.com/api/auth/login",
-
-                formData
-
+    
+            // Step 1: Login with Firebase
+            const userCredential = await signInWithEmailAndPassword(
+                auth,
+                formData.email,
+                formData.password
             );
-
+    
+            const firebaseUser = userCredential.user;
+    
+            // Step 2: Get Firebase ID Token
+            const firebaseToken = await firebaseUser.getIdToken();
+    
+            // Step 3: Send token to backend
+            const { data } = await axios.post(
+                `${process.env.REACT_APP_API}/api/auth/login`,
+                null,
+                {
+                    headers: {
+                        Authorization: `Bearer ${firebaseToken}`
+                    }
+                }
+            );
+    
             localStorage.setItem(
-
                 "token",
-
-                data.token
-
+                firebaseToken
             );
-
+    
             localStorage.setItem(
-
                 "user",
-
                 JSON.stringify(data.user)
-
             );
-
+    
             alert("Login Successful");
-
-            if(data.user.role==="admin"){
-
-                navigate("/admin");
-
-            }else{
-
-                navigate("/");
-
+    
+            switch (data.user.role) {
+    
+                case "admin":
+                    navigate("/admin");
+                    break;
+    
+                case "restaurant":
+                    navigate("/restaurant");
+                    break;
+    
+                case "delivery":
+                    navigate("/delivery");
+                    break;
+    
+                default:
+                    navigate("/");
             }
+    
+        } catch (err) {
 
-        }catch(err){
-
+            console.error(err);
+        
             alert(
-
                 err.response?.data?.message ||
-
+                err.message ||
                 "Login Failed"
-
             );
-
-        }
-
-        finally{
-
+        
+        } finally {
+    
             setLoading(false);
-
+    
         }
-
+    
     };
 
     return(

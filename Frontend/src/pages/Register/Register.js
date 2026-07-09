@@ -107,11 +107,15 @@ const Register = () => {
                 `${process.env.REACT_APP_API}/api/auth/register`,
                 {
                     firebaseUid,
-                    token: firebaseToken,
                     fullName: formData.name,
                     email: formData.email,
                     phone: formData.phone,
                     address: formData.address
+                },
+                {
+                    headers:{
+                        Authorization:`Bearer ${firebaseToken}`
+                    }
                 }
             );
     

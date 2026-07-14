@@ -9,6 +9,8 @@ console.log(auth);
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 
+import FoodManagement from "./pages/Admin/Foods/FoodManagement";
+
 // Pages
 import Home from "./pages/Home/Home";
 import Menu from "./pages/Menu/Menu";
@@ -20,11 +22,17 @@ import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 import Profile from "./pages/Profile/Profile";
 import Orders from "./pages/Orders/Orders";
 
+
+import CustomerDashboard from "./components/Customer/Sidebar/CustomerDashboard";
+
+
+
 // Admin
-import AdminDashboard from "./pages/Admin/AdminDashboard";
-import FoodManagement from "./pages/Admin/FoodManagement";
-import OrderManagement from "./pages/Admin/OrderManagement";
-import UserManagement from "./pages/Admin/UserManagement";
+import ProtectedRoute from "./components/ProtectedRoute";
+
+import AdminDashboard from "./pages/Admin/Dashboard";
+import RestaurantDashboard from "./pages/Restaurant/Dashboard";
+import DeliveryDashboard from "./pages/Delivery/Dashboard";
 
 function App() {
 
@@ -36,6 +44,8 @@ function App() {
 
             <Routes>
 
+
+                {/* <Route path="/customer" element={<CustomerDashboard />}/> */}
                 <Route path="/" element={<Home />} />
                 <Route path="/menu" element={<Menu />} />
                 <Route path="/cart" element={<Cart />} />
@@ -46,11 +56,19 @@ function App() {
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/orders" element={<Orders />} />
 
-                <Route path="/admin" element={<AdminDashboard />} />
-                <Route path="/admin/dashboard" element={<AdminDashboard />} />
+                
+                <Route path="/admin/dashboard" element={<ProtectedRoute role="admin"><AdminDashboard /></ProtectedRoute>} />
                 <Route path="/admin/foods" element={<FoodManagement />} />
-                <Route path="/admin/orders" element={<OrderManagement />} />
-                <Route path="/admin/users" element={<UserManagement />} />
+                {/* <Route path="/admin/orders" element={<OrderManagement />} />
+                <Route path="/admin/users" element={<UserManagement />} /> */}
+
+                <Route path="/customer" element={ <ProtectedRoute role="admin"> <CustomerDashboard/> </ProtectedRoute>}/>
+                <Route path="/restaurant" element={<ProtectedRoute role="restaurant"> <RestaurantDashboard/> </ProtectedRoute>}/>
+                <Route path="/delivery" element={<ProtectedRoute role="delivery"> <DeliveryDashboard/> </ProtectedRoute>}/>
+
+
+                <Route path="/foods" element={<FoodManagement/>}/>
+                
 
             </Routes>
 

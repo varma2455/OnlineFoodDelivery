@@ -50,7 +50,14 @@
 /* ==========================================
    NO FOOD
 ========================================== */
+.onSearch{
+    border-radius: 20px;
 
+}
+
+.searchFood{
+    border-radius: 20px;
+}
 .no-food{
 
     width:100%;

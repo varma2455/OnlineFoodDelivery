@@ -5,10 +5,14 @@ import { Link, useNavigate } from "react-router-dom";
 
 import {
     createUserWithEmailAndPassword,
-    updateProfile
+    updateProfile,
+    signInWithPopup,
+    GoogleAuthProvider
 } from "firebase/auth";
 
 import { auth } from "../../firebase";
+
+const googleProvider = new GoogleAuthProvider();
 
 import {
   FaUser,
@@ -66,6 +70,69 @@ const Register = () => {
 
     };
 
+
+    const handleGoogleRegister = async () => {
+
+        try {
+    
+            setLoading(true);
+    
+            // Google popup
+            const result = await signInWithPopup(
+                auth,
+                googleProvider
+            );
+    
+            const firebaseUser = result.user;
+    
+            // Firebase token
+            const firebaseToken = await firebaseUser.getIdToken();
+    
+            // Register/Login in backend
+            const { data } = await axios.post(
+    
+                `${process.env.REACT_APP_API}/api/auth/login`,
+    
+                {},
+    
+                {
+                    headers: {
+                        Authorization: `Bearer ${firebaseToken}`
+                    }
+                }
+    
+            );
+    
+            localStorage.setItem(
+                "token",
+                data.token
+            );
+    
+            localStorage.setItem(
+                "user",
+                JSON.stringify(data.user)
+            );
+    
+            navigate("/customer");
+    
+        } catch (error) {
+    
+            console.log(error);
+    
+            alert(
+                error.response?.data?.message ||
+                error.message
+            );
+    
+        } finally {
+    
+            setLoading(false);
+    
+        }
+    
+    };
+
+
     const handleSubmit = async (e) => {
 
         e.preventDefault();
@@ -96,19 +163,16 @@ const Register = () => {
                 displayName: formData.name
             });
     
-            // Step 3: Get Firebase UID
-            const firebaseUid = firebaseUser.uid;
+            
     
             // Step 4: Get Firebase ID Token
             const firebaseToken = await firebaseUser.getIdToken();
     
             // Step 5: Send user details to backend
-            await axios.post(
+            const { data } = await axios.post(
                 `${process.env.REACT_APP_API}/api/auth/register`,
                 {
-                    firebaseUid,
                     fullName: formData.name,
-                    email: formData.email,
                     phone: formData.phone,
                     address: formData.address
                 },
@@ -119,9 +183,19 @@ const Register = () => {
                 }
             );
     
+            localStorage.setItem(
+                "token",
+                data.token
+            );
+            
+            localStorage.setItem(
+                "user",
+                JSON.stringify(data.user)
+            );
+            
             alert("Registration Successful");
-    
-            navigate("/login");
+            
+            navigate("/customer");
     
         }
     
@@ -144,6 +218,7 @@ const Register = () => {
         }
     
     };
+
 
     return(
 
@@ -630,16 +705,14 @@ or continue with
 <div className="social-buttons">
 
 <button
-
-type="button"
-
-className="google-btn"
-
+    type="button"
+    className="google-btn"
+    onClick={handleGoogleRegister}
 >
 
-<FaGoogle/>
+    <FaGoogle />
 
-Google
+    Google
 
 </button>
 

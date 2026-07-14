@@ -1,0 +1,290 @@
+/* ==========================================
+   FOOD MANAGEMENT
+========================================== */
+
+.food-management{
+    width:100%;
+    min-height:100vh;
+    padding:30px;
+    background:#f5f7fb;
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.food-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.food-header h1{
+    font-size:34px;
+    color:#1f2937;
+    font-weight:700;
+}
+
+.add-food-btn{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    border:none;
+    outline:none;
+    background:#ff5a1f;
+    color:white;
+    padding:14px 28px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.add-food-btn:hover{
+    background:#ff7a18;
+    transform:translateY(-3px);
+}
+
+/* ==========================================
+   SEARCH
+========================================== */
+
+.search-section{
+    margin-bottom:30px;
+}
+
+.search-box{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    background:white;
+    padding:14px 18px;
+    border-radius:12px;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+.search-box svg{
+    color:#ff5a1f;
+    font-size:18px;
+}
+
+.search-box input{
+    flex:1;
+    border:none;
+    outline:none;
+    font-size:16px;
+    background:transparent;
+}
+
+/* ==========================================
+   TABLE
+========================================== */
+
+.food-table{
+    background:white;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.food-table table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.food-table thead{
+    background:#ff5a1f;
+    color:white;
+}
+
+.food-table th{
+    padding:18px;
+    text-align:left;
+    font-size:16px;
+}
+
+.food-table td{
+    padding:18px;
+    border-bottom:1px solid #ececec;
+    font-size:15px;
+}
+
+.food-table tbody tr{
+    transition:.3s;
+}
+
+.food-table tbody tr:hover{
+    background:#fff7f2;
+}
+
+/* ==========================================
+   FOOD ICON
+========================================== */
+
+.food-icon{
+    font-size:28px;
+    color:#ff5a1f;
+}
+
+/* ==========================================
+   STATUS
+========================================== */
+
+.available{
+    background:#dcfce7;
+    color:#15803d;
+    padding:8px 15px;
+    border-radius:30px;
+    font-size:13px;
+    font-weight:600;
+}
+
+.out-stock{
+    background:#fee2e2;
+    color:#dc2626;
+    padding:8px 15px;
+    border-radius:30px;
+    font-size:13px;
+    font-weight:600;
+}
+
+/* ==========================================
+   ACTION BUTTONS
+========================================== */
+
+.edit-btn,
+.delete-btn{
+
+    width:42px;
+    height:42px;
+
+    border:none;
+    border-radius:10px;
+
+    cursor:pointer;
+
+    color:white;
+
+    margin-right:10px;
+
+    transition:.3s;
+
+    font-size:16px;
+
+}
+
+.edit-btn{
+
+    background:#2563eb;
+
+}
+
+.edit-btn:hover{
+
+    background:#1d4ed8;
+
+    transform:translateY(-3px);
+
+}
+
+.delete-btn{
+
+    background:#dc2626;
+
+}
+
+.delete-btn:hover{
+
+    background:#b91c1c;
+
+    transform:translateY(-3px);
+
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:992px){
+
+.food-header{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:20px;
+
+}
+
+.food-table{
+
+overflow-x:auto;
+
+}
+
+table{
+
+min-width:900px;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.food-management{
+
+padding:20px;
+
+}
+
+.food-header h1{
+
+font-size:28px;
+
+}
+
+.add-food-btn{
+
+width:100%;
+
+justify-content:center;
+
+}
+
+.search-box{
+
+padding:12px 15px;
+
+}
+
+.search-box input{
+
+font-size:14px;
+
+}
+
+.food-table th,
+.food-table td{
+
+padding:12px;
+
+font-size:14px;
+
+}
+
+.edit-btn,
+.delete-btn{
+
+width:36px;
+
+height:36px;
+
+font-size:14px;
+
+}
+
+}

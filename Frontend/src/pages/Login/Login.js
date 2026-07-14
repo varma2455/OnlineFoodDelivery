@@ -3,8 +3,17 @@ import "./Login.css";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+    signInWithEmailAndPassword,
+    signInWithPopup,
+    GoogleAuthProvider
+} from "firebase/auth";
+
+
 import { auth } from "../../firebase";
+
+const googleProvider = new GoogleAuthProvider();
+
 
 import {
   FaEnvelope,
@@ -19,10 +28,79 @@ import {
   FaTags
 } from "react-icons/fa";
 
+
 import burgerImage from "../../assets/images/burger.png";
 
 
 const Login = () => {
+
+
+    const handleGoogleLogin = async () => {
+
+        try {
+    
+            // Step 1
+            const result = await signInWithPopup(
+                auth,
+                googleProvider
+            );
+    
+            // Step 2
+            const firebaseUser = result.user;
+    
+            // Step 3
+            const firebaseToken = await firebaseUser.getIdToken();
+    
+            // Step 4
+            const { data } = await axios.post(
+    
+                `${process.env.REACT_APP_API}/api/auth/login`,
+    
+                {},
+    
+                {
+    
+                    headers: {
+    
+                        Authorization:
+                        `Bearer ${firebaseToken}`
+    
+                    }
+    
+                }
+    
+            );
+    
+            // Step 5
+            localStorage.setItem(
+                "token",
+                data.token
+            );
+    
+            localStorage.setItem(
+                "user",
+                JSON.stringify(data.user)
+            );
+    
+            // Step 6
+            navigate("/customer");
+    
+        }
+    
+        catch(error){
+    
+            console.log(error);
+    
+            alert(
+                error.response?.data?.message ||
+                error.message
+            );
+    
+        }
+    
+    };
+
+
 
     const navigate = useNavigate();
 
@@ -91,7 +169,7 @@ const Login = () => {
     
             localStorage.setItem(
                 "token",
-                firebaseToken
+                data.token
             );
     
             localStorage.setItem(
@@ -102,21 +180,25 @@ const Login = () => {
             alert("Login Successful");
     
             switch (data.user.role) {
-    
+
                 case "admin":
                     navigate("/admin");
                     break;
-    
+            
                 case "restaurant":
                     navigate("/restaurant");
                     break;
-    
+            
                 case "delivery":
                     navigate("/delivery");
                     break;
-    
+            
+                case "customer":
+                    navigate("/customer");
+                    break;
+            
                 default:
-                    navigate("/");
+                    navigate("/login");
             }
     
         } catch (err) {
@@ -285,9 +367,11 @@ const Login = () => {
 
             <div className="social-buttons">
 
-            <button type="button" className="google-btn">
-
-                <FaGoogle/> Google
+            <button
+                type="button"
+                className="google-btn"
+                onClick={handleGoogleLogin}>
+                <FaGoogle /> Google
             </button>
 
             <button type="button" className="facebook-btn" >

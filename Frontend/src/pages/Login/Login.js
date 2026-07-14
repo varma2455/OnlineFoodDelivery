@@ -34,6 +34,8 @@ import burgerImage from "../../assets/images/burger.png";
 
 const Login = () => {
 
+    const navigate = useNavigate();
+
 
     const handleGoogleLogin = async () => {
 
@@ -100,9 +102,6 @@ const Login = () => {
     
     };
 
-
-
-    const navigate = useNavigate();
 
     const [showPassword, setShowPassword] = useState(false);
 

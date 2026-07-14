@@ -135,7 +135,7 @@ const FoodManagement = () => {
 
                             <img
 
-                                src={`https://onlinefooddelivery-9g60.onrender.com/uploads/${food.image}`}
+                                src={`${process.env.REACT_APP_API}/uploads/${user.profileImage}`}
 
                                 alt={food.name}
 

@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+import { auth } from "../../firebase";
+
 import "./Profile.css";
 
 const Profile = () => {
@@ -24,12 +26,17 @@ const Profile = () => {
     const fetchProfile = async () => {
 
         try{
+            const firebaseUser = auth.currentUser;
+            if (!firebaseUser) {
+            navigate("/login");
+            return;
+            }
 
-            const token = localStorage.getItem("token");
+            const firebaseToken = await firebaseUser.getIdToken();
 
             const { data } = await axios.get(
 
-                "https://onlinefooddelivery-9g60.onrender.com/api/auth/profile",
+                `${process.env.REACT_APP_API}/api/auth/profile`,
 
                 {
 
@@ -50,8 +57,9 @@ const Profile = () => {
         catch(error){
 
             console.log(error);
-
+    
         }
+    
 
         finally{
 
@@ -136,7 +144,9 @@ const Profile = () => {
                             </h3>
 
                         </div>
-                                                <div className="detail-item">
+
+
+                        <div className="detail-item">
 
                             <span>
 

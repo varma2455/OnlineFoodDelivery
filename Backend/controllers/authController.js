@@ -33,15 +33,21 @@ export const registerUser = async (req, res, next) => {
 
     try {
 
+        console.log("Firebase User:", req.firebaseUser);
+        console.log("Body:", req.body);
+
+        const firebaseUid = req.firebaseUser.uid;
+        const email = req.firebaseUser.email;
+
         const {
             fullName,
-            email,
             phone,
             address
         } = req.body;
+        
 
         // Firebase UID comes from the verified token
-        const firebaseUid = req.firebaseUser.uid;
+        
 
         // ==========================
         // Validation
@@ -104,18 +110,19 @@ export const registerUser = async (req, res, next) => {
 
             address,
 
-            role: "customer"
+            role: "customer",
+
+            isVerified: req.firebaseUser.email_verified
 
         });
 
+        const token = generateToken(user._id);
+
         return res.status(201).json({
-
             success: true,
-
-            message: "Registration Successful",
-
+            message: "Registration successful",
+            token,
             user
-
         });
 
     }
@@ -161,17 +168,20 @@ export const loginUser = async (req, res, next) => {
                 success: false,
                 message: "Your account has been blocked."
             });
-
+        
         }
-
+        
+        user.isVerified = req.firebaseUser.email_verified;
+        
+        await user.save();
+        
+        const token = generateToken(user._id);
+        
         return res.status(200).json({
-
             success: true,
-
             message: "Login successful.",
-
+            token,
             user
-
         });
 
     }
@@ -366,6 +376,9 @@ export const logoutUser = async (req, res, next) => {
     try {
 
         res.clearCookie("token");
+
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
 
         return res.status(200).json({
             success: true,

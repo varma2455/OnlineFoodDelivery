@@ -71,7 +71,39 @@ const userSchema = new mongoose.Schema(
                 default: 1
             }
         }
-    ]
+    ],
+
+
+    wallet: {
+        type: Number,
+        default: 0
+    },
+    
+    rewardPoints: {
+        type: Number,
+        default: 0
+    },
+    
+    favorites: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Food"
+    }],
+    
+    recentOrders: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Order"
+    }],
+    
+    savedAddresses: [{
+        title: String,
+        address: String
+    }],
+    
+    coupons: [{
+        code: String,
+        discount: Number,
+        expiry: Date
+    }]
 
 },
 {

@@ -5,11 +5,11 @@ const Hero = () => {
 
     return (
 
-        <section className="hero">
+        <section className="hero1">
 
-            <div className="hero-overlay">
+            <div className="hero-overlay1">
 
-                <div className="hero-content">
+                <div className="hero-content1">
 
                     <h1>
                         Delicious Food,
@@ -24,45 +24,45 @@ const Hero = () => {
 
                     </p>
 
-                    <div className="hero-buttons">
+                    <div className="hero-buttons1">
 
                         <Link
                             to="/menu"
-                            className="order-btn"
+                            className="order-btn1"
                         >
                             Order Now
                         </Link>
 
                         <Link
                             to="/register"
-                            className="signup-btn"
+                            className="signup-btn1"
                         >
                             Join Now
                         </Link>
 
                     </div>
 
-                    <div className="hero-features">
+                    <div className="hero-features1">
 
-                        <div className="feature-card">
+                        <div className="feature-card1">
                             🍔
                             <h3>100+</h3>
                             <span>Food Items</span>
                         </div>
 
-                        <div className="feature-card">
+                        <div className="feature-card1">
                             🚚
                             <h3>30 Min</h3>
                             <span>Fast Delivery</span>
                         </div>
 
-                        <div className="feature-card">
+                        <div className="feature-card1">
                             ⭐
                             <h3>4.9</h3>
                             <span>Customer Rating</span>
                         </div>
 
-                        <div className="feature-card">
+                        <div className="feature-card1">
                             👨‍🍳
                             <h3>50+</h3>
                             <span>Top Restaurants</span>

@@ -65,15 +65,18 @@ const Home = () => {
     };
 
     const filterCategory = (category) => {
-
         setSelectedCategory(category);
-
+    
+        if (category === "All") {
+            setFilteredFoods(foods);
+            return;
+        }
+    
         const result = foods.filter(
             food => food.category === category
         );
-
+    
         setFilteredFoods(result);
-
     };
 
     if (loading) {

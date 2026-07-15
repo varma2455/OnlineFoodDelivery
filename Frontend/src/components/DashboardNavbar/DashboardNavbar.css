@@ -1,0 +1,272 @@
+/* ===========================
+   Dashboard Navbar
+=========================== */
+
+.dashboard-navbar {
+    width: 100%;
+    height: 85px;
+    background: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 35px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    margin-bottom: 25px;
+}
+
+/* ===========================
+   Left Section
+=========================== */
+
+.navbar-left{
+    display:flex;
+    align-items:center;
+}
+
+.welcome-text h2{
+    font-size:26px;
+    font-weight:700;
+    color:#222;
+    margin-bottom:4px;
+}
+
+.welcome-text p{
+    font-size:14px;
+    color:#8b8b8b;
+}
+
+/* ===========================
+   Search
+=========================== */
+
+.navbar-search{
+    width:430px;
+    height:52px;
+    background:#f5f6fb;
+    border-radius:50px;
+    display:flex;
+    align-items:center;
+    padding:0 20px;
+    transition:.3s;
+}
+
+.navbar-search:hover{
+    box-shadow:0 0 0 3px rgba(108,92,231,.12);
+}
+
+.search-icon{
+    color:#8d8d8d;
+    font-size:18px;
+    margin-right:12px;
+}
+
+.navbar-search input{
+    width:100%;
+    border:none;
+    outline:none;
+    background:transparent;
+    font-size:15px;
+    color:#333;
+}
+
+.navbar-search input::placeholder{
+    color:#9b9b9b;
+}
+
+/* ===========================
+   Right Section
+=========================== */
+
+.navbar-right{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+/* ===========================
+   Location
+=========================== */
+
+.location-box{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background:#f8f8f8;
+    padding:10px 18px;
+    border-radius:30px;
+    color:#666;
+    font-size:14px;
+    font-weight:500;
+}
+
+.location-box svg{
+    color:#ff6b35;
+}
+
+/* ===========================
+   Icons
+=========================== */
+
+.nav-icon{
+    width:48px;
+    height:48px;
+    background:#f7f7f7;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.nav-icon svg{
+    font-size:18px;
+    color:#555;
+}
+
+.nav-icon:hover{
+    background:#6c5ce7;
+    transform:translateY(-3px);
+}
+
+.nav-icon:hover svg{
+    color:#fff;
+}
+
+/* ===========================
+   Notification Badge
+=========================== */
+
+.notification .count{
+    position:absolute;
+    top:-3px;
+    right:-2px;
+    width:20px;
+    height:20px;
+    background:#ff3b30;
+    color:#fff;
+    border-radius:50%;
+    font-size:11px;
+    font-weight:600;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border:2px solid white;
+}
+
+/* ===========================
+   Profile
+=========================== */
+
+.profile-box{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    background:#f8f8f8;
+    padding:8px 15px;
+    border-radius:50px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.profile-box:hover{
+    background:#ece9ff;
+}
+
+.profile-box img{
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    object-fit:cover;
+}
+
+.profile-info{
+    display:flex;
+    flex-direction:column;
+}
+
+.profile-info h4{
+    font-size:15px;
+    font-weight:600;
+    color:#222;
+    margin:0;
+}
+
+.profile-info p{
+    margin:0;
+    font-size:12px;
+    color:#888;
+}
+
+/* ===========================
+   Responsive
+=========================== */
+
+@media(max-width:1200px){
+
+    .dashboard-navbar{
+        flex-wrap:wrap;
+        height:auto;
+        gap:20px;
+        padding:20px;
+    }
+
+    .navbar-search{
+        width:100%;
+        order:3;
+    }
+
+}
+
+@media(max-width:768px){
+
+    .dashboard-navbar{
+        padding:18px;
+    }
+
+    .navbar-right{
+        gap:10px;
+        flex-wrap:wrap;
+        justify-content:flex-end;
+    }
+
+    .location-box{
+        display:none;
+    }
+
+    .welcome-text h2{
+        font-size:20px;
+    }
+
+    .welcome-text p{
+        font-size:13px;
+    }
+
+}
+
+@media(max-width:576px){
+
+    .dashboard-navbar{
+        border-radius:15px;
+    }
+
+    .profile-info{
+        display:none;
+    }
+
+    .profile-box{
+        padding:6px;
+    }
+
+    .navbar-search{
+        height:46px;
+    }
+
+    .nav-icon{
+        width:42px;
+        height:42px;
+    }
+
+}

@@ -1,0 +1,258 @@
+/* ===========================
+   Dashboard Sidebar
+=========================== */
+
+.dashboard-sidebar {
+    width: 280px;
+    min-height: 100vh;
+    background: linear-gradient(180deg,#6C63FF 0%,#5A52EA 100%);
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #fff;
+    position: sticky;
+    top: 0;
+}
+
+/* ===========================
+   Logo
+=========================== */
+
+.sidebar-logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.logo-circle {
+    width: 60px;
+    height: 60px;
+    background: rgba(255,255,255,.18);
+    border-radius: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    margin-right: 15px;
+}
+
+.sidebar-logo h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.sidebar-logo p {
+    font-size: 13px;
+    opacity: .8;
+}
+
+/* ===========================
+   Menu
+=========================== */
+
+.sidebar-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex: 1;
+}
+
+.sidebar-menu li {
+    margin-bottom: 10px;
+}
+
+.sidebar-menu a {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+    color: rgba(255,255,255,.85);
+    padding: 14px 18px;
+    border-radius: 15px;
+    transition: .3s;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.sidebar-menu a svg {
+    font-size: 18px;
+}
+
+.sidebar-menu a:hover {
+    background: rgba(255,255,255,.18);
+    color: white;
+    transform: translateX(5px);
+}
+
+/* Active Link */
+
+.sidebar-menu a.active,
+.sidebar-menu a.active-link {
+    background: white;
+    color: #6C63FF;
+    font-weight: 600;
+    box-shadow: 0 8px 20px rgba(0,0,0,.12);
+}
+
+/* ===========================
+   Premium Card
+=========================== */
+
+.premium-card {
+    background: rgba(255,255,255,.15);
+    backdrop-filter: blur(10px);
+    border-radius: 22px;
+    padding: 22px;
+    text-align: center;
+    margin-top: 25px;
+}
+
+.premium-card img {
+    width: 110px;
+    margin: auto;
+    margin-bottom: 15px;
+}
+
+.premium-card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.premium-card p {
+    font-size: 13px;
+    line-height: 22px;
+    opacity: .9;
+    margin-bottom: 18px;
+}
+
+.premium-card button {
+    width: 100%;
+    border: none;
+    background: white;
+    color: #6C63FF;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 12px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.premium-card button:hover {
+    background: #FFE066;
+    color: #222;
+}
+
+/* ===========================
+   Logout
+=========================== */
+
+.logout-section {
+    margin-top: 30px;
+}
+
+.logout-btn {
+    width: 100%;
+    border: none;
+    background: rgba(255,255,255,.15);
+    color: white;
+    padding: 15px;
+    border-radius: 14px;
+    cursor: pointer;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    transition: .3s;
+}
+
+.logout-btn:hover {
+    background: #ff4d4f;
+}
+
+.logout-btn svg {
+    font-size: 17px;
+}
+
+/* ===========================
+   Scrollbar
+=========================== */
+
+.dashboard-sidebar::-webkit-scrollbar {
+    width: 5px;
+}
+
+.dashboard-sidebar::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,.3);
+    border-radius: 20px;
+}
+
+/* ===========================
+   Responsive
+=========================== */
+
+@media(max-width:1200px){
+
+.dashboard-sidebar{
+    width:240px;
+}
+
+}
+
+@media(max-width:992px){
+
+.dashboard-sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    z-index:999;
+    transform:translateX(-100%);
+    transition:.4s;
+}
+
+.dashboard-sidebar.active{
+    transform:translateX(0);
+}
+
+}
+
+@media(max-width:768px){
+
+.sidebar-logo h2{
+    font-size:20px;
+}
+
+.sidebar-menu a{
+    padding:13px 15px;
+}
+
+.premium-card{
+    padding:18px;
+}
+
+}
+
+@media(max-width:576px){
+
+.dashboard-sidebar{
+    width:100%;
+    max-width:300px;
+}
+
+.logo-circle{
+    width:55px;
+    height:55px;
+}
+
+.sidebar-logo h2{
+    font-size:18px;
+}
+
+.sidebar-logo p{
+    font-size:12px;
+}
+
+}

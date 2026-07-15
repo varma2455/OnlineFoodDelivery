@@ -23,8 +23,7 @@ import Profile from "./pages/Profile/Profile";
 import Orders from "./pages/Orders/Orders";
 
 
-import CustomerDashboard from "./components/Customer/Sidebar/CustomerDashboard";
-
+import Dashboard from "./pages/Dashboard/Dashboard";
 
 
 // Admin
@@ -62,7 +61,7 @@ function App() {
                 {/* <Route path="/admin/orders" element={<OrderManagement />} />
                 <Route path="/admin/users" element={<UserManagement />} /> */}
 
-                <Route path="/customer" element={ <ProtectedRoute role="admin"> <CustomerDashboard/> </ProtectedRoute>}/>
+                <Route path="/dashboard" element={<ProtectedRoute role="customer"><Dashboard/></ProtectedRoute>}/>
                 <Route path="/restaurant" element={<ProtectedRoute role="restaurant"> <RestaurantDashboard/> </ProtectedRoute>}/>
                 <Route path="/delivery" element={<ProtectedRoute role="delivery"> <DeliveryDashboard/> </ProtectedRoute>}/>
 

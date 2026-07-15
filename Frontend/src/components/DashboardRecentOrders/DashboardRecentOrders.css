@@ -1,0 +1,285 @@
+/* ==========================================
+   Recent Orders
+========================================== */
+
+.recent-orders{
+    width:100%;
+    background:#ffffff;
+    border-radius:25px;
+    padding:25px;
+    box-shadow:0 12px 35px rgba(0,0,0,.08);
+}
+
+/* ==========================================
+   Header
+========================================== */
+
+.orders-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.orders-header h2{
+    font-size:26px;
+    color:#222;
+    font-weight:700;
+    margin-bottom:5px;
+}
+
+.orders-header p{
+    color:#888;
+    font-size:14px;
+}
+
+.orders-header button{
+    border:none;
+    background:#6C63FF;
+    color:#fff;
+    padding:10px 20px;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:14px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.orders-header button:hover{
+    background:#574df5;
+    transform:translateY(-2px);
+}
+
+/* ==========================================
+   Orders List
+========================================== */
+
+.orders-list{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+/* ==========================================
+   Order Card
+========================================== */
+
+.order-card{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px;
+    border-radius:20px;
+    background:#fafafa;
+    transition:.35s;
+    border:1px solid #f2f2f2;
+}
+
+.order-card:hover{
+    transform:translateY(-5px);
+    background:#fff;
+    box-shadow:0 15px 35px rgba(0,0,0,.08);
+}
+
+/* ==========================================
+   Image
+========================================== */
+
+.order-card img{
+    width:75px;
+    height:75px;
+    border-radius:18px;
+    object-fit:cover;
+    margin-right:18px;
+}
+
+/* ==========================================
+   Left Side
+========================================== */
+
+.order-details{
+    flex:1;
+}
+
+.order-details h3{
+    font-size:18px;
+    color:#222;
+    margin-bottom:6px;
+}
+
+.order-details p{
+    font-size:14px;
+    color:#666;
+    margin-bottom:4px;
+}
+
+.order-details small{
+    color:#999;
+    font-size:13px;
+}
+
+/* ==========================================
+   Right Side
+========================================== */
+
+.order-right{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+    gap:10px;
+}
+
+.order-right h4{
+    color:#6C63FF;
+    font-size:20px;
+    font-weight:700;
+}
+
+/* ==========================================
+   Status Badge
+========================================== */
+
+.status{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    padding:8px 14px;
+    border-radius:30px;
+    font-size:13px;
+    font-weight:600;
+}
+
+.delivered{
+    background:#E8FFF1;
+    color:#16A34A;
+}
+
+.preparing{
+    background:#FFF7E6;
+    color:#F59E0B;
+}
+
+.ontheway{
+    background:#E8F1FF;
+    color:#2563EB;
+}
+
+/* ==========================================
+   View Button
+========================================== */
+
+.order-right button{
+    width:42px;
+    height:42px;
+    border:none;
+    border-radius:50%;
+    background:#6C63FF;
+    color:#fff;
+    cursor:pointer;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    transition:.3s;
+    font-size:16px;
+}
+
+.order-right button:hover{
+    transform:scale(1.1);
+    background:#574df5;
+}
+
+/* ==========================================
+   Hover Effects
+========================================== */
+
+.order-card:hover img{
+    transform:scale(1.08);
+    transition:.3s;
+}
+
+.order-card:hover .order-details h3{
+    color:#6C63FF;
+}
+
+/* ==========================================
+   Responsive
+========================================== */
+
+@media(max-width:992px){
+
+.order-card{
+    flex-wrap:wrap;
+    gap:15px;
+}
+
+.order-right{
+    width:100%;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items:center;
+}
+
+}
+
+@media(max-width:768px){
+
+.recent-orders{
+    padding:20px;
+}
+
+.orders-header{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:15px;
+}
+
+.order-card{
+    flex-direction:column;
+    align-items:flex-start;
+}
+
+.order-card img{
+    width:100%;
+    height:220px;
+    margin-right:0;
+}
+
+.order-right{
+    width:100%;
+    flex-direction:row;
+    justify-content:space-between;
+    margin-top:15px;
+}
+
+}
+
+@media(max-width:576px){
+
+.recent-orders{
+    border-radius:18px;
+    padding:18px;
+}
+
+.orders-header h2{
+    font-size:22px;
+}
+
+.order-details h3{
+    font-size:17px;
+}
+
+.order-right h4{
+    font-size:18px;
+}
+
+.status{
+    font-size:12px;
+    padding:6px 12px;
+}
+
+.order-right button{
+    width:38px;
+    height:38px;
+}
+
+}

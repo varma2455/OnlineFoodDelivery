@@ -1,0 +1,319 @@
+/* ==========================================
+   Footer Features
+========================================== */
+
+.footer-features{
+
+    width:100%;
+
+    background:#ffffff;
+
+    border-radius:25px;
+
+    padding:30px;
+
+    box-shadow:0 12px 35px rgba(0,0,0,.08);
+
+    margin-top:20px;
+
+}
+
+/* ==========================================
+   Header
+========================================== */
+
+.footer-header{
+
+    margin-bottom:30px;
+
+}
+
+.footer-header h2{
+
+    font-size:30px;
+
+    font-weight:700;
+
+    color:#222;
+
+    margin-bottom:8px;
+
+}
+
+.footer-header p{
+
+    color:#888;
+
+    font-size:15px;
+
+}
+
+/* ==========================================
+   Grid
+========================================== */
+
+.features-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:25px;
+
+}
+
+/* ==========================================
+   Card
+========================================== */
+
+.feature-card{
+
+    background:#fafafa;
+
+    border-radius:22px;
+
+    padding:30px 25px;
+
+    text-align:center;
+
+    transition:.35s;
+
+    cursor:pointer;
+
+    border:1px solid #f2f2f2;
+
+}
+
+.feature-card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 18px 40px rgba(0,0,0,.10);
+
+    background:#fff;
+
+}
+
+/* ==========================================
+   Icon
+========================================== */
+
+.feature-icon{
+
+    width:70px;
+
+    height:70px;
+
+    border-radius:20px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    margin:auto;
+
+    color:white;
+
+    font-size:28px;
+
+    margin-bottom:20px;
+
+    transition:.35s;
+
+}
+
+.feature-card:hover .feature-icon{
+
+    transform:rotate(-10deg) scale(1.08);
+
+}
+
+/* ==========================================
+   Text
+========================================== */
+
+.feature-card h3{
+
+    font-size:22px;
+
+    color:#222;
+
+    margin-bottom:12px;
+
+}
+
+.feature-card p{
+
+    color:#777;
+
+    font-size:14px;
+
+    line-height:26px;
+
+    margin-bottom:22px;
+
+}
+
+/* ==========================================
+   Button
+========================================== */
+
+.feature-card button{
+
+    border:none;
+
+    background:#6C63FF;
+
+    color:white;
+
+    padding:12px 20px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+    margin:auto;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.feature-card button:hover{
+
+    background:#574df5;
+
+    transform:translateY(-2px);
+
+}
+
+.feature-card button svg{
+
+    transition:.3s;
+
+}
+
+.feature-card button:hover svg{
+
+    transform:translateX(5px);
+
+}
+
+/* ==========================================
+   Hover
+========================================== */
+
+.feature-card:hover h3{
+
+    color:#6C63FF;
+
+}
+
+/* ==========================================
+   Responsive
+========================================== */
+
+@media(max-width:1200px){
+
+.features-grid{
+
+    grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+@media(max-width:768px){
+
+.footer-features{
+
+    padding:22px;
+
+}
+
+.features-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.footer-header h2{
+
+    font-size:24px;
+
+}
+
+.feature-card{
+
+    padding:25px;
+
+}
+
+}
+
+@media(max-width:576px){
+
+.footer-features{
+
+    border-radius:18px;
+
+    padding:18px;
+
+}
+
+.footer-header h2{
+
+    font-size:22px;
+
+}
+
+.feature-card{
+
+    border-radius:18px;
+
+    padding:22px;
+
+}
+
+.feature-icon{
+
+    width:60px;
+
+    height:60px;
+
+    font-size:24px;
+
+}
+
+.feature-card h3{
+
+    font-size:20px;
+
+}
+
+.feature-card p{
+
+    font-size:13px;
+
+}
+
+.feature-card button{
+
+    width:100%;
+
+}
+
+}

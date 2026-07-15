@@ -12,6 +12,7 @@ import {
 
 import { auth } from "../../firebase";
 
+
 const googleProvider = new GoogleAuthProvider();
 
 
@@ -193,11 +194,12 @@ const Login = () => {
                     break;
             
                 case "customer":
-                    navigate("/customer");
+                    navigate("/dashboard");
                     break;
             
                 default:
                     navigate("/login");
+            
             }
     
         } catch (err) {

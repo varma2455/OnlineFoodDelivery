@@ -1,0 +1,387 @@
+/* ==========================================
+   Best Offers Section
+========================================== */
+
+.best-offers{
+
+    width:100%;
+
+    background:#ffffff;
+
+    border-radius:25px;
+
+    padding:25px;
+
+    box-shadow:0 12px 35px rgba(0,0,0,.08);
+
+}
+
+/* ==========================================
+   Header
+========================================== */
+
+.offers-header{
+
+    margin-bottom:25px;
+
+}
+
+.offers-header h2{
+
+    font-size:26px;
+
+    font-weight:700;
+
+    color:#222;
+
+    margin-bottom:5px;
+
+}
+
+.offers-header p{
+
+    color:#888;
+
+    font-size:14px;
+
+}
+
+/* ==========================================
+   Offers Container
+========================================== */
+
+.offers-container{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+/* ==========================================
+   Offer Card
+========================================== */
+
+.offer-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    border-radius:22px;
+
+    padding:25px;
+
+    color:#fff;
+
+    transition:.35s;
+
+    cursor:pointer;
+
+}
+
+.offer-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 18px 40px rgba(0,0,0,.18);
+
+}
+
+.offer-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:180px;
+
+    height:180px;
+
+    background:rgba(255,255,255,.08);
+
+    border-radius:50%;
+
+    right:-50px;
+
+    top:-50px;
+
+}
+
+.offer-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:120px;
+
+    height:120px;
+
+    background:rgba(255,255,255,.08);
+
+    border-radius:50%;
+
+    left:-40px;
+
+    bottom:-40px;
+
+}
+
+/* ==========================================
+   Offer Icon
+========================================== */
+
+.offer-icon{
+
+    width:65px;
+
+    height:65px;
+
+    border-radius:18px;
+
+    background:rgba(255,255,255,.15);
+
+    backdrop-filter:blur(10px);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:28px;
+
+    margin-bottom:20px;
+
+}
+
+/* ==========================================
+   Text
+========================================== */
+
+.offer-card h3{
+
+    font-size:28px;
+
+    font-weight:700;
+
+    margin-bottom:8px;
+
+}
+
+.offer-card p{
+
+    opacity:.95;
+
+    font-size:15px;
+
+    margin-bottom:20px;
+
+}
+
+/* ==========================================
+   Coupon Box
+========================================== */
+
+.coupon-box{
+
+    display:inline-block;
+
+    background:#ffffff;
+
+    color:#333;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    letter-spacing:1px;
+
+    padding:10px 18px;
+
+    border-radius:10px;
+
+    margin-bottom:20px;
+
+}
+
+/* ==========================================
+   Button
+========================================== */
+
+.offer-card button{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    border:none;
+
+    background:#ffffff;
+
+    color:#333;
+
+    padding:12px 22px;
+
+    border-radius:12px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.offer-card button:hover{
+
+    background:#f4f4f4;
+
+    transform:translateX(5px);
+
+}
+
+.offer-card button svg{
+
+    transition:.3s;
+
+}
+
+.offer-card button:hover svg{
+
+    transform:translateX(5px);
+
+}
+
+/* ==========================================
+   Hover Animation
+========================================== */
+
+.offer-card:hover .offer-icon{
+
+    transform:rotate(-10deg) scale(1.08);
+
+}
+
+.offer-card:hover .coupon-box{
+
+    background:#FFE066;
+
+    color:#222;
+
+}
+
+/* ==========================================
+   Responsive
+========================================== */
+
+@media(max-width:992px){
+
+.best-offers{
+
+    padding:22px;
+
+}
+
+.offer-card{
+
+    padding:22px;
+
+}
+
+.offer-card h3{
+
+    font-size:24px;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.offer-icon{
+
+    width:58px;
+
+    height:58px;
+
+    font-size:24px;
+
+}
+
+.offer-card h3{
+
+    font-size:22px;
+
+}
+
+.offer-card p{
+
+    font-size:14px;
+
+}
+
+.offer-card button{
+
+    width:100%;
+
+    justify-content:center;
+
+}
+
+}
+
+@media(max-width:576px){
+
+.best-offers{
+
+    padding:18px;
+
+    border-radius:18px;
+
+}
+
+.offer-card{
+
+    padding:20px;
+
+    border-radius:18px;
+
+}
+
+.offer-card h3{
+
+    font-size:20px;
+
+}
+
+.offer-card p{
+
+    font-size:13px;
+
+}
+
+.coupon-box{
+
+    font-size:13px;
+
+    padding:8px 15px;
+
+}
+
+.offer-card button{
+
+    font-size:13px;
+
+    padding:10px 18px;
+
+}
+
+}

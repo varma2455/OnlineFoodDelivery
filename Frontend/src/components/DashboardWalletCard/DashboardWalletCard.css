@@ -1,0 +1,453 @@
+/* ==========================================
+   Wallet Card
+========================================== */
+
+.wallet-card{
+
+    background:#ffffff;
+
+    border-radius:25px;
+
+    padding:25px;
+
+    box-shadow:0 12px 35px rgba(0,0,0,.08);
+
+}
+
+/* ==========================================
+   Wallet Header
+========================================== */
+
+.wallet-header{
+
+    background:linear-gradient(135deg,#6C63FF,#584EF5);
+
+    border-radius:20px;
+
+    padding:25px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    color:white;
+
+    margin-bottom:25px;
+
+}
+
+.wallet-header p{
+
+    font-size:14px;
+
+    opacity:.9;
+
+    margin-bottom:8px;
+
+}
+
+.wallet-header h2{
+
+    font-size:34px;
+
+    font-weight:700;
+
+}
+
+.wallet-icon{
+
+    width:70px;
+
+    height:70px;
+
+    background:rgba(255,255,255,.15);
+
+    border-radius:18px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:30px;
+
+}
+
+/* ==========================================
+   Reward Box
+========================================== */
+
+.reward-box{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    background:#F8F8FF;
+
+    border-radius:18px;
+
+    padding:18px;
+
+    margin-bottom:25px;
+
+}
+
+.reward-box svg{
+
+    font-size:30px;
+
+    color:#FFD43B;
+
+}
+
+.reward-box h4{
+
+    color:#222;
+
+    margin-bottom:5px;
+
+}
+
+.reward-box p{
+
+    color:#777;
+
+    font-size:14px;
+
+}
+
+/* ==========================================
+   Buttons
+========================================== */
+
+.wallet-buttons{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-bottom:25px;
+
+}
+
+.wallet-buttons button{
+
+    flex:1;
+
+    border:none;
+
+    padding:14px;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:10px;
+
+    transition:.3s;
+
+}
+
+.add-money{
+
+    background:#6C63FF;
+
+    color:white;
+
+}
+
+.add-money:hover{
+
+    background:#584EF5;
+
+    transform:translateY(-3px);
+
+}
+
+.withdraw-money{
+
+    background:#EEF1FF;
+
+    color:#6C63FF;
+
+}
+
+.withdraw-money:hover{
+
+    background:#E0E5FF;
+
+    transform:translateY(-3px);
+
+}
+
+/* ==========================================
+   Divider
+========================================== */
+
+.wallet-divider{
+
+    width:100%;
+
+    height:1px;
+
+    background:#ececec;
+
+    margin:25px 0;
+
+}
+
+/* ==========================================
+   Transactions
+========================================== */
+
+.wallet-transactions h3{
+
+    margin-bottom:20px;
+
+    color:#222;
+
+}
+
+.transaction-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:15px 0;
+
+    border-bottom:1px solid #f0f0f0;
+
+}
+
+.transaction-item:last-child{
+
+    border-bottom:none;
+
+}
+
+.transaction-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+.transaction-icon{
+
+    width:50px;
+
+    height:50px;
+
+    border-radius:15px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:white;
+
+    font-size:18px;
+
+}
+
+.credit{
+
+    background:#00C896;
+
+}
+
+.debit{
+
+    background:#FF6B6B;
+
+}
+
+.transaction-left h4{
+
+    font-size:15px;
+
+    color:#222;
+
+    margin-bottom:5px;
+
+}
+
+.transaction-left span{
+
+    font-size:13px;
+
+    color:#888;
+
+}
+
+.credit-text{
+
+    color:#00C896;
+
+    font-weight:700;
+
+}
+
+.debit-text{
+
+    color:#FF4D4F;
+
+    font-weight:700;
+
+}
+
+/* ==========================================
+   Hover
+========================================== */
+
+.transaction-item:hover{
+
+    transform:translateX(5px);
+
+    transition:.3s;
+
+}
+
+.transaction-item:hover .transaction-icon{
+
+    transform:scale(1.08);
+
+}
+
+/* ==========================================
+   Responsive
+========================================== */
+
+@media(max-width:992px){
+
+.wallet-header{
+
+    padding:20px;
+
+}
+
+.wallet-header h2{
+
+    font-size:28px;
+
+}
+
+.wallet-buttons{
+
+    flex-direction:column;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.wallet-card{
+
+    padding:20px;
+
+}
+
+.reward-box{
+
+    flex-direction:column;
+
+    text-align:center;
+
+}
+
+.transaction-item{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:12px;
+
+}
+
+}
+
+@media(max-width:576px){
+
+.wallet-card{
+
+    border-radius:18px;
+
+    padding:18px;
+
+}
+
+.wallet-header{
+
+    flex-direction:column;
+
+    gap:20px;
+
+    text-align:center;
+
+}
+
+.wallet-header h2{
+
+    font-size:26px;
+
+}
+
+.wallet-icon{
+
+    width:60px;
+
+    height:60px;
+
+    font-size:24px;
+
+}
+
+.reward-box{
+
+    padding:15px;
+
+}
+
+.wallet-buttons button{
+
+    font-size:14px;
+
+    padding:12px;
+
+}
+
+.transaction-icon{
+
+    width:45px;
+
+    height:45px;
+
+}
+
+}

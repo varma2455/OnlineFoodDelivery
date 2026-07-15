@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 
 import { auth } from "./firebase";
 
@@ -35,11 +35,30 @@ import DeliveryDashboard from "./pages/Delivery/Dashboard";
 
 function App() {
 
+
+
+    const location = useLocation();
+    const dashboardRoutes = [
+        "/dashboard",
+        "/admin",
+        "/restaurant",
+        "/delivery"
+    ];
+
+    
+    const hideLayout =
+    location.pathname.startsWith("/dashboard") ||
+    location.pathname.startsWith("/admin") ||
+    location.pathname.startsWith("/restaurant") ||
+    location.pathname.startsWith("/delivery");
+
+    
+
     return (
 
         <>
 
-            <Navbar />
+            {!hideLayout && <Navbar />}
 
             <Routes>
 
@@ -71,7 +90,7 @@ function App() {
 
             </Routes>
 
-            <Footer />
+            {!hideLayout && <Footer />}
 
         </>
 

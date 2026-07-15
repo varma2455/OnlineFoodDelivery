@@ -2,108 +2,88 @@ import React from "react";
 import "./DashboardStatsCards.css";
 
 import {
-  FaShoppingBag,
-  FaRupeeSign,
-  FaUsers,
-  FaStar
+    FaShoppingBag,
+    FaMotorcycle,
+    FaGift,
+    FaTags
 } from "react-icons/fa";
+
+const stats = [
+
+    {
+        id: 1,
+        title: "My Orders",
+        value: "18",
+        change: "+3 this month",
+        color: "#6C63FF",
+        icon: <FaShoppingBag />
+    },
+
+    {
+        id: 2,
+        title: "Active Orders",
+        value: "1",
+        change: "Preparing",
+        color: "#00C896",
+        icon: <FaMotorcycle />
+    },
+
+    {
+        id: 3,
+        title: "Reward Points",
+        value: "1,250",
+        change: "+150 this month",
+        color: "#FF9800",
+        icon: <FaGift />
+    },
+
+    {
+        id: 4,
+        title: "Available Offers",
+        value: "6",
+        change: "View all offers",
+        color: "#3D7EFF",
+        icon: <FaTags />
+    }
+
+];
 
 const DashboardStatsCards = () => {
 
-    const stats = [
-
-        {
-            id:1,
-            title:"Total Orders",
-            value:"1,248",
-            growth:"+12%",
-            icon:<FaShoppingBag />,
-            color:"#6C63FF"
-        },
-
-        {
-            id:2,
-            title:"Total Revenue",
-            value:"₹2,48,950",
-            growth:"+18%",
-            icon:<FaRupeeSign />,
-            color:"#00C896"
-        },
-
-        {
-            id:3,
-            title:"Active Customers",
-            value:"842",
-            growth:"+8%",
-            icon:<FaUsers />,
-            color:"#FF8A00"
-        },
-
-        {
-            id:4,
-            title:"Customer Rating",
-            value:"4.9",
-            growth:"+0.3",
-            icon:<FaStar />,
-            color:"#FFB703"
-        }
-
-    ];
-
     return (
 
-        <div className="dashboard-stats">
+        <div className="stats-grid">
 
             {
-
-                stats.map((item)=>(
+                stats.map((item) => (
 
                     <div
-                        className="stats-card"
+                        className="stat-card"
                         key={item.id}
                     >
 
-                        <div className="stats-top">
-
-                            <div
-                                className="stats-icon"
-                                style={{background:item.color}}
-                            >
-                                {item.icon}
-                            </div>
-
-                            <span className="stats-growth">
-
-                                {item.growth}
-
-                            </span>
-
+                        <div
+                            className="stat-icon"
+                            style={{
+                                background: item.color
+                            }}
+                        >
+                            {item.icon}
                         </div>
 
-                        <div className="stats-body">
+                        <div className="stat-content">
+
+                            <h4>{item.title}</h4>
 
                             <h2>{item.value}</h2>
 
-                            <p>{item.title}</p>
-
-                        </div>
-
-                        <div className="stats-progress">
-
-                            <div
-                                className="progress-bar"
-                                style={{
-                                    width:"80%",
-                                    background:item.color
-                                }}
-                            />
+                            <p>{item.change}</p>
 
                         </div>
 
                     </div>
 
                 ))
-
             }
 
         </div>

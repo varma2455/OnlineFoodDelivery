@@ -13,21 +13,27 @@
    Card
 ========================================== */
 
-.stats-card{
+.stat-card{
 
-    background:#ffffff;
-    border-radius:22px;
-    padding:22px;
+    background:#fff;
 
-    box-shadow:0 12px 30px rgba(0,0,0,.06);
+    border-radius:24px;
+
+    padding:35px 30px;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.08);
 
     transition:.35s;
 
-    cursor:pointer;
+}
 
-    position:relative;
+.stat-card h2{
 
-    overflow:hidden;
+    font-size:48px;
+
+    font-weight:700;
+
+    margin:15px 0;
 
 }
 
@@ -77,28 +83,23 @@
    Icon
 ========================================== */
 
-.stats-icon{
-
-    width:60px;
-
-    height:60px;
-
+.stat-icon{
+    width:75px;
+    height:75px;
     border-radius:18px;
-
     display:flex;
-
     justify-content:center;
-
     align-items:center;
-
-    color:#fff;
-
-    font-size:24px;
-
+    font-size:34px;
+    color:white;
+    margin-bottom:20px;
     box-shadow:0 12px 25px rgba(0,0,0,.15);
-
+    transition:.3s;
 }
 
+.stat-card:hover .stat-icon{
+    transform:scale(1.12) rotate(-8deg);
+}
 /* ==========================================
    Growth
 ========================================== */
@@ -245,15 +246,6 @@
 
 }
 
-.stats-icon{
-
-    width:55px;
-
-    height:55px;
-
-    font-size:22px;
-
-}
 
 .stats-body h2{
 

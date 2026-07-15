@@ -190,6 +190,16 @@
     border-radius: 20px;
 }
 
+.dashboard-wrapper{
+    display:grid;
+    grid-template-columns: minmax(0,1fr) 360px;
+    gap:25px;
+    padding:25px;
+    width:100%;
+    align-items:start;
+    box-sizing:border-box;
+}
+
 /* ===========================
    Responsive
 =========================== */

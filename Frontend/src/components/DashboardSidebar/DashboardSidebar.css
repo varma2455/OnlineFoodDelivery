@@ -3,7 +3,7 @@
 =========================== */
 
 .dashboard-sidebar {
-    width: 280px;
+    width:250px;
     min-height: 100vh;
     background: linear-gradient(180deg,#6C63FF 0%,#5A52EA 100%);
     padding: 30px 20px;

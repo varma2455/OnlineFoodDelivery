@@ -15,8 +15,13 @@ body{
 /* Main Dashboard */
 
 .dashboard-sidebar{
-    width:260px;
-    flex-shrink:0;
+    position:fixed;
+    top:0;
+    left:0;
+    width:250px;
+    height:100vh;
+    overflow-y:auto;
+    z-index:1000;
 }
 
 .dashboard{
@@ -29,20 +34,22 @@ body{
 /* Right Side */
 
 .dashboard-content{
-    flex:1;
-    width:calc(100% - 260px);
+    margin-left:250px;
+    width:calc(100% - 250px);
+    min-height:100vh;
     display:flex;
     flex-direction:column;
     overflow-x:hidden;
 }
 
+
 /* Main Wrapper */
 
 .dashboard-wrapper{
     display:grid;
-    grid-template-columns:minmax(0,2.7fr) 380px;
-    gap:25px;
-    padding:25px;
+    grid-template-columns:minmax(0,1fr) 350px;
+    gap:20px;
+    padding:20px;
     width:100%;
     align-items:start;
 }
@@ -54,7 +61,7 @@ body{
     width:100%;
     display:flex;
     flex-direction:column;
-    gap:25px;
+    gap:20px;
 }
 
 .right-section{
@@ -62,7 +69,7 @@ body{
     min-width:360px;
     display:flex;
     flex-direction:column;
-    gap:25px;
+    gap:20px;
 }
 
 /* Common Card */
@@ -70,7 +77,7 @@ body{
 .card{
     background:#ffffff;
     border-radius:22px;
-    padding:22px;
+    padding:18px;
     box-shadow:0 8px 25px rgba(0,0,0,.06);
 }
 
@@ -105,7 +112,7 @@ ul{
 /* Scrollbar */
 
 ::-webkit-scrollbar{
-    width:8px;
+    width:6px;
 }
 
 ::-webkit-scrollbar-thumb{

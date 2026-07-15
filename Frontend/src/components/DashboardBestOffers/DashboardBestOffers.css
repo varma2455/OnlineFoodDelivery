@@ -8,9 +8,8 @@
 
     background:#ffffff;
 
-    border-radius:25px;
-
-    padding:25px;
+    border-radius:20px;
+    padding:20px;
 
     box-shadow:0 12px 35px rgba(0,0,0,.08);
 
@@ -22,13 +21,13 @@
 
 .offers-header{
 
-    margin-bottom:25px;
+    margin-bottom:18px;
 
 }
 
 .offers-header h2{
 
-    font-size:26px;
+    font-size:22px;
 
     font-weight:700;
 
@@ -51,13 +50,9 @@
 ========================================== */
 
 .offers-container{
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:20px;
-
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
 }
 
 /* ==========================================
@@ -70,9 +65,8 @@
 
     overflow:hidden;
 
-    border-radius:22px;
-
-    padding:25px;
+    padding:20px;
+    border-radius:18px;
 
     color:#fff;
 
@@ -84,7 +78,7 @@
 
 .offer-card:hover{
 
-    transform:translateY(-8px);
+    transform:translateX(3px);
 
     box-shadow:0 18px 40px rgba(0,0,0,.18);
 
@@ -96,9 +90,8 @@
 
     position:absolute;
 
-    width:180px;
-
-    height:180px;
+    width:140px;
+    height:140px;
 
     background:rgba(255,255,255,.08);
 
@@ -116,9 +109,8 @@
 
     position:absolute;
 
-    width:120px;
-
-    height:120px;
+    width:90px;
+    height:90px;
 
     background:rgba(255,255,255,.08);
 
@@ -136,7 +128,10 @@
 
 .offer-icon{
 
-    width:65px;
+    width:55px;
+    height:55px;
+    font-size:22px;
+    margin-bottom:15px;
 
     height:65px;
 
@@ -151,11 +146,6 @@
     justify-content:center;
 
     align-items:center;
-
-    font-size:28px;
-
-    margin-bottom:20px;
-
 }
 
 /* ==========================================
@@ -164,22 +154,15 @@
 
 .offer-card h3{
 
-    font-size:28px;
-
-    font-weight:700;
-
-    margin-bottom:8px;
-
+    font-size:24px;
+    margin-bottom:6px;
+    font-weight:700; 
 }
 
 .offer-card p{
-
     opacity:.95;
-
-    font-size:15px;
-
-    margin-bottom:20px;
-
+    font-size:13px;
+    margin-bottom:15px;
 }
 
 /* ==========================================
@@ -194,13 +177,12 @@
 
     color:#333;
 
-    font-size:14px;
-
     font-weight:700;
 
     letter-spacing:1px;
 
-    padding:10px 18px;
+    padding:8px 14px;
+    font-size:13px;
 
     border-radius:10px;
 
@@ -218,20 +200,16 @@
 
     align-items:center;
 
-    gap:10px;
-
     border:none;
 
     background:#ffffff;
 
     color:#333;
 
-    padding:12px 22px;
-
-    border-radius:12px;
-
-    font-size:14px;
-
+    padding:10px 18px;
+    font-size:13px;
+    gap:6px;
+    border-radius:10px;
     font-weight:600;
 
     cursor:pointer;
@@ -324,7 +302,7 @@
 
 .offer-card p{
 
-    font-size:14px;
+    font-size:13px;
 
 }
 

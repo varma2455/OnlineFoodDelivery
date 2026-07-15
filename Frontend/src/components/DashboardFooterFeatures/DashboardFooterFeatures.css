@@ -3,19 +3,12 @@
 ========================================== */
 
 .footer-features{
-
     width:100%;
-
     background:#ffffff;
-
-    border-radius:25px;
-
-    padding:30px;
-
+    border-radius:20px;
+    padding:22px;
+    margin-top:15px;
     box-shadow:0 12px 35px rgba(0,0,0,.08);
-
-    margin-top:20px;
-
 }
 
 /* ==========================================
@@ -24,27 +17,22 @@
 
 .footer-header{
 
-    margin-bottom:30px;
+    margin-bottom:20px;
 
 }
 
 .footer-header h2{
-
-    font-size:30px;
-
+    font-size:24px;
     font-weight:700;
-
     color:#222;
-
     margin-bottom:8px;
-
 }
 
 .footer-header p{
 
     color:#888;
 
-    font-size:15px;
+    font-size:14px;
 
 }
 
@@ -58,7 +46,7 @@
 
     grid-template-columns:repeat(4,1fr);
 
-    gap:25px;
+    gap:18px;
 
 }
 
@@ -67,26 +55,18 @@
 ========================================== */
 
 .feature-card{
-
     background:#fafafa;
-
-    border-radius:22px;
-
-    padding:30px 25px;
-
+    border-radius:18px;
+    padding:22px 18px;
     text-align:center;
-
     transition:.35s;
-
     cursor:pointer;
-
     border:1px solid #f2f2f2;
-
 }
 
 .feature-card:hover{
 
-    transform:translateY(-10px);
+    transform:translateY(-4px);
 
     box-shadow:0 18px 40px rgba(0,0,0,.10);
 
@@ -99,29 +79,17 @@
 ========================================== */
 
 .feature-icon{
-
-    width:70px;
-
-    height:70px;
-
+    width:58px;
+    height:58px;
+    font-size:22px;
+    margin-bottom:15px;
     border-radius:20px;
-
     display:flex;
-
     justify-content:center;
-
     align-items:center;
-
     margin:auto;
-
     color:white;
-
-    font-size:28px;
-
-    margin-bottom:20px;
-
     transition:.35s;
-
 }
 
 .feature-card:hover .feature-icon{
@@ -135,25 +103,16 @@
 ========================================== */
 
 .feature-card h3{
-
-    font-size:22px;
-
+    font-size:19px;
+    margin-bottom:8px;
     color:#222;
-
-    margin-bottom:12px;
-
 }
 
 .feature-card p{
-
     color:#777;
-
-    font-size:14px;
-
-    line-height:26px;
-
-    margin-bottom:22px;
-
+    font-size:13px;
+    line-height:22px;
+    margin-bottom:16px;
 }
 
 /* ==========================================
@@ -161,35 +120,20 @@
 ========================================== */
 
 .feature-card button{
-
     border:none;
-
     background:#6C63FF;
-
     color:white;
-
-    padding:12px 20px;
-
-    border-radius:12px;
-
+    padding:10px 16px;
+    font-size:13px;
+    border-radius:10px;
     cursor:pointer;
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
-    gap:10px;
-
+    gap:6px;
     margin:auto;
-
-    font-size:14px;
-
     font-weight:600;
-
     transition:.3s;
-
 }
 
 .feature-card button:hover{

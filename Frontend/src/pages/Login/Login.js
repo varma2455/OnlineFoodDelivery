@@ -182,7 +182,7 @@ const Login = () => {
             switch (data.user.role) {
 
                 case "admin":
-                    navigate("/admin");
+                    navigate("/admin/dashboard");
                     break;
             
                 case "restaurant":
@@ -222,10 +222,10 @@ const Login = () => {
 
     return(
 
-        <div className="login-page2">
+        <div className="login-page">
             <div className="left-section2">
-                <div className="logo-area2">
-                    <div className="logo-circle2">
+                <div className="logo-area">
+                    <div className="logo-circle">
                         <FaHamburger/>
                     </div>
                 <div>
@@ -240,19 +240,19 @@ const Login = () => {
         </div>
 
 
-        <div className="dots dots-top2"></div>
-            <div className="dots dots-bottom2"></div>
-                <div className="burger-wrapper2">
+        <div className="dots dots-top"></div>
+            <div className="dots dots-bottom"></div>
+                <div className="burger-wrapper">
 
-                    <img src={burgerImage} alt="burger" className="burger-image2"/>
+                    <img src={burgerImage} alt="burger" className="burger-image"/>
                 </div>
 
-                <div className="hero-text2">
+                <div className="hero-text">
                 <h1>
                     Craving Something
                 </h1>
 
-                <h1 className="highlight2">Delicious?</h1>
+                <h1 className="highlight">Delicious?</h1>
 
                 <p>
 
@@ -263,9 +263,9 @@ const Login = () => {
 
             </div>
 
-            <div className="feature-boxes2">
-                <div className="feature-card2">
-                    <div className="feature-icon2">
+            <div className="feature-boxes">
+                <div className="feature-card">
+                    <div className="feature-icon">
 
                         <FaMotorcycle/>
                     </div>
@@ -276,8 +276,8 @@ const Login = () => {
 
                 </div>
 
-                <div className="feature-card2">
-                    <div className="feature-icon2">
+                <div className="feature-card">
+                    <div className="feature-icon">
                         <FaStore/>
                     </div>
 
@@ -287,8 +287,8 @@ const Login = () => {
                 </div>
 
 
-                <div className="feature-card2">
-                    <div className="feature-icon2">
+                <div className="feature-card">
+                    <div className="feature-icon">
                         <FaTags/>
 
                     </div>
@@ -305,9 +305,9 @@ const Login = () => {
         </div>
 
         <div className="right-section2">
-            <div className="login-card2">
-                <div className="card-logo2">
-                    <div className="card-logo-circle2">
+            <div className="login-card">
+                <div className="card-logo">
+                    <div className="card-logo-circle">
                         <FaHamburger/>
                     </div>
 
@@ -320,9 +320,9 @@ const Login = () => {
                 <h1> Welcome Back! 👋 </h1>
 
 
-                <p className="login-subtitle2"> Login to continue your delicious journey </p>
+                <p className="login-subtitle"> Login to continue your delicious journey </p>
                 <form onSubmit={handleSubmit}>
-                    <div className="input-group2">
+                    <div className="input-group">
                         <label> Email Address </label>
                         <div className="input-box2">
                             <FaEnvelope/>
@@ -330,7 +330,7 @@ const Login = () => {
                         </div>
                     </div>
 
-                    <div className="input-group2">
+                    <div className="input-group">
                     <label> Password </label>
                         <div className="input-box2">
                             <FaLock/>
@@ -349,40 +349,40 @@ const Login = () => {
 
             </div>
             
-            <div className="forgot-link2">
+            <div className="forgot-link">
 
                 <Link to="/forgot-password"> Forgot Password? </Link>
 
             </div>
 
-            <button className="login-btn2" type="submit" disabled={loading}>
+            <button className="login-btn" type="submit" disabled={loading}>
                 {
                     loading ? "Logging In..." : "Login"
                 }
             </button>
 
-            <div className="divider2">
+            <div className="divider">
 
                 <span> or continue with </span>
             </div>
 
-            <div className="social-buttons2">
+            <div className="social-buttons">
 
             <button
-                type="button2"
-                className="google-btn2"
+                type="button"
+                className="google-btn"
                 onClick={handleGoogleLogin}>
                 <FaGoogle /> Google
             </button>
 
-            <button type="button" className="facebook-btn2" >
+            <button type="button" className="facebook-btn" >
 
                 <FaFacebookF/> Facebook
             </button>
 
         </div>
 
-        <div className="password-box2">
+        <div className="password-box">
 
         <h4> 🔒 Password Requirements </h4>
 
@@ -398,7 +398,7 @@ const Login = () => {
 
     </div>
 
-    <div className="register-text2"> Don't have an account? <Link to="/register"> Register </Link> </div>
+    <div className="register-text"> Don't have an account? <Link to="/register"> Register </Link> </div>
 
     </form>
 

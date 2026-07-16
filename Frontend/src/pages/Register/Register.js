@@ -226,9 +226,9 @@ const Register = () => {
 
 <div className="left-section3">
 
-<div className="logo-area3">
+<div className="logo-area">
 
-<div className="logo-circle3">
+<div className="logo-circle">
 
 <FaHamburger/>
 
@@ -253,11 +253,11 @@ Delicious food, delivered fast
 </div>
  
 
-<div className="dots dots-top3"></div>
+<div className="dots dots-top"></div>
 
-<div className="dots dots-bottom3"></div>
+<div className="dots dots-bottom"></div>
 
-<div className="burger-wrapper3">
+<div className="burger-wrapper">
 
 <img
 
@@ -265,13 +265,13 @@ src={burgerImage}
 
 alt="Burger"
 
-className="burger-image3"
+className="burger-image"
 
 />
 
 </div>
 
-<div className="hero-text3">
+<div className="hero-text">
 
 <h1>
 
@@ -279,7 +279,7 @@ Join
 
 </h1>
 
-<h1 className="highlight3">
+<h1 className="highlight">
 
 FoodExpress
 
@@ -293,11 +293,11 @@ Create your account and enjoy delicious food delivered directly to your doorstep
 
 </div>
 
-<div className="feature-boxes3">
+<div className="feature-boxes">
 
-<div className="feature-card3">
+<div className="feature-card">
 
-<div className="feature-icon3">
+<div className="feature-icon">
 
 <FaMotorcycle/>
 
@@ -312,16 +312,16 @@ Fast Delivery
 <p>
 
 Hot & Fresh food
-
+<br></br>
 at your doorstep
 
 </p>
 
 </div>
 
-<div className="feature-card3">
+<div className="feature-card">
 
-<div className="feature-icon3">
+<div className="feature-icon">
 
 <FaStore/>
 
@@ -335,17 +335,16 @@ Top Restaurants
 
 <p>
 
-Choose from
-
-Top Rated Restaurants
+Choose from<br></br> Top 
+Rated Restaurants
 
 </p>
 
 </div>
 
-<div className="feature-card3">
+<div className="feature-card">
 
-<div className="feature-icon3">
+<div className="feature-icon">
 
 <FaGift/>
 
@@ -372,11 +371,11 @@ Everyday
 </div>
 <div className="right-section3">
 
-<div className="register-card3">
+<div className="register-card">
 
-<div className="card-logo3">
+<div className="card-logo">
 
-<div className="card-logo-circle3">
+<div className="card-logo-circle">
 
 <FaHamburger/>
 
@@ -406,7 +405,7 @@ Create Your Account
 
 </h1>
 
-<p className="register-subtitle3">
+<p className="register-subtitle">
 
 Register to start ordering delicious food.
 
@@ -414,7 +413,7 @@ Register to start ordering delicious food.
 
 <form onSubmit={handleSubmit}>
 
-<div className="input-group3">
+<div className="input-group">
 
 <label>
 
@@ -446,7 +445,7 @@ required
 
 </div>
 
-<div className="input-group3">
+<div className="input-group">
 
 <label>
 
@@ -478,7 +477,7 @@ required
 
 </div>
 
-<div className="input-group3">
+<div className="input-group">
 
 <label>
 
@@ -510,7 +509,7 @@ required
 
 </div>
 
-<div className="input-group3">
+<div className="input-group">
 
 <label>
 
@@ -542,7 +541,7 @@ required
 
 </div>
 
-<div className="input-group3">
+<div className="input-group">
 
 <label>
 
@@ -574,7 +573,7 @@ required
 
 type="button"
 
-className="eye-btn3"
+className="eye-btn"
 
 onClick={() => setShowPassword(!showPassword)}
 
@@ -600,7 +599,7 @@ showPassword
 
 </div>
 
-<div className="input-group3">
+<div className="input-group">
 
 <label>
 
@@ -632,7 +631,7 @@ required
 
 type="button"
 
-className="eye-btn3"
+className="eye-btn"
 
 onClick={() =>
 
@@ -668,9 +667,9 @@ showConfirmPassword
 
 <button
 
-type="submit3"
+type="submit"
 
-className="register-btn3"
+className="register-btn"
 
 disabled={loading}
 
@@ -692,7 +691,7 @@ loading
 
 </button>
 
-<div className="divider3">
+<div className="divider">
 
 <span>
 
@@ -702,11 +701,11 @@ or continue with
 
 </div>
 
-<div className="social-buttons3">
+<div className="social-buttons">
 
 <button
-    type="button3"
-    className="google-btn3"
+    type="button"
+    className="google-btn"
     onClick={handleGoogleRegister}
 >
 
@@ -718,9 +717,9 @@ or continue with
 
 <button
 
-type="button3"
+type="button"
 
-className="facebook-btn3"
+className="facebook-btn"
 
 >
 
@@ -732,7 +731,7 @@ Facebook
 
 </div>
 
-<div className="password-box-info2">
+<div className="password-box">
 
 <h4>
 
@@ -756,7 +755,7 @@ Facebook
 
 </div>
 
-<div className="login-link4">
+<div className="login-link">
 
 Already have an account?
 

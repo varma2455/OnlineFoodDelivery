@@ -27,7 +27,7 @@ body{
    MAIN PAGE
 =================================================== */
 
-.login-page2{
+.login-page{
 
     width:100%;
 
@@ -115,7 +115,7 @@ body{
    LOGO
 =================================================== */
 
-.logo-area2{
+.logo-area{
 
     width:100%;
 
@@ -131,7 +131,7 @@ body{
 
 }
 
-.logo-circle2{
+.logo-circle{
 
     width:70px;
 
@@ -155,7 +155,7 @@ body{
 
 }
 
-.logo-area2 h2{
+.logo-area h2{
 
     color:white;
 
@@ -165,13 +165,13 @@ body{
 
 }
 
-.logo-area2 span{
+.logo-area span{
 
     color:#ffe08a;
 
 }
 
-.logo-area2 p{
+.logo-area p{
 
     color:white;
 
@@ -185,7 +185,7 @@ body{
    DOTS
 =================================================== */
 
-.dots2{
+.dots{
 
     position:absolute;
 
@@ -202,7 +202,7 @@ body{
 
 }
 
-.dots-top2{
+.dots-top{
 
     top:90px;
 
@@ -210,7 +210,7 @@ body{
 
 }
 
-.dots-bottom2{
+.dots-bottom{
 
     bottom:120px;
 
@@ -222,7 +222,7 @@ body{
    BURGER
 =================================================== */
 
-.burger-wrapper2{
+.burger-wrapper{
 
     width:100%;
 
@@ -238,7 +238,7 @@ body{
 
 }
 
-.burger-image2{
+.burger-image{
 
     width:420px;
 
@@ -255,7 +255,7 @@ body{
    HERO TEXT
 =================================================== */
 
-.hero-text2{
+.hero-text{
 
     text-align:center;
 
@@ -267,7 +267,7 @@ body{
 
 }
 
-.hero-text2 h1{
+.hero-text h1{
 
     font-size:56px;
 
@@ -279,7 +279,7 @@ body{
 
 }
 
-.hero-text2 .highlight2{
+.hero-text .highlight2{
 
     color:#fff5b8;
 
@@ -287,7 +287,7 @@ body{
 
 }
 
-.hero-text2 p{
+.hero-text p{
 
     width:75%;
 
@@ -307,7 +307,7 @@ body{
    FEATURE SECTION
 =================================================== */
 
-.feature-boxes2{
+.feature-boxes{
 
     width:100%;
 
@@ -331,7 +331,7 @@ body{
    FEATURE CARD
 =================================================== */
 
-.feature-card2{
+.feature-card{
 
     width:180px;
 
@@ -350,7 +350,7 @@ body{
 
 }
 
-.feature-card2:hover{
+.feature-card:hover{
 
     transform:translateY(-12px);
 
@@ -359,7 +359,7 @@ body{
 
 }
 
-.feature-icon2{
+.feature-icon{
 
     width:72px;
 
@@ -389,7 +389,7 @@ body{
 
 }
 
-.feature-card2 h3{
+.feature-card h3{
 
     font-size:20px;
 
@@ -401,7 +401,7 @@ body{
 
 }
 
-.feature-card2 p{
+.feature-card p{
 
     font-size:14px;
 
@@ -416,7 +416,7 @@ body{
 =================================================== */
 
 .feature-card:nth-child(2)
-.feature-icon2{
+.feature-icon{
 
 background:linear-gradient(
 135deg,
@@ -441,7 +441,7 @@ background:linear-gradient(
    BOTTOM WAVE
 =================================================== */
 
-.left-section2 .wave2{
+.left-section2 .wave{
 
     position:absolute;
 
@@ -466,7 +466,7 @@ background:linear-gradient(
    DECORATIVE CIRCLES
 =================================================== */
 
-.circle12{
+.circle1{
 
 position:absolute;
 
@@ -526,7 +526,7 @@ right:140px;
    BURGER SHADOW
 =================================================== */
 
-.burger-wrapper2::before{
+.burger-wrapper::before{
 
 content:"";
 
@@ -573,7 +573,7 @@ z-index:-1;
    LOGIN CARD
 =================================================== */
 
-.login-card2{
+.login-card{
 
     width:100%;
 
@@ -596,7 +596,7 @@ z-index:-1;
    CARD LOGO
 =================================================== */
 
-.card-logo2{
+.card-logo{
 
     display:flex;
 
@@ -610,7 +610,7 @@ z-index:-1;
 
 }
 
-.card-logo-circle2{
+.card-logo-circle{
 
     width:60px;
 
@@ -636,7 +636,7 @@ z-index:-1;
 
 }
 
-.card-logo2 h2{
+.card-logo h2{
 
     font-size:30px;
 
@@ -646,13 +646,13 @@ z-index:-1;
 
 }
 
-.card-logo2 span{
+.card-logo span{
 
     color:#ff7a00;
 
 }
 
-.card-logo2 p{
+.card-logo p{
 
     color:#777;
 
@@ -664,7 +664,7 @@ z-index:-1;
    HEADING
 =================================================== */
 
-.login-card2 h1{
+.login-card h1{
 
     text-align:center;
 
@@ -676,7 +676,7 @@ z-index:-1;
 
 }
 
-.login-subtitle2{
+.login-subtitle{
 
     text-align:center;
 
@@ -692,13 +692,13 @@ z-index:-1;
    INPUT GROUP
 =================================================== */
 
-.input-group2{
+.input-group{
 
     margin-bottom:25px;
 
 }
 
-.input-group2 label{
+.input-group label{
 
     display:block;
 
@@ -710,7 +710,7 @@ z-index:-1;
 
 }
 
-.input-box2{
+.input-box{
 
     width:100%;
 
@@ -732,13 +732,13 @@ z-index:-1;
 
 }
 
-.input-box2:hover{
+.input-box:hover{
 
     border-color:#ff9800;
 
 }
 
-.input-box2:focus-within{
+.input-box:focus-within{
 
     border-color:#ff9800;
 
@@ -749,7 +749,7 @@ z-index:-1;
 
 }
 
-.input-box svg2{
+.input-box svg{
 
     color:#ff7a00;
 
@@ -757,7 +757,7 @@ z-index:-1;
 
 }
 
-.input-box input2{
+.input-box input{
 
     flex:1;
 
@@ -773,7 +773,7 @@ z-index:-1;
 
 }
 
-.input-box2 input::placeholder{
+.input-box input::placeholder{
 
     color:#aaa;
 
@@ -783,7 +783,7 @@ z-index:-1;
    SHOW PASSWORD
 =================================================== */
 
-.eye-btn2{
+.eye-btn{
 
     border:none;
 
@@ -799,7 +799,7 @@ z-index:-1;
 
 }
 
-.eye-btn2:hover{
+.eye-btn:hover{
 
     color:#ff7a00;
 
@@ -809,7 +809,7 @@ z-index:-1;
    FORGOT PASSWORD
 =================================================== */
 
-.forgot-link2{
+.forgot-link{
 
     display:flex;
 
@@ -819,7 +819,7 @@ z-index:-1;
 
 }
 
-.forgot-link2 a{
+.forgot-link a{
 
     text-decoration:none;
 
@@ -829,7 +829,7 @@ z-index:-1;
 
 }
 
-.forgot-link2 a:hover{
+.forgot-link a:hover{
 
     text-decoration:underline;
 
@@ -839,7 +839,7 @@ z-index:-1;
    LOGIN BUTTON
 =================================================== */
 
-.login-btn2{
+.login-btn{
 
     width:100%;
 
@@ -870,7 +870,7 @@ z-index:-1;
 
 }
 
-.login-btn2:hover{
+.login-btn:hover{
 
     transform:translateY(-4px);
 
@@ -879,7 +879,7 @@ z-index:-1;
 
 }
 
-.login2-btn:disabled{
+.login-btn:disabled{
 
     opacity:.7;
 
@@ -890,7 +890,7 @@ z-index:-1;
    DIVIDER
 =================================================== */
 
-.divider2{
+.divider{
 
     display:flex;
 
@@ -900,9 +900,9 @@ z-index:-1;
 
 }
 
-.divider2::before,
+.divider::before,
 
-.divider2::after{
+.divider::after{
 
     content:"";
 
@@ -914,7 +914,7 @@ z-index:-1;
 
 }
 
-.divider2 span{
+.divider span{
 
     padding:0 15px;
 
@@ -930,7 +930,7 @@ z-index:-1;
    SOCIAL BUTTONS
 =================================================== */
 
-.social-buttons2{
+.social-buttons{
 
     display:flex;
 
@@ -940,7 +940,7 @@ z-index:-1;
 
 }
 
-.social-buttons2 button{
+.social-buttons button{
 
     flex:1;
 
@@ -970,13 +970,13 @@ z-index:-1;
 
 }
 
-.google-btn2{
+.google-btn{
 
     color:#ea4335;
 
 }
 
-.google-btn2:hover{
+.google-btn:hover{
 
     background:#fff4f2;
 
@@ -986,13 +986,13 @@ z-index:-1;
 
 }
 
-.facebook-btn2{
+.facebook-btn{
 
     color:#1877f2;
 
 }
 
-.facebook-btn2:hover{
+.facebook-btn:hover{
 
     background:#f3f8ff;
 
@@ -1006,7 +1006,7 @@ z-index:-1;
    PASSWORD REQUIREMENTS
 =================================================== */
 
-.password-box2{
+.password-box{
 
     margin-top:30px;
 
@@ -1020,7 +1020,7 @@ z-index:-1;
 
 }
 
-.password-box2 h4{
+.password-box h4{
 
     color:#ff7a00;
 
@@ -1030,7 +1030,7 @@ z-index:-1;
 
 }
 
-.password-grid2{
+.password-grid{
 
     display:grid;
 
@@ -1040,7 +1040,7 @@ z-index:-1;
 
 }
 
-.password-grid2 div{
+.password-grid div{
 
     font-size:14px;
 
@@ -1052,7 +1052,7 @@ z-index:-1;
    REGISTER
 =================================================== */
 
-.register-text2{
+.register-text{
 
     text-align:center;
 
@@ -1064,7 +1064,7 @@ z-index:-1;
 
 }
 
-.register-text2 a{
+.register-text a{
 
     margin-left:8px;
 
@@ -1076,7 +1076,7 @@ z-index:-1;
 
 }
 
-.register-text2 a:hover{
+.register-text a:hover{
 
     text-decoration:underline;
 
@@ -1101,7 +1101,7 @@ button:active{
    INPUT PLACEHOLDER
 =================================================== */
 
-input::placeholder2{
+input::placeholder{
 
     color:#b0b0b0;
 

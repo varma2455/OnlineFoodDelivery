@@ -110,7 +110,7 @@ body{
    LOGO
 ========================================== */
 
-.logo-area3{
+.logo-area{
 
     width:100%;
 
@@ -124,7 +124,7 @@ body{
 
 }
 
-.logo-circle3{
+.logo-circle{
 
     width:75px;
 
@@ -148,7 +148,7 @@ body{
 
 }
 
-.logo-area3 h2{
+.logo-area h2{
 
     color:#ffffff;
 
@@ -158,13 +158,13 @@ body{
 
 }
 
-.logo-area3 span{
+.logo-area span{
 
     color:#ffe27a;
 
 }
 
-.logo-area3 p{
+.logo-area p{
 
     color:#ffffff;
 
@@ -178,7 +178,7 @@ body{
    DECORATION DOTS
 ========================================== */
 
-.dots3{
+.dots{
 
     position:absolute;
 
@@ -196,7 +196,7 @@ body{
 
 }
 
-.dots-top3{
+.dots-top{
 
     top:35px;
 
@@ -204,7 +204,7 @@ body{
 
 }
 
-.dots-bottom3{
+.dots-bottom{
 
     bottom:180px;
 
@@ -215,7 +215,7 @@ body{
    BURGER SECTION
 ========================================== */
 
-.burger-wrapper3{
+.burger-wrapper{
 
     width:100%;
 
@@ -233,7 +233,7 @@ body{
 
 }
 
-.burger-image3{
+.burger-image{
 
     width:500px;
 
@@ -251,7 +251,7 @@ body{
    HERO TEXT
 ========================================== */
 
-.hero-text3{
+.hero-text{
 
     margin-top:10px;
 
@@ -263,7 +263,7 @@ body{
 
 }
 
-.hero-text3 h1{
+.hero-text h1{
 
     font-size:68px;
 
@@ -275,7 +275,7 @@ body{
 
 }
 
-.hero-text3 .highlight{
+.hero-text .highlight{
 
     color:#ffe45c;
 
@@ -287,7 +287,7 @@ body{
 
 }
 
-.hero-text3 p{
+.hero-text p{
 
     width:82%;
 
@@ -307,7 +307,7 @@ body{
    FEATURE BOXES
 ========================================== */
 
-.feature-boxes3{
+.feature-boxes{
 
     width:100%;
 
@@ -331,7 +331,7 @@ body{
    FEATURE CARD
 ========================================== */
 
-.feature-card3{
+.feature-card{
 
     width:180px;
 
@@ -352,7 +352,7 @@ body{
 
 }
 
-.feature-card3:hover{
+.feature-card:hover{
 
     transform:translateY(-12px);
 
@@ -361,7 +361,7 @@ body{
 
 }
 
-.feature-icon3{
+.feature-icon{
 
     width:72px;
 
@@ -391,7 +391,7 @@ body{
 
 }
 
-.feature-card3 h3{
+.feature-card h3{
 
     font-size:24px;
 
@@ -403,7 +403,7 @@ body{
 
 }
 
-.feature-card3 p{
+.feature-card p{
 
     font-size:15px;
 
@@ -415,7 +415,7 @@ body{
 
 /* Orange underline */
 
-.feature-card3::after{
+.feature-card::after{
 
     content:"";
 
@@ -437,7 +437,7 @@ body{
    BOTTOM WAVE
 ========================================== */
 
-.left-section3 .wave{
+.left-section .wave{
 
     position:absolute;
 
@@ -525,7 +525,7 @@ body{
    BURGER SHADOW
 ========================================== */
 
-.burger-wrapper3::before{
+.burger-wrapper::before{
 
     content:"";
 
@@ -572,7 +572,7 @@ body{
    REGISTER CARD
 =================================================== */
 
-.register-card3{
+.register-card{
 
     width:100%;
 
@@ -597,7 +597,7 @@ body{
    CARD LOGO
 =================================================== */
 
-.card-logo3{
+.card-logo{
 
     display:flex;
 
@@ -611,7 +611,7 @@ body{
 
 }
 
-.card-logo-circle3{
+.card-logo-circle{
 
     width:65px;
 
@@ -637,7 +637,7 @@ body{
 
 }
 
-.card-logo3 h2{
+.card-logo h2{
 
     font-size:30px;
 
@@ -647,13 +647,13 @@ body{
 
 }
 
-.card-logo3 span{
+.card-logo span{
 
     color:#ff7a00;
 
 }
 
-.card-logo3 p{
+.card-logo p{
 
     color:#777;
 
@@ -665,7 +665,7 @@ body{
    TITLE
 =================================================== */
 
-.register-card3 h1{
+.register-card h1{
 
     text-align:center;
 
@@ -677,7 +677,7 @@ body{
 
 }
 
-.register-subtitle3{
+.register-subtitle{
 
     text-align:center;
 
@@ -693,13 +693,13 @@ body{
    INPUT GROUP
 =================================================== */
 
-.input-group3{
+.input-group{
 
     margin-bottom:22px;
 
 }
 
-.input-group3 label{
+.input-group label{
 
     display:block;
 
@@ -717,7 +717,7 @@ body{
    INPUT BOX
 =================================================== */
 
-.input3-box{
+.input-box{
 
     width:100%;
 
@@ -739,13 +739,13 @@ body{
 
 }
 
-.input-box3:hover{
+.input-box:hover{
 
     border-color:#ff9800;
 
 }
 
-.input-box3:focus-within{
+.input-box:focus-within{
 
     background:#fff;
 
@@ -764,7 +764,7 @@ body{
 
 }
 
-.input-box3 input{
+.input-box input{
 
     flex:1;
 
@@ -782,7 +782,7 @@ body{
 
 }
 
-.input-box3 {
+.input-box {
 
     color:#b5b5b5;
 
@@ -792,7 +792,7 @@ body{
    SHOW PASSWORD
 =================================================== */
 
-.eye-btn3{
+.eye-btn{
 
     border:none;
 
@@ -808,7 +808,7 @@ body{
 
 }
 
-.eye-btn3:hover{
+.eye-btn:hover{
 
     color:#ff7a00;
 
@@ -818,7 +818,7 @@ body{
    REGISTER BUTTON
 =================================================== */
 
-.register-btn3{
+.register-btn{
 
     width:100%;
 
@@ -851,7 +851,7 @@ body{
 
 }
 
-.register-btn3:hover{
+.register-btn:hover{
 
     transform:translateY(-4px);
 
@@ -860,7 +860,7 @@ body{
 
 }
 
-.register-btn3:disabled{
+.register-btn:disabled{
 
     opacity:.65;
 
@@ -871,7 +871,7 @@ body{
    DIVIDER
 =================================================== */
 
-.divider3{
+.divider{
 
     display:flex;
 
@@ -881,8 +881,8 @@ body{
 
 }
 
-.divider3::before,
-.divider3::after{
+.divider::before,
+.divider::after{
 
     content:"";
 
@@ -894,7 +894,7 @@ body{
 
 }
 
-.divider3 span{
+.divider span{
 
     padding:0 15px;
 
@@ -910,7 +910,7 @@ body{
    SOCIAL BUTTONS
 =================================================== */
 
-.social-buttons3{
+.social-buttons{
 
     display:flex;
 
@@ -920,7 +920,7 @@ body{
 
 }
 
-.social-buttons3 button{
+.social-buttons button{
 
     flex:1;
 
@@ -952,13 +952,13 @@ body{
 
 }
 
-.google-btn3{
+.google-btn{
 
     color:#EA4335;
 
 }
 
-.google-btn3:hover{
+.google-btn:hover{
 
     background:#fff3f1;
 
@@ -968,13 +968,13 @@ body{
 
 }
 
-.facebook-btn3{
+.facebook-btn{
 
     color:#1877F2;
 
 }
 
-.facebook-btn:hover3{
+.facebook-btn:hover{
 
     background:#eef5ff;
 
@@ -1287,5 +1287,47 @@ height:56px;
 font-size:17px;
 
 }
+
+}
+
+.password-box{
+
+    margin-top:30px;
+
+    padding:22px;
+
+    border-radius:22px;
+
+    background:#fff8ef;
+
+    border:1px solid rgba(255,145,0,.18);
+
+}
+
+.password-box h4{
+
+    color:#ff7a00;
+
+    font-size:18px;
+
+    margin-bottom:18px;
+
+}
+
+.password-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:12px;
+
+}
+
+.password-grid div{
+
+    font-size:14px;
+
+    color:#666;
 
 }

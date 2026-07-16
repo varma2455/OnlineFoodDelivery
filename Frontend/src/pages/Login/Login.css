@@ -27,7 +27,7 @@ body{
    MAIN PAGE
 =================================================== */
 
-.login-page{
+.login-page2{
 
     width:100%;
 
@@ -43,7 +43,7 @@ body{
    LEFT SECTION
 =================================================== */
 
-.left-section{
+.left-section2{
 
     width:52%;
 
@@ -71,7 +71,7 @@ body{
    ORANGE DECORATION
 =================================================== */
 
-.left-section::before{
+.left-section2::before{
 
     content:"";
 
@@ -91,7 +91,7 @@ body{
 
 }
 
-.left-section::after{
+.left-section2::after{
 
     content:"";
 
@@ -115,7 +115,7 @@ body{
    LOGO
 =================================================== */
 
-.logo-area{
+.logo-area2{
 
     width:100%;
 
@@ -131,7 +131,7 @@ body{
 
 }
 
-.logo-circle{
+.logo-circle2{
 
     width:70px;
 
@@ -155,7 +155,7 @@ body{
 
 }
 
-.logo-area h2{
+.logo-area2 h2{
 
     color:white;
 
@@ -165,13 +165,13 @@ body{
 
 }
 
-.logo-area span{
+.logo-area2 span{
 
     color:#ffe08a;
 
 }
 
-.logo-area p{
+.logo-area2 p{
 
     color:white;
 
@@ -185,7 +185,7 @@ body{
    DOTS
 =================================================== */
 
-.dots{
+.dots2{
 
     position:absolute;
 
@@ -202,7 +202,7 @@ body{
 
 }
 
-.dots-top{
+.dots-top2{
 
     top:90px;
 
@@ -210,7 +210,7 @@ body{
 
 }
 
-.dots-bottom{
+.dots-bottom2{
 
     bottom:120px;
 
@@ -222,7 +222,7 @@ body{
    BURGER
 =================================================== */
 
-.burger-wrapper{
+.burger-wrapper2{
 
     width:100%;
 
@@ -238,7 +238,7 @@ body{
 
 }
 
-.burger-image{
+.burger-image2{
 
     width:420px;
 
@@ -255,7 +255,7 @@ body{
    HERO TEXT
 =================================================== */
 
-.hero-text{
+.hero-text2{
 
     text-align:center;
 
@@ -267,7 +267,7 @@ body{
 
 }
 
-.hero-text h1{
+.hero-text2 h1{
 
     font-size:56px;
 
@@ -279,7 +279,7 @@ body{
 
 }
 
-.hero-text .highlight{
+.hero-text2 .highlight2{
 
     color:#fff5b8;
 
@@ -287,7 +287,7 @@ body{
 
 }
 
-.hero-text p{
+.hero-text2 p{
 
     width:75%;
 
@@ -307,7 +307,7 @@ body{
    FEATURE SECTION
 =================================================== */
 
-.feature-boxes{
+.feature-boxes2{
 
     width:100%;
 
@@ -331,7 +331,7 @@ body{
    FEATURE CARD
 =================================================== */
 
-.feature-card{
+.feature-card2{
 
     width:180px;
 
@@ -350,7 +350,7 @@ body{
 
 }
 
-.feature-card:hover{
+.feature-card2:hover{
 
     transform:translateY(-12px);
 
@@ -359,7 +359,7 @@ body{
 
 }
 
-.feature-icon{
+.feature-icon2{
 
     width:72px;
 
@@ -389,7 +389,7 @@ body{
 
 }
 
-.feature-card h3{
+.feature-card2 h3{
 
     font-size:20px;
 
@@ -401,7 +401,7 @@ body{
 
 }
 
-.feature-card p{
+.feature-card2 p{
 
     font-size:14px;
 
@@ -416,7 +416,7 @@ body{
 =================================================== */
 
 .feature-card:nth-child(2)
-.feature-icon{
+.feature-icon2{
 
 background:linear-gradient(
 135deg,
@@ -441,7 +441,7 @@ background:linear-gradient(
    BOTTOM WAVE
 =================================================== */
 
-.left-section .wave{
+.left-section2 .wave2{
 
     position:absolute;
 
@@ -466,7 +466,7 @@ background:linear-gradient(
    DECORATIVE CIRCLES
 =================================================== */
 
-.circle1{
+.circle12{
 
 position:absolute;
 
@@ -526,7 +526,7 @@ right:140px;
    BURGER SHADOW
 =================================================== */
 
-.burger-wrapper::before{
+.burger-wrapper2::before{
 
 content:"";
 
@@ -551,7 +551,7 @@ z-index:-1;
    RIGHT SECTION
 =================================================== */
 
-.right-section{
+.right-section2{
 
     width:48%;
 
@@ -573,7 +573,7 @@ z-index:-1;
    LOGIN CARD
 =================================================== */
 
-.login-card{
+.login-card2{
 
     width:100%;
 
@@ -596,7 +596,7 @@ z-index:-1;
    CARD LOGO
 =================================================== */
 
-.card-logo{
+.card-logo2{
 
     display:flex;
 
@@ -610,7 +610,7 @@ z-index:-1;
 
 }
 
-.card-logo-circle{
+.card-logo-circle2{
 
     width:60px;
 
@@ -636,7 +636,7 @@ z-index:-1;
 
 }
 
-.card-logo h2{
+.card-logo2 h2{
 
     font-size:30px;
 
@@ -646,13 +646,13 @@ z-index:-1;
 
 }
 
-.card-logo span{
+.card-logo2 span{
 
     color:#ff7a00;
 
 }
 
-.card-logo p{
+.card-logo2 p{
 
     color:#777;
 
@@ -664,7 +664,7 @@ z-index:-1;
    HEADING
 =================================================== */
 
-.login-card h1{
+.login-card2 h1{
 
     text-align:center;
 
@@ -676,7 +676,7 @@ z-index:-1;
 
 }
 
-.login-subtitle{
+.login-subtitle2{
 
     text-align:center;
 
@@ -692,13 +692,13 @@ z-index:-1;
    INPUT GROUP
 =================================================== */
 
-.input-group{
+.input-group2{
 
     margin-bottom:25px;
 
 }
 
-.input-group label{
+.input-group2 label{
 
     display:block;
 
@@ -710,7 +710,7 @@ z-index:-1;
 
 }
 
-.input-box{
+.input-box2{
 
     width:100%;
 
@@ -732,13 +732,13 @@ z-index:-1;
 
 }
 
-.input-box:hover{
+.input-box2:hover{
 
     border-color:#ff9800;
 
 }
 
-.input-box:focus-within{
+.input-box2:focus-within{
 
     border-color:#ff9800;
 
@@ -749,7 +749,7 @@ z-index:-1;
 
 }
 
-.input-box svg{
+.input-box svg2{
 
     color:#ff7a00;
 
@@ -757,7 +757,7 @@ z-index:-1;
 
 }
 
-.input-box input{
+.input-box input2{
 
     flex:1;
 
@@ -773,7 +773,7 @@ z-index:-1;
 
 }
 
-.input-box input::placeholder{
+.input-box2 input::placeholder{
 
     color:#aaa;
 
@@ -783,7 +783,7 @@ z-index:-1;
    SHOW PASSWORD
 =================================================== */
 
-.eye-btn{
+.eye-btn2{
 
     border:none;
 
@@ -799,7 +799,7 @@ z-index:-1;
 
 }
 
-.eye-btn:hover{
+.eye-btn2:hover{
 
     color:#ff7a00;
 
@@ -809,7 +809,7 @@ z-index:-1;
    FORGOT PASSWORD
 =================================================== */
 
-.forgot-link{
+.forgot-link2{
 
     display:flex;
 
@@ -819,7 +819,7 @@ z-index:-1;
 
 }
 
-.forgot-link a{
+.forgot-link2 a{
 
     text-decoration:none;
 
@@ -829,7 +829,7 @@ z-index:-1;
 
 }
 
-.forgot-link a:hover{
+.forgot-link2 a:hover{
 
     text-decoration:underline;
 
@@ -839,7 +839,7 @@ z-index:-1;
    LOGIN BUTTON
 =================================================== */
 
-.login-btn{
+.login-btn2{
 
     width:100%;
 
@@ -870,7 +870,7 @@ z-index:-1;
 
 }
 
-.login-btn:hover{
+.login-btn2:hover{
 
     transform:translateY(-4px);
 
@@ -879,7 +879,7 @@ z-index:-1;
 
 }
 
-.login-btn:disabled{
+.login2-btn:disabled{
 
     opacity:.7;
 
@@ -890,7 +890,7 @@ z-index:-1;
    DIVIDER
 =================================================== */
 
-.divider{
+.divider2{
 
     display:flex;
 
@@ -900,9 +900,9 @@ z-index:-1;
 
 }
 
-.divider::before,
+.divider2::before,
 
-.divider::after{
+.divider2::after{
 
     content:"";
 
@@ -914,7 +914,7 @@ z-index:-1;
 
 }
 
-.divider span{
+.divider2 span{
 
     padding:0 15px;
 
@@ -930,7 +930,7 @@ z-index:-1;
    SOCIAL BUTTONS
 =================================================== */
 
-.social-buttons{
+.social-buttons2{
 
     display:flex;
 
@@ -940,7 +940,7 @@ z-index:-1;
 
 }
 
-.social-buttons button{
+.social-buttons2 button{
 
     flex:1;
 
@@ -970,13 +970,13 @@ z-index:-1;
 
 }
 
-.google-btn{
+.google-btn2{
 
     color:#ea4335;
 
 }
 
-.google-btn:hover{
+.google-btn2:hover{
 
     background:#fff4f2;
 
@@ -986,13 +986,13 @@ z-index:-1;
 
 }
 
-.facebook-btn{
+.facebook-btn2{
 
     color:#1877f2;
 
 }
 
-.facebook-btn:hover{
+.facebook-btn2:hover{
 
     background:#f3f8ff;
 
@@ -1006,7 +1006,7 @@ z-index:-1;
    PASSWORD REQUIREMENTS
 =================================================== */
 
-.password-box{
+.password-box2{
 
     margin-top:30px;
 
@@ -1020,7 +1020,7 @@ z-index:-1;
 
 }
 
-.password-box h4{
+.password-box2 h4{
 
     color:#ff7a00;
 
@@ -1030,7 +1030,7 @@ z-index:-1;
 
 }
 
-.password-grid{
+.password-grid2{
 
     display:grid;
 
@@ -1040,7 +1040,7 @@ z-index:-1;
 
 }
 
-.password-grid div{
+.password-grid2 div{
 
     font-size:14px;
 
@@ -1052,7 +1052,7 @@ z-index:-1;
    REGISTER
 =================================================== */
 
-.register-text{
+.register-text2{
 
     text-align:center;
 
@@ -1064,7 +1064,7 @@ z-index:-1;
 
 }
 
-.register-text a{
+.register-text2 a{
 
     margin-left:8px;
 
@@ -1076,7 +1076,7 @@ z-index:-1;
 
 }
 
-.register-text a:hover{
+.register-text2 a:hover{
 
     text-decoration:underline;
 
@@ -1093,7 +1093,6 @@ button{
 }
 
 button:active{
-
     transform:scale(.97);
 
 }
@@ -1102,7 +1101,7 @@ button:active{
    INPUT PLACEHOLDER
 =================================================== */
 
-input::placeholder{
+input::placeholder2{
 
     color:#b0b0b0;
 
@@ -1184,15 +1183,15 @@ input::placeholder{
 
 @media(max-width:1200px){
 
-    .login-page{
+    .login-page2{
 
         flex-direction:column;
 
     }
 
-    .left-section,
+    .left-section2,
 
-    .right-section{
+    .right-section2{
 
         width:100%;
 
@@ -1204,7 +1203,7 @@ input::placeholder{
 
     }
 
-    .feature-boxes{
+    .feature-boxes2{
 
         flex-wrap:wrap;
 
@@ -1214,13 +1213,13 @@ input::placeholder{
 
 @media(max-width:768px){
 
-    .hero-text h1{
+    .hero-text2 h1{
 
         font-size:38px;
 
     }
 
-    .hero-text p{
+    .hero-text2 p{
 
         width:95%;
 
@@ -1228,31 +1227,31 @@ input::placeholder{
 
     }
 
-    .feature-boxes{
+    .feature-boxes2{
 
         gap:15px;
 
     }
 
-    .feature-card{
+    .feature-card2{
 
         width:150px;
 
     }
 
-    .login-card{
+    .login-card2{
 
         padding:30px;
 
     }
 
-    .social-buttons{
+    .social-buttons2{
 
         flex-direction:column;
 
     }
 
-    .password-grid{
+    .password-grid2{
 
         grid-template-columns:1fr;
 

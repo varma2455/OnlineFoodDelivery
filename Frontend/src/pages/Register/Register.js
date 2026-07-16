@@ -222,13 +222,13 @@ const Register = () => {
 
     return(
 
-<div className="register-page">
+<div className="register-page3">
 
-<div className="left-section">
+<div className="left-section3">
 
-<div className="logo-area">
+<div className="logo-area3">
 
-<div className="logo-circle">
+<div className="logo-circle3">
 
 <FaHamburger/>
 
@@ -253,11 +253,11 @@ Delicious food, delivered fast
 </div>
  
 
-<div className="dots dots-top"></div>
+<div className="dots dots-top3"></div>
 
-<div className="dots dots-bottom"></div>
+<div className="dots dots-bottom3"></div>
 
-<div className="burger-wrapper">
+<div className="burger-wrapper3">
 
 <img
 
@@ -265,13 +265,13 @@ src={burgerImage}
 
 alt="Burger"
 
-className="burger-image"
+className="burger-image3"
 
 />
 
 </div>
 
-<div className="hero-text">
+<div className="hero-text3">
 
 <h1>
 
@@ -279,7 +279,7 @@ Join
 
 </h1>
 
-<h1 className="highlight">
+<h1 className="highlight3">
 
 FoodExpress
 
@@ -293,11 +293,11 @@ Create your account and enjoy delicious food delivered directly to your doorstep
 
 </div>
 
-<div className="feature-boxes">
+<div className="feature-boxes3">
 
-<div className="feature-card">
+<div className="feature-card3">
 
-<div className="feature-icon">
+<div className="feature-icon3">
 
 <FaMotorcycle/>
 
@@ -319,9 +319,9 @@ at your doorstep
 
 </div>
 
-<div className="feature-card">
+<div className="feature-card3">
 
-<div className="feature-icon">
+<div className="feature-icon3">
 
 <FaStore/>
 
@@ -343,9 +343,9 @@ Top Rated Restaurants
 
 </div>
 
-<div className="feature-card">
+<div className="feature-card3">
 
-<div className="feature-icon">
+<div className="feature-icon3">
 
 <FaGift/>
 
@@ -370,13 +370,13 @@ Everyday
 </div>
 
 </div>
-<div className="right-section">
+<div className="right-section3">
 
-<div className="register-card">
+<div className="register-card3">
 
-<div className="card-logo">
+<div className="card-logo3">
 
-<div className="card-logo-circle">
+<div className="card-logo-circle3">
 
 <FaHamburger/>
 
@@ -406,7 +406,7 @@ Create Your Account
 
 </h1>
 
-<p className="register-subtitle">
+<p className="register-subtitle3">
 
 Register to start ordering delicious food.
 
@@ -414,7 +414,7 @@ Register to start ordering delicious food.
 
 <form onSubmit={handleSubmit}>
 
-<div className="input-group">
+<div className="input-group3">
 
 <label>
 
@@ -422,7 +422,7 @@ Full Name
 
 </label>
 
-<div className="input-box">
+<div className="input-box3">
 
 <FaUser/>
 
@@ -446,7 +446,7 @@ required
 
 </div>
 
-<div className="input-group">
+<div className="input-group3">
 
 <label>
 
@@ -454,7 +454,7 @@ Email Address
 
 </label>
 
-<div className="input-box">
+<div className="input-box3">
 
 <FaEnvelope/>
 
@@ -478,7 +478,7 @@ required
 
 </div>
 
-<div className="input-group">
+<div className="input-group3">
 
 <label>
 
@@ -486,7 +486,7 @@ Mobile Number
 
 </label>
 
-<div className="input-box">
+<div className="input-box3">
 
 <FaPhoneAlt/>
 
@@ -510,7 +510,7 @@ required
 
 </div>
 
-<div className="input-group">
+<div className="input-group3">
 
 <label>
 
@@ -518,7 +518,7 @@ Address
 
 </label>
 
-<div className="input-box">
+<div className="input-box3">
 
 <FaMapMarkerAlt/>
 
@@ -542,7 +542,7 @@ required
 
 </div>
 
-<div className="input-group">
+<div className="input-group3">
 
 <label>
 
@@ -550,7 +550,7 @@ Password
 
 </label>
 
-<div className="input-box">
+<div className="input-box3">
 
 <FaLock/>
 
@@ -574,7 +574,7 @@ required
 
 type="button"
 
-className="eye-btn"
+className="eye-btn3"
 
 onClick={() => setShowPassword(!showPassword)}
 
@@ -600,7 +600,7 @@ showPassword
 
 </div>
 
-<div className="input-group">
+<div className="input-group3">
 
 <label>
 
@@ -608,7 +608,7 @@ Confirm Password
 
 </label>
 
-<div className="input-box">
+<div className="input-box3">
 
 <FaLock/>
 
@@ -632,7 +632,7 @@ required
 
 type="button"
 
-className="eye-btn"
+className="eye-btn3"
 
 onClick={() =>
 
@@ -668,9 +668,9 @@ showConfirmPassword
 
 <button
 
-type="submit"
+type="submit3"
 
-className="register-btn"
+className="register-btn3"
 
 disabled={loading}
 
@@ -692,7 +692,7 @@ loading
 
 </button>
 
-<div className="divider">
+<div className="divider3">
 
 <span>
 
@@ -702,11 +702,11 @@ or continue with
 
 </div>
 
-<div className="social-buttons">
+<div className="social-buttons3">
 
 <button
-    type="button"
-    className="google-btn"
+    type="button3"
+    className="google-btn3"
     onClick={handleGoogleRegister}
 >
 
@@ -718,9 +718,9 @@ or continue with
 
 <button
 
-type="button"
+type="button3"
 
-className="facebook-btn"
+className="facebook-btn3"
 
 >
 
@@ -732,7 +732,7 @@ Facebook
 
 </div>
 
-<div className="password-box-info">
+<div className="password-box-info2">
 
 <h4>
 
@@ -740,7 +740,7 @@ Facebook
 
 </h4>
 
-<div className="password-grid">
+<div className="password-grid2">
 
 <div>✔ Minimum 8 characters</div>
 
@@ -756,7 +756,7 @@ Facebook
 
 </div>
 
-<div className="login-link">
+<div className="login-link4">
 
 Already have an account?
 

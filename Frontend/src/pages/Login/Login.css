@@ -279,7 +279,7 @@ body{
 
 }
 
-.hero-text .highlight2{
+.hero-text .highlight{
 
     color:#fff5b8;
 
@@ -1183,7 +1183,7 @@ input::placeholder{
 
 @media(max-width:1200px){
 
-    .login-page2{
+    .login-page{
 
         flex-direction:column;
 
@@ -1203,7 +1203,7 @@ input::placeholder{
 
     }
 
-    .feature-boxes2{
+    .feature-boxes{
 
         flex-wrap:wrap;
 
@@ -1213,13 +1213,13 @@ input::placeholder{
 
 @media(max-width:768px){
 
-    .hero-text2 h1{
+    .hero-text h1{
 
         font-size:38px;
 
     }
 
-    .hero-text2 p{
+    .hero-text p{
 
         width:95%;
 
@@ -1227,25 +1227,25 @@ input::placeholder{
 
     }
 
-    .feature-boxes2{
+    .feature-boxes{
 
         gap:15px;
 
     }
 
-    .feature-card2{
+    .feature-card{
 
         width:150px;
 
     }
 
-    .login-card2{
+    .login-card{
 
         padding:30px;
 
     }
 
-    .social-buttons2{
+    .social-buttons{
 
         flex-direction:column;
 

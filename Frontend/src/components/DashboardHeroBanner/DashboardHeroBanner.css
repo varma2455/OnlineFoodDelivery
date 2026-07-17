@@ -376,56 +376,33 @@
 
 @media(max-width:768px){
 
-.dashboard-hero{
-
-    padding:30px;
-
-}
-
-.hero-content h1{
-
-    font-size:34px;
-
-}
-
-.hero-image img{
-
-    width:280px;
-
-    height:280px;
-
-}
-
-.hero-stats{
-
-    flex-direction:column;
-
-    gap:20px;
-
-}
-
-.hero-buttons{
-
-    flex-direction:column;
-
-}
-
-.order-btn,
-
-.menu-btn{
-
-    width:100%;
-
-    justify-content:center;
-
-}
-
-.floating-card{
-
-    display:none;
-
-}
-
+    .dashboard-hero{
+        flex-direction:column;
+        text-align:center;
+        padding:25px;
+    }
+    
+    .hero-content{
+        width:100%;
+    }
+    
+    .hero-image{
+        width:100%;
+        margin-top:20px;
+    }
+    
+    .hero-image img{
+        width:260px;
+    }
+    
+    .hero-buttons{
+        justify-content:center;
+        flex-wrap:wrap;
+    }
+    
+    .hero-stats{
+        justify-content:center;
+    }
 }
 
 @media(max-width:576px){

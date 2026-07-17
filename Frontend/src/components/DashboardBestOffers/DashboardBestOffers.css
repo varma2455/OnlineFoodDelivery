@@ -284,35 +284,9 @@
 
 @media(max-width:768px){
 
-.offer-icon{
-
-    width:58px;
-
-    height:58px;
-
-    font-size:24px;
-
-}
-
-.offer-card h3{
-
-    font-size:22px;
-
-}
-
-.offer-card p{
-
-    font-size:13px;
-
-}
-
-.offer-card button{
-
-    width:100%;
-
-    justify-content:center;
-
-}
+    .offers-container{
+        grid-template-columns:1fr;
+    }
 
 }
 

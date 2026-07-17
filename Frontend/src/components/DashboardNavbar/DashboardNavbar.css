@@ -223,25 +223,30 @@
 @media(max-width:768px){
 
     .dashboard-navbar{
+        height:auto;
+        flex-direction:column;
+        align-items:stretch;
+        gap:15px;
         padding:18px;
     }
-
+    
+    .navbar-left,
+    .navbar-search,
     .navbar-right{
-        gap:10px;
-        flex-wrap:wrap;
-        justify-content:flex-end;
+        width:100%;
     }
-
+    
+    .navbar-search{
+        width:100%;
+    }
+    
+    .navbar-right{
+        justify-content:space-between;
+        flex-wrap:wrap;
+    }
+    
     .location-box{
         display:none;
-    }
-
-    .welcome-text h2{
-        font-size:20px;
-    }
-
-    .welcome-text p{
-        font-size:13px;
     }
 
 }

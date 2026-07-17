@@ -223,9 +223,9 @@
 
 @media(max-width:768px){
 
-.food-grid{
-    grid-template-columns:1fr;
-}
+    .food-grid{
+        grid-template-columns:1fr;
+    }
 
 .popular-header{
     flex-direction:column;

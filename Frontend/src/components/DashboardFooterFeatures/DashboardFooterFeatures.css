@@ -182,29 +182,9 @@
 
 @media(max-width:768px){
 
-.footer-features{
-
-    padding:22px;
-
-}
-
-.features-grid{
-
-    grid-template-columns:1fr;
-
-}
-
-.footer-header h2{
-
-    font-size:24px;
-
-}
-
-.feature-card{
-
-    padding:25px;
-
-}
+    .features-grid{
+        grid-template-columns:1fr;
+    }
 
 }
 

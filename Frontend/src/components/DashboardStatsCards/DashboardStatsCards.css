@@ -210,11 +210,9 @@
 
 @media(max-width:768px){
 
-.dashboard-stats{
-
-    grid-template-columns:1fr;
-
-}
+    .dashboard-stats{
+        grid-template-columns:1fr;
+    }
 
 .stats-card{
 

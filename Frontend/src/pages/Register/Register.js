@@ -195,7 +195,7 @@ const Register = () => {
             
             alert("Registration Successful");
             
-            navigate("/customer");
+            navigate("/login");
     
         }
     

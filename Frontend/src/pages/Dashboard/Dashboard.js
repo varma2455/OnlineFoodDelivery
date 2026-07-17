@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+
 import "./Dashboard.css";
 
 import DashboardSidebar from "../../components/DashboardSidebar/DashboardSidebar";
@@ -12,6 +14,23 @@ import DashboardBestOffers from "../../components/DashboardBestOffers/DashboardB
 import DashboardFooterFeatures from "../../components/DashboardFooterFeatures/DashboardFooterFeatures";
 
 const Dashboard = () => {
+
+
+
+    const [dashboardData, setDashboardData] = useState({
+        user: {},
+        stats: {},
+        wallet: {},
+        recentOrders: [],
+        offers: [],
+        foods: [],
+        features: []
+    });
+    
+    const [loading, setLoading] = useState(true);
+
+
+    
 
     return (
 

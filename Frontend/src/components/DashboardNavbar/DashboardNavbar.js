@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+
 import "./DashboardNavbar.css";
 
 import {
@@ -11,6 +13,73 @@ import {
 } from "react-icons/fa";
 
 const DashboardNavbar = () => {
+
+
+  const [navbarData, setNavbarData] = useState({
+    name: "",
+    profileImage: "",
+    membership: "",
+    location: "",
+    notifications: 0,
+    cartItems: 0
+});
+
+const [loading, setLoading] = useState(true);
+
+
+
+useEffect(() => {
+
+  const fetchNavbar = async () => {
+
+      try {
+
+        const token = localStorage.getItem("token");
+
+        if (!token) {
+          console.error("No JWT token found.");
+          setLoading(false);
+          return;
+        }
+
+
+        const response = await axios.get(
+          "https://onlinefooddelivery-9g60.onrender.com/api/dashboard/navbar",
+              {
+                  headers: {
+                      Authorization: `Bearer ${token}`
+                  }
+              }
+          );
+
+          setNavbarData(response.data);
+
+      } catch (error) {
+
+        console.error( "Navbar Error:",error.response?.data || error.message );
+
+      } finally {
+
+          setLoading(false);
+
+      }
+
+  };
+
+  fetchNavbar();
+
+}, []);
+
+
+
+if (loading) {
+
+  return <div>Loading...</div>;
+
+}
+
+
+
   return (
     <header className="dashboard-navbar">
 
@@ -42,50 +111,39 @@ const DashboardNavbar = () => {
         {/* Location */}
         <div className="location-box">
           <FaMapMarkerAlt />
-          <span>Vijayawada</span>
+          <span>{navbarData.location || "Unknown Location"}</span>
         </div>
 
         {/* Theme */}
-        <div className="nav-icon">
+        <div className="nav-icon" onClick={() => { document.body.classList.toggle("dark-mode"); }}>
           <FaSun />
         </div>
 
         {/* Notifications */}
         <div className="nav-icon notification">
-
           <FaBell />
-
-          <span className="count">4</span>
-
+          <span className="count">{navbarData.notifications}</span>
         </div>
 
         {/* Cart */}
         <div className="nav-icon notification">
-
           <FaShoppingCart />
-
-          <span className="count">3</span>
-
+          <span className="count">{navbarData.cartItems}</span>
         </div>
 
         {/* Profile */}
         <div className="profile-box">
 
-          <img
-            src="https://i.pravatar.cc/150?img=12"
-            alt="profile"
-          />
+        <img src={navbarData.profileImage || "https://i.pravatar.cc/150?img=12"} alt={navbarData.name || "Profile"}/>
 
           <div className="profile-info">
 
-            <h4>Yeswanth</h4>
+          <h4>{navbarData.name || "Guest User"}</h4>
 
-            <p>Premium Member</p>
+          <p>{navbarData.membership || "Basic Member"}</p>
 
           </div>
-
           <FaChevronDown />
-
         </div>
 
       </div>

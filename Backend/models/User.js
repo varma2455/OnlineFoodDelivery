@@ -49,7 +49,6 @@ const userSchema = new mongoose.Schema(
         enum: ["customer", "restaurant", "delivery", "admin"],
         default: "customer"
     },
-
     isVerified: {
         type: Boolean,
         default: false
@@ -103,7 +102,23 @@ const userSchema = new mongoose.Schema(
         code: String,
         discount: Number,
         expiry: Date
-    }]
+    }],
+
+    membership: {
+        type: String,
+        enum: ["Basic", "Silver", "Gold", "Premium"],
+        default: "Basic"
+    },
+    
+    city: {
+        type: String,
+        default: ""
+    },
+    
+    notificationCount: {
+        type: Number,
+        default: 0
+    }
 
 },
 {

@@ -377,9 +377,6 @@ export const logoutUser = async (req, res, next) => {
 
         res.clearCookie("token");
 
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
-
         return res.status(200).json({
             success: true,
             message: "Logged out successfully."

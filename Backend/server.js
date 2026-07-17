@@ -12,7 +12,7 @@ import foodRoutes from "./routes/foodRoutes.js";
 import cartRoutes from "./routes/cartRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import dashboardRoutes from "./routes/dashboardRoutes.js";
-import dashboardRoutes from "./routes/dashboardRoutes.js";
+
 
 dotenv.config();
 
@@ -49,7 +49,7 @@ app.use("/api/foods", foodRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/dashboard", dashboardRoutes);
-app.use("/api/users", userRoutes);
+
 
 
 // ==============================

@@ -1,18 +1,13 @@
 /* ==========================================
-   Best Offers Section
+   Best Offers
 ========================================== */
 
 .best-offers{
-
     width:100%;
-
-    background:#ffffff;
-
-    border-radius:20px;
-    padding:20px;
-
+    background:#fff;
+    border-radius:22px;
+    padding:22px;
     box-shadow:0 12px 35px rgba(0,0,0,.08);
-
 }
 
 /* ==========================================
@@ -20,39 +15,29 @@
 ========================================== */
 
 .offers-header{
-
     margin-bottom:18px;
-
 }
 
 .offers-header h2{
-
-    font-size:22px;
-
+    font-size:24px;
     font-weight:700;
-
     color:#222;
-
     margin-bottom:5px;
-
 }
 
 .offers-header p{
-
     color:#888;
-
     font-size:14px;
-
 }
 
 /* ==========================================
-   Offers Container
+   Offers List
 ========================================== */
 
-.offers-container{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:18px;
+.offers-list{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
 }
 
 /* ==========================================
@@ -60,280 +45,239 @@
 ========================================== */
 
 .offer-card{
-
-    position:relative;
-
-    overflow:hidden;
-
-    padding:20px;
+    background:#fafafa;
     border-radius:18px;
-
-    color:#fff;
-
+    border:1px solid #ececec;
+    overflow:hidden;
     transition:.35s;
-
     cursor:pointer;
-
 }
 
 .offer-card:hover{
-
-    transform:translateX(3px);
-
-    box-shadow:0 18px 40px rgba(0,0,0,.18);
-
-}
-
-.offer-card::before{
-
-    content:"";
-
-    position:absolute;
-
-    width:140px;
-    height:140px;
-
-    background:rgba(255,255,255,.08);
-
-    border-radius:50%;
-
-    right:-50px;
-
-    top:-50px;
-
-}
-
-.offer-card::after{
-
-    content:"";
-
-    position:absolute;
-
-    width:90px;
-    height:90px;
-
-    background:rgba(255,255,255,.08);
-
-    border-radius:50%;
-
-    left:-40px;
-
-    bottom:-40px;
-
+    box-shadow:0 15px 35px rgba(0,0,0,.12);
+    transform:translateY(-2px);
 }
 
 /* ==========================================
-   Offer Icon
+   Preview
+========================================== */
+
+.offer-preview{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    padding:16px 18px;
+}
+
+/* ==========================================
+   Icon
 ========================================== */
 
 .offer-icon{
 
-    width:55px;
-    height:55px;
-    font-size:22px;
-    margin-bottom:15px;
+    width:56px;
+    height:56px;
 
-    height:65px;
-
-    border-radius:18px;
-
-    background:rgba(255,255,255,.15);
-
-    backdrop-filter:blur(10px);
+    border-radius:16px;
 
     display:flex;
-
     justify-content:center;
-
     align-items:center;
+
+    color:white;
+
+    font-size:22px;
+
+    flex-shrink:0;
 }
 
 /* ==========================================
    Text
 ========================================== */
 
-.offer-card h3{
-
-    font-size:24px;
-    margin-bottom:6px;
-    font-weight:700; 
+.offer-info{
+    flex:1;
 }
 
-.offer-card p{
-    opacity:.95;
+.offer-info h4{
+    font-size:18px;
+    color:#222;
+    margin-bottom:5px;
+}
+
+.offer-info span{
     font-size:13px;
-    margin-bottom:15px;
+    color:#777;
+    font-weight:600;
 }
 
 /* ==========================================
-   Coupon Box
+   Apply Button
 ========================================== */
 
-.coupon-box{
+.offer-preview button{
 
-    display:inline-block;
+    border:none;
 
-    background:#ffffff;
+    background:#6C63FF;
 
-    color:#333;
+    color:white;
 
-    font-weight:700;
-
-    letter-spacing:1px;
-
-    padding:8px 14px;
-    font-size:13px;
+    padding:10px 16px;
 
     border-radius:10px;
-
-    margin-bottom:20px;
-
-}
-
-/* ==========================================
-   Button
-========================================== */
-
-.offer-card button{
 
     display:flex;
 
     align-items:center;
 
-    border:none;
-
-    background:#ffffff;
-
-    color:#333;
-
-    padding:10px 18px;
-    font-size:13px;
-    gap:6px;
-    border-radius:10px;
-    font-weight:600;
+    gap:8px;
 
     cursor:pointer;
 
+    font-size:13px;
+
+    font-weight:600;
+
+    transition:.3s;
+}
+
+.offer-preview button:hover{
+
+    background:#564cf5;
+
+}
+
+.offer-preview button svg{
+
     transition:.3s;
 
 }
 
-.offer-card button:hover{
+.offer-preview button:hover svg{
 
-    background:#f4f4f4;
-
-    transform:translateX(5px);
-
-}
-
-.offer-card button svg{
-
-    transition:.3s;
-
-}
-
-.offer-card button:hover svg{
-
-    transform:translateX(5px);
+    transform:translateX(4px);
 
 }
 
 /* ==========================================
-   Hover Animation
+   Expand Details
 ========================================== */
 
-.offer-card:hover .offer-icon{
+.offer-details{
 
-    transform:rotate(-10deg) scale(1.08);
+    max-height:0;
+
+    overflow:hidden;
+
+    transition:max-height .45s ease,padding .35s ease;
+
+    padding:0 20px;
+
+    background:#fff;
 
 }
 
-.offer-card:hover .coupon-box{
+.offer-card:hover .offer-details{
 
-    background:#FFE066;
+    max-height:220px;
 
-    color:#222;
+    padding:0 20px 18px;
+
+}
+
+.offer-details h5{
+
+    color:#444;
+
+    font-size:15px;
+
+    margin-bottom:12px;
+
+    margin-top:5px;
+
+}
+
+.offer-details ul{
+
+    padding:0;
+
+    margin:0;
+
+}
+
+.offer-details li{
+
+    list-style:none;
+
+    font-size:14px;
+
+    color:#666;
+
+    padding:7px 0;
+
+    border-bottom:1px dashed #eee;
+
+}
+
+.offer-details li:last-child{
+
+    border-bottom:none;
 
 }
 
 /* ==========================================
-   Responsive
+   Mobile
 ========================================== */
 
-@media(max-width:992px){
+@media(max-width:768px){
 
-.best-offers{
+    .offer-preview{
 
-    padding:22px;
+        flex-wrap:wrap;
 
-}
+        gap:12px;
 
-.offer-card{
-
-    padding:22px;
-
-}
-
-.offer-card h3{
-
-    font-size:24px;
-
-}
-
-}
-
-@media (max-width:768px){
-
-    .offers-container{
-        grid-template-columns:1fr;
     }
-    
-}
 
-@media(max-width:576px){
+    .offer-info{
 
-.best-offers{
+        width:100%;
 
-    padding:18px;
+    }
 
-    border-radius:18px;
+    .offer-preview button{
 
-}
+        width:100%;
 
-.offer-card{
+        justify-content:center;
 
-    padding:20px;
-
-    border-radius:18px;
+    }
 
 }
 
-.offer-card h3{
+@media(max-width:480px){
 
-    font-size:20px;
+    .best-offers{
 
-}
+        padding:18px;
 
-.offer-card p{
+        border-radius:18px;
 
-    font-size:13px;
+    }
 
-}
+    .offer-icon{
 
-.coupon-box{
+        width:50px;
+        height:50px;
+        font-size:20px;
 
-    font-size:13px;
+    }
 
-    padding:8px 15px;
+    .offer-info h4{
 
-}
+        font-size:16px;
 
-.offer-card button{
-
-    font-size:13px;
-
-    padding:10px 18px;
-
-}
+    }
 
 }

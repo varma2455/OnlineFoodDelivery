@@ -47,9 +47,10 @@ body{
 
 .dashboard-wrapper{
     display:grid;
-    grid-template-columns:minmax(0,1fr) 350px;
-    gap:20px;
-    padding:20px;
+    grid-template-columns:minmax(0,1fr) 360px;
+    gap:15px;
+    padding:10px 20px 20px;
+    padding-top:10px;
     width:100%;
     align-items:start;
 }
@@ -65,10 +66,11 @@ body{
 }
 
 .right-section{
-    width:360px;
-    min-width:360px;
+    width:350px;
+    min-width:350px;
     display:flex;
     flex-direction:column;
+    margin-top:0px;
     gap:20px;
 }
 
@@ -80,6 +82,8 @@ body{
     padding:18px;
     box-shadow:0 8px 25px rgba(0,0,0,.06);
 }
+
+
 
 /* Images */
 
@@ -159,7 +163,7 @@ ul{
     
     .right-section{
         width:100%;
-        min-width:100%;
+        min-width:0;
     }
     
     .left-section{
@@ -192,11 +196,11 @@ body,
     width:100%;
 }
 
-*{
-    box-sizing:border-box;
-}
+
 
 img{
     max-width:100%;
     height:auto;
 }
+
+

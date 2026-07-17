@@ -36,16 +36,20 @@ const Dashboard = () => {
                     {/* Left Section */}
 
                     <div className="left-section">
+                    <br></br>
                         <DashboardStatsCards />
+                        <br></br>
                         <DashboardHeroBanner />
+                        <br></br>
                         <DashboardPopularFoods />
+                        <br></br>
                         <DashboardFooterFeatures />
-                        <DashboardBestOffers />
                     </div>
 
                     <div className="right-section">
                         <DashboardWalletCard />
                         <DashboardRecentOrders />
+                        <DashboardBestOffers />
                     </div>
 
                 </div>

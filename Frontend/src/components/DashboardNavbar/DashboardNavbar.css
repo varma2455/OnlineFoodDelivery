@@ -12,7 +12,7 @@
     padding: 0 35px;
     border-radius: 20px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-    margin-bottom: 25px;
+    margin-bottom:12px;
 }
 
 /* ===========================
@@ -41,7 +41,8 @@
 =========================== */
 
 .navbar-search{
-    width:430px;
+    width:100%;
+    max-width:430px;
     height:52px;
     background:#f5f6fb;
     border-radius:50px;
@@ -245,7 +246,7 @@
     }
     
     .profile-box{
-        flex:1;
+        flex:none;
     }
     
 }

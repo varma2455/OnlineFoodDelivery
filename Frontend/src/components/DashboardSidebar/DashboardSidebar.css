@@ -11,8 +11,10 @@
     flex-direction: column;
     justify-content: space-between;
     color: #fff;
-    position: sticky;
-    top: 0;
+    position:fixed;
+    top:0;
+    left:0;
+    height:100vh;
 }
 
 /* ===========================
@@ -190,7 +192,7 @@
     border-radius: 20px;
 }
 
-.dashboard-wrapper{
+/* .dashboard-wrapper{
     display:grid;
     grid-template-columns: minmax(0,1fr) 360px;
     gap:25px;
@@ -198,7 +200,7 @@
     width:100%;
     align-items:start;
     box-sizing:border-box;
-}
+} */
 
 /* ===========================
    Responsive

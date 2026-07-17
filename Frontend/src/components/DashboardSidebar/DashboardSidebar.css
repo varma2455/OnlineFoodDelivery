@@ -229,20 +229,12 @@
 
 }
 
-@media(max-width:768px){
+@media (max-width:768px){
 
-.sidebar-logo h2{
-    font-size:20px;
-}
-
-.sidebar-menu a{
-    padding:13px 15px;
-}
-
-.premium-card{
-    padding:18px;
-}
-
+    .dashboard-sidebar{
+        display:none;
+    }
+    
 }
 
 @media(max-width:576px){

@@ -140,16 +140,21 @@ ul{
 
 /* Mobile */
 
-@media(max-width:768px){
+@media (max-width:768px){
 
+    .dashboard-sidebar{
+        display:none;
+    }
+    
     .dashboard-content{
         margin-left:0;
         width:100%;
     }
     
     .dashboard-wrapper{
-        display:flex;
-        flex-direction:column;
+        grid-template-columns:1fr;
+        padding:15px;
+        gap:20px;
     }
     
     .right-section{
@@ -160,7 +165,9 @@ ul{
     .left-section{
         width:100%;
     }
+    
 }
+
 
 /* Small Mobile */
 
@@ -175,4 +182,21 @@ ul{
     padding:16px;
 }
 
+}
+
+
+html,
+body,
+#root{
+    overflow-x:hidden;
+    width:100%;
+}
+
+*{
+    box-sizing:border-box;
+}
+
+img{
+    max-width:100%;
+    height:auto;
 }

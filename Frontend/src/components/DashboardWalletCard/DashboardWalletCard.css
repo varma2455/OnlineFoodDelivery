@@ -364,33 +364,31 @@
 
 }
 
-@media(max-width:768px){
+@media (max-width:768px){
 
-.wallet-card{
-
-    padding:20px;
-
+    .wallet-card{
+        width:100%;
+        padding:20px;
+    }
+    
+    .wallet-header{
+        flex-direction:column;
+        gap:20px;
+        text-align:center;
+    }
+    
+    .wallet-buttons{
+        flex-direction:column;
+    }
+    
+    .transaction-item{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:15px;
+    }
+    
 }
 
-.reward-box{
-
-    flex-direction:column;
-
-    text-align:center;
-
-}
-
-.transaction-item{
-
-    flex-direction:column;
-
-    align-items:flex-start;
-
-    gap:12px;
-
-}
-
-}
 
 @media(max-width:576px){
 

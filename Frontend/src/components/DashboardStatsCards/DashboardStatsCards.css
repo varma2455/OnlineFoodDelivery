@@ -208,25 +208,17 @@
 
 }
 
-@media(max-width:768px){
+@media (max-width:768px){
 
     .dashboard-stats{
         grid-template-columns:1fr;
     }
-
-.stats-card{
-
-    padding:20px;
-
-}
-
-.stats-body h2{
-
-    font-size:28px;
-
-}
-
-}
+    
+    .stat-card{
+        padding:22px;
+    }
+    
+    }
 
 @media(max-width:576px){
 

@@ -220,20 +220,14 @@
 
 }
 
-@media(max-width:768px){
+@media (max-width:768px){
 
     .dashboard-navbar{
         height:auto;
+        padding:20px;
         flex-direction:column;
-        align-items:stretch;
-        gap:15px;
-        padding:18px;
-    }
-    
-    .navbar-left,
-    .navbar-search,
-    .navbar-right{
-        width:100%;
+        align-items:flex-start;
+        gap:18px;
     }
     
     .navbar-search{
@@ -241,6 +235,7 @@
     }
     
     .navbar-right{
+        width:100%;
         justify-content:space-between;
         flex-wrap:wrap;
     }
@@ -248,7 +243,11 @@
     .location-box{
         display:none;
     }
-
+    
+    .profile-box{
+        flex:1;
+    }
+    
 }
 
 @media(max-width:576px){

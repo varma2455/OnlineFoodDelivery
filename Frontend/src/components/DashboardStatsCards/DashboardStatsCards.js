@@ -11,17 +11,63 @@ import {
 
 const DashboardStatsCards = () => {
 
-    const [stats, setStats] = useState([]);
+    const [stats, setStats] = useState({
+    totalOrders: 0,
+    activeOrders: 0,
+    rewardPoints: 0,
+    availableOffers: 0
+    });
+
+
+    const cards = [
+
+        {
+            id:1,
+            title:"My Orders",
+            value:stats.totalOrders,
+            change:"Total Orders",
+            color:"#6C63FF",
+            icon:<FaShoppingBag/>
+        },
+    
+        {
+            id:2,
+            title:"Active Orders",
+            value:stats.activeOrders,
+            change:"Preparing",
+            color:"#00C896",
+            icon:<FaMotorcycle/>
+        },
+    
+        {
+            id:3,
+            title:"Reward Points",
+            value:stats.rewardPoints,
+            change:"Keep Ordering",
+            color:"#FF9800",
+            icon:<FaGift/>
+        },
+    
+        {
+            id:4,
+            title:"Available Offers",
+            value:stats.availableOffers,
+            change:"View All Offers",
+            color:"#3D7EFF",
+            icon:<FaTags/>
+        }
+    
+    ];
 
     useEffect(() => {
 
         const fetchStats = async () => {
-
+    
             try {
-
+    
                 const token = localStorage.getItem("token");
-
-                const response = await axios.get(
+    
+                const { data } = await axios.get(
                     "https://onlinefooddelivery-9g60.onrender.com/api/dashboard/stats",
                     {
                         headers: {
@@ -29,100 +75,19 @@ const DashboardStatsCards = () => {
                         }
                     }
                 );
-
-                const data = response.data.stats;
-
-                setStats([
-
-                    {
-                        id: 1,
-                        title: "My Orders",
-                        value: data.totalOrders || 0,
-                        change: "Total Orders",
-                        color: "#6C63FF",
-                        icon: <FaShoppingBag />
-                    },
-
-                    {
-                        id: 2,
-                        title: "Active Orders",
-                        value: data.activeOrders || 0,
-                        change: "Preparing",
-                        color: "#00C896",
-                        icon: <FaMotorcycle />
-                    },
-
-                    {
-                        id: 3,
-                        title: "Reward Points",
-                        value: data.rewardPoints || 0,
-                        change: "Keep Ordering",
-                        color: "#FF9800",
-                        icon: <FaGift />
-                    },
-
-                    {
-                        id: 4,
-                        title: "Available Offers",
-                        value: data.availableOffers || 0,
-                        change: "View All Offers",
-                        color: "#3D7EFF",
-                        icon: <FaTags />
-                    }
-
-                ]);
-
-            } catch (error) {
-
-                console.error("Stats Error:", error.response?.data || error.message);
-
-                // Fallback Data
-                setStats([
-
-                    {
-                        id: 1,
-                        title: "My Orders",
-                        value: "18",
-                        change: "+3 this month",
-                        color: "#6C63FF",
-                        icon: <FaShoppingBag />
-                    },
-
-                    {
-                        id: 2,
-                        title: "Active Orders",
-                        value: "1",
-                        change: "Preparing",
-                        color: "#00C896",
-                        icon: <FaMotorcycle />
-                    },
-
-                    {
-                        id: 3,
-                        title: "Reward Points",
-                        value: "1,250",
-                        change: "+150 this month",
-                        color: "#FF9800",
-                        icon: <FaGift />
-                    },
-
-                    {
-                        id: 4,
-                        title: "Available Offers",
-                        value: "6",
-                        change: "View all offers",
-                        color: "#3D7EFF",
-                        icon: <FaTags />
-                    }
-
-                ]);
-
+    
+                if (data.success) {
+                    setStats(data.stats);
+                }
+    
+            } catch (err) {
+                console.error(err);
             }
-
+    
         };
-
+    
         fetchStats();
-
+    
     }, []);
 
     return (
@@ -130,7 +95,7 @@ const DashboardStatsCards = () => {
         <div className="stats-grid">
 
             {
-                stats.map((item) => (
+                cards.map((item) => (
 
                     <div className="stat-card" key={item.id}>
                         <div className="stat-icon" style={{ background: item.color }}>

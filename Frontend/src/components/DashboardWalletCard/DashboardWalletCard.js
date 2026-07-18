@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import "./DashboardWalletCard.css";
 
 import {
@@ -9,6 +10,7 @@ import {
     FaCreditCard,
     FaCoins
 } from "react-icons/fa";
+
 
 const transactions = [
 
@@ -40,6 +42,44 @@ const transactions = [
 
 const DashboardWalletCard = () => {
 
+    const [wallet, setWallet] = useState({
+        balance: 0,
+        rewardPoints: 0
+    });
+    
+
+
+    useEffect(() => {
+
+        const fetchWallet = async () => {
+    
+            try {
+    
+                const token = localStorage.getItem("token");
+    
+                const { data } = await axios.get(
+                    "https://onlinefooddelivery-9g60.onrender.com/api/dashboard/wallet",
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        }
+                    }
+                );
+    
+                if (data.success) {
+                    setWallet(data.wallet);
+                }
+    
+            } catch (err) {
+                console.log(err);
+            }
+    
+        };
+    
+        fetchWallet();
+    
+    }, []);
+
     return (
 
         <div className="wallet-card">
@@ -52,7 +92,7 @@ const DashboardWalletCard = () => {
 
                     <p>Available Balance</p>
 
-                    <h2>₹ 12,450</h2>
+                    <h2>₹ {wallet.balance}</h2>
 
                 </div>
 
@@ -78,7 +118,7 @@ const DashboardWalletCard = () => {
 
                     <h4>Reward Points</h4>
 
-                    <p>2,850 Points</p>
+                    <p>{wallet.rewardPoints} Points</p>
 
                 </div>
 

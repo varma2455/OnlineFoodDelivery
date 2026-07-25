@@ -1,5 +1,5 @@
-const OTP = require("../models/OTP");
-const sendSMS = require("../utils/sendSMS");
+import OTP from "../models/OTP.js";
+import sendSMS from "../utils/sendSMS.js";
 
 // Send OTP
 const sendOTP = async (req, res) => {

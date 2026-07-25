@@ -8,9 +8,10 @@ import {
     updateProfile,
     signInWithPopup,
     GoogleAuthProvider,
-    // RecaptchaVerifier,
-    // signInWithPhoneNumber
-  } from "firebase/auth";
+    RecaptchaVerifier,
+    signInWithPhoneNumber
+} from "firebase/auth";
+
 
 import { auth } from "../../firebase";
 
@@ -61,14 +62,14 @@ const Register = () => {
 
 
     const setupRecaptcha = () => {
+
         if (!window.recaptchaVerifier) {
     
             window.recaptchaVerifier = new RecaptchaVerifier(
                 auth,
                 "recaptcha-container",
                 {
-                    size: "invisible",
-                    callback: () => {}
+                    size: "invisible"
                 }
             );
     
@@ -78,36 +79,31 @@ const Register = () => {
 
 
     const sendOTP = async () => {
-
         if (formData.phone.length !== 10) {
             alert("Enter a valid mobile number");
             return;
         }
     
         try {
+            setupRecaptcha();
     
-            const { data } = await axios.post(
-                `${process.env.REACT_APP_API}/api/otp/send`,
-                {
-                    phone: formData.phone
-                }
+            const appVerifier = window.recaptchaVerifier;
+    
+            const confirmation = await signInWithPhoneNumber(
+                auth,
+                "+91" + formData.phone,
+                appVerifier
             );
     
+            setConfirmationResult(confirmation);
             setOtpSent(true);
     
-            alert(data.message);
+            alert("OTP sent successfully.");
     
         } catch (error) {
-    
             console.error(error);
-    
-            alert(
-                error.response?.data?.message ||
-                "Failed to send OTP"
-            );
-    
+            alert(error.message);
         }
-    
     };
 
 

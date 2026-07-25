@@ -82,15 +82,23 @@ const Register = () => {
 
 
     const sendOTP = async () => {
+        console.log("STEP 1");
+    
         if (formData.phone.length !== 10) {
             alert("Enter a valid mobile number");
             return;
         }
     
         try {
+            console.log("STEP 2");
+    
             setupRecaptcha();
     
+            console.log("STEP 3");
+    
             const appVerifier = window.recaptchaVerifier;
+    
+            console.log("STEP 4");
     
             const confirmation = await signInWithPhoneNumber(
                 auth,
@@ -98,17 +106,13 @@ const Register = () => {
                 appVerifier
             );
     
+            console.log("STEP 5");
+    
             setConfirmationResult(confirmation);
             setOtpSent(true);
     
-            alert("OTP sent successfully.");
-    
         } catch (error) {
-            console.error("Firebase Error:", error);
-            console.log("Code:", error.code);
-            console.log("Message:", error.message);
-        
-            alert(`${error.code}\n${error.message}`);
+            console.log("ERROR", error);
         }
     };
 

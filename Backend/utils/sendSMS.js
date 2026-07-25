@@ -17,4 +17,4 @@ const sendSMS = async (phone, otp) => {
 
 };
 
-module.exports = sendSMS;
+export default sendSMS;

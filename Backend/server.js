@@ -14,6 +14,9 @@ import orderRoutes from "./routes/orderRoutes.js";
 import dashboardRoutes from "./routes/dashboardRoutes.js";
 
 
+import otpRoutes from "./routes/otpRoutes.js";
+
+
 dotenv.config();
 
 // Connect MongoDB
@@ -52,8 +55,6 @@ app.use("/api/auth/profile", dashboardRoutes);
 
 
 
-
-const otpRoutes = require("./routes/otpRoutes");
 app.use("/api/otp", otpRoutes);
 
 

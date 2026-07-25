@@ -41,7 +41,4 @@ const verifyOTP = async (req, res) => {
 
 };
 
-module.exports = {
-    sendOTP,
-    verifyOTP
-};
+export { sendOTP, verifyOTP };

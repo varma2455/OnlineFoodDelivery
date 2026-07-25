@@ -1331,3 +1331,29 @@ font-size:17px;
     color:#666;
 
 }
+
+
+
+.otp-btn,
+.verify-btn{
+
+    margin-left:10px;
+    background:#ff6b00;
+    color:#fff;
+    border:none;
+    padding:10px 18px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.otp-btn:hover,
+.verify-btn:hover{
+
+    background:#e85d00;
+}
+
+.otp-btn:disabled{
+
+    background:#28a745;
+}

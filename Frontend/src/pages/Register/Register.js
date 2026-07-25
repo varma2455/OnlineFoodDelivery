@@ -7,8 +7,10 @@ import {
     createUserWithEmailAndPassword,
     updateProfile,
     signInWithPopup,
-    GoogleAuthProvider
-} from "firebase/auth";
+    GoogleAuthProvider,
+    // RecaptchaVerifier,
+    // signInWithPhoneNumber
+  } from "firebase/auth";
 
 import { auth } from "../../firebase";
 
@@ -34,6 +36,11 @@ import burgerImage from "../../assets/images/burger.png";
 
 const Register = () => {
 
+    const [otp, setOtp] = useState("");
+    const [confirmationResult, setConfirmationResult] = useState(null);
+    const [phoneVerified, setPhoneVerified] = useState(false);
+    const [otpSent, setOtpSent] = useState(false);
+
     const navigate = useNavigate();
 
     const [loading,setLoading]=useState(false);
@@ -42,21 +49,94 @@ const Register = () => {
 
     const [showConfirmPassword,setShowConfirmPassword]=useState(false);
 
-    const [formData,setFormData]=useState({
-
-        name:"",
-
-        email:"",
-
-        phone:"",
-
-        address:"",
-
-        password:"",
-
-        confirmPassword:""
-
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        address: "",
+        location: "",   // New field
+        password: "",
+        confirmPassword: ""
     });
+
+
+    const setupRecaptcha = () => {
+        if (!window.recaptchaVerifier) {
+    
+            window.recaptchaVerifier = new RecaptchaVerifier(
+                auth,
+                "recaptcha-container",
+                {
+                    size: "invisible",
+                    callback: () => {}
+                }
+            );
+    
+            window.recaptchaVerifier.render();
+        }
+    };
+
+
+    const sendOTP = async () => {
+
+        if (formData.phone.length !== 10) {
+            alert("Enter a valid mobile number");
+            return;
+        }
+    
+        try {
+    
+            const { data } = await axios.post(
+                `${process.env.REACT_APP_API}/api/otp/send`,
+                {
+                    phone: formData.phone
+                }
+            );
+    
+            setOtpSent(true);
+    
+            alert(data.message);
+    
+        } catch (error) {
+    
+            console.error(error);
+    
+            alert(
+                error.response?.data?.message ||
+                "Failed to send OTP"
+            );
+    
+        }
+    
+    };
+
+
+    const verifyOTP = async () => {
+
+        try {
+    
+            const { data } = await axios.post(
+                `${process.env.REACT_APP_API}/api/otp/verify`,
+                {
+                    phone: formData.phone,
+                    otp
+                }
+            );
+    
+            alert(data.message);
+            setPhoneVerified(true);
+    
+        } catch (error) {
+    
+            alert(
+                error.response?.data?.message ||
+                "Invalid OTP"
+            );
+    
+        }
+    
+    };
+
 
     const handleChange=(e)=>{
 
@@ -136,6 +216,17 @@ const Register = () => {
     const handleSubmit = async (e) => {
 
         e.preventDefault();
+
+        if (!phoneVerified) {
+
+            alert("Please verify your mobile number.");
+        
+            return;
+        
+        }
+
+        
+
     
         if(formData.password !== formData.confirmPassword){
     
@@ -174,11 +265,12 @@ const Register = () => {
                 {
                     fullName: formData.name,
                     phone: formData.phone,
-                    address: formData.address
+                    address: formData.address,
+                    location: formData.location
                 },
                 {
-                    headers:{
-                        Authorization:`Bearer ${firebaseToken}`
+                    headers: {
+                        Authorization: `Bearer ${firebaseToken}`
                     }
                 }
             );
@@ -479,35 +571,65 @@ required
 
 <div className="input-group">
 
-<label>
+    <label>Mobile Number</label>
 
-Mobile Number
+    <div className="input-box3">
 
-</label>
+        <FaPhoneAlt />
 
-<div className="input-box3">
+        <input
+            type="tel"
+            name="phone"
+            maxLength="10"
+            value={formData.phone}
+            onChange={handleChange}
+            placeholder="Enter Mobile Number"
+        />
 
-<FaPhoneAlt/>
+        <button
+            type="button"
+            className="otp-btn"
+            onClick={sendOTP}
+            disabled={phoneVerified}
+        >
+            {phoneVerified ? "Verified" : "Send OTP"}
+        </button>
 
-<input
+    </div>
 
-type="tel"
+</div>
 
-name="phone"
+{
+otpSent && !phoneVerified && (
 
-placeholder="Enter your mobile number"
+<div className="input-group">
 
-value={formData.phone}
+    <label>Enter OTP</label>
 
-onChange={handleChange}
+    <div className="input-box3">
 
-required
+        <input
+            type="text"
+            maxLength="6"
+            placeholder="Enter OTP"
+            value={otp}
+            onChange={(e)=>setOtp(e.target.value)}
+        />
 
-/>
+        <button
+            type="button"
+            className="verify-btn"
+            onClick={verifyOTP}
+        >
+            Verify OTP
+        </button>
+
+    </div>
 
 </div>
 
-</div>
+)
+}
 
 <div className="input-group">
 
@@ -539,6 +661,24 @@ required
 
 </div>
 
+</div>
+
+
+<div className="input-group">
+    <label>Delivery City</label>
+
+    <div className="input-box3">
+        <FaMapMarkerAlt />
+
+        <input
+            type="text"
+            name="location"
+            placeholder="Enter your city (e.g. Bhimavaram)"
+            value={formData.location}
+            onChange={handleChange}
+            required
+        />
+    </div>
 </div>
 
 <div className="input-group">
@@ -666,30 +806,13 @@ showConfirmPassword
 </div>
 
 <button
-
-type="submit"
-
-className="register-btn"
-
-disabled={loading}
-
+    type="submit"
+    className="register-btn"
+    disabled={loading || !phoneVerified}
 >
-
-{
-
-loading
-
-?
-
-"Creating Account..."
-
-:
-
-"Create Account"
-
-}
-
+    {loading ? "Creating Account..." : "Create Account"}
 </button>
+
 
 <div className="divider">
 
@@ -766,6 +889,8 @@ Login
 </Link>
 
 </div>
+
+<div id="recaptcha-container"></div>
 
 </form>
 

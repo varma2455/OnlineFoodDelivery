@@ -64,6 +64,7 @@ const Dashboard = () => {
                         <br></br>
                         <DashboardFooterFeatures />
                     </div>
+                    
 
                     <div className="right-section">
                         <DashboardWalletCard />

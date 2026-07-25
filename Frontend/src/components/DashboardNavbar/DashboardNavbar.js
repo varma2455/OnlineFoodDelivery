@@ -111,7 +111,8 @@ if (loading) {
         {/* Location */}
         <div className="location-box">
           <FaMapMarkerAlt />
-          <span>{navbarData.location || "Unknown Location"}</span>
+          <span>
+            {navbarData.location?.trim() ?   navbarData.location : "Unavailable Address"} </span>
         </div>
 
         {/* Theme */}

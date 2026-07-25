@@ -52,6 +52,11 @@ app.use("/api/auth/profile", dashboardRoutes);
 
 
 
+
+const otpRoutes = require("./routes/otpRoutes");
+app.use("/api/otp", otpRoutes);
+
+
 // ==============================
 // Home Route
 // ==============================

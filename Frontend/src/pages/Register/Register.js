@@ -35,6 +35,9 @@ import {
 
 import burgerImage from "../../assets/images/burger.png";
 
+
+
+
 const Register = () => {
 
     const [otp, setOtp] = useState("");
@@ -101,8 +104,11 @@ const Register = () => {
             alert("OTP sent successfully.");
     
         } catch (error) {
-            console.error(error);
-            alert(error.message);
+            console.error("Firebase Error:", error);
+            console.log("Code:", error.code);
+            console.log("Message:", error.message);
+        
+            alert(`${error.code}\n${error.message}`);
         }
     };
 

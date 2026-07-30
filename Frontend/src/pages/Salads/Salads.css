@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+.salads-page{
+    background:#fafafa;
+    min-height:100vh;
+}
+
+.salads-hero{
+    height:420px;
+    background:linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),
+    url("https://images.unsplash.com/photo-1546793665-c74683f339c1?w=1600");
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:#fff;
+}
+
+.hero-content h1{
+    font-size:60px;
+    margin-bottom:20px;
+}
+
+.hero-content p{
+    font-size:20px;
+    max-width:700px;
+    margin:auto;
+    line-height:1.8;
+}
+
+.hero-btn{
+    margin-top:30px;
+    background:#ff9800;
+    color:#fff;
+    border:none;
+    padding:15px 35px;
+    border-radius:50px;
+    font-size:18px;
+    cursor:pointer;
+}
+
+.hero-btn:hover{
+    background:#f57c00;
+}
+
+.search-section{
+    display:flex;
+    justify-content:center;
+    margin:50px 0;
+}
+
+.search-section input{
+    width:600px;
+    max-width:90%;
+    padding:15px;
+    border-radius:50px;
+    border:2px solid #eee;
+    outline:none;
+}
+
+.salads-container{
+    width:90%;
+    margin:auto;
+    padding-bottom:80px;
+}
+
+.title{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.title h2{
+    font-size:38px;
+}
+
+.title p{
+    color:#777;
+}
+
+.salads-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+}
+
+.salads-card{
+    background:#fff;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.salads-card:hover{
+    transform:translateY(-8px);
+}
+
+.salads-card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.salads-info{
+    padding:20px;
+}
+
+.restaurant{
+    color:#777;
+    margin:10px 0;
+}
+
+.rating-time{
+    display:flex;
+    justify-content:space-between;
+    margin:15px 0;
+}
+
+.price-cart{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.price-cart h4{
+    color:#ff9800;
+}
+
+.price-cart button{
+    background:#ff9800;
+    color:#fff;
+    border:none;
+    padding:10px 18px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.price-cart button:hover{
+    background:#f57c00;
+}
+
+@media(max-width:768px){
+
+.hero-content h1{
+    font-size:40px;
+}
+
+.hero-content p{
+    font-size:16px;
+}
+
+.search-section input{
+    width:90%;
+}
+
+}

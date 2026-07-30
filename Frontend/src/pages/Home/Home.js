@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import "./Home.css";
@@ -10,6 +11,8 @@ import FoodCard from "../../components/FoodCard/FoodCard";
 import Loader from "../../components/Loader/Loader";
 
 const Home = () => {
+
+    const navigate = useNavigate();
 
     const [foods, setFoods] = useState([]);
     const [filteredFoods, setFilteredFoods] = useState([]);
@@ -181,9 +184,9 @@ and enjoy delicious meals at amazing prices.
 
 </p>
 
-<button>
+<button onClick={() => navigate("/login")}>
 
-Order Now
+    Order Now
 
 </button>
 

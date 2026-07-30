@@ -123,7 +123,7 @@ const Profile = () => {
 
                             <h3>
 
-                                {user.email}
+                                XXXXXXXXXXX@gmail.com
 
                             </h3>
 
@@ -139,7 +139,7 @@ const Profile = () => {
 
                             <h3>
 
-                                {user.phone}
+                                XXXXXXXXXX
 
                             </h3>
 
@@ -155,14 +155,11 @@ const Profile = () => {
                             </span>
 
                             <h3>
-
-                                {
-
-                                    user.address ||
-
-                                    "No address added"
-
-                                }
+                                XXXXXXXXXXXXXXXXXX,
+                                <br></br>
+                                XXXXXXXXXXXXXXXXX,
+                                <br></br>
+                                XXXXXXXXXXXXXXXXX.
 
                             </h3>
 

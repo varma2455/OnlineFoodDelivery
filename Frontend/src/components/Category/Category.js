@@ -1,49 +1,61 @@
 import "./Category.css";
+import { useNavigate } from "react-router-dom";
+
 
 const categories = [
     {
-        id: 1,
-        name: "Pizza",
-        icon: "🍕"
+        id:1,
+        name:"Pizza",
+        icon:"🍕",
+        path:"/pizza"
     },
     {
-        id: 2,
-        name: "Burger",
-        icon: "🍔"
+        id:2,
+        name:"Burger",
+        icon:"🍔",
+        path:"/burger"
     },
     {
-        id: 3,
-        name: "Biryani",
-        icon: "🍗"
+        id:3,
+        name:"Biryani",
+        icon:"🍗",
+        path:"/biryani"
     },
     {
-        id: 4,
-        name: "Drinks",
-        icon: "🥤"
+        id:4,
+        name:"Drinks",
+        icon:"🥤",
+        path:"/drinks"
     },
     {
-        id: 5,
-        name: "Desserts",
-        icon: "🍰"
+        id:5,
+        name:"Desserts",
+        icon:"🍰",
+        path:"/desserts"
     },
     {
-        id: 6,
-        name: "Fast Food",
-        icon: "🌮"
+        id:6,
+        name:"Fast Food",
+        icon:"🌮",
+        path:"/fastfood"
     },
     {
-        id: 7,
-        name: "Salads",
-        icon: "🥗"
+        id:7,
+        name:"Salads",
+        icon:"🥗",
+        path:"/salads"
     },
     {
-        id: 8,
-        name: "Noodles",
-        icon: "🍜"
+        id:8,
+        name:"Noodles",
+        icon:"🍜",
+        path:"/noodles"
     }
 ];
 
 const Category = ({ selectedCategory, onSelectCategory }) => {
+
+    const navigate = useNavigate();
 
     return (
 
@@ -70,9 +82,7 @@ const Category = ({ selectedCategory, onSelectCategory }) => {
                                 ? "active"
                                 : ""
                         }`}
-                        onClick={() =>
-                            onSelectCategory(category.name)
-                        }
+                        onClick={() => navigate(category.path)}
                     >
 
                         <div className="category-icon">

@@ -11,7 +11,7 @@ import Footer from "./components/Footer/Footer";
 
 import FoodManagement from "./pages/Admin/Foods/FoodManagement";
 
-// Pages
+// Pages   margherita.jpg
 import Home from "./pages/Home/Home";
 import Menu from "./pages/Menu/Menu";
 import Cart from "./pages/Cart/Cart";
@@ -32,6 +32,17 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import AdminDashboard from "./pages/Admin/Dashboard";
 import RestaurantDashboard from "./pages/Restaurant/Dashboard";
 import DeliveryDashboard from "./pages/Delivery/Dashboard";
+
+
+
+import Pizza from "./pages/Pizza/Pizza";
+import Burger from "./pages/Burger/Burger";
+import Biryani from "./pages/Biryani/Biryani";
+import Drinks from "./pages/Drinks/Drinks";
+import Desserts from "./pages/Desserts/Desserts";
+import FastFood from "./pages/FastFood/FastFood";
+import Salads from "./pages/Salads/Salads";
+import Noodles from "./pages/Noodles/Noodles";
 
 function App() {
 
@@ -88,6 +99,18 @@ function App() {
                 <Route path="/foods" element={<FoodManagement/>}/>
                 
 
+            </Routes>
+
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/pizza" element={<Pizza />} />
+                <Route path="/burger" element={<Burger />} />
+                <Route path="/biryani" element={<Biryani />} />
+                <Route path="/drinks" element={<Drinks />} />
+                <Route path="/desserts" element={<Desserts />} />
+                <Route path="/fastfood" element={<FastFood />} />
+                <Route path="/salads" element={<Salads />} />
+                <Route path="/noodles" element={<Noodles />} />
             </Routes>
 
             {!hideLayout && <Footer />}

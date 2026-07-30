@@ -437,7 +437,7 @@ body{
    BOTTOM WAVE
 ========================================== */
 
-.left-section .wave{
+.left-section3 .wave{
 
     position:absolute;
 
@@ -717,101 +717,62 @@ body{
    INPUT BOX
 =================================================== */
 
-.input-box{
-
+.input-box3{
     width:100%;
-
     height:60px;
-
     display:flex;
-
     align-items:center;
-
-    padding:0 20px;
-
+    padding:0 18px;
     background:#f5f7fb;
-
-    border-radius:18px;
-
     border:2px solid transparent;
-
-    transition:.35s;
-
+    border-radius:18px;
+    transition:0.3s;
+    gap:12px;
 }
 
-.input-box:hover{
-
+.input-box3:hover{
     border-color:#ff9800;
-
 }
 
-.input-box:focus-within{
-
+.input-box3:focus-within{
+    border-color:#ff9800;
     background:#fff;
-
-    border-color:#ff9800;
-
-    box-shadow:
-        0 0 0 4px rgba(255,152,0,.12);
-
+    box-shadow:0 0 0 4px rgba(255,152,0,.15);
 }
 
-.input-box1 svg{
-
+.input-box3 svg{
     color:#ff7a00;
-
     font-size:18px;
-
+    flex-shrink:0;
 }
 
-.input-box input{
-
+.input-box3 input{
     flex:1;
-
-    margin-left:15px;
-
+    width:100%;
     border:none;
-
     outline:none;
-
-    background:none;
-
+    background:transparent;
     font-size:16px;
-
     color:#333;
-
 }
-
-.input-box {
-
-    color:#b5b5b5;
-
-}
-
-/* ===================================================
-   SHOW PASSWORD
-=================================================== */
 
 .eye-btn{
-
     border:none;
-
     background:none;
-
+    padding:0;
+    margin:0;
+    width:24px;
+    height:24px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
     cursor:pointer;
-
-    color:#999;
-
-    font-size:18px;
-
-    transition:.3s;
-
+    color:#ff7a00;
+    flex-shrink:0;
 }
 
-.eye-btn:hover{
-
-    color:#ff7a00;
-
+.eye-btn svg{
+    font-size:18px;
 }
 
 /* ===================================================
@@ -1175,8 +1136,8 @@ flex-direction:column;
 
 }
 
-.left-section,
-.right-section{
+.left-section3,
+.right-section3{
 
 width:100%;
 
@@ -1333,27 +1294,3 @@ font-size:17px;
 }
 
 
-
-.otp-btn,
-.verify-btn{
-
-    margin-left:10px;
-    background:#ff6b00;
-    color:#fff;
-    border:none;
-    padding:10px 18px;
-    border-radius:8px;
-    cursor:pointer;
-    font-weight:600;
-}
-
-.otp-btn:hover,
-.verify-btn:hover{
-
-    background:#e85d00;
-}
-
-.otp-btn:disabled{
-
-    background:#28a745;
-}

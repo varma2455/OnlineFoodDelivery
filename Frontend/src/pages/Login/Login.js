@@ -324,7 +324,7 @@ const Login = () => {
                 <form onSubmit={handleSubmit}>
                     <div className="input-group">
                         <label> Email Address </label>
-                        <div className="input-box2">
+                        <div className="input-box">
                             <FaEnvelope/>
                             <input type="email" name="email" placeholder="Enter your email" value={formData.email} onChange={handleChange}/>
                         </div>
@@ -332,7 +332,7 @@ const Login = () => {
 
                     <div className="input-group">
                     <label> Password </label>
-                        <div className="input-box2">
+                        <div className="input-box">
                             <FaLock/>
                             <input type={showPassword ? "text" : "password"} name="password" placeholder="Enter your password" value={formData.password} onChange={handleChange} />
                             <button type="button" className="eye-btn" onClick={() => setShowPassword(!showPassword)}>

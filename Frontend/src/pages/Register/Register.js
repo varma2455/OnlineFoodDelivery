@@ -7,10 +7,11 @@ import {
     createUserWithEmailAndPassword,
     updateProfile,
     signInWithPopup,
-    GoogleAuthProvider,
-    RecaptchaVerifier,
-    signInWithPhoneNumber
+    GoogleAuthProvider
 } from "firebase/auth";
+
+
+
 
 
 import { auth } from "../../firebase";
@@ -40,11 +41,6 @@ import burgerImage from "../../assets/images/burger.png";
 
 const Register = () => {
 
-    const [otp, setOtp] = useState("");
-    const [confirmationResult, setConfirmationResult] = useState(null);
-    const [phoneVerified, setPhoneVerified] = useState(false);
-    const [otpSent, setOtpSent] = useState(false);
-
     const navigate = useNavigate();
 
     const [loading,setLoading]=useState(false);
@@ -63,85 +59,6 @@ const Register = () => {
         confirmPassword: ""
     });
 
-
-    const setupRecaptcha = () => {
-
-        if (!window.recaptchaVerifier) {
-    
-            window.recaptchaVerifier = new RecaptchaVerifier(
-                auth,
-                "recaptcha-container",
-                {
-                    size: "invisible"
-                }
-            );
-    
-            window.recaptchaVerifier.render();
-        }
-    };
-
-
-    const sendOTP = async () => {
-        console.log("STEP 1");
-    
-        if (formData.phone.length !== 10) {
-            alert("Enter a valid mobile number");
-            return;
-        }
-    
-        try {
-            console.log("STEP 2");
-    
-            setupRecaptcha();
-    
-            console.log("STEP 3");
-    
-            const appVerifier = window.recaptchaVerifier;
-    
-            console.log("STEP 4");
-    
-            const confirmation = await signInWithPhoneNumber(
-                auth,
-                "+91" + formData.phone,
-                appVerifier
-            );
-    
-            console.log("STEP 5");
-    
-            setConfirmationResult(confirmation);
-            setOtpSent(true);
-    
-        } catch (error) {
-            console.log("ERROR", error);
-        }
-    };
-
-
-    const verifyOTP = async () => {
-
-        try {
-    
-            const { data } = await axios.post(
-                `${process.env.REACT_APP_API}/api/otp/verify`,
-                {
-                    phone: formData.phone,
-                    otp
-                }
-            );
-    
-            alert(data.message);
-            setPhoneVerified(true);
-    
-        } catch (error) {
-    
-            alert(
-                error.response?.data?.message ||
-                "Invalid OTP"
-            );
-    
-        }
-    
-    };
 
 
     const handleChange=(e)=>{
@@ -223,13 +140,13 @@ const Register = () => {
 
         e.preventDefault();
 
-        if (!phoneVerified) {
+        // if (!phoneVerified) {
 
-            alert("Please verify your mobile number.");
+        //     alert("Please verify your mobile number.");
         
-            return;
+        //     return;
         
-        }
+        // }
 
         
 
@@ -576,11 +493,9 @@ required
 </div>
 
 <div className="input-group">
-
     <label>Mobile Number</label>
 
     <div className="input-box3">
-
         <FaPhoneAlt />
 
         <input
@@ -590,52 +505,10 @@ required
             value={formData.phone}
             onChange={handleChange}
             placeholder="Enter Mobile Number"
+            required
         />
-
-        <button
-            type="button"
-            className="otp-btn"
-            onClick={sendOTP}
-            disabled={phoneVerified}
-        >
-            {phoneVerified ? "Verified" : "Send OTP"}
-        </button>
-
     </div>
-
 </div>
-
-{
-otpSent && !phoneVerified && (
-
-<div className="input-group">
-
-    <label>Enter OTP</label>
-
-    <div className="input-box3">
-
-        <input
-            type="text"
-            maxLength="6"
-            placeholder="Enter OTP"
-            value={otp}
-            onChange={(e)=>setOtp(e.target.value)}
-        />
-
-        <button
-            type="button"
-            className="verify-btn"
-            onClick={verifyOTP}
-        >
-            Verify OTP
-        </button>
-
-    </div>
-
-</div>
-
-)
-}
 
 <div className="input-group">
 
@@ -814,7 +687,7 @@ showConfirmPassword
 <button
     type="submit"
     className="register-btn"
-    disabled={loading || !phoneVerified}
+    disabled={loading}
 >
     {loading ? "Creating Account..." : "Create Account"}
 </button>
@@ -895,8 +768,6 @@ Login
 </Link>
 
 </div>
-
-<div id="recaptcha-container"></div>
 
 </form>
 

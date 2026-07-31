@@ -51,7 +51,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/foods", foodRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/orders", orderRoutes);
-app.use("/api/auth/profile", dashboardRoutes);
+app.use("/api/dashboard", dashboardRoutes);
 
 
 

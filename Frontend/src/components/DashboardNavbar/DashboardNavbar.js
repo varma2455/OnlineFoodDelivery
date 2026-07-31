@@ -30,6 +30,8 @@ const [loading, setLoading] = useState(true);
 
 useEffect(() => {
 
+  
+
   const fetchNavbar = async () => {
 
       try {
@@ -54,6 +56,9 @@ useEffect(() => {
 
           console.log("Navbar API:", response.data);
           setNavbarData(response.data);
+
+          console.log("Navbar State:", response.data);
+          
 
           
 
@@ -136,18 +141,21 @@ if (loading) {
         </div>
 
         {/* Profile */}
+        {/* Profile */}
+        
+        
         <div className="profile-box">
-
-        <img src={navbarData.profileImage || "https://i.pravatar.cc/150?img=12"} alt={navbarData.name || "Profile"}/>
+          <img
+          src={navbarData.profileImage || "https://i.pravatar.cc/150?img=12"}
+          alt={navbarData.name || "Profile"}
+          />
 
           <div className="profile-info">
-
-          <h4>{navbarData.name || "Guest User"}</h4>
-
-          <p>{navbarData.membership || "Basic Member"}</p>
-
+            <h4>{navbarData.name}</h4>
+            <p>{navbarData.membership}</p>
           </div>
           <FaChevronDown />
+
         </div>
 
       </div>

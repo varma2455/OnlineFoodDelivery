@@ -31,16 +31,10 @@ router.post("/login", firebaseAuth, loginUser);
 router.post("/logout", firebaseAuth, logoutUser);
 
 // Get Logged-in User Profile
-router.get("/profile", firebaseAuth, (req, res) => {
+import { protect } from "../middleware/authMiddleware.js";
+import { getProfile } from "../controllers/authController.js";
 
-    console.log(req.firebaseUser);
-
-    res.json({
-        success: true,
-        firebaseUser: req.firebaseUser
-    });
-
-});
+router.get("/profile", protect, getProfile);
 
 // Update Profile
 router.put("/profile", firebaseAuth, updateProfile);

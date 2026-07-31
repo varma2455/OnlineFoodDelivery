@@ -49,7 +49,7 @@ const StoreContextProvider = ({ children }) => {
 
             const { data } = await axios.get(
 
-                `${url}/api/users/profile`,
+                `${url}/api/auth/profile`,
 
                 {
 

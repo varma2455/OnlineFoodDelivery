@@ -31,7 +31,7 @@ router.post("/login", firebaseAuth, loginUser);
 router.post("/logout", firebaseAuth, logoutUser);
 
 // Get Logged-in User Profile
-import { protect } from "../middleware/authMiddleware.js";
+
 import { getProfile } from "../controllers/authController.js";
 
 router.get("/profile", protect, getProfile);

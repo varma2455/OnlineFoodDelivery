@@ -204,11 +204,7 @@ export const getProfile = async (req, res, next) => {
 
     try {
 
-        const firebaseUid = req.firebaseUser.uid;
-
-        const user = await User.findOne({
-            firebaseUid
-        });
+        const user = await User.findById(req.user._id);
 
         if (!user) {
 

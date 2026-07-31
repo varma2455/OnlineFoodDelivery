@@ -52,7 +52,10 @@ useEffect(() => {
               }
           );
 
+          console.log("Navbar API:", response.data);
           setNavbarData(response.data);
+
+          
 
       } catch (error) {
 

@@ -13,51 +13,42 @@ export const getNavbar = async (req, res, next) => {
 
     try {
 
-        // Logged-in User
+        console.log("Logged-in User:", req.user);
+
         const user = await User.findById(req.user._id);
 
         if (!user) {
-
             return res.status(404).json({
                 success: false,
                 message: "User not found."
             });
-
         }
 
-        // Cart Count
         const cartItems = await Cart.countDocuments({
             user: req.user._id
         });
 
-        // Notification Count
-        const notificationCount =
-            user.notificationCount || 0;
+        console.log("Response Data:", {
+            name: user.fullName,
+            profileImage: user.profileImage,
+            membership: user.membership,
+            location: user.city || user.address,
+            notifications: user.notificationCount,
+            cartItems
+        });
 
-        // Membership
-        const membership =
-            user.membership || "Basic";
+        return res.status(200).json({
+            success: true,
+            name: user.fullName,
+            profileImage: user.profileImage,
+            membership: user.membership,
+            location: user.city || user.address,
+            notifications: user.notificationCount || 0,
+            cartItems
+        });
 
-        // Location
-        const location =
-            user.city || user.address;
-
-            return res.status(200).json({
-                success: true,
-                name: user.fullName,
-                profileImage: user.profileImage,
-                membership: user.membership,
-                location: user.city || user.address,
-                notifications: user.notificationCount || 0,
-                cartItems
-            });
-
-    }
-
-    catch (error) {
-
+    } catch (error) {
         next(error);
-
     }
 
 };

@@ -54,7 +54,7 @@ const Register = () => {
         email: "",
         phone: "",
         address: "",
-        location: "",   // New field
+        city: "",   // New field
         password: "",
         confirmPassword: ""
     });
@@ -189,7 +189,9 @@ const Register = () => {
                     fullName: formData.name,
                     phone: formData.phone,
                     address: formData.address,
-                    location: formData.location
+                    location: formData.location,
+                    city: formData.city
+
                 },
                 {
                     headers: {
@@ -544,16 +546,16 @@ required
 
 
 <div className="input-group">
-    <label>Delivery City</label>
+    <label>City</label>
 
     <div className="input-box3">
         <FaMapMarkerAlt />
 
         <input
             type="text"
-            name="location"
+            name="city"
             placeholder="Enter your city (e.g. Bhimavaram)"
-            value={formData.location}
+            value={formData.city}
             onChange={handleChange}
             required
         />

@@ -119,8 +119,7 @@ if (loading) {
         {/* Location */}
         <div className="location-box">
           <FaMapMarkerAlt />
-          <span>
-            {navbarData.location?.trim() ?   navbarData.location : "Unavailable Address"} </span>
+          <span>{navbarData.city?.trim() ? navbarData.city : "Select City"}</span>
         </div>
 
         {/* Theme */}

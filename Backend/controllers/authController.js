@@ -42,7 +42,8 @@ export const registerUser = async (req, res, next) => {
         const {
             fullName,
             phone,
-            address
+            address,
+            city
         } = req.body;
         
 
@@ -109,6 +110,8 @@ export const registerUser = async (req, res, next) => {
             phone,
 
             address,
+
+            city,
 
             role: "customer",
 
@@ -324,6 +327,8 @@ export const updateProfile = async (req, res, next) => {
                 phone: user.phone,
 
                 address: user.address,
+
+                city: user.city,
 
                 role: user.role,
 

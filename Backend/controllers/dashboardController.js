@@ -42,7 +42,8 @@ export const getNavbar = async (req, res, next) => {
             name: user.fullName,
             profileImage: user.profileImage,
             membership: user.membership,
-            location: user.city || user.address,
+            city: user.city,
+            address: user.address,
             notifications: user.notificationCount || 0,
             cartItems
         });

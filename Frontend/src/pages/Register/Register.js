@@ -189,7 +189,6 @@ const Register = () => {
                     fullName: formData.name,
                     phone: formData.phone,
                     address: formData.address,
-                    location: formData.location,
                     city: formData.city
 
                 },

@@ -57,7 +57,7 @@ const Dashboard = () => {
                     <div className="left-section">
                     <br></br>
                         <DashboardStatsCards />
-                        <br></br>
+                        {/* <br></br> */}
                         <DashboardHeroBanner />
                         <br></br>
                         <DashboardPopularFoods />

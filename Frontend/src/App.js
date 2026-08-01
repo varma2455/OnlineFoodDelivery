@@ -102,7 +102,7 @@ function App() {
             </Routes>
 
             <Routes>
-                <Route path="/" element={<Home />} />
+                
                 <Route path="/pizza" element={<Pizza />} />
                 <Route path="/burger" element={<Burger />} />
                 <Route path="/biryani" element={<Biryani />} />

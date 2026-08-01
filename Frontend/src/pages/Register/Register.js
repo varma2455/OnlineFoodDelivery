@@ -7,7 +7,8 @@ import {
     createUserWithEmailAndPassword,
     updateProfile,
     signInWithPopup,
-    GoogleAuthProvider
+    GoogleAuthProvider,
+    sendEmailVerification
 } from "firebase/auth";
 
 
@@ -164,15 +165,13 @@ const Register = () => {
             setLoading(true);
     
             // Step 1: Create user in Firebase Authentication
-            const userCredential =
-            await createUserWithEmailAndPassword(
+            const userCredential = await createUserWithEmailAndPassword(
                 auth,
-                email,
-                password
+                formData.email,
+                formData.password
             );
-
-await sendEmailVerification(userCredential.user);
-    
+            
+            await sendEmailVerification(userCredential.user);    
             const firebaseUser = userCredential.user;
     
             // Step 2: Save display name in Firebase

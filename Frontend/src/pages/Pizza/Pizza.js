@@ -89,7 +89,7 @@ const Pizza = () => {
 
                     <h4>₹{pizza.price}</h4>
 
-                    <button onClick={() => addToCart(item.id)}>Add to Cart</button>
+                    <button onClick={addToCart}>Add to Cart</button>
 
                   </div>
 

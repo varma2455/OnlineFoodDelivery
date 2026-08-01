@@ -70,11 +70,8 @@ function App() {
         <>
 
             {!hideLayout && <Navbar />}
-
             <Routes>
 
-
-                {/* <Route path="/customer" element={<CustomerDashboard />}/> */}
                 <Route path="/" element={<Home />} />
                 <Route path="/menu" element={<Menu />} />
                 <Route path="/cart" element={<Cart />} />
@@ -85,24 +82,6 @@ function App() {
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/orders" element={<Orders />} />
 
-                
-                <Route path="/admin/dashboard" element={<ProtectedRoute role="admin"><AdminDashboard /></ProtectedRoute>} />
-                <Route path="/admin/foods" element={<FoodManagement />} />
-                {/* <Route path="/admin/orders" element={<OrderManagement />} />
-                <Route path="/admin/users" element={<UserManagement />} /> */}
-
-                <Route path="/dashboard" element={<ProtectedRoute role="customer"><Dashboard/></ProtectedRoute>}/>
-                <Route path="/restaurant" element={<ProtectedRoute role="restaurant"> <RestaurantDashboard/> </ProtectedRoute>}/>
-                <Route path="/delivery" element={<ProtectedRoute role="delivery"> <DeliveryDashboard/> </ProtectedRoute>}/>
-
-
-                <Route path="/foods" element={<FoodManagement/>}/>
-                
-
-            </Routes>
-
-            <Routes>
-                
                 <Route path="/pizza" element={<Pizza />} />
                 <Route path="/burger" element={<Burger />} />
                 <Route path="/biryani" element={<Biryani />} />
@@ -111,6 +90,19 @@ function App() {
                 <Route path="/fastfood" element={<FastFood />} />
                 <Route path="/salads" element={<Salads />} />
                 <Route path="/noodles" element={<Noodles />} />
+
+                <Route path="/dashboard" element={ <ProtectedRoute role="customer"> <Dashboard /> </ProtectedRoute> }/>
+
+                <Route path="/admin/dashboard" element={ <ProtectedRoute role="admin"> <AdminDashboard /> </ProtectedRoute> }/>
+
+                <Route path="/admin/foods" element={<FoodManagement />} />
+
+                <Route path="/restaurant" element={<ProtectedRoute role="restaurant"> <RestaurantDashboard /> </ProtectedRoute>}/>
+                
+                <Route path="/delivery" element={<ProtectedRoute role="delivery"><DeliveryDashboard /></ProtectedRoute>}/>
+
+                <Route path="/foods" element={<FoodManagement />} />
+
             </Routes>
 
             {!hideLayout && <Footer />}

@@ -164,11 +164,14 @@ const Register = () => {
             setLoading(true);
     
             // Step 1: Create user in Firebase Authentication
-            const userCredential = await createUserWithEmailAndPassword(
+            const userCredential =
+            await createUserWithEmailAndPassword(
                 auth,
-                formData.email,
-                formData.password
+                email,
+                password
             );
+
+await sendEmailVerification(userCredential.user);
     
             const firebaseUser = userCredential.user;
     

@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+
+
+import { sendPasswordResetEmail } from "firebase/auth";
+import { auth } from "../../firebase";
 
 import "./ForgotPassword.css";
 
@@ -13,53 +16,41 @@ const ForgotPassword = () => {
     const handleSubmit = async (e) => {
 
         e.preventDefault();
-
-        try{
-
+    
+        try {
+    
             setLoading(true);
-
-            const { data } = await axios.post(
-
-                "https://onlinefooddelivery-9g60.onrender.com/api/auth/forgot-password",
-
-                {
-
-                    email
-
-                }
-
-            );
-
-            alert(
-
-                data.message ||
-
-                "Password reset link sent successfully."
-
-            );
-
-        }
-
-        catch(error){
-
-            alert(
-
-                error.response?.data?.message ||
-
-                "Unable to send reset link."
-
-            );
-
-        }
-
-        finally{
-
+    
+            await sendPasswordResetEmail(auth, email);
+    
+            alert("Password reset link has been sent to your email.");
+    
+            setEmail("");
+    
+        } catch (error) {
+    
+            switch (error.code) {
+    
+                case "auth/user-not-found":
+                    alert("No account found with this email.");
+                    break;
+    
+                case "auth/invalid-email":
+                    alert("Please enter a valid email.");
+                    break;
+    
+                default:
+                    alert(error.message);
+            }
+    
+        } finally {
+    
             setLoading(false);
-
+    
         }
-
+    
     };
-
+    
     return(
 
         <div className="forgot-page">

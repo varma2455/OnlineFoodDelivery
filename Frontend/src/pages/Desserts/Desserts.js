@@ -14,6 +14,13 @@ const Desserts = () => {
         item.name.toLowerCase().includes(search.toLowerCase())
     );
 
+    const addToCart = () => {
+
+        alert("Please login first.");
+        // User is logged in
+        navigate("/login"); // or do nothing if you haven't implemented the cart yet
+    };
+
     return (
 
         <div className="desserts-page">
@@ -92,9 +99,7 @@ const Desserts = () => {
 
                                     <h4>₹{item.price}</h4>
 
-                                    <button>
-                                        Add Cart
-                                    </button>
+                                    <button onClick={() => addToCart(item.id)}>Add to Cart</button>
 
                                 </div>
 

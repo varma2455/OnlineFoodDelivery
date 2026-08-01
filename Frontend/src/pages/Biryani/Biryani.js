@@ -14,6 +14,13 @@ const Biryani = () => {
         item.name.toLowerCase().includes(search.toLowerCase())
     );
 
+    const addToCart = () => {
+
+        alert("Please login first.");
+        // User is logged in
+        navigate("/login"); // or do nothing if you haven't implemented the cart yet
+    };
+
     return (
 
         <div className="biryani-page">
@@ -94,9 +101,7 @@ const Biryani = () => {
 
                                     <h4>₹{item.price}</h4>
 
-                                    <button>
-                                        Add Cart
-                                    </button>
+                                    <button onClick={() => addToCart(item.id)}>Add to Cart</button>
 
                                 </div>
 

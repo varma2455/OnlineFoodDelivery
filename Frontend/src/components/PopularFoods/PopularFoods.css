@@ -1,0 +1,175 @@
+.popularFoods{
+    margin-top:80px;
+}
+
+.popularHeader{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:35px;
+}
+
+.popularHeader h2{
+    font-size:34px;
+    font-weight:700;
+}
+
+.popularHeader p{
+    color:#64748b;
+}
+
+.popularHeader button{
+    padding:14px 30px;
+    border:none;
+    background:#6C63FF;
+    color:#fff;
+    border-radius:30px;
+    cursor:pointer;
+}
+
+.masonryGrid{
+    columns:3 320px;
+    column-gap:25px;
+}
+
+.popularCard{
+
+    display:inline-block;
+
+    width:100%;
+
+    margin-bottom:25px;
+
+    background:#fff;
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    box-shadow:0 20px 45px rgba(0,0,0,.08);
+
+    transition:.4s;
+
+    position:relative;
+
+}
+
+.popularCard:hover{
+
+    transform:translateY(-10px);
+
+}
+
+.popularCard img{
+
+    width:100%;
+
+    object-fit:cover;
+
+}
+
+.large img{
+
+    height:360px;
+
+}
+
+.medium img{
+
+    height:260px;
+
+}
+
+.small img{
+
+    height:190px;
+
+}
+
+.offerTag{
+
+    position:absolute;
+
+    top:15px;
+
+    left:15px;
+
+    background:#ff5722;
+
+    color:white;
+
+    padding:8px 15px;
+
+    border-radius:20px;
+
+    font-size:13px;
+
+}
+
+.favoriteBtn{
+
+    position:absolute;
+
+    right:15px;
+
+    top:15px;
+
+    width:45px;
+
+    height:45px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:white;
+
+    cursor:pointer;
+
+}
+
+.popularInfo{
+
+    padding:20px;
+
+}
+
+.meta{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin:15px 0;
+
+    color:#666;
+
+}
+
+.bottomRow{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.bottomRow button{
+
+    width:50px;
+
+    height:50px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#6C63FF;
+
+    color:white;
+
+    cursor:pointer;
+
+}

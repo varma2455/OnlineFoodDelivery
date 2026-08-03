@@ -1,0 +1,597 @@
+/* Google Font */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Poppins",sans-serif;
+}
+
+.browseHero{
+
+    width:100%;
+
+    min-height:620px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:50px;
+
+    padding:70px;
+
+    margin-top:30px;
+
+    border-radius:35px;
+
+    overflow:hidden;
+
+    position:relative;
+
+    background:linear-gradient(
+    135deg,
+    #5B4BFF 0%,
+    #6C63FF 30%,
+    #8B5CF6 65%,
+    #A855F7 100%
+    );
+
+    box-shadow:
+    0 25px 60px rgba(90,80,255,.25);
+
+}
+
+/* Animated Background */
+
+.browseHero::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:700px;
+
+    height:700px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.08);
+
+    top:-250px;
+
+    right:-180px;
+
+    filter:blur(10px);
+
+    animation:rotateBlob 25s linear infinite;
+
+}
+
+.browseHero::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:450px;
+
+    height:450px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.05);
+
+    bottom:-180px;
+
+    left:-150px;
+
+    animation:floatBlob 12s ease-in-out infinite;
+
+}
+
+/* Left */
+
+.heroContent{
+
+    width:50%;
+
+    position:relative;
+
+    z-index:5;
+
+}
+
+.offerBadge{
+
+    display:inline-block;
+
+    padding:12px 22px;
+
+    border-radius:40px;
+
+    background:rgba(255,255,255,.18);
+
+    backdrop-filter:blur(18px);
+
+    color:white;
+
+    font-weight:600;
+
+    margin-bottom:25px;
+
+    animation:pulse 2s infinite;
+
+}
+
+.heroContent h1{
+
+    font-size:62px;
+
+    color:white;
+
+    line-height:75px;
+
+    font-weight:800;
+
+}
+
+.heroContent h1 span{
+
+    color:#FFE66D;
+
+}
+
+.heroContent p{
+
+    color:#ECECEC;
+
+    margin-top:25px;
+
+    font-size:18px;
+
+    line-height:32px;
+
+    max-width:600px;
+
+}
+
+/* Search */
+
+.searchBox{
+
+    width:100%;
+
+    max-width:650px;
+
+    background:white;
+
+    margin-top:40px;
+
+    display:flex;
+
+    align-items:center;
+
+    padding:10px;
+
+    border-radius:70px;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.18);
+
+    transition:.4s;
+
+}
+
+.searchBox:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.searchBox .icon{
+
+    font-size:22px;
+
+    color:#666;
+
+    margin-left:15px;
+
+}
+
+.searchBox input{
+
+    flex:1;
+
+    border:none;
+
+    outline:none;
+
+    padding:18px;
+
+    font-size:17px;
+
+}
+
+.searchBox button{
+
+    width:65px;
+
+    height:65px;
+
+    border:none;
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+    background:linear-gradient(135deg,#FF6B35,#FF914D);
+
+    color:white;
+
+    font-size:22px;
+
+    transition:.4s;
+
+}
+
+.searchBox button:hover{
+
+    transform:rotate(10deg) scale(1.08);
+
+}
+
+/* Stats */
+
+.heroStats{
+
+    display:flex;
+
+    gap:25px;
+
+    margin-top:45px;
+
+}
+
+.heroStats div{
+
+    min-width:150px;
+
+    padding:22px;
+
+    border-radius:20px;
+
+    backdrop-filter:blur(20px);
+
+    background:rgba(255,255,255,.15);
+
+    color:white;
+
+    transition:.4s;
+
+}
+
+.heroStats div:hover{
+
+    transform:translateY(-8px);
+
+    background:rgba(255,255,255,.22);
+
+}
+
+.heroStats h2{
+
+    font-size:34px;
+
+    margin-bottom:8px;
+
+}
+
+.heroStats p{
+
+    margin:0;
+
+    font-size:15px;
+
+}
+
+/* Right */
+
+.heroImages{
+
+    width:50%;
+
+    position:relative;
+
+    height:520px;
+
+    z-index:5;
+
+}
+
+.heroImages img{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    box-shadow:0 25px 60px rgba(0,0,0,.35);
+
+    transition:.5s;
+
+}
+
+.heroImages img:hover{
+
+    transform:scale(1.08);
+
+}
+
+.pizza{
+
+    width:260px;
+
+    top:10px;
+
+    right:90px;
+
+    animation:float1 5s ease-in-out infinite;
+
+}
+
+.burger{
+
+    width:220px;
+
+    left:20px;
+
+    top:180px;
+
+    animation:float2 6s ease-in-out infinite;
+
+}
+
+.fries{
+
+    width:170px;
+
+    bottom:10px;
+
+    right:180px;
+
+    animation:float3 4s ease-in-out infinite;
+
+}
+
+.drink{
+
+    width:140px;
+
+    right:0;
+
+    bottom:140px;
+
+    animation:float4 7s ease-in-out infinite;
+
+}
+
+/* Animations */
+
+@keyframes float1{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-18px);
+    }
+
+}
+
+@keyframes float2{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(20px);
+    }
+
+}
+
+@keyframes float3{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-25px);
+    }
+
+}
+
+@keyframes float4{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(18px);
+    }
+
+}
+
+@keyframes pulse{
+
+    0%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.05);
+    }
+
+    100%{
+        transform:scale(1);
+    }
+
+}
+
+@keyframes rotateBlob{
+
+    from{
+        transform:rotate(0deg);
+    }
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
+@keyframes floatBlob{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-40px);
+    }
+
+}
+
+/* Responsive */
+
+@media(max-width:1200px){
+
+    .browseHero{
+
+        flex-direction:column;
+
+        text-align:center;
+
+        padding:50px;
+
+    }
+
+    .heroContent,
+    .heroImages{
+
+        width:100%;
+
+    }
+
+    .heroContent h1{
+
+        font-size:48px;
+
+        line-height:60px;
+
+    }
+
+    .heroStats{
+
+        justify-content:center;
+
+        flex-wrap:wrap;
+
+    }
+
+    .heroImages{
+
+        margin-top:50px;
+
+        height:450px;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .browseHero{
+
+        padding:30px;
+
+    }
+
+    .heroContent h1{
+
+        font-size:36px;
+
+        line-height:48px;
+
+    }
+
+    .heroContent p{
+
+        font-size:16px;
+
+    }
+
+    .searchBox{
+
+        flex-direction:column;
+
+        border-radius:25px;
+
+        gap:15px;
+
+        padding:20px;
+
+    }
+
+    .searchBox input{
+
+        width:100%;
+
+    }
+
+    .searchBox button{
+
+        width:100%;
+
+        border-radius:15px;
+
+    }
+
+    .heroImages{
+
+        height:320px;
+
+    }
+
+    .pizza{
+
+        width:160px;
+
+    }
+
+    .burger{
+
+        width:140px;
+
+    }
+
+    .fries{
+
+        width:120px;
+
+    }
+
+    .drink{
+
+        width:90px;
+
+    }
+
+}

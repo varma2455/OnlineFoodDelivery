@@ -1,0 +1,187 @@
+.featuredShowcase{
+
+    margin-top:120px;
+    
+    text-align:center;
+    
+    }
+    
+    .featuredTitle span{
+    
+    display:inline-block;
+    
+    padding:12px 22px;
+    
+    background:#F3F0FF;
+    
+    color:#6C63FF;
+    
+    border-radius:30px;
+    
+    font-weight:600;
+    
+    }
+    
+    .featuredTitle h1{
+    
+    font-size:60px;
+    
+    margin:25px 0;
+    
+    }
+    
+    .featuredTitle p{
+    
+    font-size:20px;
+    
+    color:#64748B;
+    
+    margin-bottom:70px;
+    
+    }
+    
+    .featuredCards{
+    
+    display:grid;
+    
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    
+    gap:40px;
+    
+    }
+    
+    .featureCard{
+    
+    position:relative;
+    
+    background:white;
+    
+    padding:45px;
+    
+    border-radius:35px;
+    
+    overflow:hidden;
+    
+    box-shadow:0 25px 45px rgba(0,0,0,.08);
+    
+    transition:.5s;
+    
+    }
+    
+    .featureCard:hover{
+    
+    transform:
+    translateY(-15px)
+    rotateX(6deg);
+    
+    }
+    
+    .circle{
+    
+    position:absolute;
+    
+    width:320px;
+    
+    height:320px;
+    
+    background:var(--accent);
+    
+    border-radius:50%;
+    
+    top:-140px;
+    
+    right:-120px;
+    
+    opacity:.15;
+    
+    }
+    
+    .featureCard img{
+    
+    width:240px;
+    
+    height:240px;
+    
+    object-fit:contain;
+    
+    transition:.5s;
+    
+    }
+    
+    .featureCard:hover img{
+    
+    transform:
+    rotate(12deg)
+    scale(1.1);
+    
+    }
+    
+    .fav{
+    
+    position:absolute;
+    
+    top:25px;
+    
+    right:25px;
+    
+    width:55px;
+    
+    height:55px;
+    
+    border:none;
+    
+    border-radius:50%;
+    
+    background:white;
+    
+    box-shadow:0 10px 20px rgba(0,0,0,.15);
+    
+    cursor:pointer;
+    
+    }
+    
+    .featureCard h2{
+    
+    margin:25px 0;
+    
+    font-size:30px;
+    
+    }
+    
+    .featureCard h3{
+    
+    font-size:34px;
+    
+    color:#6C63FF;
+    
+    margin-bottom:30px;
+    
+    }
+    
+    .buy{
+    
+    padding:16px 35px;
+    
+    border:none;
+    
+    border-radius:40px;
+    
+    background:#6C63FF;
+    
+    color:white;
+    
+    cursor:pointer;
+    
+    font-size:18px;
+    
+    display:flex;
+    
+    gap:10px;
+    
+    justify-content:center;
+    
+    align-items:center;
+    
+    margin:auto;
+    
+    }

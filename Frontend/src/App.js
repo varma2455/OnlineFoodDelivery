@@ -44,6 +44,9 @@ import FastFood from "./pages/FastFood/FastFood";
 import Salads from "./pages/Salads/Salads";
 import Noodles from "./pages/Noodles/Noodles";
 
+
+import BrowseFood from "./pages/BrowseFood/BrowseFood";
+
 function App() {
 
 
@@ -69,7 +72,7 @@ function App() {
 
         <>
 
-            {!hideLayout && <Navbar />}
+            
             <Routes>
 
                 <Route path="/" element={<Home />} />
@@ -103,9 +106,19 @@ function App() {
 
                 <Route path="/foods" element={<FoodManagement />} />
 
+                <Route path="/browse-food" element={<BrowseFood />} />
+
+                {/* <Route path="/wishlist" element={<Wishlist />} /> */}
+                {/* <Route path="/wallet" element={<Wallet />} />
+                <Route path="/address" element={<Address />} />
+                <Route path="/offers" element={<Offers />} />
+                <Route path="/rewards" element={<Rewards />} />
+                <Route path="/support" element={<Support />} />
+                <Route path="/settings" element={<Settings />} /> */}
+
             </Routes>
 
-            {!hideLayout && <Footer />}
+            
 
         </>
 

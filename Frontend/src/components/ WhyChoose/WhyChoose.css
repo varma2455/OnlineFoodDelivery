@@ -1,0 +1,87 @@
+.whyChoose{
+    margin-top:120px;
+}
+
+.whyHeader{
+    text-align:center;
+    margin-bottom:60px;
+}
+
+.whyHeader span{
+    background:#EEF2FF;
+    color:#6C63FF;
+    padding:12px 22px;
+    border-radius:30px;
+}
+
+.whyHeader h2{
+    font-size:52px;
+    margin:20px 0;
+}
+
+.whyHeader p{
+    color:#64748B;
+}
+
+.statsContainer{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+    margin-bottom:70px;
+}
+
+.statCard{
+    background:white;
+    padding:35px;
+    border-radius:25px;
+    text-align:center;
+    box-shadow:0 20px 45px rgba(0,0,0,.08);
+    transition:.4s;
+}
+
+.statCard:hover{
+    transform:translateY(-10px);
+}
+
+.statCard h1{
+    font-size:48px;
+    color:#6C63FF;
+}
+
+.featureGrid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:30px;
+}
+
+.featureCard{
+    background:white;
+    padding:35px;
+    border-radius:25px;
+    text-align:center;
+    box-shadow:0 20px 45px rgba(0,0,0,.08);
+    transition:.4s;
+}
+
+.featureCard:hover{
+    transform:translateY(-10px);
+}
+
+.featureIcon{
+    width:90px;
+    height:90px;
+    border-radius:25px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:auto;
+    color:white;
+    font-size:34px;
+    margin-bottom:25px;
+}
+
+.featureCard p{
+    color:#64748B;
+    margin-top:15px;
+    line-height:28px;
+}

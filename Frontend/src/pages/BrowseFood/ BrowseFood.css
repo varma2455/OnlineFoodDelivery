@@ -1,0 +1,359 @@
+/* ==========================================
+   Browse Food Page
+========================================== */
+
+.browseFoodPage{
+    width:100%;
+    min-height:100vh;
+    background:#f8fafc;
+    overflow-x:hidden;
+}
+
+/* Main container */
+
+.browseContainer{
+    width:100%;
+    max-width:1700px;
+    margin:auto;
+    padding:40px 70px 120px;
+}
+
+/* Every section */
+
+.browseFoodPage section{
+    margin-bottom:120px;
+    scroll-margin-top:100px;
+}
+
+/* Common Heading */
+
+.sectionHeading{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    margin-bottom:50px;
+}
+
+.sectionHeading h2{
+    font-size:3rem;
+    font-weight:800;
+    color:#111827;
+    margin-bottom:12px;
+}
+
+.sectionHeading p{
+    font-size:1rem;
+    color:#64748B;
+}
+
+.sectionHeading button{
+    border:none;
+    outline:none;
+    cursor:pointer;
+    padding:14px 28px;
+    border-radius:30px;
+    background:#6C63FF;
+    color:white;
+    font-weight:600;
+    transition:.3s;
+}
+
+.sectionHeading button:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 15px 35px rgba(108,99,255,.25);
+
+}
+
+/* Cards */
+
+.glassCard{
+
+    background:rgba(255,255,255,.75);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.4);
+
+    border-radius:30px;
+
+    box-shadow:0 20px 45px rgba(0,0,0,.08);
+
+}
+
+/* Gradient Background */
+
+.gradientBackground{
+
+    background:
+    linear-gradient(
+    135deg,
+    #EEF2FF,
+    #F8FAFC,
+    #FFFFFF);
+
+}
+
+/* Section Title */
+
+.sectionTitle{
+
+    text-align:center;
+
+    margin-bottom:70px;
+
+}
+
+.sectionTitle span{
+
+    display:inline-block;
+
+    padding:12px 22px;
+
+    border-radius:40px;
+
+    background:#EEF2FF;
+
+    color:#6C63FF;
+
+    font-weight:600;
+
+}
+
+.sectionTitle h2{
+
+    font-size:60px;
+
+    margin:25px 0 15px;
+
+    color:#111827;
+
+}
+
+.sectionTitle p{
+
+    max-width:700px;
+
+    margin:auto;
+
+    color:#64748B;
+
+    line-height:30px;
+
+}
+
+/* Divider */
+
+.sectionDivider{
+
+    width:120px;
+
+    height:5px;
+
+    margin:35px auto;
+
+    border-radius:10px;
+
+    background:linear-gradient(
+    90deg,
+    #6C63FF,
+    #8B5CF6);
+
+}
+
+/* Animation */
+
+.fadeUp{
+
+    animation:fadeUp .9s ease;
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(40px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#F1F5F9;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#6C63FF;
+
+    border-radius:30px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#5548E5;
+
+}
+
+/* Selection */
+
+::selection{
+
+    background:#6C63FF;
+
+    color:white;
+
+}
+
+/* Smooth Scroll */
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+/* Images */
+
+img{
+
+    max-width:100%;
+
+    display:block;
+
+}
+
+/* Buttons */
+
+button{
+
+    font-family:inherit;
+
+}
+
+/* Links */
+
+a{
+
+    text-decoration:none;
+
+    color:inherit;
+
+}
+
+/* Responsive */
+
+@media(max-width:1400px){
+
+    .browseContainer{
+
+        padding:40px;
+
+    }
+
+}
+
+@media(max-width:992px){
+
+    .browseContainer{
+
+        padding:30px;
+
+    }
+
+    .sectionHeading{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:20px;
+
+    }
+
+    .sectionHeading h2{
+
+        font-size:2.4rem;
+
+    }
+
+    .sectionTitle h2{
+
+        font-size:46px;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .browseContainer{
+
+        padding:20px;
+
+    }
+
+    .browseFoodPage section{
+
+        margin-bottom:80px;
+
+    }
+
+    .sectionHeading h2{
+
+        font-size:2rem;
+
+    }
+
+    .sectionTitle h2{
+
+        font-size:38px;
+
+    }
+
+}
+
+@media(max-width:576px){
+
+    .browseContainer{
+
+        padding:15px;
+
+    }
+
+    .sectionHeading h2{
+
+        font-size:1.7rem;
+
+    }
+
+    .sectionTitle h2{
+
+        font-size:30px;
+
+    }
+
+}

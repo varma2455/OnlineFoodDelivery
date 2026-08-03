@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import "./DashboardSidebar.css";
 
 import {
+  FaUser,
   FaHome,
   FaUtensils,
   FaClipboardList,
@@ -45,139 +46,70 @@ const DashboardSidebar = () => {
 
             <ul className="sidebar-menu">
 
-                <li>
-
-                    <NavLink to="/dashboard" className="active-link">
-
-                        <FaHome />
-
-                        <span>Dashboard</span>
-
-                    </NavLink>
-
-                </li>
-
-                <li>
-
-                    <NavLink to="/menu">
-
-                        <FaUtensils />
-
-                        <span>Browse Food</span>
-
-                    </NavLink>
-
-                </li>
-
-                <li>
-
-                    <NavLink to="/orders">
-
-                        <FaClipboardList />
-
-                        <span>My Orders</span>
-
-                    </NavLink>
-
-                </li>
-
-                <li>
-
-                    <NavLink to="/cart">
-
-                        <FaShoppingCart />
-
-                        <span>Cart</span>
-
-                    </NavLink>
-
-                </li>
-
-                <li>
-
-                    <NavLink to="/wishlist">
-
-                        <FaHeart />
-
-                        <span>Wishlist</span>
-
-                    </NavLink>
-
-                </li>
-
-                <li>
-
-                    <NavLink to="/wallet">
-
-                        <FaWallet />
-
-                        <span>Wallet</span>
-
-                    </NavLink>
-
-                </li>
-
-                <li>
-
-                    <NavLink to="/address">
-
-                        <FaMapMarkerAlt />
-
-                        <span>Saved Address</span>
-
-                    </NavLink>
-
-                </li>
-
-                <li>
-
-                    <NavLink to="/offers">
-
-                        <FaPercent />
-
-                        <span>Offers</span>
-
-                    </NavLink>
-
-                </li>
-
-                <li>
-
-                    <NavLink to="/rewards">
-
-                        <FaGift />
-
-                        <span>Rewards</span>
-
-                    </NavLink>
-
-                </li>
-
-                <li>
-
-                    <NavLink to="/support">
-
-                        <FaHeadset />
-
-                        <span>Support</span>
-
-                    </NavLink>
-
-                </li>
-
-                <li>
-
-                    <NavLink to="/settings">
-
-                        <FaCog />
-
-                        <span>Settings</span>
-
-                    </NavLink>
-
-                </li>
-
-            </ul>
+    <li>
+        <NavLink to="/dashboard">
+            <FaHome />
+            <span>Dashboard</span>
+        </NavLink>
+    </li>
+
+    <li>
+        <NavLink to="/browse-food">
+            <FaUtensils />
+            <span>Browse Food</span>
+        </NavLink>
+    </li>
+
+    <li>
+        <NavLink to="/orders">
+            <FaClipboardList />
+            <span>My Orders</span>
+        </NavLink>
+    </li>
+
+    <li>
+        <NavLink to="/cart">
+            <FaShoppingCart />
+            <span>Cart</span>
+        </NavLink>
+    </li>
+
+    <li>
+        <NavLink to="/profile">
+            <FaUser />
+            <span>Profile</span>
+        </NavLink>
+    </li>
+
+    <li>
+        <NavLink to="/offers">
+            <FaPercent />
+            <span>Offers</span>
+        </NavLink>
+    </li>
+
+    <li>
+        <NavLink to="/rewards">
+            <FaGift />
+            <span>Rewards</span>
+        </NavLink>
+    </li>
+
+    <li>
+        <NavLink to="/support">
+            <FaHeadset />
+            <span>Support</span>
+        </NavLink>
+    </li>
+
+    <li>
+        <NavLink to="/settings">
+            <FaCog />
+            <span>Settings</span>
+        </NavLink>
+    </li>
+
+</ul>
 
             {/* Bottom Card */}
 

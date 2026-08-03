@@ -1,0 +1,221 @@
+.flashSale{
+
+    margin-top:90px;
+    
+    padding:50px;
+    
+    border-radius:30px;
+    
+    background:linear-gradient(
+    135deg,
+    #FF512F,
+    #F09819
+    );
+    
+    color:white;
+    
+    overflow:hidden;
+    
+    }
+    
+    .flashHeader{
+    
+    display:flex;
+    
+    justify-content:space-between;
+    
+    align-items:center;
+    
+    margin-bottom:40px;
+    
+    }
+    
+    .flashBadge{
+    
+    display:inline-flex;
+    
+    align-items:center;
+    
+    gap:10px;
+    
+    background:rgba(255,255,255,.15);
+    
+    padding:12px 20px;
+    
+    border-radius:40px;
+    
+    backdrop-filter:blur(20px);
+    
+    }
+    
+    .flashHeader h2{
+    
+    font-size:50px;
+    
+    margin-top:20px;
+    
+    }
+    
+    .timer{
+    
+    display:flex;
+    
+    gap:20px;
+    
+    }
+    
+    .timer div{
+    
+    width:110px;
+    
+    height:110px;
+    
+    background:white;
+    
+    color:#FF512F;
+    
+    border-radius:20px;
+    
+    display:flex;
+    
+    justify-content:center;
+    
+    align-items:center;
+    
+    flex-direction:column;
+    
+    font-size:34px;
+    
+    font-weight:bold;
+    
+    }
+    
+    .timer span{
+    
+    font-size:14px;
+    
+    color:#777;
+    
+    }
+    
+    .flashGrid{
+    
+    display:grid;
+    
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    
+    gap:30px;
+    
+    }
+    
+    .flashCard{
+    
+    background:white;
+    
+    color:#222;
+    
+    border-radius:25px;
+    
+    padding:20px;
+    
+    position:relative;
+    
+    transition:.4s;
+    
+    }
+    
+    .flashCard:hover{
+    
+    transform:translateY(-12px);
+    
+    }
+    
+    .flashCard img{
+    
+    width:100%;
+    
+    height:220px;
+    
+    object-fit:cover;
+    
+    border-radius:20px;
+    
+    }
+    
+    .discount{
+    
+    position:absolute;
+    
+    left:20px;
+    
+    top:20px;
+    
+    background:#ff1744;
+    
+    padding:8px 15px;
+    
+    border-radius:20px;
+    
+    color:white;
+    
+    }
+    
+    .heartBtn{
+    
+    position:absolute;
+    
+    right:20px;
+    
+    top:20px;
+    
+    width:45px;
+    
+    height:45px;
+    
+    border:none;
+    
+    border-radius:50%;
+    
+    background:white;
+    
+    cursor:pointer;
+    
+    }
+    
+    .prices{
+    
+    display:flex;
+    
+    gap:15px;
+    
+    align-items:center;
+    
+    margin:20px 0;
+    
+    }
+    
+    .prices h2{
+    
+    color:#ff5722;
+    
+    }
+    
+    .buyBtn{
+    
+    width:100%;
+    
+    padding:14px;
+    
+    background:#6C63FF;
+    
+    border:none;
+    
+    color:white;
+    
+    border-radius:15px;
+    
+    cursor:pointer;
+    
+    font-size:16px;
+    
+    }

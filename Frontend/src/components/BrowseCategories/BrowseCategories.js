@@ -1,6 +1,6 @@
 import "./BrowseCategories.css";
 
-import CategoryCard from "../CategoryCard/CategoryCard";
+import CategoryCard from "./CategoryCard";
 
 const categories = [
 

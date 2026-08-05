@@ -1,6 +1,6 @@
 import "./BrowseCategories.css";
 
-import CategoryCard from "/home/kali2455/Desktop/OnlineFoodDelivery/Frontend/src/components/BrowseCategories/CategoryCard.js";
+import CategoryCard from "../CategoryCard/CategoryCard";
 
 const categories = [
 

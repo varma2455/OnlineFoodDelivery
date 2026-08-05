@@ -1,19 +1,19 @@
-import "/home/kali2455/Desktop/OnlineFoodDelivery/Frontend/src/pages/BrowseFood/ BrowseFood.css";
+import React from "react";
+import "./BrowseFood.css";
 
-import BrowseSidebar from "/home/kali2455/Desktop/OnlineFoodDelivery/Frontend/src/components/BrowseSidebar/BrowseSidebar.js";
-import BrowseHeader from "/home/kali2455/Desktop/OnlineFoodDelivery/Frontend/src/components/ BrowseHeader/BrowseHeader.js";
+import BrowseSidebar from "../../components/BrowseSidebar/BrowseSidebar";
+import BrowseHeader from "../../components/BrowseHeader/BrowseHeader";
 
-import BrowseCategories from "/home/kali2455/Desktop/OnlineFoodDelivery/Frontend/src/components/BrowseCategories/BrowseCategories.js";
-import RecommendedFoods from "/home/kali2455/Desktop/OnlineFoodDelivery/Frontend/src/components/BrowseRecommended/BrowseRecommended.js";
+import BrowseHero from "../../components/BrowseHero/BrowseHero";
+import BrowseCategories from "../../components/BrowseCategories/BrowseCategories";
+import BrowseFilters from "../../components/BrowseFilters/BrowseFilters";
 
-import BrowseFilters from "/home/kali2455/Desktop/OnlineFoodDelivery/Frontend/src/components/BrowseFilters/BrowseFilters.js";
-import TopRestaurants from "/home/kali2455/Desktop/OnlineFoodDelivery/Frontend/src/components/TopRestaurants/TopRestaurants.js";
+import RecommendedFoods from "../../components/BrowseRecommended/BrowseRecommended";
+import TopRestaurants from "../../components/TopRestaurants/TopRestaurants";
 
-import TrendingFoods from "/home/kali2455/Desktop/OnlineFoodDelivery/Frontend/src/components/ TrendingFoods/TrendingFoods.js";
-import FlashSale from "/home/kali2455/Desktop/OnlineFoodDelivery/Frontend/src/components/FlashSale/FlashSale.js";
-import ChefSpecial from "/home/kali2455/Desktop/OnlineFoodDelivery/Frontend/src/components/ChefSpecial/ChefSpecial.js";
-
-import BrowseHero from "/home/kali2455/Desktop/OnlineFoodDelivery/Frontend/src/components/BrowseHero/BrowseHero.js";
+import TrendingFoods from "../../components/TrendingFoods/TrendingFoods";
+import FlashSale from "../../components/FlashSale/FlashSale";
+import ChefSpecial from "../../components/ChefSpecial/ChefSpecial";
 
 export default function BrowseFood() {
 
@@ -21,34 +21,37 @@ export default function BrowseFood() {
 
         <div className="browseLayout">
 
-            {/* LEFT */}
-
+            {/* LEFT SIDEBAR */}
             <BrowseSidebar />
 
-            {/* CENTER */}
-
+            {/* CENTER CONTENT */}
             <main className="browseMain">
 
                 <BrowseHeader />
 
                 <div className="mainContent">
 
-                    {/* Hero Section */}
-
                     <BrowseHero />
+
                     <BrowseCategories />
+
                     <BrowseFilters />
+
                     <TopRestaurants />
+
                     <RecommendedFoods />
+
                     <TrendingFoods />
+
                     <FlashSale />
+
                     <ChefSpecial />
 
                 </div>
 
             </main>
 
-            {/* RIGHT */}
+            {/* RIGHT SIDEBAR */}
 
             <aside className="browseCart">
 

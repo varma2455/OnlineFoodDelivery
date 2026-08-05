@@ -1,95 +1,43 @@
 import "./FlashSale.css";
-import FlashCard from "./FlashCard";
-import { FaBolt } from "react-icons/fa";
 
-const deals = [
-  {
-    id: 1,
-    name: "Cheese Pizza",
-    image: "/images/pizza.jpg",
-    price: 199,
-    oldPrice: 349,
-    discount: "43% OFF",
-  },
-  {
-    id: 2,
-    name: "Chicken Burger",
-    image: "/images/burger.jpg",
-    price: 149,
-    oldPrice: 249,
-    discount: "40% OFF",
-  },
-  {
-    id: 3,
-    name: "Biryani Combo",
-    image: "/images/biryani.jpg",
-    price: 299,
-    oldPrice: 499,
-    discount: "50% OFF",
-  },
-  {
-    id: 4,
-    name: "Cold Coffee",
-    image: "/images/drink.jpg",
-    price: 99,
-    oldPrice: 179,
-    discount: "45% OFF",
-  },
-];
+export default function FlashSale(){
 
-export default function FlashSale() {
-  return (
-    <section className="flashSale">
+return(
 
-      <div className="flashHeader">
+<section className="flashSale">
 
-        <div>
+<div>
 
-          <span className="flashBadge">
+<h1>
 
-            <FaBolt/>
+⚡ Flash Sale
 
-            FLASH SALE
+</h1>
 
-          </span>
+<p>
 
-          <h2>
+Flat 50% OFF on all Pizza Orders
 
-            Limited Time Deals
+</p>
 
-          </h2>
+<button>
 
-          <p>
+Order Now
 
-            Hurry! Offers expire soon.
+</button>
 
-          </p>
+</div>
 
-        </div>
+<img
 
-        <div className="timer">
+src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=900"
 
-          <div>02 <span>Hrs</span></div>
+alt=""
 
-          <div>45 <span>Min</span></div>
+/>
 
-          <div>19 <span>Sec</span></div>
+</section>
 
-        </div>
+);
 
-      </div>
-
-      <div className="flashGrid">
-
-        {deals.map(item=>(
-          <FlashCard
-            key={item.id}
-            item={item}
-          />
-        ))}
-
-      </div>
-
-    </section>
-  );
 }

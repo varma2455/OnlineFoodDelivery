@@ -12,7 +12,7 @@ import BrowseCategories from "../../components/BrowseCategories/BrowseCategories
 import BrowseFilters from "../../components/BrowseFilters/BrowseFilters";
 
 // Recommended
-import BrowseRecommended from "/home/kali2455/Desktop/OnlineFoodDelivery/Frontend/src/components/ BrowseRecommended/ BrowseRecommended.js";
+import BrowseRecommended from "/home/kali2455/Desktop/OnlineFoodDelivery/Frontend/src/components/BrowseRecommended/BrowseRecommended.js";
 
 // Trending
 import BrowseTrending from "../../components/BrowseTrending/BrowseTrending";

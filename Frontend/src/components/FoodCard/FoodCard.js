@@ -1,100 +1,55 @@
 import "./FoodCard.css";
 
-const FoodCard = ({ food }) => {
+import {FaStar} from "react-icons/fa";
 
-    return (
+export default function FoodCard({food}){
 
-        <div className="food-card">
+return(
 
-            <div className="food-image">
+<div className="foodCard">
 
-                <img
-                    src={
-                        food.image
-                            ? `https://onlinefooddelivery-9g60.onrender.com/uploads/${food.image}`
-                            : "https://via.placeholder.com/300x220?text=Food"
-                    }
-                    alt={food.name}
-                />
+<img
 
-                {food.discountPrice > 0 && (
+src={food.image}
 
-                    <span className="discount-badge">
+alt=""
 
-                        ₹{food.price - food.discountPrice} OFF
+/>
 
-                    </span>
+<div className="foodInfo">
 
-                )}
+<h3>
 
-            </div>
+{food.name}
 
-            <div className="food-content">
+</h3>
 
-                <h3>{food.name}</h3>
+<p>
 
-                <p>
+⭐ {food.rating}
 
-                    {food.description}
+</p>
 
-                </p>
+<div className="foodBottom">
 
-                <div className="food-rating">
+<h2>
 
-                    ⭐ {food.rating || 4.5}
+₹{food.price}
 
-                </div>
+</h2>
 
-                <div className="food-price">
+<button>
 
-                    {
+Add
 
-                        food.discountPrice > 0 ? (
+</button>
 
-                            <>
+</div>
 
-                                <span className="old-price">
+</div>
 
-                                    ₹{food.price}
+</div>
 
-                                </span>
+);
 
-                                <span className="new-price">
-
-                                    ₹{food.discountPrice}
-
-                                </span>
-
-                            </>
-
-                        ) : (
-
-                            <span className="new-price">
-
-                                ₹{food.price}
-
-                            </span>
-
-                        )
-
-                    }
-
-                </div>
-
-                <button
-                    className="add-cart-btn"
-                >
-
-                    🛒 Add To Cart
-
-                </button>
-
-            </div>
-
-        </div>
-
-    );
-
-};
-
-export default FoodCard;
+}

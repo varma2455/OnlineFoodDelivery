@@ -1,91 +1,131 @@
 import "./BrowseHero.css";
-import { FaSearch, FaMapMarkerAlt, FaArrowRight } from "react-icons/fa";
 
-// import pizza from "../../assets/hero-pizza.png";
-// import burger from "../../assets/hero-burger.png";
-// import fries from "../../assets/hero-fries.png";
-// import drink from "../../assets/hero-drink.png";
+import {
+    FaSearch,
+    FaArrowRight,
+    FaMotorcycle,
+    FaStar,
+    FaUtensils,
+    FaClock
+} from "react-icons/fa";
 
 export default function BrowseHero() {
-  return (
-    <section className="browseHero">
 
-      <div className="heroContent">
+    return (
 
-        <span className="offerBadge">
-          🔥 Flat 50% OFF Today
-        </span>
+        <section className="browseHero">
 
-        <h1>
-          Discover the
-          <span> Best Food </span>
-          Around You
-        </h1>
+            <div className="heroLeft">
 
-        <p>
-          Order from thousands of restaurants and enjoy
-          lightning-fast delivery with exclusive offers.
-        </p>
+                <span className="offerBadge">
+                    🔥 Flat 50% OFF Today
+                </span>
 
-        <div className="searchBox">
+                <h1>
+                    Discover the
+                    <span> Best Food </span>
+                    Around You
+                </h1>
 
-          <FaSearch className="icon"/>
+                <p>
 
-          <input
-            type="text"
-            placeholder="Search Pizza, Burger, Biryani..."
-          />
+                    Order delicious food from premium restaurants
+                    with lightning fast delivery.
 
-          <button>
+                </p>
 
-            <FaArrowRight/>
+                <div className="heroSearch">
 
-          </button>
+                    <FaSearch />
 
-        </div>
+                    <input
+                        type="text"
+                        placeholder="Search Pizza, Burger, Biryani..."
+                    />
 
-        <div className="heroStats">
+                    <button>
 
-          <div>
+                        Explore
 
-            <h2>10K+</h2>
+                        <FaArrowRight />
 
-            <p>Foods</p>
+                    </button>
 
-          </div>
+                </div>
 
-          <div>
+                <div className="heroStats">
 
-            <h2>250+</h2>
+                    <div>
 
-            <p>Restaurants</p>
+                        <FaUtensils />
 
-          </div>
+                        <div>
 
-          <div>
+                            <h3>10K+</h3>
 
-            <h2>4.9★</h2>
+                            <span>Foods</span>
 
-            <p>Ratings</p>
+                        </div>
 
-          </div>
+                    </div>
 
-        </div>
+                    <div>
 
-      </div>
+                        <FaMotorcycle />
 
-      <div className="heroImages">
+                        <div>
 
-        {/* <img src={pizza} className="pizza" alt="" />
+                            <h3>250+</h3>
 
-        <img src={burger} className="burger" alt="" />
+                            <span>Restaurants</span>
 
-        <img src={fries} className="fries" alt="" />
+                        </div>
 
-        <img src={drink} className="drink" alt="" /> */}
+                    </div>
 
-      </div>
+                    <div>
 
-    </section>
-  );
+                        <FaStar />
+
+                        <div>
+
+                            <h3>4.9</h3>
+
+                            <span>Ratings</span>
+
+                        </div>
+
+                    </div>
+
+                    <div>
+
+                        <FaClock />
+
+                        <div>
+
+                            <h3>20 Min</h3>
+
+                            <span>Delivery</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div className="heroRight">
+
+                <img
+                    src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=900"
+                    alt="Pizza"
+                />
+
+            </div>
+
+        </section>
+
+    );
+
 }

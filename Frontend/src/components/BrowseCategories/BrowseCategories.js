@@ -1,103 +1,89 @@
 import "./BrowseCategories.css";
-import {
-  FaPizzaSlice,
-  FaHamburger,
-  FaDrumstickBite,
-  FaIceCream,
-  FaGlassWhiskey,
-  FaLeaf,
-} from "react-icons/fa";
-import { GiNoodles } from "react-icons/gi";
 
-import CategoryCard from "./CategoryCard";
+import CategoryCard from "/home/kali2455/Desktop/OnlineFoodDelivery/Frontend/src/components/BrowseCategories/CategoryCard.js";
 
 const categories = [
-  {
-    id: 1,
-    title: "Pizza",
-    icon: <FaPizzaSlice />,
-    items: "120 Items",
-    color: "#FF6B35",
-  },
-  {
-    id: 2,
-    title: "Burger",
-    icon: <FaHamburger />,
-    items: "98 Items",
-    color: "#FFC107",
-  },
-  {
-    id: 3,
-    title: "Biryani",
-    icon: <FaDrumstickBite />,
-    items: "82 Items",
-    color: "#EF4444",
-  },
-  {
-    id: 4,
-    title: "Noodles",
-    icon: <GiNoodles />,
-    items: "60 Items",
-    color: "#F97316",
-  },
-  {
-    id: 5,
-    title: "Drinks",
-    icon: <FaGlassWhiskey />,
-    items: "50 Items",
-    color: "#06B6D4",
-  },
-  {
-    id: 6,
-    title: "Desserts",
-    icon: <FaIceCream />,
-    items: "40 Items",
-    color: "#EC4899",
-  },
-  {
-    id: 7,
-    title: "Salads",
-    icon: <FaLeaf />,
-    items: "25 Items",
-    color: "#22C55E",
-  },
+
+{
+name:"Pizza",
+icon:"🍕",
+color:"#FFE5E5"
+},
+
+{
+name:"Burger",
+icon:"🍔",
+color:"#FFF4D9"
+},
+
+{
+name:"Biryani",
+icon:"🍛",
+color:"#FFE8C7"
+},
+
+{
+name:"Fast Food",
+icon:"🍟",
+color:"#FFF2D6"
+},
+
+{
+name:"Drinks",
+icon:"🥤",
+color:"#E5F7FF"
+},
+
+{
+name:"Desserts",
+icon:"🍰",
+color:"#FFE8F3"
+},
+
+{
+name:"Salads",
+icon:"🥗",
+color:"#E8FFE5"
+},
+
+{
+name:"Noodles",
+icon:"🍜",
+color:"#FFF1DA"
+}
+
 ];
 
-export default function BrowseCategories() {
-  return (
-    <section className="browseCategories">
+export default function BrowseCategories(){
 
-      <div className="sectionHeading">
+return(
 
-        <div>
-          <h2>Browse Categories</h2>
-          <p>Choose your favourite food</p>
-        </div>
+<section className="browseCategories">
 
-        <button className="viewAllBtn">
-          View All
-        </button>
+<h2>Browse Categories</h2>
 
-      </div>
+<div className="categoryRow">
 
-      <div className="categoryContainer">
+{
 
-        {categories.map((category) => (
+categories.map((item,index)=>(
 
-          <CategoryCard
-            key={category.id}
-            title={category.title}
-            icon={category.icon}
-            items={category.items}
-            color={category.color}
-            active={category.id === 1}
-            onClick={() => console.log(category.title)}
-          />
+<CategoryCard
 
-        ))}
+key={index}
 
-      </div>
+item={item}
 
-    </section>
-  );
+/>
+
+))
+
+}
+
+</div>
+
+</section>
+
+);
+
 }

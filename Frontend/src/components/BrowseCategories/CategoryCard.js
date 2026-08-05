@@ -1,39 +1,30 @@
-import React from "react";
-import "./BrowseCategories.css";
+import "./CategoryCard.css";
 
-const CategoryCard = ({
-  title,
-  icon,
-  items,
-  color,
-  active = false,
-  onClick,
-}) => {
-  return (
-    <div
-      className={`categoryCard ${active ? "activeCategory" : ""}`}
-      onClick={onClick}
-      style={{
-        "--cardColor": color,
-      }}
-    >
-      <div className="categoryGlow"></div>
+export default function CategoryCard({item}){
 
-      <div className="categoryIcon">
-        {icon}
-      </div>
+return(
 
-      <div className="categoryContent">
-        <h3>{title}</h3>
+<div
+className="categoryCard"
+style={{
+background:item.color
+}}
+>
 
-        <p>{items}</p>
-      </div>
+<div className="emoji">
 
-      <div className="categoryArrow">
-        →
-      </div>
-    </div>
-  );
-};
+{item.icon}
 
-export default CategoryCard;
+</div>
+
+<h4>
+
+{item.name}
+
+</h4>
+
+</div>
+
+);
+
+}

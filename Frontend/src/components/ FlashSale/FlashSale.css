@@ -1,0 +1,49 @@
+.flashSale{
+
+    margin:60px 0;
+    
+    background:linear-gradient(135deg,#ff6b35,#ff9800);
+    
+    border-radius:30px;
+    
+    padding:40px;
+    
+    display:flex;
+    
+    justify-content:space-between;
+    
+    align-items:center;
+    
+    color:white;
+    
+    overflow:hidden;
+    
+    }
+    
+    .flashSale img{
+    
+    width:280px;
+    
+    border-radius:25px;
+    
+    }
+    
+    .flashSale button{
+    
+    margin-top:20px;
+    
+    padding:15px 30px;
+    
+    border:none;
+    
+    border-radius:15px;
+    
+    background:white;
+    
+    color:#ff5722;
+    
+    font-weight:700;
+    
+    cursor:pointer;
+    
+    }

@@ -1,24 +1,48 @@
-.foodCard{
+.trendCard{
 
     background:white;
     
-    border-radius:25px;
+    border-radius:22px;
     
     overflow:hidden;
     
-    box-shadow:0 15px 40px rgba(0,0,0,.08);
+    box-shadow:0 15px 35px rgba(0,0,0,.08);
+    
+    position:relative;
     
     transition:.3s;
     
     }
     
-    .foodCard:hover{
+    .trendCard:hover{
     
     transform:translateY(-10px);
     
     }
     
-    .foodCard img{
+    .offer{
+    
+    position:absolute;
+    
+    top:15px;
+    
+    left:15px;
+    
+    background:#ff5722;
+    
+    color:white;
+    
+    padding:8px 14px;
+    
+    border-radius:50px;
+    
+    font-size:13px;
+    
+    font-weight:600;
+    
+    }
+    
+    .trendCard img{
     
     width:100%;
     
@@ -28,13 +52,13 @@
     
     }
     
-    .foodInfo{
+    .trendInfo{
     
     padding:20px;
     
     }
     
-    .foodBottom{
+    .trendBottom{
     
     display:flex;
     
@@ -46,15 +70,15 @@
     
     }
     
-    .foodBottom button{
+    .trendBottom button{
     
-    padding:12px 22px;
+    padding:12px 20px;
+    
+    border:none;
     
     background:#6D5DFC;
     
     color:white;
-    
-    border:none;
     
     border-radius:12px;
     

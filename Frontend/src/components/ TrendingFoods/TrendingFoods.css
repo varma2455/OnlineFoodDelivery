@@ -1,0 +1,37 @@
+.trendingFoods{
+
+    margin-top:60px;
+    
+    }
+    
+    .sectionTitle{
+    
+    display:flex;
+    
+    justify-content:space-between;
+    
+    align-items:center;
+    
+    margin-bottom:25px;
+    
+    }
+    
+    .sectionTitle a{
+    
+    color:#6D5DFC;
+    
+    font-weight:600;
+    
+    text-decoration:none;
+    
+    }
+    
+    .trendingGrid{
+    
+    display:grid;
+    
+    grid-template-columns:repeat(3,1fr);
+    
+    gap:25px;
+    
+    }

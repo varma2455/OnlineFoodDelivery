@@ -1,4 +1,4 @@
-.foodCard{
+.restaurantCard{
 
     background:white;
     
@@ -6,19 +6,19 @@
     
     overflow:hidden;
     
-    box-shadow:0 15px 40px rgba(0,0,0,.08);
+    box-shadow:0 20px 45px rgba(0,0,0,.08);
     
-    transition:.3s;
+    transition:.35s;
     
     }
     
-    .foodCard:hover{
+    .restaurantCard:hover{
     
     transform:translateY(-10px);
     
     }
     
-    .foodCard img{
+    .restaurantCard img{
     
     width:100%;
     
@@ -28,13 +28,25 @@
     
     }
     
-    .foodInfo{
+    .restaurantInfo{
     
     padding:20px;
     
     }
     
-    .foodBottom{
+    .restaurantMeta{
+    
+    display:flex;
+    
+    justify-content:space-between;
+    
+    margin:15px 0;
+    
+    font-size:15px;
+    
+    }
+    
+    .restaurantBottom{
     
     display:flex;
     
@@ -42,19 +54,17 @@
     
     align-items:center;
     
-    margin-top:20px;
-    
     }
     
-    .foodBottom button{
+    .restaurantBottom button{
     
     padding:12px 22px;
+    
+    border:none;
     
     background:#6D5DFC;
     
     color:white;
-    
-    border:none;
     
     border-radius:12px;
     

@@ -1,37 +1,389 @@
+/* =========================================
+   TRENDING FOODS
+========================================= */
+
 .trendingFoods{
 
-    margin-top:60px;
-    
-    }
-    
-    .sectionTitle{
-    
+    margin-top:20px;
+    padding-top: 30px;
+    padding-bottom: 50px;
+
+    width:100%;
+
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.sectionTitle{
+
     display:flex;
-    
+
     justify-content:space-between;
-    
+
     align-items:center;
-    
-    margin-bottom:25px;
-    
-    }
-    
-    .sectionTitle a{
-    
-    color:#6D5DFC;
-    
-    font-weight:600;
-    
-    text-decoration:none;
-    
-    }
-    
-    .trendingGrid{
-    
+
+    margin-bottom:30px;
+
+}
+
+
+.sectionTitle h2{
+
+    margin:0;
+
+    font-size:32px;
+
+    color:#1e293b;
+
+}
+
+
+.sectionTitle p{
+
+    color:#64748b;
+
+    margin-top:8px;
+
+    margin-bottom:0;
+
+}
+
+
+.sectionTitle button{
+
+    background:#6C63FF;
+
+    color:white;
+
+    border:none;
+
+    padding:12px 25px;
+
+    border-radius:30px;
+
+    cursor:pointer;
+
+    font-size:14px;
+
+}
+
+
+/* =========================================
+   GRID
+========================================= */
+
+.trendingGrid{
+
     display:grid;
-    
-    grid-template-columns:repeat(3,1fr);
-    
-    gap:25px;
-    
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(280px,1fr));
+
+    gap:30px;
+
+}
+
+
+/* =========================================
+   CARD
+========================================= */
+
+.trendingCard{
+
+    background:white;
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    position:relative;
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,.08);
+
+    transition:.4s;
+
+}
+
+
+.trendingCard:hover{
+
+    transform:translateY(-12px);
+
+    box-shadow:
+        0 25px 45px rgba(0,0,0,.18);
+
+}
+
+
+/* =========================================
+   IMAGE
+========================================= */
+
+.trendingImage{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+
+.trendingCard img{
+
+    width:100%;
+
+    height:220px;
+
+    object-fit:cover;
+
+    display:block;
+
+    transition:.4s;
+
+}
+
+
+.trendingCard:hover img{
+
+    transform:scale(1.08);
+
+}
+
+
+/* =========================================
+   BADGE
+========================================= */
+
+.badge{
+
+    position:absolute;
+
+    top:18px;
+
+    left:18px;
+
+    background:#ff5722;
+
+    color:white;
+
+    padding:8px 15px;
+
+    border-radius:20px;
+
+    font-size:13px;
+
+    z-index:5;
+
+}
+
+
+/* =========================================
+   WISHLIST
+========================================= */
+
+.wishlist{
+
+    position:absolute;
+
+    top:18px;
+
+    right:18px;
+
+    width:42px;
+
+    height:42px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:white;
+
+    color:#222;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 10px 20px rgba(0,0,0,.15);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:5;
+
+}
+
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.trendingContent{
+
+    padding:22px;
+
+}
+
+
+.trendingContent h3{
+
+    margin:0 0 12px;
+
+    font-size:20px;
+
+    color:#1e293b;
+
+}
+
+
+/* =========================================
+   RATING
+========================================= */
+
+.rating{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    color:#f59e0b;
+
+    margin-bottom:10px;
+
+    font-size:13px;
+
+}
+
+
+/* =========================================
+   DELIVERY
+========================================= */
+
+.delivery{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    color:#64748b;
+
+    margin-bottom:15px;
+
+    font-size:13px;
+
+}
+
+
+/* =========================================
+   PRICE
+========================================= */
+
+.price{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-bottom:20px;
+
+}
+
+
+.price h2{
+
+    color:#6C63FF;
+
+    margin:0;
+
+    font-size:28px;
+
+}
+
+
+.price del{
+
+    color:#64748b;
+
+    font-size:12px;
+
+}
+
+
+/* =========================================
+   CART BUTTON
+========================================= */
+
+.cartButton{
+
+    width:100%;
+
+    border:none;
+
+    padding:14px;
+
+    border-radius:15px;
+
+    background:#6C63FF;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+
+.cartButton:hover{
+
+    opacity:.9;
+
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media(max-width:1200px){
+
+    .trendingGrid{
+
+        grid-template-columns:
+            repeat(2,minmax(280px,1fr));
+
     }
+
+}
+
+
+@media(max-width:700px){
+
+    .trendingGrid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}

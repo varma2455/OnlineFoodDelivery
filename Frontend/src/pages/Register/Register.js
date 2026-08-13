@@ -186,7 +186,7 @@ const Register = () => {
     
             // Step 5: Send user details to backend
             const { data } = await axios.post(
-                `${process.env.REACT_APP_API}/api/auth/register`,
+                `https://onlinefooddelivery-9g60.onrender.com/api/auth/register`,
                 {
                     fullName: formData.name,
                     phone: formData.phone,

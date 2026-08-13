@@ -1,5 +1,7 @@
 .browseRecommended{
-    margin-top:50px;
+    margin-top:20px;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 
 .recommendHeader{
@@ -59,15 +61,7 @@
 }
 
 .foodCard img{
-
-    width:100%;
-
     height:220px;
-
-    object-fit:cover;
-
-    transition:.4s;
-
 }
 
 .foodCard:hover img{

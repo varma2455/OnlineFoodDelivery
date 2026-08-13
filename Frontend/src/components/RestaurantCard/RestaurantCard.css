@@ -1,73 +1,143 @@
 .restaurantCard{
+    background:#fff;
 
-    background:white;
-    
-    border-radius:25px;
-    
+    border-radius:18px;
+
     overflow:hidden;
-    
-    box-shadow:0 20px 45px rgba(0,0,0,.08);
-    
-    transition:.35s;
-    
-    }
-    
-    .restaurantCard:hover{
-    
-    transform:translateY(-10px);
-    
-    }
-    
-    .restaurantCard img{
-    
+
     width:100%;
-    
-    height:220px;
-    
+
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+
+    transition:.25s;
+}
+
+.restaurantCard:hover{
+    transform:translateY(-5px);
+
+    box-shadow:0 12px 30px rgba(0,0,0,.12);
+}
+
+
+/* IMAGE */
+
+.restaurantCard img{
+    width:100%;
+
+    height:180px;
+
     object-fit:cover;
-    
-    }
-    
-    .restaurantInfo{
-    
-    padding:20px;
-    
-    }
-    
-    .restaurantMeta{
-    
+
+    display:block;
+}
+
+
+/* INFORMATION */
+
+.restaurantInfo{
+    padding:16px;
+}
+
+
+/* NAME */
+
+.restaurantInfo h3{
+    margin:0 0 6px;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    color:#222;
+}
+
+
+/* CUISINE */
+
+.restaurantInfo > p{
+    margin:0 0 12px;
+
+    font-size:13px;
+
+    color:#777;
+}
+
+
+/* RATING + TIME */
+
+.restaurantMeta{
     display:flex;
-    
+
     justify-content:space-between;
-    
-    margin:15px 0;
-    
-    font-size:15px;
-    
-    }
-    
-    .restaurantBottom{
-    
-    display:flex;
-    
-    justify-content:space-between;
-    
+
     align-items:center;
-    
-    }
-    
-    .restaurantBottom button{
-    
-    padding:12px 22px;
-    
+
+    margin:10px 0 18px;
+
+    font-size:12px;
+
+    color:#687386;
+}
+
+.restaurantMeta span{
+    display:flex;
+
+    align-items:center;
+
+    gap:5px;
+}
+
+
+/* BOTTOM */
+
+.restaurantBottom{
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:12px;
+}
+
+
+/* OFFER */
+
+.restaurantBottom h4{
+    margin:0;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    color:#222;
+}
+
+
+/* VIEW BUTTON */
+
+.restaurantBottom button{
+    flex:1;
+
     border:none;
-    
+
     background:#6D5DFC;
-    
+
     color:white;
-    
-    border-radius:12px;
-    
+
+    border-radius:9px;
+
+    padding:11px 16px;
+
+    font-size:12px;
+
+    font-weight:600;
+
     cursor:pointer;
-    
-    }
+
+    transition:.2s;
+}
+
+.restaurantBottom button:hover{
+    background:#5848e8;
+}

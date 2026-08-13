@@ -1,31 +1,34 @@
-.browseCategories{
+/* ================================
+   BROWSE CATEGORIES
+================================ */
 
-    margin-top:35px;
-    
-    }
-    
-    .browseCategories h2{
-    
-    font-size:28px;
-    
-    margin-bottom:20px;
-    
-    }
-    
-    .categoryRow{
-    
+.browseCategories{
+    margin-top:-18px;
+    width:100%;
+}
+
+
+/* SECTION TITLE */
+
+.browseCategories h2{
+    font-size:22px;
+    margin:0 0 10px;
+    line-height:1.2;
+}
+
+
+/* CATEGORY ROW */
+
+.categoryRow{
     display:flex;
-    
-    gap:18px;
-    
+    gap:12px;
     overflow-x:auto;
-    
-    padding-bottom:10px;
-    
-    }
-    
-    .categoryRow::-webkit-scrollbar{
-    
+    padding-bottom:5px;
+}
+
+
+/* HIDE SCROLLBAR */
+
+.categoryRow::-webkit-scrollbar{
     display:none;
-    
-    }
+}

@@ -56,8 +56,7 @@ const Login = () => {
     
             // Step 4
             const { data } = await axios.post(
-    
-                `${process.env.REACT_APP_API}/api/auth/login`,
+                `https://onlinefooddelivery-9g60.onrender.com/api/auth/login`,
     
                 {},
     
@@ -158,7 +157,7 @@ const Login = () => {
     
             // Step 3: Send token to backend
             const { data } = await axios.post(
-                `${process.env.REACT_APP_API}/api/auth/login`,
+                `https://onlinefooddelivery-9g60.onrender.com/api/auth/login`,
                 null,
                 {
                     headers: {
@@ -412,6 +411,6 @@ const Login = () => {
 
 };
 
-console.log(process.env.REACT_APP_API);
+// console.log(process.env.REACT_APP_API);
 
 export default Login;

@@ -1,25 +1,24 @@
 .browseHero{
-
     display:grid;
-    
     grid-template-columns:1.4fr 1fr;
-    
+    align-items:center;
     gap:40px;
-    
+
     background:linear-gradient(135deg,#6D5DFC,#8B5CF6);
-    
+
     padding:50px;
-    
-    border-radius:30px;
-    
-    color:white;
-    
     margin-top:30px;
-    
+
+    border-radius:30px;
+
+    color:white;
+
+    width:100%;
+    max-width:100%;
+
     overflow:hidden;
-    
-    }
-    
+    box-sizing:border-box;
+}    
     .offerBadge{
     
     display:inline-block;

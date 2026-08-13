@@ -50,6 +50,9 @@ import BrowseFood from "./pages/BrowseFood/BrowseFood";
 function App() {
 
 
+    
+
+
 
     const location = useLocation();
     const dashboardRoutes = [
@@ -62,6 +65,13 @@ function App() {
     
     const hideLayout =
     location.pathname.startsWith("/dashboard") ||
+    location.pathname.startsWith("/browse-food") ||
+    location.pathname.startsWith("/orders") ||
+    location.pathname.startsWith("/wishlist") ||
+    location.pathname.startsWith("/wallet") ||
+    location.pathname.startsWith("/offers") ||
+    location.pathname.startsWith("/rewards") ||
+    location.pathname.startsWith("/settings") ||
     location.pathname.startsWith("/admin") ||
     location.pathname.startsWith("/restaurant") ||
     location.pathname.startsWith("/delivery");
@@ -72,6 +82,7 @@ function App() {
 
         <>
 
+            {!hideLayout && <Navbar />}
             
             <Routes>
 
@@ -118,7 +129,7 @@ function App() {
 
             </Routes>
 
-            
+            {!hideLayout && <Footer />}
 
         </>
 

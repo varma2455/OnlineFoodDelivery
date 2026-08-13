@@ -1,7 +1,7 @@
 import React from "react";
 import "./BrowseFood.css";
 
-import BrowseSidebar from "../../components/BrowseSidebar/BrowseSidebar";
+// import BrowseSidebar from "../../components/BrowseSidebar/BrowseSidebar";
 import BrowseHeader from "../../components/BrowseHeader/BrowseHeader";
 
 import BrowseHero from "../../components/BrowseHero/BrowseHero";
@@ -15,6 +15,8 @@ import TrendingFoods from "../../components/TrendingFoods/TrendingFoods";
 import FlashSale from "../../components/FlashSale/FlashSale";
 import ChefSpecial from "../../components/ChefSpecial/ChefSpecial";
 
+import DashboardSidebar from "../../components/DashboardSidebar/DashboardSidebar";
+
 export default function BrowseFood() {
 
     return (
@@ -22,32 +24,22 @@ export default function BrowseFood() {
         <div className="browseLayout">
 
             {/* LEFT SIDEBAR */}
-            <BrowseSidebar />
+            <DashboardSidebar />
 
             {/* CENTER CONTENT */}
+            
             <main className="browseMain">
-
-                <BrowseHeader />
-
                 <div className="mainContent">
-
                     <BrowseHero />
-
                     <BrowseCategories />
-
                     <BrowseFilters />
-
                     <TopRestaurants />
-
                     <RecommendedFoods />
-
                     <TrendingFoods />
-
                     <FlashSale />
-
                     <ChefSpecial />
-
                 </div>
+                
 
             </main>
 

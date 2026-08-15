@@ -1,4 +1,11 @@
 import React, { useState } from "react";
+import {
+    useNavigate,
+    useParams,
+    useLocation
+} from "react-router-dom";
+
+
 import "./PizzaOrder.css";
 
 import {
@@ -15,9 +22,185 @@ import {
 // import pizzaImage from "../../assets/images/pizza.png";
 
 
+const pizzaData = [
+
+    {
+        id: 1,
+        name: "Farmhouse Pizza",
+        restaurant: "Pizza Hut",
+        price: 299,
+        rating: "4.8",
+        reviews: "2.4k",
+        image:
+            "https://images.unsplash.com/photo-1579751626657-72bc17010498?w=900",
+        description:
+            "A delicious combination of fresh vegetables, mozzarella cheese, capsicum, mushrooms and olives on our signature pizza base."
+    },
+
+    {
+        id: 2,
+        name: "Margherita Pizza",
+        restaurant: "Domino's Pizza",
+        price: 199,
+        rating: "4.7",
+        reviews: "2.1k",
+        image:
+            "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=900",
+        description:
+            "Classic Margherita pizza made with rich tomato sauce, mozzarella cheese and fresh basil."
+    },
+
+    {
+        id: 3,
+        name: "Peppy Paneer",
+        restaurant: "La Pino'z Pizza",
+        price: 349,
+        rating: "4.9",
+        reviews: "3.2k",
+        image:
+            "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?w=900",
+        description:
+            "Soft paneer, fresh vegetables and delicious spices topped with mozzarella cheese."
+    },
+
+    {
+        id: 4,
+        name: "Chicken Tikka Pizza",
+        restaurant: "Pizza Hut",
+        price: 399,
+        rating: "4.6",
+        reviews: "1.7k",
+        image:
+            "https://images.unsplash.com/photo-1566843972142-a7fcb70de55a?w=900",
+        description:
+            "Juicy chicken tikka combined with mozzarella cheese and delicious pizza sauce."
+    },
+
+    {
+        id: 5,
+        name: "Cheese Burst Pizza",
+        restaurant: "Domino's Pizza",
+        price: 449,
+        rating: "4.8",
+        reviews: "2.8k",
+        image:
+            "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=900",
+        description:
+            "A cheesy delight loaded with creamy cheese and a delicious cheese burst crust."
+    },
+
+    {
+        id: 6,
+        name: "Veggie Delight",
+        restaurant: "Oven Story",
+        price: 249,
+        rating: "4.7",
+        reviews: "1.2k",
+        image:
+            "https://images.unsplash.com/photo-1594007654729-407eedc4be65?w=900",
+        description:
+            "Fresh vegetables, cheese and delicious herbs combined on a crispy pizza base."
+    },
+
+    {
+        id: 7,
+        name: "Pepperoni Pizza",
+        restaurant: "Domino's Pizza",
+        price: 399,
+        rating: "4.8",
+        reviews: "2.5k",
+        image:
+            "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=900",
+        description:
+            "Classic pepperoni pizza topped with rich tomato sauce and melted mozzarella cheese."
+    },
+
+    {
+        id: 8,
+        name: "Mexican Green Wave",
+        restaurant: "La Pino'z Pizza",
+        price: 299,
+        rating: "4.6",
+        reviews: "980",
+        image:
+            "https://images.unsplash.com/photo-1579751626657-72bc17010498?w=900",
+        description:
+            "A spicy Mexican-inspired pizza loaded with crunchy vegetables and delicious cheese."
+    },
+
+    {
+        id: 9,
+        name: "Chicken Dominator",
+        restaurant: "Domino's Pizza",
+        price: 449,
+        rating: "4.9",
+        reviews: "3.6k",
+        image:
+            "https://images.unsplash.com/photo-1566843972142-a7fcb70de55a?w=900",
+        description:
+            "A loaded chicken pizza packed with tender chicken pieces, cheese and rich pizza sauce."
+    },
+
+    {
+        id: 10,
+        name: "Cheese Lovers",
+        restaurant: "Pizza Hut",
+        price: 369,
+        rating: "4.7",
+        reviews: "1.9k",
+        image:
+            "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=900",
+        description:
+            "A perfect pizza for cheese lovers with extra mozzarella and a rich creamy cheese topping."
+    },
+
+    {
+        id: 11,
+        name: "Paneer Tikka Pizza",
+        restaurant: "Oven Story",
+        price: 329,
+        rating: "4.8",
+        reviews: "2.2k",
+        image:
+            "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?w=900",
+        description:
+            "Spicy paneer tikka, fresh vegetables and mozzarella cheese on a delicious pizza base."
+    },
+
+    {
+        id: 12,
+        name: "Chicken Pepper Pizza",
+        restaurant: "La Pino'z Pizza",
+        price: 419,
+        rating: "4.7",
+        reviews: "1.7k",
+        image:
+            "https://images.unsplash.com/photo-1566843972142-a7fcb70de55a?w=900",
+        description:
+            "Tender chicken, pepper and mozzarella cheese combined with a flavorful pizza sauce."
+    }
+
+];
+
+
 export default function PizzaOrder() {
 
+    const { id } = useParams();
+
+    const navigate = useNavigate();
+
+    const location = useLocation();
+
+    const selectedPizza =
+        location.state?.pizza ||
+        pizzaData.find(
+            pizza => pizza.id === Number(id)
+        ) ||
+        pizzaData[0];
+
     const [size, setSize] = useState("Medium");
+
+
 
     const [crust, setCrust] = useState("Classic Hand Tossed");
 
@@ -27,10 +210,10 @@ export default function PizzaOrder() {
 
 
     const basePrices = {
-        Small: 199,
-        Medium: 299,
-        Large: 399
-    };
+    Small: Math.max(99, selectedPizza.price - 100),
+    Medium: selectedPizza.price,
+    Large: selectedPizza.price + 100
+};
 
 
     const crustPrices = {
@@ -118,10 +301,8 @@ export default function PizzaOrder() {
 
             <header className="pizzaHeader">
 
-                <button className="backButton">
-
+                <button className="backButton" onClick={() => navigate(-1)}>
                     <FaArrowLeft />
-
                 </button>
 
 
@@ -163,18 +344,18 @@ export default function PizzaOrder() {
 
                     <div className="pizzaImageCard">
 
-                    <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=900" alt="Pizza" className="pizzaMainImage"/>
+                    <img src={selectedPizza.image} alt={selectedPizza.name} className="pizzaMainImage"/>
 
                         <div className="pizzaRating">
 
                             <FaStar />
 
                             <span>
-                                4.8
+                                {selectedPizza.rating}
                             </span>
 
                             <span>
-                                2.4k+ ratings
+                                {selectedPizza.reviews}+ ratings
                             </span>
 
                         </div>
@@ -237,7 +418,7 @@ export default function PizzaOrder() {
                     <div className="restaurantName">
 
                         <span>
-                            La Pino'z Pizza
+                            {selectedPizza.restaurant}
                         </span>
 
                         <span className="verified">
@@ -248,16 +429,15 @@ export default function PizzaOrder() {
 
 
                     <h1>
-                        Farmhouse Pizza
+                        {selectedPizza.name}
                     </h1>
 
 
                     <p className="pizzaDescription">
 
-                        A delicious combination of fresh
-                        vegetables, mozzarella cheese,
-                        capsicum, mushrooms and olives
-                        on our signature pizza base.
+                    {selectedPizza.description ||
+    `Freshly prepared ${selectedPizza.name} from ${selectedPizza.restaurant}, made with delicious ingredients and premium cheese.`
+}
 
                     </p>
 

@@ -49,6 +49,8 @@ import BrowseFood from "./pages/BrowseFood/BrowseFood";
 
 import PizzaOrder from "./pages/PizzaOrder/PizzaOrder";
 
+import PizzaPage from "./pages/PizzaPage/PizzaPage";
+
 function App() {
 
 
@@ -76,7 +78,8 @@ function App() {
     location.pathname.startsWith("/settings") ||
     location.pathname.startsWith("/admin") ||
     location.pathname.startsWith("/restaurant") ||
-    location.pathname.startsWith("/delivery");
+    location.pathname.startsWith("/delivery") ||
+    location.pathname.startsWith("/order-pizza");
 
     
 
@@ -130,7 +133,10 @@ function App() {
                 <Route path="/settings" element={<Settings />} /> */}
 
 
-                <Route path="/order-pizza" element={<PizzaOrder />} />
+                <Route path="/order-pizza" element={<PizzaPage />} />
+                {/* <Route path="/order-pizza/:id" element={<PizzaPage />} /> */}
+                <Route path="/order-pizza/:id" element={<PizzaOrder />}/>
+                
 
 
             </Routes>

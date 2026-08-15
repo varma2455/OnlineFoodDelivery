@@ -1,30 +1,37 @@
+import React from "react";
+import { Link } from "react-router-dom";
+
 import "./CategoryCard.css";
 
-export default function CategoryCard({item}){
 
-return(
+export default function CategoryCard({ item }){
 
-<div
-className="categoryCard"
-style={{
-background:item.color
-}}
->
+    return(
 
-<div className="emoji">
+        <Link
+            to={item.link}
+            className="categoryCardLink"
+        >
 
-{item.icon}
+            <div
+                className="categoryCard"
+                style={{
+                    background:item.color
+                }}
+            >
 
-</div>
+                <div className="categoryIcon">
+                    {item.icon}
+                </div>
 
-<h4>
+                <h3>
+                    {item.name}
+                </h3>
 
-{item.name}
+            </div>
 
-</h4>
+        </Link>
 
-</div>
-
-);
+    );
 
 }

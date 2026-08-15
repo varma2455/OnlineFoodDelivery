@@ -1,6 +1,7 @@
 import React from "react";
 import "./BrowseFood.css";
 
+
 // import BrowseSidebar from "../../components/BrowseSidebar/BrowseSidebar";
 import BrowseHeader from "../../components/BrowseHeader/BrowseHeader";
 

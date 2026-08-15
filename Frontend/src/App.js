@@ -47,6 +47,8 @@ import Noodles from "./pages/Noodles/Noodles";
 
 import BrowseFood from "./pages/BrowseFood/BrowseFood";
 
+import PizzaOrder from "./pages/PizzaOrder/PizzaOrder";
+
 function App() {
 
 
@@ -126,6 +128,10 @@ function App() {
                 <Route path="/rewards" element={<Rewards />} />
                 <Route path="/support" element={<Support />} />
                 <Route path="/settings" element={<Settings />} /> */}
+
+
+                <Route path="/order-pizza" element={<PizzaOrder />} />
+
 
             </Routes>
 

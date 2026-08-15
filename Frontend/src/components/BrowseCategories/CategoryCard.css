@@ -43,3 +43,13 @@
     font-weight:600;
     
     }
+
+    .categoryCardLink{
+        text-decoration:none;
+        color:inherit;
+        display:block;
+    }
+    
+    .categoryCardLink:hover{
+        color:inherit;
+    }

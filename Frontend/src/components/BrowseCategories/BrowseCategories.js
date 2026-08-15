@@ -4,86 +4,94 @@ import CategoryCard from "./CategoryCard";
 
 const categories = [
 
-{
-name:"Pizza",
-icon:"🍕",
-color:"#FFE5E5"
-},
+    {
+        name:"Pizza",
+        icon:"🍕",
+        color:"#FFE5E5",
+        link:"/order-pizza"
+    },
 
-{
-name:"Burger",
-icon:"🍔",
-color:"#FFF4D9"
-},
+    {
+        name:"Burger",
+        icon:"🍔",
+        color:"#FFF4D9",
+        link:"/category/burger"
+    },
 
-{
-name:"Biryani",
-icon:"🍛",
-color:"#FFE8C7"
-},
+    {
+        name:"Biryani",
+        icon:"🍛",
+        color:"#FFE8C7",
+        link:"/category/biryani"
+    },
 
-{
-name:"Fast Food",
-icon:"🍟",
-color:"#FFF2D6"
-},
+    {
+        name:"Fast Food",
+        icon:"🍟",
+        color:"#FFF2D6",
+        link:"/category/fast-food"
+    },
 
-{
-name:"Drinks",
-icon:"🥤",
-color:"#E5F7FF"
-},
+    {
+        name:"Drinks",
+        icon:"🥤",
+        color:"#E5F7FF",
+        link:"/category/drinks"
+    },
 
-{
-name:"Desserts",
-icon:"🍰",
-color:"#FFE8F3"
-},
+    {
+        name:"Desserts",
+        icon:"🍰",
+        color:"#FFE8F3",
+        link:"/category/desserts"
+    },
 
-{
-name:"Salads",
-icon:"🥗",
-color:"#E8FFE5"
-},
+    {
+        name:"Salads",
+        icon:"🥗",
+        color:"#E8FFE5",
+        link:"/category/salads"
+    },
 
-{
-name:"Noodles",
-icon:"🍜",
-color:"#FFF1DA"
-}
+    {
+        name:"Noodles",
+        icon:"🍜",
+        color:"#FFF1DA",
+        link:"/category/noodles"
+    }
 
 ];
 
+
 export default function BrowseCategories(){
 
-return(
+    return(
 
-<section className="browseCategories">
+        <section className="browseCategories">
 
-<h2>Browse Categories</h2>
+            <h2>
+                Browse Categories
+            </h2>
 
-<div className="categoryRow">
+            <div className="categoryRow">
 
-{
+                {
 
-categories.map((item,index)=>(
+                    categories.map((item,index)=>(
 
-<CategoryCard
+                        <CategoryCard
+                            key={index}
+                            item={item}
+                        />
 
-key={index}
+                    ))
 
-item={item}
+                }
 
-/>
+            </div>
 
-))
+        </section>
 
-}
-
-</div>
-
-</section>
-
-);
+    );
 
 }

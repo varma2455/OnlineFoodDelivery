@@ -1,0 +1,636 @@
+* {
+    box-sizing: border-box;
+}
+
+.biryaniOrderPage {
+    min-height: 100vh;
+    background: #f7f8fc;
+    padding: 45px 20px;
+}
+
+.biryaniOrderContainer {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: 395px 1fr;
+    gap: 34px;
+
+    align-items: start;
+}
+
+
+/* LEFT */
+
+.biryaniOrderLeft {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.biryaniImageCard {
+    width: 100%;
+    height: 420px;
+
+    background: white;
+    padding: 14px;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 10px 30px rgba(15,23,42,.08);
+
+    overflow: hidden;
+}
+
+.biryaniImageCard img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    display: block;
+
+    border-radius: 15px;
+}
+
+.biryaniRatingCard {
+    height: 45px;
+
+    background: white;
+    border-radius: 12px;
+
+    padding: 0 16px;
+
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    box-shadow:
+        0 7px 20px rgba(15,23,42,.05);
+
+    font-size: 11px;
+}
+
+.biryaniRatingCard svg {
+    color: #f59e0b;
+    font-size: 12px;
+}
+
+.biryaniRatingCard span {
+    color: #94a3b8;
+}
+
+.biryaniDeliveryCard {
+    min-height: 58px;
+
+    background: white;
+    border-radius: 12px;
+
+    padding: 10px 14px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+
+    box-shadow:
+        0 7px 20px rgba(15,23,42,.05);
+}
+
+.deliveryItem {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.deliveryItem svg {
+    color: #6c63ff;
+    font-size: 14px;
+}
+
+.deliveryItem strong {
+    display: block;
+    font-size: 10px;
+    margin-bottom: 3px;
+}
+
+.deliveryItem span {
+    display: block;
+    color: #94a3b8;
+    font-size: 8px;
+}
+
+
+/* RIGHT */
+
+.biryaniOrderRight {
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 27px 24px 20px;
+
+    box-shadow:
+        0 10px 30px rgba(15,23,42,.08);
+}
+
+.biryaniRestaurant {
+    color: #6c63ff;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    margin-bottom: 12px;
+}
+
+.biryaniRestaurant span {
+    width: 14px;
+    height: 14px;
+
+    border-radius: 50%;
+
+    background: #6c63ff;
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 7px;
+}
+
+.biryaniOrderRight h1 {
+    margin: 0 0 9px;
+
+    font-size: 27px;
+    line-height: 1.15;
+
+    color: #202a3c;
+}
+
+.biryaniDescription {
+    margin: 0 0 18px;
+
+    color: #64748b;
+
+    font-size: 10px;
+    line-height: 1.6;
+}
+
+.biryaniMainPrice {
+    color: #202a3c;
+
+    font-size: 22px;
+    font-weight: 800;
+
+    margin-bottom: 22px;
+}
+
+
+/* SECTIONS */
+
+.biryaniSection {
+    margin-bottom: 19px;
+}
+
+.biryaniSectionTitle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    margin-bottom: 10px;
+}
+
+.biryaniSectionTitle h3 {
+    margin: 0;
+
+    font-size: 12px;
+    color: #202a3c;
+}
+
+.biryaniSectionTitle span {
+    background: #f1efff;
+
+    color: #6c63ff;
+
+    border-radius: 10px;
+
+    padding: 3px 7px;
+
+    font-size: 7px;
+    font-weight: 600;
+}
+
+
+/* SIZE */
+
+.biryaniSizeGrid {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr 1fr;
+
+    gap: 8px;
+}
+
+.sizeOption {
+    height: 54px;
+
+    border: 1px solid #d9dce3;
+
+    background: white;
+
+    border-radius: 10px;
+
+    text-align: left;
+
+    padding: 9px;
+
+    cursor: pointer;
+}
+
+.sizeOption.selected {
+    border-color: #6c63ff;
+    background: #f6f4ff;
+}
+
+.sizeOption strong {
+    display: block;
+
+    font-size: 10px;
+
+    margin-bottom: 5px;
+}
+
+.sizeOption small {
+    font-size: 8px;
+    color: #777;
+}
+
+
+/* RICE */
+
+.biryaniOptionGrid {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 8px;
+}
+
+.biryaniOption {
+    height: 42px;
+
+    border: 1px solid #d9dce3;
+
+    background: white;
+
+    border-radius: 9px;
+
+    padding: 8px 10px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    cursor: pointer;
+
+    text-align: left;
+
+    color: #334155;
+
+    font-size: 9px;
+}
+
+.biryaniOption.selected {
+    border-color: #6c63ff;
+    background: #f6f4ff;
+}
+
+.biryaniOption small {
+    margin-left: auto;
+
+    color: #6c63ff;
+
+    font-size: 7px;
+}
+
+.radio {
+    color: #6c63ff;
+}
+
+
+/* SPICE */
+
+.biryaniSpiceGrid {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr 1fr;
+
+    gap: 8px;
+}
+
+.spiceOption {
+    height: 40px;
+
+    border: 1px solid #d9dce3;
+
+    background: white;
+
+    border-radius: 9px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 6px;
+
+    padding: 8px;
+
+    cursor: pointer;
+
+    font-size: 9px;
+}
+
+.spiceOption.selected {
+    border-color: #6c63ff;
+    background: #f6f4ff;
+}
+
+.spiceOption small {
+    margin-left: auto;
+
+    color: #6c63ff;
+}
+
+
+/* EXTRAS */
+
+.biryaniExtrasGrid {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 8px;
+}
+
+.extraOption {
+    height: 48px;
+
+    border: 1px solid #d9dce3;
+
+    background: white;
+
+    border-radius: 9px;
+
+    padding: 7px 9px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    cursor: pointer;
+
+    text-align: left;
+}
+
+.extraOption.selected {
+    border-color: #6c63ff;
+
+    background: #f6f4ff;
+}
+
+.extraPlus {
+    width: 23px;
+    height: 23px;
+
+    background: #f1f2f6;
+
+    color: #6c63ff;
+
+    border-radius: 6px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.extraText strong {
+    display: block;
+
+    font-size: 9px;
+
+    margin-bottom: 3px;
+}
+
+.extraText small {
+    display: block;
+
+    color: #777;
+
+    font-size: 7px;
+}
+
+
+/* QUANTITY */
+
+.biryaniQuantityRow {
+    border-bottom: 1px solid #e5e7eb;
+
+    padding: 4px 0 20px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+.biryaniQuantityRow h3 {
+    margin: 0;
+
+    font-size: 12px;
+}
+
+.quantityBox {
+    height: 34px;
+
+    min-width: 105px;
+
+    padding: 3px;
+
+    border: 1px solid #d9dce3;
+
+    border-radius: 9px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+.quantityBox button {
+    width: 26px;
+    height: 26px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background: #f1f2f5;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 8px;
+}
+
+.quantityBox span {
+    font-size: 11px;
+    font-weight: 600;
+}
+
+
+/* BOTTOM */
+
+.biryaniBottom {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-end;
+
+    padding-top: 15px;
+}
+
+.biryaniBottom span {
+    display: block;
+
+    color: #94a3b8;
+
+    font-size: 8px;
+
+    margin-bottom: 4px;
+}
+
+.biryaniBottom strong {
+    display: block;
+
+    color: #202a3c;
+
+    font-size: 20px;
+}
+
+.biryaniAddButton {
+    height: 34px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #6c63ff;
+
+    color: white;
+
+    padding: 0 13px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 5px;
+
+    cursor: pointer;
+
+    font-size: 8px;
+
+    font-weight: 600;
+}
+
+
+/* ERROR */
+
+.biryaniOrderError {
+    min-height: 100vh;
+
+    background: #f7f8fc;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+}
+
+.biryaniErrorIcon {
+    font-size: 55px;
+}
+
+.biryaniOrderError button {
+    border: none;
+
+    background: #6c63ff;
+
+    color: white;
+
+    padding: 9px 16px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 850px) {
+
+    .biryaniOrderContainer {
+        grid-template-columns: 1fr;
+
+        max-width: 550px;
+    }
+
+    .biryaniImageCard {
+        height: 380px;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .biryaniOrderPage {
+        padding: 15px 10px;
+    }
+
+    .biryaniOrderRight {
+        padding: 20px 16px;
+    }
+
+    .biryaniOptionGrid,
+    .biryaniExtrasGrid {
+        grid-template-columns: 1fr;
+    }
+
+}

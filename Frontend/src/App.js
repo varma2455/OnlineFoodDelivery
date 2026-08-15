@@ -53,8 +53,13 @@ import PizzaPage from "./pages/PizzaPage/PizzaPage";
 
 
 import BurgerPage from "./pages/BurgerPage/BurgerPage";
-
 import BurgerOrder from "./pages/BurgerOrder/BurgerOrder";
+
+
+import BiryaniPage from "./pages/BiryaniPage/BiryaniPage";
+import BiryaniOrder from "./pages/BiryaniOrder/BiryaniOrder";
+
+
 
 function App() {
 
@@ -85,7 +90,9 @@ function App() {
     location.pathname.startsWith("/restaurant") ||
     location.pathname.startsWith("/delivery") ||
     location.pathname.startsWith("/order-pizza") ||
-    location.pathname.startsWith("/order-burger");
+    location.pathname.startsWith("/order-burger")  ||
+    location.pathname.startsWith("/order-biryani")
+
 
     
 
@@ -148,6 +155,9 @@ function App() {
                 <Route path="/order-burger" element={<BurgerPage />} />
                 {/* <Route path="/order-pizza/:id" element={<PizzaPage />} /> */}
                 <Route path="/order-burger/:id" element={<BurgerOrder />}/>
+
+                <Route path="/order-biryani" element={<BiryaniPage />}/>
+                <Route path="/order-biryani/:id" element={<BiryaniOrder />}/>
                 
                 
 

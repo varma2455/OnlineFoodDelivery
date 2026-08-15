@@ -22,7 +22,7 @@ const categories = [
         name:"Biryani",
         icon:"🍛",
         color:"#FFE8C7",
-        link:"/category/biryani"
+        link:"/order-biryani"
     },
 
     {

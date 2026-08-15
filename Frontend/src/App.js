@@ -51,6 +51,11 @@ import PizzaOrder from "./pages/PizzaOrder/PizzaOrder";
 
 import PizzaPage from "./pages/PizzaPage/PizzaPage";
 
+
+import BurgerPage from "./pages/BurgerPage/BurgerPage";
+
+import BurgerOrder from "./pages/BurgerOrder/BurgerOrder";
+
 function App() {
 
 
@@ -79,7 +84,8 @@ function App() {
     location.pathname.startsWith("/admin") ||
     location.pathname.startsWith("/restaurant") ||
     location.pathname.startsWith("/delivery") ||
-    location.pathname.startsWith("/order-pizza");
+    location.pathname.startsWith("/order-pizza") ||
+    location.pathname.startsWith("/order-burger");
 
     
 
@@ -136,6 +142,13 @@ function App() {
                 <Route path="/order-pizza" element={<PizzaPage />} />
                 {/* <Route path="/order-pizza/:id" element={<PizzaPage />} /> */}
                 <Route path="/order-pizza/:id" element={<PizzaOrder />}/>
+
+
+
+                <Route path="/order-burger" element={<BurgerPage />} />
+                {/* <Route path="/order-pizza/:id" element={<PizzaPage />} /> */}
+                <Route path="/order-burger/:id" element={<BurgerOrder />}/>
+                
                 
 
 

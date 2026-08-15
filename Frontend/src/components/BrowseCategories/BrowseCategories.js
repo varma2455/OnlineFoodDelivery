@@ -15,7 +15,7 @@ const categories = [
         name:"Burger",
         icon:"🍔",
         color:"#FFF4D9",
-        link:"/category/burger"
+        link:"/order-burger"
     },
 
     {

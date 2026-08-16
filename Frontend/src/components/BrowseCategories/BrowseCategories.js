@@ -29,21 +29,21 @@ const categories = [
         name:"Fast Food",
         icon:"🍟",
         color:"#FFF2D6",
-        link:"/category/fast-food"
+        link:"/order-fastfood"
     },
 
     {
         name:"Drinks",
         icon:"🥤",
         color:"#E5F7FF",
-        link:"/category/drinks"
+        link:"/order-drink"
     },
 
     {
         name:"Desserts",
         icon:"🍰",
         color:"#FFE8F3",
-        link:"/category/desserts"
+        link:"/order-dessert"
     },
 
     {
@@ -57,7 +57,7 @@ const categories = [
         name:"Noodles",
         icon:"🍜",
         color:"#FFF1DA",
-        link:"/category/noodles"
+        link:"/order-noodles"
     }
 
 ];

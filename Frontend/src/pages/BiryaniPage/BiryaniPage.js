@@ -18,6 +18,9 @@ import {
 import "./BiryaniPage.css";
 
 
+import DashboardSidebar from "../../components/DashboardSidebar/DashboardSidebar";
+
+
 /* =========================================
    BIRYANI RESTAURANTS
 ========================================= */
@@ -354,6 +357,9 @@ export default function BiryaniPage() {
 
     return (
 
+        <div className="biryaniPageLayout">
+            <DashboardSidebar  />
+
         <div className="biryaniMarketplace">
 
 
@@ -371,9 +377,9 @@ export default function BiryaniPage() {
 
                 <div className="biryaniHeaderText">
 
-                    <span>
+                    {/* <span>
                         FoodExpress
-                    </span>
+                    </span> */}
 
                     <h1>
                         Biryanis
@@ -480,7 +486,7 @@ export default function BiryaniPage() {
 
                 <div className="biryaniHeroImage">
     <img
-        src="https://www.nikaabriyani.com/hyderabadi_biryani.png"
+        src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/5fe59b132047131.61a0ff5563915.jpg"
         alt="Hyderabadi Biryani"
     />
 </div>
@@ -874,6 +880,7 @@ export default function BiryaniPage() {
 
             </section>
 
+        </div>
         </div>
 
     );

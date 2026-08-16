@@ -17,6 +17,8 @@ import {
 
 import "./PizzaPage.css";
 
+import DashboardSidebar from "../../components/DashboardSidebar/DashboardSidebar";
+
 
 const restaurants = [
     {
@@ -365,6 +367,10 @@ export default function PizzaPage() {
 
     return (
 
+        <div className="pizzaPageLayout">
+
+            <DashboardSidebar />
+
         <div className="pizzaMarketplace">
 
 
@@ -386,9 +392,9 @@ export default function PizzaPage() {
 
                 <div className="pizzaHeaderText">
 
-                    <span>
+                    {/* <span>
                         FoodExpress
-                    </span>
+                    </span> */}
 
                     <h1>
                         Pizza
@@ -490,7 +496,7 @@ export default function PizzaPage() {
                 <div className="pizzaHeroImage">
 
                     <img
-                        src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=1200"
+                        src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/f1cdc1130511451.6181b4b5b2326.jpg"
                         alt="Delicious Pizza"
                     />
 
@@ -890,6 +896,8 @@ export default function PizzaPage() {
 
             </section>
 
+
+        </div>
 
         </div>
 

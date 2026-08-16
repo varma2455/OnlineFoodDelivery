@@ -18,6 +18,9 @@ import {
 import "./BurgerPage.css";
 
 
+import DashboardSidebar from "../../components/DashboardSidebar/DashboardSidebar";
+
+
 /* =========================================
    BURGER RESTAURANTS
 ========================================= */
@@ -384,8 +387,11 @@ export default function BurgerPage() {
 
     return (
 
-        <div className="burgerMarketplace">
 
+        <div className="burgerPageLayout">
+            <DashboardSidebar  />
+
+        <div className="burgerMarketplace">
 
             {/* =====================================
                 HEADER
@@ -405,9 +411,9 @@ export default function BurgerPage() {
 
                 <div className="burgerHeaderText">
 
-                    <span>
+                    {/* <span>
                         FoodExpress
-                    </span>
+                    </span> */}
 
                     <h1>
                         Burgers
@@ -923,6 +929,8 @@ export default function BurgerPage() {
 
             </section>
 
+
+        </div>
 
         </div>
 

@@ -8,10 +8,16 @@ import {
     FaMinus,
     FaPlus,
     FaShoppingCart,
+    FaArrowLeft,
+    FaHeart,
     FaCheckCircle
 } from "react-icons/fa";
 
 import "./BiryaniOrder.css";
+
+
+import DashboardSidebar from "../../components/DashboardSidebar/DashboardSidebar";
+
 
 export default function BiryaniOrder() {
 
@@ -197,7 +203,45 @@ export default function BiryaniOrder() {
 
     return (
 
+        <div className="biryaniOrderPageLayout">
+
+            <DashboardSidebar />
+
         <div className="biryaniOrderPage">
+
+
+            {/* =========================
+                                        HEADER
+                                    ========================= */}
+                        
+                                    <header className="pizzaHeader">
+                        
+                                        <button className="backButton" onClick={() => navigate(-1)}>
+                                            <FaArrowLeft />
+                                        </button>
+                        
+                        
+                                        <div className="pizzaHeaderTitle">
+                        
+                                            <h2>
+                                                Order Burger
+                                            </h2>
+                        
+                                            <p>
+                                                Customize your perfect Burger
+                                            </p>
+                        
+                                        </div>
+                        
+                        
+                                        <button className="favoriteButton">
+                        
+                                            <FaHeart />
+                        
+                                        </button>
+                        
+                                    </header>
+                        
 
             <div className="biryaniOrderContainer">
 
@@ -611,6 +655,8 @@ export default function BiryaniOrder() {
                 </div>
 
             </div>
+
+        </div>
 
         </div>
     );

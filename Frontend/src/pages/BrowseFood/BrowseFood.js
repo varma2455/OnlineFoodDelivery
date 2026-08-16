@@ -46,7 +46,7 @@ export default function BrowseFood() {
 
             {/* RIGHT SIDEBAR */}
 
-            <aside className="browseCart">
+            {/* <aside className="browseCart">
 
                 <div className="cartCard">
 
@@ -56,7 +56,7 @@ export default function BrowseFood() {
 
                 </div>
 
-            </aside>
+            </aside> */}
 
         </div>
 

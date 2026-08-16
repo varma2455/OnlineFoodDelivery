@@ -3,6 +3,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import {
     FaStar,
+    FaArrowLeft,
+    FaHeart,
     FaClock,
     FaMotorcycle,
     FaMinus,
@@ -11,7 +13,10 @@ import {
     FaCheckCircle
 } from "react-icons/fa";
 
+
 import "./BurgerOrder.css";
+
+import DashboardSidebar from "../../components/DashboardSidebar/DashboardSidebar";
 
 export default function BurgerOrder() {
 
@@ -210,7 +215,45 @@ export default function BurgerOrder() {
 
     return (
 
+        <div className="burgerOrderPageLayout">
+
+            <DashboardSidebar />
+
         <div className="burgerOrderPage">
+
+
+            {/* =========================
+                            HEADER
+                        ========================= */}
+            
+                        <header className="pizzaHeader">
+            
+                            <button className="backButton" onClick={() => navigate(-1)}>
+                                <FaArrowLeft />
+                            </button>
+            
+            
+                            <div className="pizzaHeaderTitle">
+            
+                                <h2>
+                                    Order Burger
+                                </h2>
+            
+                                <p>
+                                    Customize your perfect Burger
+                                </p>
+            
+                            </div>
+            
+            
+                            <button className="favoriteButton">
+            
+                                <FaHeart />
+            
+                            </button>
+            
+                        </header>
+            
 
             <div className="burgerOrderContainer">
 
@@ -622,6 +665,7 @@ export default function BurgerOrder() {
 
             </div>
 
+        </div>
         </div>
 
     );

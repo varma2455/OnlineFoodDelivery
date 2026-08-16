@@ -750,6 +750,55 @@
 
 
 /* =========================================
+   PIZZA PAGE WITH SIDEBAR
+========================================= */
+
+.pizzaPageLayout{
+    display:flex;
+    min-height:100vh;
+    background:#f7f8fc;
+}
+
+
+/* =========================================
+   SIDEBAR
+========================================= */
+
+.pizzaPageLayout .browseSidebar{
+    position:fixed;
+    left:0;
+    top:0;
+
+    width:250px;
+    height:100vh;
+
+    flex-shrink:0;
+
+    overflow-y:auto;
+
+    z-index:1000;
+}
+
+
+/* =========================================
+   PIZZA CONTENT
+========================================= */
+
+.pizzaMarketplace{
+    margin-left:250px;
+
+    width:calc(100% - 250px);
+
+    min-height:100vh;
+
+    background:#f7f8fc;
+
+    color:#1e293b;
+
+    padding:0 38px 50px;
+}
+
+/* =========================================
    RESPONSIVE
 ========================================= */
 

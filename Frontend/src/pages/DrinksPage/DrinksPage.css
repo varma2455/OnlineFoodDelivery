@@ -2,7 +2,12 @@
     box-sizing:border-box;
 }
 
-.burgerMarketplace{
+
+/* =========================================
+   DRINK MARKETPLACE
+========================================= */
+
+.drinksMarketplace{
     min-height:100vh;
     background:#f7f8fc;
     color:#1e293b;
@@ -14,7 +19,7 @@
    HEADER
 ========================================= */
 
-.burgerTopHeader{
+.drinksTopHeader{
     height:78px;
     display:flex;
     align-items:center;
@@ -22,7 +27,8 @@
     border-bottom:1px solid #e9e9ef;
 }
 
-.burgerBackButton{
+
+.drinksBackButton{
     width:40px;
     height:40px;
     border:none;
@@ -36,16 +42,19 @@
     box-shadow:0 4px 15px rgba(15,23,42,.05);
 }
 
-.burgerBackButton:hover{
+
+.drinksBackButton:hover{
     background:#6c63ff;
     color:white;
 }
 
-.burgerHeaderText{
+
+.drinksHeaderText{
     flex:1;
 }
 
-.burgerHeaderText span{
+
+.drinksHeaderText span{
     color:#6c63ff;
     font-size:11px;
     font-weight:700;
@@ -53,20 +62,31 @@
     text-transform:uppercase;
 }
 
-.burgerHeaderText h1{
+
+.drinksHeaderText h1{
     margin:2px 0 0;
     font-size:24px;
     line-height:1;
     color:#172033;
 }
 
-.burgerHeaderRight{
+
+/* =========================================
+   HEADER RIGHT
+========================================= */
+
+.drinksHeaderRight{
     display:flex;
     align-items:center;
     gap:12px;
 }
 
-.burgerLocation{
+
+/* =========================================
+   LOCATION
+========================================= */
+
+.drinksLocation{
     display:flex;
     align-items:center;
     gap:8px;
@@ -78,29 +98,38 @@
     text-align:left;
 }
 
-.burgerLocation small{
+
+.drinksLocation small{
     display:block;
     color:#94a3b8;
     font-size:9px;
 }
 
-.burgerLocation strong{
+
+.drinksLocation strong{
     display:block;
     color:#334155;
     font-size:11px;
 }
 
-.burgerLocation svg{
+
+.drinksLocation svg{
     font-size:9px;
     color:#94a3b8;
 }
 
-.burgerLocationDot{
+
+.drinksLocationDot{
     color:#22c55e;
     font-size:10px;
 }
 
-.burgerCart{
+
+/* =========================================
+   CART
+========================================= */
+
+.drinksCart{
     height:40px;
     padding:0 16px;
     border:none;
@@ -119,13 +148,14 @@
    HERO
 ========================================= */
 
-.burgerHero{
+.drinksHero{
     margin-top:25px;
     min-height:280px;
     border-radius:24px;
     overflow:hidden;
     display:grid;
     grid-template-columns:1.1fr .9fr;
+
     background:
         linear-gradient(
             110deg,
@@ -135,7 +165,8 @@
         );
 }
 
-.burgerHeroContent{
+
+.drinksHeroContent{
     padding:42px 45px;
     display:flex;
     flex-direction:column;
@@ -144,7 +175,8 @@
     z-index:2;
 }
 
-.burgerHeroTag{
+
+.drinksHeroTag{
     width:max-content;
     display:flex;
     align-items:center;
@@ -157,11 +189,13 @@
     font-weight:700;
 }
 
-.burgerHeroTag svg{
+
+.drinksHeroTag svg{
     color:#ff9b52;
 }
 
-.burgerHero h2{
+
+.drinksHero h2{
     color:white;
     font-size:39px;
     line-height:1.08;
@@ -170,11 +204,13 @@
     letter-spacing:-1.3px;
 }
 
-.burgerHero h2 span{
+
+.drinksHero h2 span{
     color:#a9a2ff;
 }
 
-.burgerHeroContent > p{
+
+.drinksHeroContent > p{
     margin:0 0 22px;
     color:#d8d6ee;
     font-size:13px;
@@ -182,7 +218,12 @@
     max-width:450px;
 }
 
-.burgerSearchBox{
+
+/* =========================================
+   SEARCH
+========================================= */
+
+.drinksSearchBox{
     width:min(470px,100%);
     height:49px;
     background:white;
@@ -193,12 +234,14 @@
     padding:0 16px;
 }
 
-.burgerSearchBox svg{
+
+.drinksSearchBox svg{
     color:#94a3b8;
     font-size:14px;
 }
 
-.burgerSearchBox input{
+
+.drinksSearchBox input{
     border:none;
     outline:none;
     width:100%;
@@ -207,19 +250,27 @@
     background:transparent;
 }
 
-.burgerSearchBox input::placeholder{
+
+.drinksSearchBox input::placeholder{
     color:#94a3b8;
 }
 
-.burgerHeroImage{
+
+/* =========================================
+   HERO IMAGE
+========================================= */
+
+.drinksHeroImage{
     position:relative;
     min-height:280px;
 }
 
-.burgerHeroImage::after{
+
+.drinksHeroImage::after{
     content:"";
     position:absolute;
     inset:0;
+
     background:
         linear-gradient(
             90deg,
@@ -228,7 +279,8 @@
         );
 }
 
-.burgerHeroImage img{
+
+.drinksHeroImage img{
     width:100%;
     height:100%;
     object-fit:cover;
@@ -239,26 +291,29 @@
    FILTERS
 ========================================= */
 
-.burgerFiltersSection{
+.drinksFiltersSection{
     margin-top:24px;
     display:flex;
     align-items:center;
     justify-content:space-between;
 }
 
-.burgerFilterLeft{
+
+.drinksFilterLeft{
     display:flex;
     align-items:center;
     gap:9px;
 }
 
-.burgerFilterLeft > svg{
+
+.drinksFilterLeft > svg{
     color:#64748b;
     font-size:13px;
     margin-right:3px;
 }
 
-.burgerFilter{
+
+.drinksFilter{
     border:1px solid #e4e7ee;
     background:white;
     color:#64748b;
@@ -270,18 +325,25 @@
     transition:.2s;
 }
 
-.burgerFilter:hover{
+
+.drinksFilter:hover{
     border-color:#6c63ff;
     color:#6c63ff;
 }
 
-.burgerFilter.active{
+
+.drinksFilter.active{
     background:#6c63ff;
     border-color:#6c63ff;
     color:white;
 }
 
-.burgerSortButton{
+
+/* =========================================
+   SORT
+========================================= */
+
+.drinksSortButton{
     border:1px solid #e4e7ee;
     background:white;
     color:#475569;
@@ -294,7 +356,8 @@
     font-size:11px;
 }
 
-.burgerSortButton svg{
+
+.drinksSortButton svg{
     font-size:8px;
 }
 
@@ -303,34 +366,38 @@
    SECTION HEADING
 ========================================= */
 
-.burgerSectionHeading{
+.drinksSectionHeading{
     display:flex;
     justify-content:space-between;
     align-items:flex-end;
     margin-bottom:16px;
 }
 
-.burgerSectionHeading > div > span{
+
+.drinksSectionHeading > div > span{
     color:#6c63ff;
     font-size:9px;
     font-weight:800;
     letter-spacing:1.2px;
 }
 
-.burgerSectionHeading h2{
+
+.drinksSectionHeading h2{
     margin:4px 0 0;
     font-size:23px;
     letter-spacing:-.5px;
     color:#1e293b;
 }
 
-.burgerSectionHeading p{
+
+.drinksSectionHeading p{
     margin:5px 0 0;
     color:#94a3b8;
     font-size:11px;
 }
 
-.burgerSectionHeading > button{
+
+.drinksSectionHeading > button{
     border:none;
     background:none;
     color:#6c63ff;
@@ -344,18 +411,20 @@
    RESTAURANTS
 ========================================= */
 
-.burgerRestaurants{
+.drinksRestaurants{
     margin-top:34px;
 }
 
-.burgerRestaurantScroller{
+
+.drinksRestaurantScroller{
     display:grid;
     grid-template-columns:
         repeat(4,minmax(0,1fr));
     gap:14px;
 }
 
-.burgerRestaurantCard{
+
+.drinksRestaurantCard{
     border:1px solid #edf0f5;
     background:white;
     border-radius:16px;
@@ -368,20 +437,23 @@
     transition:.25s;
 }
 
-.burgerRestaurantCard:hover{
+
+.drinksRestaurantCard:hover{
     transform:translateY(-2px);
     border-color:#d9d5ff;
     box-shadow:
         0 10px 25px rgba(15,23,42,.06);
 }
 
-.burgerRestaurantCard.selected{
+
+.drinksRestaurantCard.selected{
     border-color:#6c63ff;
     box-shadow:
         0 8px 24px rgba(108,99,255,.12);
 }
 
-.burgerRestaurantImage{
+
+.drinksRestaurantImage{
     width:68px;
     height:68px;
     border-radius:12px;
@@ -389,17 +461,20 @@
     flex-shrink:0;
 }
 
-.burgerRestaurantImage img{
+
+.drinksRestaurantImage img{
     width:100%;
     height:100%;
     object-fit:cover;
 }
 
-.burgerRestaurantInfo{
+
+.drinksRestaurantInfo{
     min-width:0;
 }
 
-.burgerRestaurantInfo h3{
+
+.drinksRestaurantInfo h3{
     margin:0 0 7px;
     font-size:12px;
     color:#1e293b;
@@ -408,7 +483,8 @@
     text-overflow:ellipsis;
 }
 
-.burgerRestaurantInfo > div{
+
+.drinksRestaurantInfo > div{
     display:flex;
     align-items:center;
     gap:5px;
@@ -416,7 +492,8 @@
     font-size:9px;
 }
 
-.burgerMiniRating{
+
+.drinksMiniRating{
     color:#f59e0b;
     display:flex;
     align-items:center;
@@ -424,20 +501,22 @@
     font-weight:700;
 }
 
-.burgerMiniRating svg{
+
+.drinksMiniRating svg{
     font-size:8px;
 }
 
 
 /* =========================================
-   BURGER PRODUCTS
+   DRINK PRODUCTS
 ========================================= */
 
-.burgerProducts{
+.drinksProducts{
     margin-top:40px;
 }
 
-.burgerResultCount{
+
+.drinksResultCount{
     background:#eeeefe;
     color:#6c63ff;
     padding:7px 11px;
@@ -446,14 +525,20 @@
     font-weight:700;
 }
 
-.modernBurgerGrid{
+
+/* =========================================
+   DRINK GRID
+========================================= */
+
+.modernDrinksGrid{
     display:grid;
     grid-template-columns:
         repeat(4,minmax(0,1fr));
     gap:22px;
 }
 
-.modernBurgerCard{
+
+.modernDrinksCard{
     background:white;
     border:1px solid #edf0f5;
     border-radius:19px;
@@ -461,7 +546,8 @@
     transition:.3s;
 }
 
-.modernBurgerCard:hover{
+
+.modernDrinksCard:hover{
     transform:translateY(-5px);
     box-shadow:
         0 18px 40px rgba(15,23,42,.09);
@@ -469,139 +555,177 @@
 
 
 /* =========================================
-   BURGER IMAGE
+   DRINK IMAGE
 ========================================= */
 
-.modernBurgerImage{
+.modernDrinksImage{
     height:190px;
     position:relative;
     overflow:hidden;
 }
 
-.modernBurgerImage img{
+
+.modernDrinksImage img{
     width:100%;
     height:100%;
     object-fit:cover;
     transition:.45s;
 }
 
-.modernBurgerCard:hover
-.modernBurgerImage img{
+
+.modernDrinksCard:hover
+.modernDrinksImage img{
     transform:scale(1.06);
 }
 
-.burgerImageGradient{
+
+.drinksImageGradient{
     position:absolute;
     left:0;
     right:0;
     bottom:0;
     height:55px;
+
     background:
         linear-gradient(
             transparent,
             rgba(0,0,0,.18)
         );
+
     pointer-events:none;
 }
 
-.modernBurgerBadge{
+
+/* =========================================
+   BADGE
+========================================= */
+
+.modernDrinksBadge{
     position:absolute;
     top:12px;
     left:12px;
+
     background:white;
     color:#f15b35;
+
     padding:6px 9px;
+
     border-radius:8px;
+
     font-size:9px;
     font-weight:800;
+
     z-index:2;
+
     box-shadow:
         0 5px 15px rgba(0,0,0,.1);
 }
 
-.modernBurgerHeart{
+
+/* =========================================
+   HEART
+========================================= */
+
+.modernDrinksHeart{
     position:absolute;
     top:12px;
     right:12px;
+
     width:32px;
     height:32px;
+
     border:none;
     border-radius:50%;
+
     background:rgba(255,255,255,.94);
     color:#64748b;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     cursor:pointer;
+
     z-index:3;
 }
 
-.modernBurgerHeart:hover{
+
+.modernDrinksHeart:hover{
     color:#ef4444;
 }
 
 
 /* =========================================
-   BURGER CONTENT
+   DRINK CONTENT
 ========================================= */
 
-.modernBurgerContent{
+.modernDrinksContent{
     padding:17px;
 }
 
-.burgerNameRow{
+
+.drinksNameRow{
     display:flex;
     align-items:center;
     gap:7px;
 }
 
-.burgerNameRow h3{
+
+.drinksNameRow h3{
     margin:0;
     font-size:16px;
     font-weight:700;
     color:#172033;
+
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
 }
 
-.burgerVegMark{
-    color:#16a34a;
-    font-size:9px;
-}
 
-.burgerNonVegMark{
-    color:#dc2626;
-    font-size:9px;
-}
-
-.modernBurgerRestaurant{
+.modernDrinksRestaurant{
     margin:6px 0 10px;
     color:#94a3b8;
     font-size:10px;
 }
 
-.modernBurgerMeta{
+
+/* =========================================
+   META
+========================================= */
+
+.modernDrinksMeta{
     display:flex;
     align-items:center;
     gap:6px;
+
     color:#94a3b8;
     font-size:9px;
 }
 
-.modernBurgerMeta svg{
+
+.modernDrinksMeta svg{
     font-size:8px;
 }
 
-.modernBurgerRating{
+
+.modernDrinksRating{
     color:#f59e0b;
+
     display:flex;
     align-items:center;
+
     gap:3px;
+
     font-weight:700;
 }
 
-.modernBurgerDivider{
+
+/* =========================================
+   DIVIDER
+========================================= */
+
+.modernDrinksDivider{
     height:1px;
     background:#f0f1f5;
     margin:13px 0;
@@ -612,25 +736,28 @@
    PRICE
 ========================================= */
 
-.modernBurgerBottom{
+.modernDrinksBottom{
     display:flex;
     align-items:center;
     justify-content:space-between;
     gap:10px;
 }
 
-.modernBurgerPrice{
+
+.modernDrinksPrice{
     display:flex;
     align-items:baseline;
     gap:7px;
 }
 
-.modernBurgerPrice strong{
+
+.modernDrinksPrice strong{
     color:#6c63ff;
     font-size:20px;
 }
 
-.modernBurgerPrice del{
+
+.modernDrinksPrice del{
     color:#a1a1aa;
     font-size:10px;
 }
@@ -640,30 +767,40 @@
    ADD BUTTON
 ========================================= */
 
-.addBurgerButton{
+.addDrinksButton{
     border:none;
     background:#6c63ff;
     color:white;
+
     height:34px;
     min-width:65px;
+
     padding:0 12px;
+
     border-radius:9px;
+
     display:flex;
     justify-content:center;
     align-items:center;
+
     gap:5px;
+
     cursor:pointer;
+
     font-size:10px;
     font-weight:700;
+
     transition:.2s;
 }
 
-.addBurgerButton:hover{
+
+.addDrinksButton:hover{
     background:#584ee8;
     transform:translateY(-1px);
 }
 
-.addBurgerButton svg{
+
+.addDrinksButton svg{
     font-size:9px;
 }
 
@@ -672,37 +809,48 @@
    NO RESULTS
 ========================================= */
 
-.noBurgerResults{
+.noDrinksResults{
     background:white;
     border:1px solid #edf0f5;
     border-radius:18px;
+
     padding:55px 20px;
+
     text-align:center;
 }
 
-.noBurgerResults > div{
+
+.noDrinksResults > div{
     font-size:38px;
 }
 
-.noBurgerResults h3{
+
+.noDrinksResults h3{
     margin:12px 0 5px;
     font-size:18px;
 }
 
-.noBurgerResults p{
+
+.noDrinksResults p{
     margin:0;
     color:#94a3b8;
     font-size:12px;
 }
 
-.noBurgerResults button{
+
+.noDrinksResults button{
     margin-top:15px;
+
     border:none;
     background:#6c63ff;
     color:white;
+
     padding:9px 18px;
+
     border-radius:8px;
+
     cursor:pointer;
+
     font-size:11px;
 }
 
@@ -711,65 +859,85 @@
    DELIVERY BANNER
 ========================================= */
 
-.burgerDeliveryBanner{
+.drinksDeliveryBanner{
     margin-top:42px;
+
     background:white;
     border:1px solid #edf0f5;
+
     border-radius:18px;
+
     padding:18px 22px;
+
     display:flex;
     align-items:center;
+
     gap:15px;
 }
 
-.burgerDeliveryIcon{
+
+.drinksDeliveryIcon{
     width:44px;
     height:44px;
+
     border-radius:12px;
+
     background:#eeedff;
     color:#6c63ff;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     font-size:18px;
 }
 
-.burgerDeliveryBanner h3{
+
+.drinksDeliveryBanner h3{
     margin:0;
     font-size:14px;
 }
 
-.burgerDeliveryBanner p{
+
+.drinksDeliveryBanner p{
     margin:4px 0 0;
+
     color:#94a3b8;
     font-size:10px;
 }
 
-.burgerDeliveryTime{
+
+.drinksDeliveryTime{
     margin-left:auto;
+
     display:flex;
     align-items:baseline;
+
     gap:4px;
 }
 
-.burgerDeliveryTime strong{
+
+.drinksDeliveryTime strong{
     font-size:22px;
     color:#6c63ff;
 }
 
-.burgerDeliveryTime span{
+
+.drinksDeliveryTime span{
     font-size:10px;
     color:#94a3b8;
 }
 
 
 /* =========================================
-   BURGER PAGE WITH SIDEBAR
+   DRINK PAGE WITH SIDEBAR
 ========================================= */
 
-.burgerPageLayout{
+.drinksPageLayout{
     display:flex;
+
     min-height:100vh;
+
     background:#f7f8fc;
 }
 
@@ -778,28 +946,38 @@
    SIDEBAR
 ========================================= */
 
-.burgerPageLayout .browseSidebar{
+.drinksPageLayout .browseSidebar{
     position:fixed;
+
     left:0;
     top:0;
+
     width:250px;
     height:100vh;
+
     flex-shrink:0;
+
     overflow-y:auto;
+
     z-index:1000;
 }
 
 
 /* =========================================
-   BURGER CONTENT
+   DRINK CONTENT
 ========================================= */
 
-.burgerMarketplace{
+.drinksMarketplace{
     margin-left:250px;
+
     width:calc(100% - 250px);
+
     min-height:100vh;
+
     background:#f7f8fc;
+
     color:#1e293b;
+
     padding:0 38px 50px;
 }
 
@@ -810,40 +988,51 @@
 
 @media(max-width:1200px){
 
-    .modernBurgerGrid{
+    .modernDrinksGrid{
         grid-template-columns:
             repeat(3,minmax(0,1fr));
     }
 
-    .burgerRestaurantScroller{
+
+    .drinksRestaurantScroller{
         grid-template-columns:
             repeat(2,minmax(0,1fr));
     }
 
 }
 
+
+/* =========================================
+   TABLET
+========================================= */
 
 @media(max-width:900px){
 
-    .burgerMarketplace{
+    .drinksMarketplace{
         padding:0 20px 40px;
     }
 
-    .burgerHero{
+
+    .drinksHero{
         grid-template-columns:1fr;
     }
 
-    .burgerHeroImage{
+
+    .drinksHeroImage{
         display:none;
     }
 
-    .burgerFiltersSection{
+
+    .drinksFiltersSection{
         align-items:flex-start;
+
         gap:15px;
+
         flex-direction:column;
     }
 
-    .modernBurgerGrid{
+
+    .modernDrinksGrid{
         grid-template-columns:
             repeat(2,minmax(0,1fr));
     }
@@ -851,51 +1040,67 @@
 }
 
 
+/* =========================================
+   MOBILE
+========================================= */
+
 @media(max-width:650px){
 
-    .burgerMarketplace{
+    .drinksMarketplace{
         padding:0 14px 30px;
     }
 
-    .burgerHeaderRight{
+
+    .drinksHeaderRight{
         display:none;
     }
 
-    .burgerHeroContent{
+
+    .drinksHeroContent{
         padding:30px 25px;
     }
 
-    .burgerHero h2{
+
+    .drinksHero h2{
         font-size:30px;
     }
 
-    .burgerFilterLeft{
+
+    .drinksFilterLeft{
         width:100%;
+
         overflow-x:auto;
+
         padding-bottom:5px;
     }
 
-    .burgerFilter{
+
+    .drinksFilter{
         flex-shrink:0;
     }
 
-    .burgerRestaurantScroller{
+
+    .drinksRestaurantScroller{
         grid-template-columns:1fr;
     }
 
-    .modernBurgerGrid{
+
+    .modernDrinksGrid{
         grid-template-columns:1fr;
     }
 
-    .burgerSectionHeading h2{
+
+    .drinksSectionHeading h2{
         font-size:20px;
     }
 
-    .burgerDeliveryBanner{
+
+    .drinksDeliveryBanner{
         align-items:flex-start;
     }
 
-    .burgerDeliveryTime{
+
+    .drinksDeliveryTime{
         display:none;
     }
 

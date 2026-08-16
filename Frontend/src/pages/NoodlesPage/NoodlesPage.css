@@ -1,0 +1,1361 @@
+/* =========================================================
+   NOODLES PAGE
+   Same design structure as Burger Page
+========================================================= */
+
+
+/* =========================================================
+   PAGE LAYOUT
+========================================================= */
+
+.noodlesPageLayout{
+    display:flex;
+    min-height:100vh;
+    width:100%;
+    background:#f7f8fc;
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.noodlesPageLayout .browseSidebar{
+    position:fixed;
+    left:0;
+    top:0;
+
+    width:250px;
+    height:100vh;
+
+    z-index:1000;
+    overflow-y:auto;
+}
+
+
+/* =========================================================
+   MAIN MARKETPLACE
+========================================================= */
+
+.noodlesMarketplace{
+    margin-left:250px;
+
+    width:calc(100% - 250px);
+
+    min-height:100vh;
+
+    background:#f7f8fc;
+
+    color:#1e293b;
+
+    padding:0 20px 50px;
+
+    box-sizing:border-box;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.noodlesTopHeader{
+    width:100%;
+
+    height:76px;
+
+    background:#ffffff;
+
+    display:flex;
+
+    align-items:center;
+
+    padding:0 28px;
+
+    border-bottom:1px solid #eeeeee;
+
+    gap:20px;
+}
+
+
+.noodlesBackButton{
+    width:42px;
+    height:42px;
+
+    flex-shrink:0;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#f4f4f8;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    cursor:pointer;
+
+    color:#333;
+
+    transition:.2s;
+}
+
+
+.noodlesBackButton:hover{
+    background:#6c63ff;
+    color:white;
+}
+
+
+.noodlesHeaderTitle{
+    flex:1;
+    min-width:0;
+}
+
+
+.noodlesHeaderTitle h2{
+    margin:0;
+
+    color:#202a3c;
+
+    font-size:21px;
+
+    line-height:1.2;
+}
+
+
+.noodlesHeaderTitle p{
+    margin:3px 0 0;
+
+    color:#777;
+
+    font-size:12px;
+}
+
+
+.noodlesHeaderLocation{
+    display:flex;
+
+    align-items:center;
+
+    gap:9px;
+}
+
+
+.noodlesHeaderLocation > span{
+    font-size:20px;
+}
+
+
+.noodlesHeaderLocation small,
+.noodlesHeaderLocation strong{
+    display:block;
+}
+
+
+.noodlesHeaderLocation small{
+    color:#888;
+
+    font-size:9px;
+}
+
+
+.noodlesHeaderLocation strong{
+    color:#202a3c;
+
+    font-size:11px;
+
+    margin-top:2px;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.noodlesHero{
+    width:100%;
+
+    margin-top:25px;
+
+    min-height:280px;
+
+    border-radius:24px;
+
+    overflow:hidden;
+
+    display:grid;
+
+    grid-template-columns:1.1fr .9fr;
+
+    background:
+        linear-gradient(
+            135deg,
+            #28205f,
+            #6c63ff
+        );
+
+    box-shadow:
+        0 15px 40px
+        rgba(108,99,255,.18);
+}
+
+
+/* =========================================================
+   HERO CONTENT
+========================================================= */
+
+.noodlesHeroContent{
+    padding:38px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+}
+
+
+.noodlesHeroBadge{
+    width:max-content;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    padding:7px 12px;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,.14);
+
+    color:white;
+
+    font-size:9px;
+
+    font-weight:700;
+}
+
+
+.noodlesHero h2{
+    margin:16px 0 8px;
+
+    color:white;
+
+    font-size:36px;
+
+    line-height:1.1;
+
+    letter-spacing:-1px;
+}
+
+
+.noodlesHero h2 span{
+    color:#c7c3ff;
+
+    margin-left:8px;
+}
+
+
+.noodlesHero p{
+    max-width:440px;
+
+    margin:0 0 20px;
+
+    color:rgba(255,255,255,.85);
+
+    font-size:12px;
+
+    line-height:1.6;
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.noodlesSearchBox{
+    width:100%;
+
+    max-width:450px;
+
+    height:44px;
+
+    background:white;
+
+    border-radius:11px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:0 15px;
+
+    box-shadow:
+        0 10px 25px
+        rgba(0,0,0,.12);
+}
+
+
+.noodlesSearchBox svg{
+    flex-shrink:0;
+
+    color:#6c63ff;
+
+    font-size:13px;
+}
+
+
+.noodlesSearchBox input{
+    width:100%;
+
+    border:none;
+
+    outline:none;
+
+    background:transparent;
+
+    font-size:10px;
+
+    color:#333;
+}
+
+
+.noodlesSearchBox input::placeholder{
+    color:#a0a5b5;
+}
+
+
+/* =========================================================
+   HERO STATS
+========================================================= */
+
+.noodlesHeroStats{
+    display:flex;
+
+    gap:9px;
+
+    margin-top:19px;
+}
+
+
+.noodlesHeroStats div{
+    padding:8px 12px;
+
+    border-radius:10px;
+
+    background:rgba(255,255,255,.12);
+}
+
+
+.noodlesHeroStats strong{
+    display:block;
+
+    color:white;
+
+    font-size:14px;
+}
+
+
+.noodlesHeroStats span{
+    display:block;
+
+    margin-top:2px;
+
+    color:rgba(255,255,255,.68);
+
+    font-size:7px;
+}
+
+
+/* =========================================================
+   HERO IMAGE
+========================================================= */
+
+.noodlesHeroImage{
+    min-height:280px;
+
+    overflow:hidden;
+
+    background:#17142f;
+}
+
+
+.noodlesHeroImage img{
+    width:100%;
+
+    height:100%;
+
+    display:block;
+
+    object-fit:cover;
+
+    object-position:center;
+
+    transition:.4s;
+}
+
+
+.noodlesHero:hover
+.noodlesHeroImage img{
+    transform:scale(1.04);
+}
+
+
+/* =========================================================
+   FILTER HEADER
+========================================================= */
+
+.noodlesFilterHeader{
+    width:100%;
+
+    max-width:1250px;
+
+    margin:25px auto 15px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:20px;
+}
+
+
+.noodlesFilterHeader h2{
+    margin:0;
+
+    color:#202a3c;
+
+    font-size:24px;
+}
+
+
+.noodlesFilterHeader p{
+    margin:5px 0 0;
+
+    color:#777;
+
+    font-size:10px;
+}
+
+
+.noodlesSort{
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:9px 13px;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:10px;
+
+    background:white;
+
+    color:#555;
+
+    font-size:10px;
+
+    cursor:pointer;
+}
+
+
+.noodlesSort svg:first-child{
+    color:#6c63ff;
+}
+
+
+/* =========================================================
+   FILTERS
+========================================================= */
+
+.noodlesFilters{
+    width:100%;
+
+    max-width:1250px;
+
+    margin:0 auto 28px;
+
+    display:flex;
+
+    gap:9px;
+
+    overflow-x:auto;
+
+    scrollbar-width:none;
+}
+
+
+.noodlesFilters::-webkit-scrollbar{
+    display:none;
+}
+
+
+.noodlesFilters button{
+    flex-shrink:0;
+
+    border:none;
+
+    background:white;
+
+    color:#555;
+
+    padding:9px 16px;
+
+    border-radius:20px;
+
+    font-size:9px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    white-space:nowrap;
+
+    box-shadow:
+        0 3px 12px
+        rgba(0,0,0,.04);
+
+    transition:.2s;
+}
+
+
+.noodlesFilters button:hover{
+    color:#6c63ff;
+}
+
+
+.noodlesFilters button.active{
+    background:#6c63ff;
+
+    color:white;
+
+    box-shadow:
+        0 6px 16px
+        rgba(108,99,255,.22);
+}
+
+
+/* =========================================================
+   RESTAURANTS
+========================================================= */
+
+.noodlesRestaurants{
+    width:100%;
+
+    max-width:1250px;
+
+    margin:0 auto 35px;
+}
+
+
+.noodlesSectionHeader{
+    margin-bottom:15px;
+}
+
+
+.noodlesSectionHeader h2{
+    margin:0;
+
+    color:#202a3c;
+
+    font-size:21px;
+}
+
+
+.noodlesSectionHeader p{
+    margin:4px 0 0;
+
+    color:#888;
+
+    font-size:9px;
+}
+
+
+.noodlesRestaurantGrid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(5,1fr);
+
+    gap:13px;
+}
+
+
+.noodlesRestaurantCard{
+    border:none;
+
+    background:white;
+
+    border-radius:16px;
+
+    overflow:hidden;
+
+    text-align:left;
+
+    padding:0;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 6px 20px
+        rgba(0,0,0,.05);
+
+    transition:.25s;
+}
+
+
+.noodlesRestaurantCard:hover{
+    transform:translateY(-4px);
+}
+
+
+.noodlesRestaurantCard.active{
+    outline:2px solid #6c63ff;
+}
+
+
+.noodlesRestaurantImage{
+    height:105px;
+
+    overflow:hidden;
+}
+
+
+.noodlesRestaurantImage img{
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+    transition:.3s;
+}
+
+
+.noodlesRestaurantCard:hover
+.noodlesRestaurantImage img{
+    transform:scale(1.04);
+}
+
+
+.noodlesRestaurantInfo{
+    padding:10px;
+}
+
+
+.noodlesRestaurantInfo strong{
+    display:block;
+
+    font-size:11px;
+
+    color:#222;
+}
+
+
+.noodlesRestaurantInfo span{
+    display:block;
+
+    margin-top:4px;
+
+    color:#888;
+
+    font-size:8px;
+}
+
+
+/* =========================================================
+   PRODUCTS
+========================================================= */
+
+.noodlesProducts{
+    width:100%;
+
+    max-width:1250px;
+
+    margin:0 auto;
+}
+
+
+.noodlesProductHeader{
+    margin-bottom:18px;
+}
+
+
+.noodlesProductHeader h2{
+    margin:0;
+
+    color:#202a3c;
+
+    font-size:21px;
+}
+
+
+.noodlesProductHeader p{
+    margin:4px 0 0;
+
+    color:#888;
+
+    font-size:9px;
+}
+
+
+.noodlesProductGrid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:18px;
+}
+
+
+/* =========================================================
+   PRODUCT CARD
+========================================================= */
+
+.noodlesCard{
+    background:white;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 7px 25px
+        rgba(0,0,0,.06);
+
+    transition:.25s;
+}
+
+
+.noodlesCard:hover{
+    transform:translateY(-5px);
+
+    box-shadow:
+        0 15px 35px
+        rgba(0,0,0,.10);
+}
+
+
+/* =========================================================
+   CARD IMAGE
+========================================================= */
+
+.noodlesCardImage{
+    height:190px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:#f1f2f5;
+}
+
+
+.noodlesCardImage img{
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+    transition:.35s;
+}
+
+
+.noodlesCard:hover
+.noodlesCardImage img{
+    transform:scale(1.06);
+}
+
+
+/* =========================================================
+   BADGE
+========================================================= */
+
+.noodlesBadge{
+    position:absolute;
+
+    top:11px;
+
+    left:11px;
+
+    padding:6px 9px;
+
+    border-radius:15px;
+
+    background:#ff5722;
+
+    color:white;
+
+    font-size:7px;
+
+    font-weight:700;
+}
+
+
+/* =========================================================
+   HEART
+========================================================= */
+
+.noodlesHeart{
+    position:absolute;
+
+    top:10px;
+
+    right:10px;
+
+    width:33px;
+
+    height:33px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.95);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:#777;
+
+    cursor:pointer;
+
+    z-index:2;
+
+    transition:.2s;
+}
+
+
+.noodlesHeart:hover,
+.noodlesHeart.active{
+    color:#ef4444;
+
+    transform:scale(1.08);
+}
+
+
+/* =========================================================
+   CARD CONTENT
+========================================================= */
+
+.noodlesCardContent{
+    padding:15px;
+}
+
+
+.noodlesRestaurantName{
+    color:#6c63ff;
+
+    font-size:8px;
+
+    font-weight:700;
+}
+
+
+.noodlesCard h3{
+    margin:5px 0;
+
+    font-size:15px;
+
+    color:#202a3c;
+}
+
+
+.noodlesCardContent > p{
+    margin:0 0 11px;
+
+    color:#777;
+
+    font-size:8px;
+
+    line-height:1.5;
+
+    min-height:27px;
+}
+
+
+/* =========================================================
+   CARD INFO
+========================================================= */
+
+.noodlesInfo{
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    margin-bottom:12px;
+
+    color:#999;
+
+    font-size:7px;
+}
+
+
+.noodlesInfo span{
+    display:flex;
+
+    align-items:center;
+
+    gap:3px;
+}
+
+
+.noodlesInfo span:first-child{
+    color:#f59e0b;
+}
+
+
+/* =========================================================
+   PRICE
+========================================================= */
+
+.noodlesPriceRow{
+    border-top:1px solid #f0f1f4;
+
+    padding-top:11px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:8px;
+}
+
+
+.noodlesPriceRow strong{
+    color:#6c63ff;
+
+    font-size:18px;
+}
+
+
+.noodlesPriceRow del{
+    margin-left:5px;
+
+    color:#999;
+
+    font-size:8px;
+}
+
+
+.noodlesPriceRow button{
+    border:none;
+
+    height:32px;
+
+    padding:0 13px;
+
+    border-radius:9px;
+
+    background:#6c63ff;
+
+    color:white;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:5px;
+
+    font-size:8px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+
+.noodlesPriceRow button:hover{
+    background:#574ee9;
+
+    transform:translateY(-1px);
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.noodlesEmpty{
+    width:100%;
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:60px 20px;
+
+    text-align:center;
+}
+
+
+.noodlesEmpty span{
+    font-size:45px;
+}
+
+
+.noodlesEmpty h3{
+    margin:12px 0 5px;
+
+    font-size:18px;
+
+    color:#202a3c;
+}
+
+
+.noodlesEmpty p{
+    margin:0;
+
+    color:#888;
+
+    font-size:11px;
+}
+
+
+/* =========================================================
+   DELIVERY BANNER
+========================================================= */
+
+.noodlesDeliveryBanner{
+    width:100%;
+
+    max-width:1250px;
+
+    margin:40px auto 0;
+
+    padding:25px 30px;
+
+    border-radius:18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eeeaff,
+            #f7f5ff
+        );
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+}
+
+
+.noodlesDeliveryBanner > div:first-child{
+    width:48px;
+
+    height:48px;
+
+    flex-shrink:0;
+
+    border-radius:14px;
+
+    background:#6c63ff;
+
+    color:white;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:20px;
+}
+
+
+.noodlesDeliveryBanner h3{
+    margin:0;
+
+    color:#202a3c;
+
+    font-size:16px;
+}
+
+
+.noodlesDeliveryBanner p{
+    margin:5px 0 0;
+
+    color:#777;
+
+    font-size:9px;
+}
+
+
+/* =========================================================
+   LARGE SCREEN
+========================================================= */
+
+@media (min-width:1400px){
+
+    .noodlesFilterHeader,
+    .noodlesFilters,
+    .noodlesRestaurants,
+    .noodlesProducts,
+    .noodlesDeliveryBanner{
+        max-width:1350px;
+    }
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width:1100px){
+
+    .noodlesHero h2{
+        font-size:32px;
+    }
+
+
+    .noodlesProductGrid{
+        grid-template-columns:
+            repeat(3,1fr);
+    }
+
+
+    .noodlesRestaurantGrid{
+        grid-template-columns:
+            repeat(4,1fr);
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE SIDEBAR
+========================================================= */
+
+@media (max-width:850px){
+
+    .noodlesPageLayout{
+        display:block;
+    }
+
+
+    .noodlesPageLayout .browseSidebar{
+        position:relative;
+
+        width:100%;
+
+        height:auto;
+
+        min-height:auto;
+    }
+
+
+    .noodlesMarketplace{
+        margin-left:0;
+
+        width:100%;
+
+        padding:0 20px 40px;
+    }
+
+
+    .noodlesHero{
+        grid-template-columns:1fr;
+
+        min-height:auto;
+    }
+
+
+    .noodlesHeroContent{
+        padding:35px 30px;
+    }
+
+
+    .noodlesHeroImage{
+        min-height:280px;
+    }
+
+
+    .noodlesProductGrid{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+
+    .noodlesRestaurantGrid{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width:600px){
+
+    .noodlesMarketplace{
+        padding:0 14px 30px;
+    }
+
+
+    .noodlesTopHeader{
+        height:68px;
+
+        padding:0 12px;
+
+        gap:10px;
+    }
+
+
+    .noodlesHeaderTitle h2{
+        font-size:18px;
+    }
+
+
+    .noodlesHeaderTitle p{
+        font-size:9px;
+    }
+
+
+    .noodlesHeaderLocation{
+        display:none;
+    }
+
+
+    .noodlesHero{
+        margin-top:18px;
+
+        margin-bottom:20px;
+
+        border-radius:20px;
+    }
+
+
+    .noodlesHeroContent{
+        padding:28px 20px;
+    }
+
+
+    .noodlesHero h2{
+        font-size:30px;
+    }
+
+
+    .noodlesHero p{
+        font-size:11px;
+    }
+
+
+    .noodlesSearchBox{
+        height:45px;
+    }
+
+
+    .noodlesHeroStats{
+        gap:6px;
+
+        flex-wrap:wrap;
+    }
+
+
+    .noodlesHeroStats div{
+        padding:8px 9px;
+    }
+
+
+    .noodlesHeroStats strong{
+        font-size:13px;
+    }
+
+
+    .noodlesHeroImage{
+        min-height:240px;
+    }
+
+
+    .noodlesFilterHeader h2{
+        font-size:20px;
+    }
+
+
+    .noodlesSort{
+        display:none;
+    }
+
+
+    .noodlesProductGrid{
+        grid-template-columns:1fr;
+
+        gap:15px;
+    }
+
+
+    .noodlesRestaurantGrid{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+
+    .noodlesCardImage{
+        height:220px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width:400px){
+
+    .noodlesMarketplace{
+        padding-left:10px;
+
+        padding-right:10px;
+    }
+
+
+    .noodlesRestaurantGrid{
+        grid-template-columns:1fr;
+    }
+
+
+    .noodlesHero h2{
+        font-size:27px;
+    }
+
+
+    .noodlesHeroImage{
+        min-height:220px;
+    }
+
+}

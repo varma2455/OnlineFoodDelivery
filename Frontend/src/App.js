@@ -60,6 +60,22 @@ import BiryaniPage from "./pages/BiryaniPage/BiryaniPage";
 import BiryaniOrder from "./pages/BiryaniOrder/BiryaniOrder";
 
 
+import FastFoodPage from "./pages/FastFoodPage/FastFoodPage";
+import FastFoodOrder from "./pages/FastFoodOrder/FastFoodOrder";
+
+
+import DrinksPage from "./pages/DrinksPage/DrinksPage";
+import DrinksOrder from "./pages/DrinksOrder/DrinksOrder";
+
+
+import DessertsPage from "./pages/DessertsPage/DessertsPage";
+import DessertsOrder from "./pages/DessertsOrder/DessertsOrder";
+
+
+import NoodlesPage from "./pages/NoodlesPage/NoodlesPage";
+import NoodlesOrder from "./pages/NoodlesOrder/NoodlesOrder";
+
+
 
 function App() {
 
@@ -91,6 +107,11 @@ function App() {
     location.pathname.startsWith("/delivery") ||
     location.pathname.startsWith("/order-pizza") ||
     location.pathname.startsWith("/order-burger")  ||
+    location.pathname.startsWith("/fast-food") ||
+    location.pathname.startsWith("/order-fastfood") ||
+    location.pathname.startsWith("/order-drink") ||
+    location.pathname.startsWith("/order-dessert") ||
+    location.pathname.startsWith("/order-noodles") ||
     location.pathname.startsWith("/order-biryani")
 
 
@@ -158,6 +179,21 @@ function App() {
 
                 <Route path="/order-biryani" element={<BiryaniPage />}/>
                 <Route path="/order-biryani/:id" element={<BiryaniOrder />}/>
+
+
+                <Route path="/order-fastfood" element={<FastFoodPage />}/>
+                <Route path="/order-fastfood/:id" element={<FastFoodOrder />}/>
+
+                <Route path="/order-drink" element={<DrinksPage />}/>
+                <Route path="/order-drink/:id" element={<DrinksOrder />}/>
+
+
+                <Route path="/order-dessert" element={<DessertsPage />}/>
+                <Route path="/order-dessert/:id" element={<DessertsOrder />}/>
+
+
+                <Route path="/order-noodles" element={<NoodlesPage />}/>
+                <Route path="/order-noodles/:id" element={<NoodlesOrder />}/>
                 
                 
 

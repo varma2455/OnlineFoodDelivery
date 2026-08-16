@@ -125,18 +125,18 @@
 
 .biryaniHero{
     margin-top:25px;
-    height:280px;
     min-height:280px;
     border-radius:24px;
     overflow:hidden;
     display:grid;
     grid-template-columns:1.1fr .9fr;
-    background:linear-gradient(
-        110deg,
-        #26205d 0%,
-        #40378b 55%,
-        #665ee8 100%
-    );
+    background:
+        linear-gradient(
+            110deg,
+            #26205d 0%,
+            #40378b 55%,
+            #665ee8 100%
+        );
 }
 
 .biryaniHeroContent{
@@ -769,6 +769,79 @@
     font-size:10px;
 }
 
+/* =========================================
+   BIRYANI PAGE WITH SIDEBAR
+========================================= */
+
+.biryaniPageLayout{
+    display:flex;
+    min-height:100vh;
+    background:#f7f8fc;
+}
+
+
+/* SIDEBAR */
+
+.biryaniPageLayout .browseSidebar{
+    position:fixed;
+    left:0;
+    top:0;
+
+    width:250px;
+    height:100vh;
+
+    flex-shrink:0;
+
+    overflow-y:auto;
+    z-index:1000;
+}
+
+
+/* BIRYANI CONTENT */
+
+.biryaniMarketplace{
+    margin-left:250px;
+
+    width:calc(100% - 250px);
+
+    min-height:100vh;
+
+    background:#f7f8fc;
+
+    color:#1e293b;
+
+    padding:0 38px 50px;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media(max-width:850px){
+
+    .biryaniPageLayout{
+        display:block;
+    }
+
+    .biryaniPageLayout .browseSidebar{
+        position:relative;
+
+        width:100%;
+        height:auto;
+
+        min-height:auto;
+    }
+
+    .biryaniMarketplace{
+        margin-left:0;
+
+        width:100%;
+
+        padding:0 20px 40px;
+    }
+}
+
 
 /* =========================================
    RESPONSIVE
@@ -876,18 +949,4 @@
         margin-left:0;
     }
 
-}
-
-.biryaniHeroImage{
-    position:relative;
-    min-height:280px;
-    overflow:hidden;
-}
-
-.biryaniHeroImage img{
-    width:100%;
-    height:100%;
-    min-height:280px;
-    object-fit:cover;
-    display:block;
 }

@@ -2,7 +2,21 @@
     box-sizing:border-box;
 }
 
-.burgerMarketplace{
+
+/* =========================================
+   PAGE
+========================================= */
+
+.dessertsPageLayout{
+    display:flex;
+    min-height:100vh;
+    background:#f7f8fc;
+}
+
+
+.dessertsMarketplace{
+    margin-left:250px;
+    width:calc(100% - 250px);
     min-height:100vh;
     background:#f7f8fc;
     color:#1e293b;
@@ -14,7 +28,7 @@
    HEADER
 ========================================= */
 
-.burgerTopHeader{
+.dessertsTopHeader{
     height:78px;
     display:flex;
     align-items:center;
@@ -22,7 +36,8 @@
     border-bottom:1px solid #e9e9ef;
 }
 
-.burgerBackButton{
+
+.dessertsBackButton{
     width:40px;
     height:40px;
     border:none;
@@ -30,43 +45,52 @@
     background:white;
     color:#475569;
     display:flex;
-    justify-content:center;
     align-items:center;
+    justify-content:center;
     cursor:pointer;
     box-shadow:0 4px 15px rgba(15,23,42,.05);
 }
 
-.burgerBackButton:hover{
+
+.dessertsBackButton:hover{
     background:#6c63ff;
     color:white;
 }
 
-.burgerHeaderText{
+
+.dessertsHeaderText{
     flex:1;
 }
 
-.burgerHeaderText span{
+
+.dessertsHeaderText span{
     color:#6c63ff;
     font-size:11px;
     font-weight:700;
     letter-spacing:1px;
-    text-transform:uppercase;
 }
 
-.burgerHeaderText h1{
+
+.dessertsHeaderText h1{
     margin:2px 0 0;
     font-size:24px;
     line-height:1;
     color:#172033;
 }
 
-.burgerHeaderRight{
+
+/* =========================================
+   HEADER RIGHT
+========================================= */
+
+.dessertsHeaderRight{
     display:flex;
     align-items:center;
     gap:12px;
 }
 
-.burgerLocation{
+
+.dessertsLocation{
     display:flex;
     align-items:center;
     gap:8px;
@@ -78,29 +102,34 @@
     text-align:left;
 }
 
-.burgerLocation small{
+
+.dessertsLocation small{
     display:block;
     color:#94a3b8;
     font-size:9px;
 }
 
-.burgerLocation strong{
+
+.dessertsLocation strong{
     display:block;
     color:#334155;
     font-size:11px;
 }
 
-.burgerLocation svg{
+
+.dessertsLocation svg{
     font-size:9px;
     color:#94a3b8;
 }
 
-.burgerLocationDot{
+
+.dessertsLocationDot{
     color:#22c55e;
     font-size:10px;
 }
 
-.burgerCart{
+
+.dessertsCart{
     height:40px;
     padding:0 16px;
     border:none;
@@ -119,13 +148,15 @@
    HERO
 ========================================= */
 
-.burgerHero{
+.dessertsHero{
     margin-top:25px;
-    min-height:280px;
+    height:350px;
+    min-height:350px;
     border-radius:24px;
     overflow:hidden;
     display:grid;
     grid-template-columns:1.1fr .9fr;
+
     background:
         linear-gradient(
             110deg,
@@ -135,8 +166,9 @@
         );
 }
 
-.burgerHeroContent{
-    padding:42px 45px;
+
+.dessertsHeroContent{
+    padding:35px 42px;
     display:flex;
     flex-direction:column;
     justify-content:center;
@@ -144,7 +176,8 @@
     z-index:2;
 }
 
-.burgerHeroTag{
+
+.dessertsHeroTag{
     width:max-content;
     display:flex;
     align-items:center;
@@ -157,81 +190,104 @@
     font-weight:700;
 }
 
-.burgerHeroTag svg{
+
+.dessertsHeroTag svg{
     color:#ff9b52;
 }
 
-.burgerHero h2{
+
+.dessertsHero h2{
     color:white;
-    font-size:39px;
-    line-height:1.08;
-    margin:16px 0 10px;
-    max-width:510px;
-    letter-spacing:-1.3px;
+    font-size:36px;
+    line-height:1.05;
+    margin:14px 0 10px;
+    max-width:500px;
+    letter-spacing:-1.2px;
 }
 
-.burgerHero h2 span{
+
+.dessertsHero h2 span{
     color:#a9a2ff;
 }
 
-.burgerHeroContent > p{
-    margin:0 0 22px;
+
+.dessertsHeroContent > p{
+    margin:0 0 20px;
     color:#d8d6ee;
-    font-size:13px;
-    line-height:1.6;
-    max-width:450px;
+    font-size:12px;
+    line-height:1.5;
+    max-width:430px;
 }
 
-.burgerSearchBox{
-    width:min(470px,100%);
-    height:49px;
+
+/* =========================================
+   SEARCH
+========================================= */
+
+.dessertsSearchBox{
+    width:min(450px,100%);
+    height:46px;
     background:white;
     border-radius:13px;
     display:flex;
     align-items:center;
     gap:11px;
-    padding:0 16px;
+    padding:0 15px;
 }
 
-.burgerSearchBox svg{
+
+.dessertsSearchBox svg{
     color:#94a3b8;
     font-size:14px;
 }
 
-.burgerSearchBox input{
+
+.dessertsSearchBox input{
     border:none;
     outline:none;
     width:100%;
-    font-size:13px;
+    font-size:12px;
     color:#334155;
     background:transparent;
 }
 
-.burgerSearchBox input::placeholder{
+
+.dessertsSearchBox input::placeholder{
     color:#94a3b8;
 }
 
-.burgerHeroImage{
+
+/* =========================================
+   HERO IMAGE
+========================================= */
+
+.dessertsHeroImage{
     position:relative;
-    min-height:280px;
+    height:100%;
+    overflow:hidden;
 }
 
-.burgerHeroImage::after{
+
+.dessertsHeroImage img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+}
+
+
+.dessertsHeroImage::after{
     content:"";
     position:absolute;
     inset:0;
+
     background:
         linear-gradient(
             90deg,
             #322c72 0%,
-            transparent 55%
+            rgba(50,44,114,.25) 35%,
+            transparent 65%
         );
-}
-
-.burgerHeroImage img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
 }
 
 
@@ -239,26 +295,31 @@
    FILTERS
 ========================================= */
 
-.burgerFiltersSection{
+.dessertsFiltersSection{
     margin-top:24px;
     display:flex;
     align-items:center;
     justify-content:space-between;
 }
 
-.burgerFilterLeft{
+
+.dessertsFilterLeft{
     display:flex;
     align-items:center;
     gap:9px;
+    overflow-x:auto;
 }
 
-.burgerFilterLeft > svg{
+
+.dessertsFilterLeft > svg{
     color:#64748b;
     font-size:13px;
     margin-right:3px;
+    flex-shrink:0;
 }
 
-.burgerFilter{
+
+.dessertsFilter{
     border:1px solid #e4e7ee;
     background:white;
     color:#64748b;
@@ -268,20 +329,24 @@
     font-size:11px;
     font-weight:600;
     transition:.2s;
+    white-space:nowrap;
 }
 
-.burgerFilter:hover{
+
+.dessertsFilter:hover{
     border-color:#6c63ff;
     color:#6c63ff;
 }
 
-.burgerFilter.active{
+
+.dessertsFilter.active{
     background:#6c63ff;
     border-color:#6c63ff;
     color:white;
 }
 
-.burgerSortButton{
+
+.dessertsSortButton{
     border:1px solid #e4e7ee;
     background:white;
     color:#475569;
@@ -294,43 +359,53 @@
     font-size:11px;
 }
 
-.burgerSortButton svg{
-    font-size:8px;
+
+/* =========================================
+   SECTIONS
+========================================= */
+
+.dessertsRestaurants{
+    margin-top:34px;
 }
 
 
-/* =========================================
-   SECTION HEADING
-========================================= */
+.dessertsProducts{
+    margin-top:40px;
+}
 
-.burgerSectionHeading{
+
+.dessertsSectionHeading{
     display:flex;
     justify-content:space-between;
     align-items:flex-end;
     margin-bottom:16px;
 }
 
-.burgerSectionHeading > div > span{
+
+.dessertsSectionHeading > div > span{
     color:#6c63ff;
     font-size:9px;
     font-weight:800;
     letter-spacing:1.2px;
 }
 
-.burgerSectionHeading h2{
+
+.dessertsSectionHeading h2{
     margin:4px 0 0;
     font-size:23px;
     letter-spacing:-.5px;
     color:#1e293b;
 }
 
-.burgerSectionHeading p{
+
+.dessertsSectionHeading p{
     margin:5px 0 0;
     color:#94a3b8;
     font-size:11px;
 }
 
-.burgerSectionHeading > button{
+
+.dessertsSectionHeading > button{
     border:none;
     background:none;
     color:#6c63ff;
@@ -344,18 +419,14 @@
    RESTAURANTS
 ========================================= */
 
-.burgerRestaurants{
-    margin-top:34px;
-}
-
-.burgerRestaurantScroller{
+.dessertsRestaurantScroller{
     display:grid;
-    grid-template-columns:
-        repeat(4,minmax(0,1fr));
+    grid-template-columns:repeat(4,minmax(0,1fr));
     gap:14px;
 }
 
-.burgerRestaurantCard{
+
+.dessertsRestaurantCard{
     border:1px solid #edf0f5;
     background:white;
     border-radius:16px;
@@ -368,20 +439,21 @@
     transition:.25s;
 }
 
-.burgerRestaurantCard:hover{
+
+.dessertsRestaurantCard:hover{
     transform:translateY(-2px);
     border-color:#d9d5ff;
-    box-shadow:
-        0 10px 25px rgba(15,23,42,.06);
+    box-shadow:0 10px 25px rgba(15,23,42,.06);
 }
 
-.burgerRestaurantCard.selected{
+
+.dessertsRestaurantCard.selected{
     border-color:#6c63ff;
-    box-shadow:
-        0 8px 24px rgba(108,99,255,.12);
+    box-shadow:0 8px 24px rgba(108,99,255,.12);
 }
 
-.burgerRestaurantImage{
+
+.dessertsRestaurantImage{
     width:68px;
     height:68px;
     border-radius:12px;
@@ -389,17 +461,20 @@
     flex-shrink:0;
 }
 
-.burgerRestaurantImage img{
+
+.dessertsRestaurantImage img{
     width:100%;
     height:100%;
     object-fit:cover;
 }
 
-.burgerRestaurantInfo{
+
+.dessertsRestaurantInfo{
     min-width:0;
 }
 
-.burgerRestaurantInfo h3{
+
+.dessertsRestaurantInfo h3{
     margin:0 0 7px;
     font-size:12px;
     color:#1e293b;
@@ -408,7 +483,8 @@
     text-overflow:ellipsis;
 }
 
-.burgerRestaurantInfo > div{
+
+.dessertsRestaurantInfo > div{
     display:flex;
     align-items:center;
     gap:5px;
@@ -416,7 +492,8 @@
     font-size:9px;
 }
 
-.burgerMiniRating{
+
+.dessertsMiniRating{
     color:#f59e0b;
     display:flex;
     align-items:center;
@@ -424,36 +501,24 @@
     font-weight:700;
 }
 
-.burgerMiniRating svg{
+
+.dessertsMiniRating svg{
     font-size:8px;
 }
 
 
 /* =========================================
-   BURGER PRODUCTS
+   DESSERT GRID
 ========================================= */
 
-.burgerProducts{
-    margin-top:40px;
-}
-
-.burgerResultCount{
-    background:#eeeefe;
-    color:#6c63ff;
-    padding:7px 11px;
-    border-radius:8px;
-    font-size:10px;
-    font-weight:700;
-}
-
-.modernBurgerGrid{
+.modernDessertsGrid{
     display:grid;
-    grid-template-columns:
-        repeat(4,minmax(0,1fr));
+    grid-template-columns:repeat(4,minmax(0,1fr));
     gap:22px;
 }
 
-.modernBurgerCard{
+
+.modernDessertsCard{
     background:white;
     border:1px solid #edf0f5;
     border-radius:19px;
@@ -461,50 +526,60 @@
     transition:.3s;
 }
 
-.modernBurgerCard:hover{
+
+.modernDessertsCard:hover{
     transform:translateY(-5px);
-    box-shadow:
-        0 18px 40px rgba(15,23,42,.09);
+    box-shadow:0 18px 40px rgba(15,23,42,.09);
 }
 
 
 /* =========================================
-   BURGER IMAGE
+   IMAGE
 ========================================= */
 
-.modernBurgerImage{
+.modernDessertsImage{
     height:190px;
     position:relative;
     overflow:hidden;
 }
 
-.modernBurgerImage img{
+
+.modernDessertsImage img{
     width:100%;
     height:100%;
     object-fit:cover;
     transition:.45s;
 }
 
-.modernBurgerCard:hover
-.modernBurgerImage img{
+
+.modernDessertsCard:hover
+.modernDessertsImage img{
     transform:scale(1.06);
 }
 
-.burgerImageGradient{
+
+.dessertsImageGradient{
     position:absolute;
     left:0;
     right:0;
     bottom:0;
     height:55px;
+
     background:
         linear-gradient(
             transparent,
             rgba(0,0,0,.18)
         );
+
     pointer-events:none;
 }
 
-.modernBurgerBadge{
+
+/* =========================================
+   BADGE
+========================================= */
+
+.modernDessertsBadge{
     position:absolute;
     top:12px;
     left:12px;
@@ -515,11 +590,15 @@
     font-size:9px;
     font-weight:800;
     z-index:2;
-    box-shadow:
-        0 5px 15px rgba(0,0,0,.1);
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
 }
 
-.modernBurgerHeart{
+
+/* =========================================
+   HEART
+========================================= */
+
+.modernDessertsHeart{
     position:absolute;
     top:12px;
     right:12px;
@@ -536,26 +615,29 @@
     z-index:3;
 }
 
-.modernBurgerHeart:hover{
+
+.modernDessertsHeart:hover{
     color:#ef4444;
 }
 
 
 /* =========================================
-   BURGER CONTENT
+   CONTENT
 ========================================= */
 
-.modernBurgerContent{
+.modernDessertsContent{
     padding:17px;
 }
 
-.burgerNameRow{
+
+.dessertsNameRow{
     display:flex;
     align-items:center;
     gap:7px;
 }
 
-.burgerNameRow h3{
+
+.dessertsNameRow h3{
     margin:0;
     font-size:16px;
     font-weight:700;
@@ -565,23 +647,15 @@
     text-overflow:ellipsis;
 }
 
-.burgerVegMark{
-    color:#16a34a;
-    font-size:9px;
-}
 
-.burgerNonVegMark{
-    color:#dc2626;
-    font-size:9px;
-}
-
-.modernBurgerRestaurant{
+.modernDessertsRestaurant{
     margin:6px 0 10px;
     color:#94a3b8;
     font-size:10px;
 }
 
-.modernBurgerMeta{
+
+.modernDessertsMeta{
     display:flex;
     align-items:center;
     gap:6px;
@@ -589,11 +663,13 @@
     font-size:9px;
 }
 
-.modernBurgerMeta svg{
+
+.modernDessertsMeta svg{
     font-size:8px;
 }
 
-.modernBurgerRating{
+
+.modernDessertsRating{
     color:#f59e0b;
     display:flex;
     align-items:center;
@@ -601,7 +677,8 @@
     font-weight:700;
 }
 
-.modernBurgerDivider{
+
+.modernDessertsDivider{
     height:1px;
     background:#f0f1f5;
     margin:13px 0;
@@ -612,35 +689,38 @@
    PRICE
 ========================================= */
 
-.modernBurgerBottom{
+.modernDessertsBottom{
     display:flex;
     align-items:center;
     justify-content:space-between;
     gap:10px;
 }
 
-.modernBurgerPrice{
+
+.modernDessertsPrice{
     display:flex;
     align-items:baseline;
     gap:7px;
 }
 
-.modernBurgerPrice strong{
+
+.modernDessertsPrice strong{
     color:#6c63ff;
     font-size:20px;
 }
 
-.modernBurgerPrice del{
+
+.modernDessertsPrice del{
     color:#a1a1aa;
     font-size:10px;
 }
 
 
 /* =========================================
-   ADD BUTTON
+   ADD
 ========================================= */
 
-.addBurgerButton{
+.addDessertsButton{
     border:none;
     background:#6c63ff;
     color:white;
@@ -658,13 +738,10 @@
     transition:.2s;
 }
 
-.addBurgerButton:hover{
+
+.addDessertsButton:hover{
     background:#584ee8;
     transform:translateY(-1px);
-}
-
-.addBurgerButton svg{
-    font-size:9px;
 }
 
 
@@ -672,7 +749,7 @@
    NO RESULTS
 ========================================= */
 
-.noBurgerResults{
+.noDessertsResults{
     background:white;
     border:1px solid #edf0f5;
     border-radius:18px;
@@ -680,22 +757,26 @@
     text-align:center;
 }
 
-.noBurgerResults > div{
+
+.noDessertsResults > div{
     font-size:38px;
 }
 
-.noBurgerResults h3{
+
+.noDessertsResults h3{
     margin:12px 0 5px;
     font-size:18px;
 }
 
-.noBurgerResults p{
+
+.noDessertsResults p{
     margin:0;
     color:#94a3b8;
     font-size:12px;
 }
 
-.noBurgerResults button{
+
+.noDessertsResults button{
     margin-top:15px;
     border:none;
     background:#6c63ff;
@@ -708,10 +789,10 @@
 
 
 /* =========================================
-   DELIVERY BANNER
+   DELIVERY
 ========================================= */
 
-.burgerDeliveryBanner{
+.dessertsDeliveryBanner{
     margin-top:42px;
     background:white;
     border:1px solid #edf0f5;
@@ -722,7 +803,8 @@
     gap:15px;
 }
 
-.burgerDeliveryIcon{
+
+.dessertsDeliveryIcon{
     width:44px;
     height:44px;
     border-radius:12px;
@@ -734,43 +816,37 @@
     font-size:18px;
 }
 
-.burgerDeliveryBanner h3{
+
+.dessertsDeliveryBanner h3{
     margin:0;
     font-size:14px;
 }
 
-.burgerDeliveryBanner p{
+
+.dessertsDeliveryBanner p{
     margin:4px 0 0;
     color:#94a3b8;
     font-size:10px;
 }
 
-.burgerDeliveryTime{
+
+.dessertsDeliveryTime{
     margin-left:auto;
     display:flex;
     align-items:baseline;
     gap:4px;
 }
 
-.burgerDeliveryTime strong{
+
+.dessertsDeliveryTime strong{
     font-size:22px;
     color:#6c63ff;
 }
 
-.burgerDeliveryTime span{
+
+.dessertsDeliveryTime span{
     font-size:10px;
     color:#94a3b8;
-}
-
-
-/* =========================================
-   BURGER PAGE WITH SIDEBAR
-========================================= */
-
-.burgerPageLayout{
-    display:flex;
-    min-height:100vh;
-    background:#f7f8fc;
 }
 
 
@@ -778,29 +854,14 @@
    SIDEBAR
 ========================================= */
 
-.burgerPageLayout .browseSidebar{
+.dessertsPageLayout .browseSidebar{
     position:fixed;
     left:0;
     top:0;
     width:250px;
     height:100vh;
-    flex-shrink:0;
     overflow-y:auto;
     z-index:1000;
-}
-
-
-/* =========================================
-   BURGER CONTENT
-========================================= */
-
-.burgerMarketplace{
-    margin-left:250px;
-    width:calc(100% - 250px);
-    min-height:100vh;
-    background:#f7f8fc;
-    color:#1e293b;
-    padding:0 38px 50px;
 }
 
 
@@ -810,14 +871,12 @@
 
 @media(max-width:1200px){
 
-    .modernBurgerGrid{
-        grid-template-columns:
-            repeat(3,minmax(0,1fr));
+    .modernDessertsGrid{
+        grid-template-columns:repeat(3,minmax(0,1fr));
     }
 
-    .burgerRestaurantScroller{
-        grid-template-columns:
-            repeat(2,minmax(0,1fr));
+    .dessertsRestaurantScroller{
+        grid-template-columns:repeat(2,minmax(0,1fr));
     }
 
 }
@@ -825,27 +884,26 @@
 
 @media(max-width:900px){
 
-    .burgerMarketplace{
+    .dessertsMarketplace{
         padding:0 20px 40px;
     }
 
-    .burgerHero{
+    .dessertsHero{
         grid-template-columns:1fr;
     }
 
-    .burgerHeroImage{
+    .dessertsHeroImage{
         display:none;
     }
 
-    .burgerFiltersSection{
+    .dessertsFiltersSection{
         align-items:flex-start;
         gap:15px;
         flex-direction:column;
     }
 
-    .modernBurgerGrid{
-        grid-template-columns:
-            repeat(2,minmax(0,1fr));
+    .modernDessertsGrid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
     }
 
 }
@@ -853,49 +911,49 @@
 
 @media(max-width:650px){
 
-    .burgerMarketplace{
+    .dessertsMarketplace{
         padding:0 14px 30px;
     }
 
-    .burgerHeaderRight{
+    .dessertsHeaderRight{
         display:none;
     }
 
-    .burgerHeroContent{
+    .dessertsHeroContent{
         padding:30px 25px;
     }
 
-    .burgerHero h2{
+    .dessertsHero h2{
         font-size:30px;
     }
 
-    .burgerFilterLeft{
+    .dessertsFilterLeft{
         width:100%;
         overflow-x:auto;
         padding-bottom:5px;
     }
 
-    .burgerFilter{
+    .dessertsFilter{
         flex-shrink:0;
     }
 
-    .burgerRestaurantScroller{
+    .dessertsRestaurantScroller{
         grid-template-columns:1fr;
     }
 
-    .modernBurgerGrid{
+    .modernDessertsGrid{
         grid-template-columns:1fr;
     }
 
-    .burgerSectionHeading h2{
+    .dessertsSectionHeading h2{
         font-size:20px;
     }
 
-    .burgerDeliveryBanner{
+    .dessertsDeliveryBanner{
         align-items:flex-start;
     }
 
-    .burgerDeliveryTime{
+    .dessertsDeliveryTime{
         display:none;
     }
 

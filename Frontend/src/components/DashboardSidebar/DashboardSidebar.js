@@ -54,10 +54,25 @@ const DashboardSidebar = () => {
     </li>
 
     <li>
-        <NavLink to="/browse-food">
-            <FaUtensils />
-            <span>Browse Food</span>
-        </NavLink>
+    <NavLink
+    to="/browse-food"
+    className={
+        location.pathname === "/browse-food" ||
+        location.pathname === "/biryani" ||
+        location.pathname.startsWith("/order-burger") ||
+        location.pathname.startsWith("/order-pizza") ||
+        location.pathname.startsWith("/order-fastfood") ||
+        location.pathname.startsWith("/order-drink") ||
+        location.pathname.startsWith("/order-dessert") ||
+        location.pathname.startsWith("/order-noodles") ||
+        location.pathname.startsWith("/order-biryani")
+            ? "active"
+            : ""
+    }
+>
+    <FaUtensils />
+    Browse Food
+</NavLink>
     </li>
 
     <li>

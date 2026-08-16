@@ -2,16 +2,19 @@
     box-sizing: border-box;
 }
 
+
 /* =====================================
-   BURGER ORDER PAGE WITH SIDEBAR
+   DESSERT ORDER PAGE WITH SIDEBAR
 ===================================== */
 
-.burgerOrderPageLayout {
+.dessertOrderPageLayout {
+
     display: flex;
 
     min-height: 100vh;
 
     background: #f7f8fc;
+
 }
 
 
@@ -19,11 +22,12 @@
    DASHBOARD SIDEBAR
 ===================================== */
 
-.burgerOrderPageLayout .browseSidebar {
+.dessertOrderPageLayout .browseSidebar {
 
     position: fixed;
 
     left: 0;
+
     top: 0;
 
     width: 250px;
@@ -33,14 +37,15 @@
     z-index: 1000;
 
     overflow-y: auto;
+
 }
 
 
 /* =====================================
-   BURGER ORDER CONTENT
+   DESSERT ORDER CONTENT
 ===================================== */
 
-.burgerOrderPage {
+.dessertOrderPage {
 
     margin-left: 250px;
 
@@ -51,13 +56,141 @@
     background: #f7f8fc;
 
     padding: 10px 20px;
+
 }
+
+
+/* =====================================
+   HEADER
+===================================== */
+
+.dessertHeader {
+
+    height: 58px;
+
+    max-width: 900px;
+
+    margin: 0 auto 12px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+}
+
+
+.dessertBackButton {
+
+    width: 34px;
+
+    height: 34px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: white;
+
+    color: #475569;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 15px
+        rgba(15, 23, 42, .05);
+
+}
+
+
+.dessertBackButton:hover {
+
+    background: #6c63ff;
+
+    color: white;
+
+}
+
+
+.dessertHeaderTitle {
+
+    flex: 1;
+
+}
+
+
+.dessertHeaderTitle h2 {
+
+    margin: 0;
+
+    color: #202a3c;
+
+    font-size: 17px;
+
+    line-height: 1.2;
+
+}
+
+
+.dessertHeaderTitle p {
+
+    margin: 3px 0 0;
+
+    color: #94a3b8;
+
+    font-size: 8px;
+
+}
+
+
+.dessertFavoriteButton {
+
+    width: 34px;
+
+    height: 34px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: white;
+
+    color: #64748b;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 15px
+        rgba(15, 23, 42, .05);
+
+}
+
+
+.dessertFavoriteButton:hover {
+
+    color: #ef4444;
+
+}
+
 
 /* =====================================
    MAIN CONTAINER
 ===================================== */
 
-.burgerOrderContainer {
+.dessertOrderContainer {
 
     width: 100%;
 
@@ -81,7 +214,7 @@
    LEFT SIDE
 ===================================== */
 
-.burgerOrderLeft {
+.dessertOrderLeft {
 
     display: flex;
 
@@ -96,7 +229,7 @@
    IMAGE
 ===================================== */
 
-.burgerImageCard {
+.dessertImageCard {
 
     width: 100%;
 
@@ -116,7 +249,8 @@
 
 }
 
-.burgerImageCard img {
+
+.dessertImageCard img {
 
     width: 100%;
 
@@ -135,7 +269,7 @@
    RATING
 ===================================== */
 
-.burgerRatingCard {
+.dessertRatingCard {
 
     height: 45px;
 
@@ -159,7 +293,8 @@
 
 }
 
-.burgerRatingCard svg {
+
+.dessertRatingCard svg {
 
     color: #f59e0b;
 
@@ -167,13 +302,15 @@
 
 }
 
-.burgerRatingCard strong {
+
+.dessertRatingCard strong {
 
     color: #334155;
 
 }
 
-.burgerRatingCard span {
+
+.dessertRatingCard span {
 
     color: #94a3b8;
 
@@ -184,7 +321,7 @@
    DELIVERY CARD
 ===================================== */
 
-.burgerDeliveryCard {
+.dessertDeliveryCard {
 
     min-height: 58px;
 
@@ -196,7 +333,8 @@
 
     display: grid;
 
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns:
+        1fr 1fr;
 
     gap: 10px;
 
@@ -206,7 +344,8 @@
 
 }
 
-.deliveryItem {
+
+.dessertDeliveryItem {
 
     display: flex;
 
@@ -216,7 +355,8 @@
 
 }
 
-.deliveryItem svg {
+
+.dessertDeliveryItem svg {
 
     color: #6c63ff;
 
@@ -224,7 +364,8 @@
 
 }
 
-.deliveryItem strong {
+
+.dessertDeliveryItem strong {
 
     display: block;
 
@@ -236,7 +377,8 @@
 
 }
 
-.deliveryItem span {
+
+.dessertDeliveryItem span {
 
     display: block;
 
@@ -251,7 +393,7 @@
    RIGHT CARD
 ===================================== */
 
-.burgerOrderRight {
+.dessertOrderRight {
 
     background: white;
 
@@ -270,7 +412,7 @@
    RESTAURANT
 ===================================== */
 
-.burgerRestaurant {
+.dessertRestaurant {
 
     color: #6c63ff;
 
@@ -288,7 +430,8 @@
 
 }
 
-.burgerRestaurant span {
+
+.dessertRestaurant span {
 
     width: 14px;
 
@@ -315,7 +458,7 @@
    TITLE
 ===================================== */
 
-.burgerOrderRight h1 {
+.dessertOrderRight h1 {
 
     margin: 0 0 9px;
 
@@ -334,7 +477,7 @@
    DESCRIPTION
 ===================================== */
 
-.burgerDescription {
+.dessertDescription {
 
     margin: 0 0 18px;
 
@@ -351,7 +494,7 @@
    PRICE
 ===================================== */
 
-.burgerMainPrice {
+.dessertMainPrice {
 
     color: #202a3c;
 
@@ -368,13 +511,14 @@
    SECTION
 ===================================== */
 
-.burgerSection {
+.dessertSection {
 
     margin-bottom: 19px;
 
 }
 
-.burgerSectionTitle {
+
+.dessertSectionTitle {
 
     display: flex;
 
@@ -386,7 +530,8 @@
 
 }
 
-.burgerSectionTitle h3 {
+
+.dessertSectionTitle h3 {
 
     margin: 0;
 
@@ -396,7 +541,8 @@
 
 }
 
-.burgerSectionTitle span {
+
+.dessertSectionTitle span {
 
     background: #f1efff;
 
@@ -417,7 +563,7 @@
    SIZE
 ===================================== */
 
-.burgerSizeGrid {
+.dessertSizeGrid {
 
     display: grid;
 
@@ -428,7 +574,8 @@
 
 }
 
-.sizeOption {
+
+.dessertSizeOption {
 
     height: 54px;
 
@@ -446,7 +593,8 @@
 
 }
 
-.sizeOption.selected {
+
+.dessertSizeOption.selected {
 
     border-color: #6c63ff;
 
@@ -454,7 +602,8 @@
 
 }
 
-.sizeOption strong {
+
+.dessertSizeOption strong {
 
     display: block;
 
@@ -466,7 +615,8 @@
 
 }
 
-.sizeOption small {
+
+.dessertSizeOption small {
 
     font-size: 8px;
 
@@ -476,10 +626,10 @@
 
 
 /* =====================================
-   BUN
+   TOPPING
 ===================================== */
 
-.burgerBunGrid {
+.dessertToppingGrid {
 
     display: grid;
 
@@ -490,7 +640,8 @@
 
 }
 
-.bunOption {
+
+.dessertToppingOption {
 
     height: 42px;
 
@@ -518,7 +669,8 @@
 
 }
 
-.bunOption.selected {
+
+.dessertToppingOption.selected {
 
     border-color: #6c63ff;
 
@@ -526,7 +678,8 @@
 
 }
 
-.bunOption .radio {
+
+.dessertRadio {
 
     color: #6c63ff;
 
@@ -534,7 +687,8 @@
 
 }
 
-.bunOption small {
+
+.dessertToppingOption small {
 
     margin-left: auto;
 
@@ -549,7 +703,7 @@
    EXTRAS
 ===================================== */
 
-.burgerExtrasGrid {
+.dessertExtrasGrid {
 
     display: grid;
 
@@ -560,7 +714,8 @@
 
 }
 
-.extraOption {
+
+.dessertExtraOption {
 
     height: 48px;
 
@@ -584,7 +739,8 @@
 
 }
 
-.extraOption.selected {
+
+.dessertExtraOption.selected {
 
     border-color: #6c63ff;
 
@@ -592,7 +748,8 @@
 
 }
 
-.extraPlus {
+
+.dessertExtraPlus {
 
     width: 23px;
 
@@ -616,7 +773,8 @@
 
 }
 
-.extraText strong {
+
+.dessertExtraText strong {
 
     display: block;
 
@@ -628,7 +786,8 @@
 
 }
 
-.extraText small {
+
+.dessertExtraText small {
 
     display: block;
 
@@ -643,7 +802,7 @@
    QUANTITY
 ===================================== */
 
-.burgerQuantityRow {
+.dessertQuantityRow {
 
     border-bottom: 1px solid #e5e7eb;
 
@@ -657,7 +816,8 @@
 
 }
 
-.burgerQuantityRow h3 {
+
+.dessertQuantityRow h3 {
 
     margin: 0;
 
@@ -667,7 +827,8 @@
 
 }
 
-.quantityBox {
+
+.dessertQuantityBox {
 
     height: 34px;
 
@@ -687,7 +848,8 @@
 
 }
 
-.quantityBox button {
+
+.dessertQuantityBox button {
 
     width: 26px;
 
@@ -713,7 +875,8 @@
 
 }
 
-.quantityBox span {
+
+.dessertQuantityBox span {
 
     font-size: 11px;
 
@@ -726,7 +889,7 @@
    BOTTOM
 ===================================== */
 
-.burgerBottom {
+.dessertBottom {
 
     display: flex;
 
@@ -738,7 +901,8 @@
 
 }
 
-.burgerBottom span {
+
+.dessertBottom span {
 
     display: block;
 
@@ -750,7 +914,8 @@
 
 }
 
-.burgerBottom strong {
+
+.dessertBottom strong {
 
     display: block;
 
@@ -761,7 +926,11 @@
 }
 
 
-.burgerAddButton {
+/* =====================================
+   ADD BUTTON
+===================================== */
+
+.dessertAddButton {
 
     height: 34px;
 
@@ -791,7 +960,8 @@
 
 }
 
-.burgerAddButton:hover {
+
+.dessertAddButton:hover {
 
     background: #574ee9;
 
@@ -802,7 +972,7 @@
    ERROR
 ===================================== */
 
-.burgerOrderError {
+.dessertOrderError {
 
     min-height: 100vh;
 
@@ -818,7 +988,8 @@
 
 }
 
-.burgerErrorIcon {
+
+.dessertErrorIcon {
 
     font-size: 55px;
 
@@ -826,7 +997,8 @@
 
 }
 
-.burgerOrderError h2 {
+
+.dessertOrderError h2 {
 
     color: #1e293b;
 
@@ -834,7 +1006,8 @@
 
 }
 
-.burgerOrderError p {
+
+.dessertOrderError p {
 
     color: #94a3b8;
 
@@ -842,7 +1015,8 @@
 
 }
 
-.burgerOrderError button {
+
+.dessertOrderError button {
 
     margin-top: 10px;
 
@@ -867,7 +1041,23 @@
 
 @media (max-width: 850px) {
 
-    .burgerOrderContainer {
+    .dessertOrderPage {
+
+        margin-left: 0;
+
+        width: 100%;
+
+    }
+
+
+    .dessertOrderPageLayout .browseSidebar {
+
+        display: none;
+
+    }
+
+
+    .dessertOrderContainer {
 
         grid-template-columns: 1fr;
 
@@ -875,7 +1065,8 @@
 
     }
 
-    .burgerImageCard {
+
+    .dessertImageCard {
 
         height: 380px;
 
@@ -883,22 +1074,25 @@
 
 }
 
+
 @media (max-width: 500px) {
 
-    .burgerOrderPage {
+    .dessertOrderPage {
 
         padding: 15px 10px;
 
     }
 
-    .burgerOrderRight {
+
+    .dessertOrderRight {
 
         padding: 20px 16px;
 
     }
 
-    .burgerBunGrid,
-    .burgerExtrasGrid {
+
+    .dessertToppingGrid,
+    .dessertExtrasGrid {
 
         grid-template-columns: 1fr;
 

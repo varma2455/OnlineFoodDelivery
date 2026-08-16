@@ -22,6 +22,9 @@ import {
 // import pizzaImage from "../../assets/images/pizza.png";
 
 
+import DashboardSidebar from "../../components/DashboardSidebar/DashboardSidebar";
+
+
 const pizzaData = [
 
     {
@@ -291,6 +294,10 @@ export default function PizzaOrder() {
 
 
     return (
+
+        <div className="pizzaOrderPageLayout">
+
+            <DashboardSidebar />
 
         <div className="pizzaPage">
 
@@ -733,6 +740,8 @@ export default function PizzaOrder() {
                 </section>
 
             </main>
+
+        </div>
 
         </div>
 

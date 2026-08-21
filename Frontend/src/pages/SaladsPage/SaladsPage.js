@@ -17,198 +17,194 @@ import {
 
 import DashboardSidebar from "../../components/DashboardSidebar/DashboardSidebar";
 
-import "./NoodlesPage.css";
+import "./SaladsPage.css";
 
 
 const filters = [
     "All",
-    "Veg Noodles",
-    "Chicken Noodles",
-    "Schezwan Noodles",
-    "Hakka Noodles",
-    "Chilli Garlic",
-    "Singapore Noodles",
-    "Egg Noodles"
+    "Veg Salads",
+    "Chicken Salads",
+    "Fruit Salads",
+    "Caesar Salads",
+    "Greek Salads",
+    "Protein Salads",
+    "Healthy Bowls"
 ];
 
 
 const restaurants = [
     {
         id: 1,
-        name: "Chinese Wok",
-        cuisine: "Chinese • Fast Food",
+        name: "Fresh Bowl",
+        cuisine: "Healthy • Salads",
         image:
-            "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=600"
+            "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600"
     },
-
     {
         id: 2,
-        name: "Mainland China",
-        cuisine: "Chinese • Asian",
+        name: "Green Leaf",
+        cuisine: "Healthy • Vegetarian",
         image:
-            "https://images.unsplash.com/photo-1585032226651-759b368d7246?w=600"
+            "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=600"
     },
-
     {
         id: 3,
-        name: "Wok This Way",
-        cuisine: "Chinese • Noodles",
+        name: "Salad Story",
+        cuisine: "Salads • Healthy",
         image:
-            "https://images.unsplash.com/photo-1552611052-33e04de081de?w=600"
+            "https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=600"
     },
-
     {
         id: 4,
-        name: "Noodle Bar",
-        cuisine: "Noodles • Chinese",
+        name: "Healthy Hub",
+        cuisine: "Healthy • Bowls",
         image:
-            "https://images.unsplash.com/photo-1562565652-a0d8f0c59eb4?w=600"
+            "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=600"
     },
-
     {
         id: 5,
-        name: "Wow! China",
-        cuisine: "Chinese • Asian",
+        name: "Fit Kitchen",
+        cuisine: "Protein • Healthy",
         image:
-            "https://images.unsplash.com/photo-1547592180-85f173990554?w=600"
+            "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600"
     }
 ];
 
 
-const noodles = [
+const salads = [
 
     {
         id: 1,
-        name: "Veg Hakka Noodles",
-        restaurant: "Chinese Wok",
-        category: "Veg Noodles",
-        price: 169,
-        oldPrice: 199,
+        name: "Fresh Garden Salad",
+        restaurant: "Fresh Bowl",
+        category: "Veg Salads",
+        price: 149,
+        oldPrice: 179,
         rating: 4.7,
-        time: "20 min",
+        time: "15 min",
         description:
-            "Freshly prepared Hakka noodles tossed with vegetables and delicious Chinese sauces.",
+            "Fresh lettuce, cucumber, tomato, carrots and sweet corn with a light dressing.",
         image:
-            "https://images.unsplash.com/photo-1585032226651-759b368d7246?w=700",
+            "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=700",
         badge: "BESTSELLER"
     },
 
     {
         id: 2,
-        name: "Chicken Hakka Noodles",
-        restaurant: "Wok This Way",
-        category: "Chicken Noodles",
-        price: 219,
-        oldPrice: 249,
+        name: "Chicken Caesar Salad",
+        restaurant: "Fresh Bowl",
+        category: "Chicken Salads",
+        price: 229,
+        oldPrice: 259,
         rating: 4.8,
-        time: "25 min",
+        time: "20 min",
         description:
-            "Wok-tossed noodles with tender chicken, fresh vegetables and flavorful sauces.",
+            "Crispy lettuce with grilled chicken, parmesan and creamy Caesar dressing.",
         image:
-            "https://images.unsplash.com/photo-1552611052-33e04de081de?w=700",
+            "https://images.unsplash.com/photo-1551248429-40975aa4de74?w=700",
         badge: "POPULAR"
     },
 
     {
         id: 3,
-        name: "Schezwan Noodles",
-        restaurant: "Chinese Wok",
-        category: "Schezwan Noodles",
-        price: 189,
-        oldPrice: 219,
+        name: "Greek Salad",
+        restaurant: "Green Leaf",
+        category: "Greek Salads",
+        price: 179,
+        oldPrice: 209,
         rating: 4.6,
-        time: "20 min",
+        time: "15 min",
         description:
-            "Spicy Schezwan noodles prepared with fresh vegetables and bold Chinese flavors.",
+            "Classic Greek salad with cucumber, tomato, olives, onions and feta cheese.",
         image:
-            "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=700",
-        badge: "SPICY"
+            "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=700",
+        badge: "FRESH"
     },
 
     {
         id: 4,
-        name: "Chilli Garlic Noodles",
-        restaurant: "Noodle Bar",
-        category: "Chilli Garlic",
-        price: 199,
-        oldPrice: 229,
+        name: "Fruit Salad Bowl",
+        restaurant: "Salad Story",
+        category: "Fruit Salads",
+        price: 159,
+        oldPrice: 189,
         rating: 4.7,
-        time: "22 min",
+        time: "10 min",
         description:
-            "Aromatic noodles tossed with chilli, garlic and fresh vegetables.",
+            "A refreshing mix of seasonal fruits served fresh with a light honey dressing.",
         image:
-            "https://images.unsplash.com/photo-1562565652-a0d8f0c59eb4?w=700",
-        badge: "HOT"
+            "https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?w=700",
+        badge: "HEALTHY"
     },
 
     {
         id: 5,
-        name: "Singapore Noodles",
-        restaurant: "Mainland China",
-        category: "Singapore Noodles",
-        price: 229,
-        oldPrice: 259,
-        rating: 4.8,
-        time: "25 min",
+        name: "Protein Power Salad",
+        restaurant: "Fit Kitchen",
+        category: "Protein Salads",
+        price: 249,
+        oldPrice: 289,
+        rating: 4.9,
+        time: "20 min",
         description:
-            "Delicious Singapore-style noodles with vegetables and aromatic spices.",
+            "Protein-rich salad with grilled chicken, chickpeas, vegetables and seeds.",
         image:
-            "https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?w=700",
+            "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=700",
         badge: "CHEF'S PICK"
     },
 
     {
         id: 6,
-        name: "Chicken Schezwan Noodles",
-        restaurant: "Wok This Way",
-        category: "Chicken Noodles",
-        price: 239,
-        oldPrice: 279,
+        name: "Paneer Tikka Salad",
+        restaurant: "Healthy Hub",
+        category: "Veg Salads",
+        price: 199,
+        oldPrice: 229,
         rating: 4.8,
-        time: "25 min",
+        time: "20 min",
         description:
-            "Tender chicken combined with spicy Schezwan sauce and wok-fried noodles.",
+            "Grilled paneer tikka served with crisp vegetables and fresh herbs.",
         image:
-            "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=700",
+            "https://images.unsplash.com/photo-1547592180-85f173990554?w=700",
         badge: "POPULAR"
     },
 
     {
         id: 7,
-        name: "Veg Chilli Garlic Noodles",
-        restaurant: "Noodle Bar",
-        category: "Chilli Garlic",
-        price: 179,
-        oldPrice: 209,
-        rating: 4.5,
-        time: "20 min",
+        name: "Avocado Healthy Bowl",
+        restaurant: "Green Leaf",
+        category: "Healthy Bowls",
+        price: 219,
+        oldPrice: 249,
+        rating: 4.7,
+        time: "15 min",
         description:
-            "Fresh vegetables and noodles tossed with chilli and roasted garlic.",
+            "Creamy avocado with fresh greens, tomato, corn and nutritious seeds.",
         image:
-            "https://images.unsplash.com/photo-1547592180-85f173990554?w=700",
+            "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=700",
         badge: "VEG"
     },
 
     {
         id: 8,
-        name: "Egg Noodles",
-        restaurant: "Wow! China",
-        category: "Egg Noodles",
-        price: 179,
-        oldPrice: 209,
-        rating: 4.6,
-        time: "20 min",
+        name: "Chicken Protein Bowl",
+        restaurant: "Fit Kitchen",
+        category: "Protein Salads",
+        price: 269,
+        oldPrice: 299,
+        rating: 4.9,
+        time: "25 min",
         description:
-            "Classic wok-fried noodles prepared with egg, vegetables and Chinese sauces.",
+            "Grilled chicken, fresh greens, beans, vegetables and a healthy dressing.",
         image:
-            "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=700",
+            "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=700",
         badge: "FAVOURITE"
     }
 
 ];
 
 
-export default function NoodlesPage() {
+export default function SaladsPage() {
 
     const navigate = useNavigate();
 
@@ -235,13 +231,12 @@ export default function NoodlesPage() {
     };
 
 
-    const filteredNoodles = noodles.filter((item) => {
+    const filteredSalads = salads.filter((item) => {
 
         const matchesSearch =
             item.name
                 .toLowerCase()
                 .includes(search.toLowerCase()) ||
-
             item.restaurant
                 .toLowerCase()
                 .includes(search.toLowerCase());
@@ -266,57 +261,48 @@ export default function NoodlesPage() {
     });
 
 
-    const orderNoodles = (item) => {
+    const orderSalad = (item) => {
 
-        navigate(`/order-noodles/${item.id}`, {
-    
+        navigate("/order-salads", {
             state: {
-                noodles: item
+                salad: item
             }
-    
         });
-    
+
     };
 
 
     return (
 
-        <div className="noodlesPageLayout">
+        <div className="saladsPageLayout">
 
             <DashboardSidebar />
 
+            <div className="saladsMarketplace">
 
-            <div className="noodlesMarketplace">
-
-
-                {/* =========================
-                    HEADER
-                ========================= */}
-
-                <header className="noodlesTopHeader">
+                <header className="saladsTopHeader">
 
                     <button
-                        className="noodlesBackButton"
+                        className="saladsBackButton"
                         onClick={() => navigate(-1)}
                     >
                         <FaArrowLeft />
                     </button>
 
-
-                    <div className="noodlesHeaderTitle">
+                    <div className="saladsHeaderTitle">
 
                         <h2>
-                            Noodles
+                            Salads
                         </h2>
 
                         <p>
-                            Hakka, Schezwan, Chinese & more
+                            Fresh, healthy & delicious salads
                         </p>
 
                     </div>
 
-
-                    <div className="pizzaHeaderRight">
+                    
+                                    <div className="pizzaHeaderRight">
                     
                                         <button className="headerLocation">
                     
@@ -350,51 +336,32 @@ export default function NoodlesPage() {
                                             </span>
                     
                                         </button>
-                    
-                                    </div>
+                                        </div>                    
 
                 </header>
 
 
+                {/* HERO */}
 
-                {/* =========================
-                    HERO
-                ========================= */}
+                <section className="saladsHero">
 
-                <section className="noodlesHero">
+                    <div className="saladsHeroContent">
 
-
-                    <div className="noodlesHeroContent">
-
-                        <span className="noodlesHeroBadge">
-
-                            🍜
-
-                            FRESH & HOT
-
+                        <span className="saladsHeroBadge">
+                            🥗 FRESH & HEALTHY
                         </span>
 
-
                         <h2>
-
                             Find your perfect
-
-                            <span>
-                                noodles.
-                            </span>
-
+                            <span> salad.</span>
                         </h2>
 
-
                         <p>
-
-                            Delicious, freshly prepared noodles
-                            from your favorite restaurants.
-
+                            Freshly prepared salads, healthy bowls
+                            and nutritious meals from your favorite restaurants.
                         </p>
 
-
-                        <div className="noodlesSearchBox">
+                        <div className="saladsSearchBox">
 
                             <FaSearch />
 
@@ -404,50 +371,26 @@ export default function NoodlesPage() {
                                 onChange={(e) =>
                                     setSearch(e.target.value)
                                 }
-                                placeholder="Search noodles or restaurants..."
+                                placeholder="Search salads or restaurants..."
                             />
 
                         </div>
 
-
-                        <div className="noodlesHeroStats">
+                        <div className="saladsHeroStats">
 
                             <div>
-
-                                <strong>
-                                    40+
-                                </strong>
-
-                                <span>
-                                    Noodle Items
-                                </span>
-
+                                <strong>40+</strong>
+                                <span>Salad Items</span>
                             </div>
 
-
                             <div>
-
-                                <strong>
-                                    20 min
-                                </strong>
-
-                                <span>
-                                    Average Delivery
-                                </span>
-
+                                <strong>15 min</strong>
+                                <span>Average Delivery</span>
                             </div>
 
-
                             <div>
-
-                                <strong>
-                                    4.8★
-                                </strong>
-
-                                <span>
-                                    Top Rating
-                                </span>
-
+                                <strong>4.8★</strong>
+                                <span>Top Rating</span>
                             </div>
 
                         </div>
@@ -455,11 +398,11 @@ export default function NoodlesPage() {
                     </div>
 
 
-                    <div className="noodlesHeroImage">
+                    <div className="saladsHeroImage">
 
                         <img
-                            src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=500"
-                            alt="Noodles"
+                            src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=700"
+                            alt="Fresh Salad"
                         />
 
                     </div>
@@ -467,12 +410,9 @@ export default function NoodlesPage() {
                 </section>
 
 
+                {/* FILTER HEADER */}
 
-                {/* =========================
-                    FILTER HEADER
-                ========================= */}
-
-                <section className="noodlesFilterHeader">
+                <section className="saladsFilterHeader">
 
                     <div>
 
@@ -481,13 +421,12 @@ export default function NoodlesPage() {
                         </h2>
 
                         <p>
-                            Choose your favorite noodles
+                            Choose your favorite healthy meal
                         </p>
 
                     </div>
 
-
-                    <div className="noodlesSort">
+                    <div className="saladsSort">
 
                         <FaFilter />
 
@@ -502,12 +441,9 @@ export default function NoodlesPage() {
                 </section>
 
 
+                {/* FILTERS */}
 
-                {/* =========================
-                    FILTERS
-                ========================= */}
-
-                <div className="noodlesFilters">
+                <div className="saladsFilters">
 
                     {filters.map((filter) => (
 
@@ -522,9 +458,7 @@ export default function NoodlesPage() {
                                 setActiveFilter(filter)
                             }
                         >
-
                             {filter}
-
                         </button>
 
                     ))}
@@ -532,58 +466,57 @@ export default function NoodlesPage() {
                 </div>
 
 
+                {/* RESTAURANTS */}
 
-                {/* =========================
-                    RESTAURANTS
-                ========================= */}
+                <section className="saladsRestaurants">
 
-                <section className="noodlesRestaurants">
+                    <div className="saladsSectionHeader">
 
-                    <div className="noodlesSectionHeader">
+                        <div>
 
-                        <h2>
-                            Popular Noodle Restaurants
-                        </h2>
+                            <h2>
+                                Popular Salad Restaurants
+                            </h2>
 
-                        <p>
-                            Top restaurants serving delicious noodles
-                        </p>
+                            <p>
+                                Top restaurants serving fresh healthy meals
+                            </p>
+
+                        </div>
 
                     </div>
 
 
-                    <div className="noodlesRestaurantGrid">
-
+                    <div className="saladsRestaurantGrid">
 
                         <button
                             className={
                                 selectedRestaurant === "All"
-                                    ? "noodlesRestaurantCard active"
-                                    : "noodlesRestaurantCard"
+                                    ? "saladsRestaurantCard active"
+                                    : "saladsRestaurantCard"
                             }
                             onClick={() =>
                                 setSelectedRestaurant("All")
                             }
                         >
 
-                            <div className="noodlesRestaurantImage">
+                            <div className="saladsRestaurantImage">
 
                                 <img
-                                    src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=500"
-                                    alt="All Noodles"
+                                    src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500"
+                                    alt="All Restaurants"
                                 />
 
                             </div>
 
-
-                            <div className="noodlesRestaurantInfo">
+                            <div className="saladsRestaurantInfo">
 
                                 <strong>
                                     All Restaurants
                                 </strong>
 
                                 <span>
-                                    All noodle varieties
+                                    All salad varieties
                                 </span>
 
                             </div>
@@ -597,8 +530,8 @@ export default function NoodlesPage() {
                                 key={restaurant.id}
                                 className={
                                     selectedRestaurant === restaurant.name
-                                        ? "noodlesRestaurantCard active"
-                                        : "noodlesRestaurantCard"
+                                        ? "saladsRestaurantCard active"
+                                        : "saladsRestaurantCard"
                                 }
                                 onClick={() =>
                                     setSelectedRestaurant(
@@ -607,7 +540,7 @@ export default function NoodlesPage() {
                                 }
                             >
 
-                                <div className="noodlesRestaurantImage">
+                                <div className="saladsRestaurantImage">
 
                                     <img
                                         src={restaurant.image}
@@ -616,8 +549,7 @@ export default function NoodlesPage() {
 
                                 </div>
 
-
-                                <div className="noodlesRestaurantInfo">
+                                <div className="saladsRestaurantInfo">
 
                                     <strong>
                                         {restaurant.name}
@@ -638,36 +570,37 @@ export default function NoodlesPage() {
                 </section>
 
 
+                {/* PRODUCTS */}
 
-                {/* =========================
-                    PRODUCTS
-                ========================= */}
+                <section className="saladsProducts">
 
-                <section className="noodlesProducts">
+                    <div className="saladsProductHeader">
 
-                    <div className="noodlesProductHeader">
+                        <div>
 
-                        <h2>
-                            Popular Noodles
-                        </h2>
+                            <h2>
+                                Popular Salads
+                            </h2>
 
-                        <p>
-                            Delicious noodles available
-                        </p>
+                            <p>
+                                Fresh and healthy meals available
+                            </p>
+
+                        </div>
 
                     </div>
 
 
-                    {filteredNoodles.length === 0 ? (
+                    {filteredSalads.length === 0 ? (
 
-                        <div className="noodlesEmpty">
+                        <div className="saladsEmpty">
 
                             <span>
-                                🍜
+                                🥗
                             </span>
 
                             <h3>
-                                No noodles found
+                                No salads found
                             </h3>
 
                             <p>
@@ -678,93 +611,72 @@ export default function NoodlesPage() {
 
                     ) : (
 
-                        <div className="noodlesProductGrid">
+                        <div className="saladsProductGrid">
 
-                            {filteredNoodles.map((item) => (
+                            {filteredSalads.map((item) => (
 
                                 <article
-                                    className="noodlesCard"
+                                    className="saladsCard"
                                     key={item.id}
                                 >
 
-
-                                    <div className="noodlesCardImage">
+                                    <div className="saladsCardImage">
 
                                         <img
                                             src={item.image}
                                             alt={item.name}
                                         />
 
-
-                                        <span className="noodlesBadge">
-
+                                        <span className="saladsBadge">
                                             {item.badge}
-
                                         </span>
-
 
                                         <button
                                             className={
                                                 favorites.includes(item.id)
-                                                    ? "noodlesHeart active"
-                                                    : "noodlesHeart"
+                                                    ? "saladsHeart active"
+                                                    : "saladsHeart"
                                             }
                                             onClick={() =>
                                                 toggleFavorite(item.id)
                                             }
                                         >
-
                                             <FaHeart />
-
                                         </button>
 
                                     </div>
 
 
+                                    <div className="saladsCardContent">
 
-                                    <div className="noodlesCardContent">
-
-                                        <span className="noodlesRestaurantName">
-
+                                        <span className="saladsRestaurantName">
                                             {item.restaurant}
-
                                         </span>
-
 
                                         <h3>
                                             {item.name}
                                         </h3>
 
+                                        <p>
+                                            {item.description}
+                                        </p>
 
-                                        <p className="noodlesDescription">
-    {item.description}
-</p>
-
-
-                                        <div className="noodlesInfo">
+                                        <div className="saladsInfo">
 
                                             <span>
-
                                                 <FaStar />
-
                                                 {item.rating}
-
                                             </span>
 
-
                                             <span>
-
                                                 <FaClock />
-
                                                 {item.time}
-
                                             </span>
 
                                         </div>
 
 
-
-                                        <div className="noodlesPriceRow">
+                                        <div className="saladsPriceRow">
 
                                             <div>
 
@@ -778,10 +690,9 @@ export default function NoodlesPage() {
 
                                             </div>
 
-
                                             <button
                                                 onClick={() =>
-                                                    orderNoodles(item)
+                                                    orderSalad(item)
                                                 }
                                             >
 
@@ -806,12 +717,7 @@ export default function NoodlesPage() {
                 </section>
 
 
-
-                {/* =========================
-                    DELIVERY BANNER
-                ========================= */}
-
-                <div className="noodlesDeliveryBanner">
+                <div className="saladsDeliveryBanner">
 
                     <div>
                         🚴
@@ -820,18 +726,17 @@ export default function NoodlesPage() {
                     <div>
 
                         <h3>
-                            Hot noodles, delivered fast
+                            Fresh salads, delivered fast
                         </h3>
 
                         <p>
-                            Freshly prepared noodles delivered
+                            Healthy and freshly prepared meals delivered
                             straight to your door.
                         </p>
 
                     </div>
 
                 </div>
-
 
             </div>
 

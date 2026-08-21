@@ -76,6 +76,10 @@ import NoodlesPage from "./pages/NoodlesPage/NoodlesPage";
 import NoodlesOrder from "./pages/NoodlesOrder/NoodlesOrder";
 
 
+import SaladsPage from "./pages/SaladsPage/SaladsPage";
+import SaladsOrder from "./pages/SaladsOrder/SaladsOrder";
+
+
 
 function App() {
 
@@ -111,6 +115,7 @@ function App() {
     location.pathname.startsWith("/order-fastfood") ||
     location.pathname.startsWith("/order-drink") ||
     location.pathname.startsWith("/order-dessert") ||
+    location.pathname.startsWith("/order-salads") ||
     location.pathname.startsWith("/order-noodles") ||
     location.pathname.startsWith("/order-biryani")
 
@@ -194,6 +199,10 @@ function App() {
 
                 <Route path="/order-noodles" element={<NoodlesPage />}/>
                 <Route path="/order-noodles/:id" element={<NoodlesOrder />}/>
+
+
+                <Route path="/order-salads" element={<SaladsPage />}/>
+                <Route path="/order-salads/:id" element={<SaladsOrder />}/>
                 
                 
 

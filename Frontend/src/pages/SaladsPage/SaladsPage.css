@@ -1,0 +1,640 @@
+*{
+    box-sizing:border-box;
+}
+
+.saladsPageLayout{
+    display:flex;
+    min-height:100vh;
+    background:#f7f8fc;
+}
+
+.saladsPageLayout .browseSidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:250px;
+    height:100vh;
+    z-index:1000;
+    overflow-y:auto;
+}
+
+.saladsMarketplace{
+    margin-left:250px;
+    width:calc(100% - 250px);
+    min-height:100vh;
+    background:#f7f8fc;
+    color:#1e293b;
+    padding:0 38px 50px;
+}
+
+.saladsTopHeader{
+    height:78px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+    border-bottom:1px solid #e9e9ef;
+}
+
+.saladsBackButton{
+    width:40px;
+    height:40px;
+    border:none;
+    border-radius:12px;
+    background:white;
+    color:#475569;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+}
+
+.saladsBackButton:hover{
+    background:#6c63ff;
+    color:white;
+}
+
+.saladsHeaderTitle{
+    flex:1;
+}
+
+.saladsHeaderTitle h2{
+    margin:2px 0 0;
+    font-size:24px;
+    color:#172033;
+}
+
+.saladsHeaderTitle p{
+    margin:5px 0 0;
+    color:#94a3b8;
+    font-size:10px;
+}
+
+.saladsHeaderLocation{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.saladsHeaderLocation > span{
+    color:#ef4444;
+}
+
+.saladsHeaderLocation small{
+    display:block;
+    color:#94a3b8;
+    font-size:9px;
+}
+
+.saladsHeaderLocation strong{
+    display:block;
+    color:#334155;
+    font-size:11px;
+}
+
+
+/* HERO */
+
+.saladsHero{
+    margin-top:25px;
+    min-height:280px;
+    border-radius:24px;
+    overflow:hidden;
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    background:
+        linear-gradient(
+            110deg,
+            #26205d 0%,
+            #40378b 55%,
+            #665ee8 100%
+        );
+}
+
+.saladsHeroContent{
+    padding:42px 45px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.saladsHeroBadge{
+    width:max-content;
+    padding:7px 12px;
+    border-radius:20px;
+    background:rgba(255,255,255,.13);
+    color:#dcfce7;
+    font-size:10px;
+    font-weight:700;
+}
+
+.saladsHero h2{
+    color:white;
+    font-size:39px;
+    line-height:1.08;
+    margin:16px 0 10px;
+}
+
+.saladsHero h2 span{
+    color:#bbf7d0;
+}
+
+.saladsHeroContent > p{
+    margin:0 0 22px;
+    color:#dcfce7;
+    font-size:13px;
+    line-height:1.6;
+    max-width:450px;
+}
+
+.saladsSearchBox{
+    width:min(470px,100%);
+    height:49px;
+    background:white;
+    border-radius:13px;
+    display:flex;
+    align-items:center;
+    gap:11px;
+    padding:0 16px;
+}
+
+.saladsSearchBox svg{
+    color:#64748b;
+}
+
+.saladsSearchBox input{
+    border:none;
+    outline:none;
+    width:100%;
+    font-size:13px;
+}
+
+.saladsHeroStats{
+    display:flex;
+    gap:8px;
+    margin-top:16px;
+}
+
+.saladsHeroStats div{
+    background:rgba(255,255,255,.12);
+    border-radius:9px;
+    padding:7px 10px;
+}
+
+.saladsHeroStats strong{
+    display:block;
+    color:white;
+    font-size:13px;
+}
+
+.saladsHeroStats span{
+    display:block;
+    margin-top:2px;
+    color:#dcfce7;
+    font-size:7px;
+}
+
+.saladsHeroImage{
+    min-height:280px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+}
+
+.saladsHeroImage img{
+    width:320px;
+    height:240px;
+    object-fit:cover;
+}
+
+
+/* FILTER */
+
+.saladsFilterHeader{
+    margin-top:20px;
+    padding-top:30px;
+    padding-bottom:30px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.saladsFilterHeader h2{
+    margin:0;
+    font-size:23px;
+    color:#1e293b;
+}
+
+.saladsFilterHeader p{
+    margin:5px 0 0;
+    color:#94a3b8;
+    font-size:11px;
+}
+
+.saladsSort{
+    border:1px solid #e4e7ee;
+    background:white;
+    color:#475569;
+    padding:9px 14px;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:11px;
+}
+
+.saladsFilters{
+    display:flex;
+    gap:9px;
+    overflow-x:auto;
+    scrollbar-width:none;
+    margin-bottom:25px;
+}
+
+.saladsFilters::-webkit-scrollbar{
+    display:none;
+}
+
+.saladsFilters button{
+    flex-shrink:0;
+    border:1px solid #e4e7ee;
+    background:white;
+    color:#64748b;
+    padding:9px 17px;
+    border-radius:22px;
+    cursor:pointer;
+    font-size:11px;
+    font-weight:600;
+}
+
+.saladsFilters button.active{
+    background:#6c63ff;
+    border-color:#6c63ff;
+    color:white;
+}
+
+
+/* RESTAURANTS */
+
+.saladsRestaurants{
+    margin-top:20px;
+    padding-top:30px;
+    padding-bottom:30px;
+}
+
+.saladsSectionHeader{
+    margin-bottom:16px;
+}
+
+.saladsSectionHeader h2{
+    margin:0;
+    font-size:23px;
+}
+
+.saladsSectionHeader p{
+    margin:5px 0 0;
+    color:#94a3b8;
+    font-size:11px;
+}
+
+.saladsRestaurantGrid{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:14px;
+}
+
+.saladsRestaurantCard{
+    border:1px solid #edf0f5;
+    background:white;
+    border-radius:16px;
+    overflow:hidden;
+    cursor:pointer;
+    text-align:left;
+    padding:0;
+    transition:.25s;
+}
+
+.saladsRestaurantCard:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 25px rgba(15,23,42,.06);
+}
+
+.saladsRestaurantCard.active{
+    border-color:#6c63ff;
+    box-shadow:0 8px 24px rgba(34,163,90,.12);
+}
+
+.saladsRestaurantImage{
+    height:120px;
+    overflow:hidden;
+}
+
+.saladsRestaurantImage img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.saladsRestaurantInfo{
+    padding:12px;
+}
+
+.saladsRestaurantInfo strong{
+    display:block;
+    font-size:12px;
+    color:#1e293b;
+}
+
+.saladsRestaurantInfo span{
+    display:block;
+    margin-top:5px;
+    color:#94a3b8;
+    font-size:9px;
+}
+
+
+/* PRODUCTS */
+
+.saladsProducts{
+    margin-top:20px;
+    padding-top:30px;
+    padding-bottom:30px;
+}
+
+.saladsProductHeader{
+    margin-bottom:16px;
+}
+
+.saladsProductHeader h2{
+    margin:0;
+    font-size:23px;
+}
+
+.saladsProductHeader p{
+    margin:5px 0 0;
+    color:#94a3b8;
+    font-size:11px;
+}
+
+.saladsProductGrid{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:22px;
+}
+
+.saladsCard{
+    background:white;
+    border:1px solid #edf0f5;
+    border-radius:19px;
+    overflow:hidden;
+    transition:.3s;
+}
+
+.saladsCard:hover{
+    transform:translateY(-5px);
+    box-shadow:0 18px 40px rgba(15,23,42,.09);
+}
+
+.saladsCardImage{
+    height:190px;
+    position:relative;
+    overflow:hidden;
+}
+
+.saladsCardImage img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.saladsBadge{
+    position:absolute;
+    top:12px;
+    left:12px;
+    background:white;
+    color:#6c63ff;
+    padding:6px 9px;
+    border-radius:8px;
+    font-size:9px;
+    font-weight:800;
+}
+
+.saladsHeart{
+    position:absolute;
+    top:12px;
+    right:12px;
+    width:32px;
+    height:32px;
+    border:none;
+    border-radius:50%;
+    background:white;
+    color:#64748b;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+}
+
+.saladsHeart.active{
+    color:#ef4444;
+}
+
+.saladsCardContent{
+    padding:17px;
+}
+
+.saladsRestaurantName{
+    color:#6c63ff;
+    font-size:10px;
+    font-weight:700;
+}
+
+.saladsCard h3{
+    margin:6px 0;
+    font-size:16px;
+    color:#172033;
+}
+
+.saladsCardContent > p{
+    margin:0 0 12px;
+    color:#94a3b8;
+    font-size:9px;
+    line-height:1.5;
+    min-height:28px;
+}
+
+.saladsInfo{
+    display:flex;
+    gap:9px;
+    color:#94a3b8;
+    font-size:9px;
+}
+
+.saladsInfo span{
+    display:flex;
+    align-items:center;
+    gap:4px;
+}
+
+.saladsInfo span:first-child{
+    color:#f59e0b;
+}
+
+.saladsPriceRow{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-top:13px;
+    padding-top:13px;
+    border-top:1px solid #f0f1f5;
+}
+
+.saladsPriceRow strong{
+    color:#6c63ff;
+    font-size:20px;
+}
+
+.saladsPriceRow del{
+    margin-left:7px;
+    color:#a1a1aa;
+    font-size:10px;
+}
+
+.saladsPriceRow button{
+    border:none;
+    background:#6c63ff;
+    color:white;
+    height:34px;
+    padding:0 13px;
+    border-radius:9px;
+    display:flex;
+    align-items:center;
+    gap:5px;
+    cursor:pointer;
+    font-size:10px;
+    font-weight:700;
+}
+
+.saladsPriceRow button:hover{
+    background:#584ee8;
+}
+
+
+/* EMPTY */
+
+.saladsEmpty{
+    background:white;
+    border:1px solid #edf0f5;
+    border-radius:18px;
+    padding:55px 20px;
+    text-align:center;
+}
+
+.saladsEmpty span{
+    font-size:40px;
+}
+
+.saladsEmpty h3{
+    margin:12px 0 5px;
+}
+
+.saladsEmpty p{
+    color:#94a3b8;
+    font-size:12px;
+}
+
+
+/* DELIVERY */
+
+.saladsDeliveryBanner{
+    margin-top:42px;
+    background:white;
+    border:1px solid #edf0f5;
+    border-radius:18px;
+    padding:18px 22px;
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.saladsDeliveryBanner > div:first-child{
+    width:44px;
+    height:44px;
+    border-radius:12px;
+    background:#dcfce7;
+    color:#6c63ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.saladsDeliveryBanner h3{
+    margin:0;
+    font-size:14px;
+}
+
+.saladsDeliveryBanner p{
+    margin:4px 0 0;
+    color:#94a3b8;
+    font-size:10px;
+}
+
+
+/* RESPONSIVE */
+
+@media(max-width:1200px){
+
+    .saladsProductGrid{
+        grid-template-columns:repeat(3,minmax(0,1fr));
+    }
+
+    .saladsRestaurantGrid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+    }
+
+}
+
+@media(max-width:900px){
+
+    .saladsMarketplace{
+        padding:0 20px 40px;
+    }
+
+    .saladsHero{
+        grid-template-columns:1fr;
+    }
+
+    .saladsHeroImage{
+        display:none;
+    }
+
+    .saladsProductGrid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+    }
+
+}
+
+@media(max-width:650px){
+
+    .saladsMarketplace{
+        padding:0 14px 30px;
+    }
+
+    .saladsHeaderLocation{
+        display:none;
+    }
+
+    .saladsHeroContent{
+        padding:30px 25px;
+    }
+
+    .saladsHero h2{
+        font-size:30px;
+    }
+
+    .saladsRestaurantGrid,
+    .saladsProductGrid{
+        grid-template-columns:1fr;
+    }
+
+}

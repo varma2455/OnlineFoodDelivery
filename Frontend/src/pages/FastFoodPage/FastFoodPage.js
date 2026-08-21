@@ -11,7 +11,8 @@ import {
     FaFire,
     FaFilter,
     FaChevronDown,
-    FaPlus
+    FaPlus,
+    FaShoppingCart
 } from "react-icons/fa";
 
 import DashboardSidebar from "../../components/DashboardSidebar/DashboardSidebar";
@@ -586,25 +587,42 @@ export default function FastFoodPage() {
                     </div>
 
 
-                    <div className="fastFoodHeaderLocation">
-
-                        <span>
-                            📍
-                        </span>
-
-                        <div>
-
-                            <small>
-                                Delivering to
-                            </small>
-
-                            <strong>
-                                Your Location
-                            </strong>
-
-                        </div>
-
-                    </div>
+                    <div className="pizzaHeaderRight">
+                    
+                                        <button className="headerLocation">
+                    
+                                            <span className="locationDot">
+                                                ●
+                                            </span>
+                    
+                                            <div>
+                    
+                                                <small>
+                                                    Delivering to
+                                                </small>
+                    
+                                                <strong>
+                                                    Your Location
+                                                </strong>
+                    
+                                            </div>
+                    
+                                            <FaChevronDown />
+                    
+                                        </button>
+                    
+                    
+                                        <button className="headerCart">
+                    
+                                            <FaShoppingCart />
+                    
+                                            <span>
+                                                Cart
+                                            </span>
+                    
+                                        </button>
+                    
+                                    </div>
 
                 </header>
 

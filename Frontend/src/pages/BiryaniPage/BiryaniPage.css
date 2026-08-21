@@ -245,7 +245,10 @@
 ========================================= */
 
 .biryaniFiltersSection{
-    margin-top:24px;
+    margin-top:20px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 20px;
     display:flex;
     align-items:center;
     justify-content:space-between;
@@ -351,7 +354,10 @@
 ========================================= */
 
 .biryaniRestaurants{
-    margin-top:34px;
+    margin-top:20px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .biryaniRestaurantScroller{
@@ -440,7 +446,10 @@
 ========================================= */
 
 .biryaniProducts{
-    margin-top:40px;
+    margin-top:20px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .biryaniResultCount{

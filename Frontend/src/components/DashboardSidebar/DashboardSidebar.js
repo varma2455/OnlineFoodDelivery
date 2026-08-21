@@ -65,6 +65,7 @@ const DashboardSidebar = () => {
         location.pathname.startsWith("/order-drink") ||
         location.pathname.startsWith("/order-dessert") ||
         location.pathname.startsWith("/order-noodles") ||
+        location.pathname.startsWith("/order-salads") ||
         location.pathname.startsWith("/order-biryani")
             ? "active"
             : ""

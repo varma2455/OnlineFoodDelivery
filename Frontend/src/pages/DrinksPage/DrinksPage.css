@@ -292,7 +292,10 @@
 ========================================= */
 
 .drinksFiltersSection{
-    margin-top:24px;
+    margin-top:20px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 20px;
     display:flex;
     align-items:center;
     justify-content:space-between;
@@ -412,7 +415,10 @@
 ========================================= */
 
 .drinksRestaurants{
-    margin-top:34px;
+    margin-top:20px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 
@@ -512,7 +518,10 @@
 ========================================= */
 
 .drinksProducts{
-    margin-top:40px;
+    margin-top:20px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 

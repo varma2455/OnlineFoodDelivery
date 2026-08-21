@@ -50,7 +50,7 @@ const categories = [
         name:"Salads",
         icon:"🥗",
         color:"#E8FFE5",
-        link:"/category/salads"
+        link:"/order-salads"
     },
 
     {

@@ -293,6 +293,68 @@ export default function PizzaOrder() {
     const totalPrice = price * quantity;
 
 
+
+    const addToCart = async () => {
+        try {
+            const token = localStorage.getItem("token");
+    
+            if (!token) {
+                alert("Please login first");
+                navigate("/login");
+                return;
+            }
+    
+            const cartItem = {
+                foodId: selectedPizza.id,
+                foodName: selectedPizza.name,
+                restaurant: selectedPizza.restaurant,
+                image: selectedPizza.image,
+    
+                customization: {
+                    size,
+                    crust,
+                    toppings: selectedToppings,
+                    quantity
+                },
+    
+                unitPrice: price,
+                totalPrice
+            };
+    
+            const response = await fetch(
+                `${process.env.REACT_APP_API}/api/cart/add`,
+                {
+                    method: "POST",
+    
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`
+                    },
+    
+                    body: JSON.stringify(cartItem)
+                }
+            );
+    
+            const data = await response.json();
+    
+            if (!response.ok) {
+                throw new Error(
+                    data.message || "Failed to add item to cart"
+                );
+            }
+    
+            alert("Added to cart successfully");
+    
+        } catch (error) {
+    
+            console.error("Add to cart error:", error);
+    
+            alert(error.message);
+    
+        }
+    };
+
+
     return (
 
         <div className="pizzaOrderPageLayout">
@@ -726,12 +788,8 @@ export default function PizzaOrder() {
                         </div>
 
 
-                        <button className="addPizzaButton">
-
-                            <FaShoppingCart />
-
-                            Add to Cart
-
+                        <button className="addPizzaButton"onClick={addToCart}>
+                            <FaShoppingCart />Add to Cart
                         </button>
 
                     </div>

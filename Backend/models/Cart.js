@@ -1,45 +1,144 @@
 import mongoose from "mongoose";
 
 const cartSchema = new mongoose.Schema(
-  {
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: [true, "User is required"],
-    },
+    {
+        // Logged-in user
+        user: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
+            required: [true, "User is required"],
+        },
 
-    food: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Food",
-      required: [true, "Food item is required"],
-    },
+        // Food document from MongoDB
+        food: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Food",
+            required: [true, "Food item is required"],
+        },
 
-    quantity: {
-      type: Number,
-      required: true,
-      default: 1,
-      min: 1,
-    },
+        // Food category
+        foodType: {
+            type: String,
+            required: true,
+            enum: [
+                "Pizza",
+                "Burger",
+                "Biryani",
+                "Noodles",
+                "Salad",
+                "Fast Food",
+                "Drink",
+                "Dessert",
+            ],
+        },
 
-    price: {
-      type: Number,
-      required: true,
-      min: 0,
-    },
+        // Customized options
+        customization: {
+            // Common
+            size: {
+                type: String,
+                default: null,
+            },
 
-    subtotal: {
-      type: Number,
-      required: true,
-      min: 0,
+            quantity: {
+                type: Number,
+                default: 1,
+                min: 1,
+            },
+
+            // Pizza
+            crust: {
+                type: String,
+                default: null,
+            },
+
+            toppings: {
+                type: [String],
+                default: [],
+            },
+
+            // Burger
+            bun: {
+                type: String,
+                default: null,
+            },
+
+            // Biryani
+            rice: {
+                type: String,
+                default: null,
+            },
+
+            spice: {
+                type: String,
+                default: null,
+            },
+
+            // Noodles
+            noodlesType: {
+                type: String,
+                default: null,
+            },
+
+            // Salad
+            dressing: {
+                type: String,
+                default: null,
+            },
+
+            // Drinks
+            iceLevel: {
+                type: String,
+                default: null,
+            },
+
+            sugarLevel: {
+                type: String,
+                default: null,
+            },
+
+            milkOption: {
+                type: String,
+                default: null,
+            },
+
+            // Fast Food
+            portion: {
+                type: String,
+                default: null,
+            },
+
+            // Dessert
+            topping: {
+                type: String,
+                default: null,
+            },
+
+            // Common extras
+            extras: {
+                type: [String],
+                default: [],
+            },
+        },
+
+        // Price of one customized item
+        price: {
+            type: Number,
+            required: true,
+            min: 0,
+        },
+
+        // price × quantity
+        subtotal: {
+            type: Number,
+            required: true,
+            min: 0,
+        },
     },
-  },
-  {
-    timestamps: true,
-  }
+    {
+        timestamps: true,
+    }
 );
-
-// Prevent duplicate cart entries for the same user and food item
-cartSchema.index({ user: 1, food: 1 }, { unique: true });
 
 const Cart = mongoose.model("Cart", cartSchema);
 

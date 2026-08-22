@@ -30,3 +30,6 @@ Backend/uploads/
 
 # Package Locks (optional if you don't want them)
 # package-lock.json
+
+
+REACT_APP_API=http://localhost:5000

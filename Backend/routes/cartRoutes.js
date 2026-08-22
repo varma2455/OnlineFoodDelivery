@@ -11,31 +11,147 @@ import {
 
 import { protect } from "../middleware/authMiddleware.js";
 
+
 const router = express.Router();
 
+
 /*
-===========================================
-Cart Routes
-(All routes require authentication)
-===========================================
+==================================================
+                    CART ROUTES
+==================================================
+All cart routes require the user to be authenticated.
+The logged-in user is identified through the JWT token.
 */
 
-// Add Item to Cart
-router.post("/add", protect, addToCart);
 
-// Get User Cart
-router.get("/", protect, getCart);
+/*
+==================================================
+ADD ITEM TO CART
 
-// Cart Summary
-router.get("/summary", protect, getCartSummary);
+POST /api/cart/add
 
-// Update Cart Item Quantity
-router.put("/:id", protect, updateCartItem);
+Used by:
+- Pizza
+- Burger
+- Biryani
+- Noodles
+- Salads
+- Fast Food
+- Drinks
+- Desserts
 
-// Remove Item From Cart
-router.delete("/:id", protect, removeCartItem);
+Stores:
+- User
+- Food
+- Food type
+- Customization
+- Quantity
+- Price
+- Subtotal
+==================================================
+*/
 
-// Clear Cart
-router.delete("/clear/all", protect, clearCart);
+router.post(
+    "/add",
+    protect,
+    addToCart
+);
+
+
+/*
+==================================================
+GET USER CART
+
+GET /api/cart
+
+Returns all cart items belonging to the
+currently logged-in user.
+==================================================
+*/
+
+router.get(
+    "/",
+    protect,
+    getCart
+);
+
+
+/*
+==================================================
+GET CART SUMMARY
+
+GET /api/cart/summary
+
+Returns:
+- Total items
+- Total price
+- Other cart summary information
+==================================================
+*/
+
+router.get(
+    "/summary",
+    protect,
+    getCartSummary
+);
+
+
+/*
+==================================================
+UPDATE CART ITEM
+
+PUT /api/cart/:id
+
+Used to update the quantity of a particular
+cart item.
+
+Example:
+
+PUT /api/cart/67abc123
+==================================================
+*/
+
+router.put(
+    "/:id",
+    protect,
+    updateCartItem
+);
+
+
+/*
+==================================================
+REMOVE CART ITEM
+
+DELETE /api/cart/:id
+
+Removes one cart item belonging to the
+logged-in user.
+==================================================
+*/
+
+router.delete(
+    "/:id",
+    protect,
+    removeCartItem
+);
+
+
+/*
+==================================================
+CLEAR CART
+
+DELETE /api/cart/clear/all
+
+Removes all cart items belonging to the
+currently logged-in user.
+==================================================
+*/
+
+router.delete(
+    "/clear/all",
+    protect,
+    clearCart
+);
+
 
 export default router;

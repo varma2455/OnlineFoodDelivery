@@ -11,7 +11,17 @@ import Food from "../models/Food.js";
 export const addToCart = async (req, res, next) => {
     try {
 
-        const { foodId, quantity } = req.body;
+        const {
+            foodId,
+            foodType,
+            customization,
+            quantity
+        } = req.body;
+
+
+        // ==============================
+        // Validate food ID
+        // ==============================
 
         if (!foodId) {
             return res.status(400).json({
@@ -19,6 +29,11 @@ export const addToCart = async (req, res, next) => {
                 message: "Food ID is required."
             });
         }
+
+
+        // ==============================
+        // Find food
+        // ==============================
 
         const food = await Food.findById(foodId);
 
@@ -29,46 +44,71 @@ export const addToCart = async (req, res, next) => {
             });
         }
 
+
+        // ==============================
+        // Quantity
+        // ==============================
+
         const qty = Number(quantity) || 1;
 
-        // Check if item already exists
-        const existingItem = await Cart.findOne({
-            user: req.user._id,
-            food: foodId
-        });
 
-        if (existingItem) {
-
-            existingItem.quantity += qty;
-            existingItem.subtotal =
-                existingItem.quantity * existingItem.price;
-
-            await existingItem.save();
-
-            return res.status(200).json({
-                success: true,
-                message: "Cart updated successfully.",
-                cart: existingItem
+        if (qty < 1) {
+            return res.status(400).json({
+                success: false,
+                message: "Quantity must be at least 1."
             });
         }
 
-        // Create new cart item
+
+        // ==============================
+        // Calculate price
+        // ==============================
+
+        const price = Number(food.price);
+
+        const subtotal = price * qty;
+
+
+        // ==============================
+        // Create cart item
+        // ==============================
+
         const cart = await Cart.create({
+
             user: req.user._id,
+
             food: food._id,
+
+            foodType:
+                foodType || food.category,
+
+            customization:
+                customization || {},
+
             quantity: qty,
-            price: food.price,
-            subtotal: qty * food.price
+
+            price,
+
+            subtotal
+
         });
+
 
         return res.status(201).json({
+
             success: true,
-            message: "Item added to cart.",
+
+            message: "Item added to cart successfully.",
+
             cart
+
         });
 
+
     } catch (error) {
+
         next(error);
+
     }
 };
 

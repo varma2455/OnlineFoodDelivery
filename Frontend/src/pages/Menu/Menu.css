@@ -1,0 +1,517 @@
+/* ==========================================
+   MENU PAGE
+========================================== */
+
+.menu-page{
+
+    width:90%;
+
+    max-width:1400px;
+
+    margin:40px auto 80px;
+
+}
+
+.menu-header{
+
+    text-align:center;
+
+    margin-bottom:50px;
+
+}
+
+.menu-header h1{
+
+    font-size:48px;
+
+    color:#222;
+
+    margin-bottom:15px;
+
+}
+
+.menu-header p{
+
+    font-size:18px;
+
+    color:#666;
+
+}
+
+.menu-toolbar{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    align-items:center;
+
+    gap:15px;
+
+    margin:40px 0;
+
+}
+
+.menu-toolbar label{
+
+    font-size:18px;
+
+    font-weight:600;
+
+}
+
+.menu-toolbar select{
+
+    padding:12px 18px;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+    outline:none;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+}
+
+.menu-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+
+    gap:30px;
+
+    margin-bottom:70px;
+
+}
+
+/* ==========================================
+   EMPTY STATE
+========================================== */
+
+.menu-empty{
+
+    grid-column:1/-1;
+
+    text-align:center;
+
+    padding:80px 20px;
+
+}
+
+.menu-empty h2{
+
+    font-size:34px;
+
+    color:#ff5722;
+
+    margin-bottom:15px;
+
+}
+
+.menu-empty p{
+
+    color:#777;
+
+    font-size:18px;
+
+}
+/* ==========================================
+   MENU INFORMATION
+========================================== */
+
+.menu-info{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+    gap:30px;
+
+    margin-bottom:80px;
+
+}
+
+.info-card{
+
+    background:#ffffff;
+
+    border-radius:20px;
+
+    padding:35px;
+
+    text-align:center;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+
+    transition:.35s;
+
+}
+
+.info-card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
+
+}
+
+.info-card h3{
+
+    color:#ff5722;
+
+    font-size:26px;
+
+    margin-bottom:18px;
+
+}
+
+.info-card p{
+
+    color:#666;
+
+    line-height:30px;
+
+    font-size:17px;
+
+}
+
+/* ==========================================
+   MENU STATISTICS
+========================================== */
+
+.menu-stats{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:30px;
+
+    margin-bottom:80px;
+
+}
+
+.stat-box{
+
+    background:#ff5722;
+
+    color:#ffffff;
+
+    text-align:center;
+
+    border-radius:20px;
+
+    padding:40px 25px;
+
+    transition:.35s;
+
+}
+
+.stat-box:hover{
+
+    transform:translateY(-8px);
+
+    background:#e64a19;
+
+}
+
+.stat-box h2{
+
+    font-size:42px;
+
+    margin-bottom:15px;
+
+}
+
+.stat-box p{
+
+    font-size:18px;
+
+}
+/* ==========================================
+   OFFER BANNER
+========================================== */
+
+.offer-banner{
+
+    margin:80px 0;
+
+}
+
+.offer-content{
+
+    background:linear-gradient(
+        135deg,
+        #ff5722,
+        #ff9800
+    );
+
+    color:#ffffff;
+
+    text-align:center;
+
+    border-radius:25px;
+
+    padding:70px 40px;
+
+    box-shadow:0 15px 35px rgba(255,87,34,.25);
+
+}
+
+.offer-content h2{
+
+    font-size:42px;
+
+    margin-bottom:20px;
+
+}
+
+.offer-content p{
+
+    font-size:20px;
+
+    line-height:32px;
+
+    margin-bottom:35px;
+
+}
+
+.offer-content button{
+
+    border:none;
+
+    background:#ffffff;
+
+    color:#ff5722;
+
+    padding:16px 38px;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.offer-content button:hover{
+
+    background:#222;
+
+    color:#ffffff;
+
+    transform:translateY(-4px);
+
+}
+
+/* ==========================================
+   ANIMATIONS
+========================================== */
+
+.menu-header,
+.menu-toolbar,
+.menu-grid,
+.menu-info,
+.menu-stats,
+.offer-banner{
+
+    animation:fadeInUp .8s ease;
+
+}
+
+@keyframes fadeInUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(35px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+/* ==========================================
+   RESPONSIVE DESIGN
+========================================== */
+
+@media (max-width: 992px){
+
+    .menu-toolbar{
+
+        justify-content:center;
+
+        flex-wrap:wrap;
+
+    }
+
+    .menu-header h1{
+
+        font-size:38px;
+
+    }
+
+    .offer-content{
+
+        padding:50px 30px;
+
+    }
+
+    .offer-content h2{
+
+        font-size:34px;
+
+    }
+
+}
+
+@media (max-width:768px){
+
+    .menu-page{
+
+        width:95%;
+
+    }
+
+    .menu-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .menu-info{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .menu-stats{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+    .offer-content{
+
+        padding:40px 25px;
+
+    }
+
+    .offer-content h2{
+
+        font-size:30px;
+
+    }
+
+    .offer-content p{
+
+        font-size:17px;
+
+        line-height:28px;
+
+    }
+
+}
+
+@media (max-width:576px){
+
+    .menu-header h1{
+
+        font-size:30px;
+
+    }
+
+    .menu-header p{
+
+        font-size:16px;
+
+    }
+
+    .menu-toolbar{
+
+        flex-direction:column;
+
+        align-items:stretch;
+
+    }
+
+    .menu-toolbar select{
+
+        width:100%;
+
+    }
+
+    .menu-stats{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .offer-content{
+
+        padding:30px 20px;
+
+    }
+
+    .offer-content h2{
+
+        font-size:24px;
+
+    }
+
+    .offer-content p{
+
+        font-size:15px;
+
+    }
+
+    .offer-content button{
+
+        width:100%;
+
+        padding:14px;
+
+    }
+
+}
+
+/* ==========================================
+   SMOOTH SCROLL
+========================================== */
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+/* ==========================================
+   TEXT SELECTION
+========================================== */
+
+::selection{
+
+    background:#ff5722;
+
+    color:#ffffff;
+
+}
+
+/* ==========================================
+   END OF MENU PAGE
+========================================== */

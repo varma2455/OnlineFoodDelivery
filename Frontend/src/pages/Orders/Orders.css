@@ -1,0 +1,515 @@
+/* ==========================================
+   ORDERS PAGE
+========================================== */
+
+.orders-page{
+
+    width:90%;
+
+    max-width:1400px;
+
+    margin:40px auto 80px;
+
+}
+
+.orders-header{
+
+    text-align:center;
+
+    margin-bottom:50px;
+
+}
+
+.orders-header h1{
+
+    font-size:46px;
+
+    color:#222;
+
+    margin-bottom:12px;
+
+}
+
+.orders-header p{
+
+    font-size:18px;
+
+    color:#666;
+
+}
+
+/* ==========================================
+   EMPTY ORDERS
+========================================== */
+
+.empty-orders{
+
+    background:#ffffff;
+
+    padding:70px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+.empty-orders h2{
+
+    color:#ff5722;
+
+    font-size:34px;
+
+    margin-bottom:15px;
+
+}
+
+.empty-orders p{
+
+    color:#666;
+
+    font-size:18px;
+
+}
+
+/* ==========================================
+   ORDERS LIST
+========================================== */
+
+.orders-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:25px;
+
+}
+/* ==========================================
+   ORDER CARD
+========================================== */
+
+.order-card{
+
+    background:#ffffff;
+
+    border-radius:20px;
+
+    padding:25px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+.order-card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 15px 35px rgba(0,0,0,.12);
+
+}
+
+/* ==========================================
+   ORDER HEADER
+========================================== */
+
+.order-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+
+}
+
+.order-top h3{
+
+    color:#222;
+
+    margin-bottom:6px;
+
+    font-size:22px;
+
+}
+
+.order-top p{
+
+    color:#777;
+
+    font-size:15px;
+
+}
+
+/* ==========================================
+   STATUS BADGE
+========================================== */
+
+.status{
+
+    padding:8px 18px;
+
+    border-radius:20px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    text-transform:capitalize;
+
+}
+
+.status.pending{
+
+    background:#fff3cd;
+
+    color:#856404;
+
+}
+
+.status.preparing{
+
+    background:#d1ecf1;
+
+    color:#0c5460;
+
+}
+
+.status.delivered{
+
+    background:#d4edda;
+
+    color:#155724;
+
+}
+
+.status.cancelled{
+
+    background:#f8d7da;
+
+    color:#721c24;
+
+}
+
+/* ==========================================
+   ORDER ITEMS
+========================================== */
+
+.order-items{
+
+    border-top:1px solid #eeeeee;
+
+    border-bottom:1px solid #eeeeee;
+
+    padding:18px 0;
+
+    margin:20px 0;
+
+}
+
+.order-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    padding:8px 0;
+
+    color:#444;
+
+}/* ==========================================
+   ORDER FOOTER
+========================================== */
+
+.order-bottom{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-top:20px;
+
+}
+
+.order-bottom h3{
+
+    color:#ff5722;
+
+    font-size:24px;
+
+    font-weight:700;
+
+}
+
+/* ==========================================
+   VIEW BUTTON
+========================================== */
+
+.view-btn{
+
+    border:none;
+
+    background:#007bff;
+
+    color:#ffffff;
+
+    padding:12px 24px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.view-btn:hover{
+
+    background:#0056b3;
+
+}
+
+/* ==========================================
+   ACTION BUTTONS
+========================================== */
+
+.orders-actions{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-top:20px;
+
+}
+
+.reorder-btn{
+
+    flex:1;
+
+    border:none;
+
+    background:#28a745;
+
+    color:#ffffff;
+
+    padding:14px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.reorder-btn:hover{
+
+    background:#218838;
+
+}
+
+.rate-btn{
+
+    flex:1;
+
+    border:none;
+
+    background:#ff9800;
+
+    color:#ffffff;
+
+    padding:14px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.rate-btn:hover{
+
+    background:#f57c00;
+
+}
+
+/* ==========================================
+   BUTTON ACTIVE EFFECT
+========================================== */
+
+.view-btn:active,
+.reorder-btn:active,
+.rate-btn:active{
+
+    transform:scale(.98);
+
+}
+/* ==========================================
+   RESPONSIVE DESIGN
+========================================== */
+
+@media (max-width:992px){
+
+    .order-top{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:15px;
+
+    }
+
+    .order-bottom{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:15px;
+
+    }
+
+}
+
+@media (max-width:768px){
+
+    .orders-page{
+
+        width:95%;
+
+    }
+
+    .order-card{
+
+        padding:20px;
+
+    }
+
+    .orders-actions{
+
+        flex-direction:column;
+
+    }
+
+    .view-btn,
+    .reorder-btn,
+    .rate-btn{
+
+        width:100%;
+
+    }
+
+}
+
+@media (max-width:480px){
+
+    .orders-header h1{
+
+        font-size:30px;
+
+    }
+
+    .orders-header p{
+
+        font-size:16px;
+
+    }
+
+    .order-top h3{
+
+        font-size:20px;
+
+    }
+
+    .order-item{
+
+        font-size:15px;
+
+    }
+
+    .order-bottom h3{
+
+        font-size:20px;
+
+    }
+
+}
+
+/* ==========================================
+   ANIMATION
+========================================== */
+
+.order-card{
+
+    animation:fadeUp .7s ease;
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(30px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ==========================================
+   SMOOTH SCROLL
+========================================== */
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+/* ==========================================
+   TEXT SELECTION
+========================================== */
+
+::selection{
+
+    background:#ff5722;
+
+    color:#ffffff;
+
+}
+
+/* ==========================================
+   END OF ORDERS PAGE
+========================================== */

@@ -1,0 +1,602 @@
+/* =========================================
+   PAGE
+========================================= */
+
+/* =========================================
+   PIZZA ORDER PAGE WITH SIDEBAR
+========================================= */
+
+.pizzaOrderPageLayout{
+    display:flex;
+
+    min-height:100vh;
+
+    background:#f7f7fb;
+}
+
+
+/* =========================================
+   DASHBOARD SIDEBAR
+========================================= */
+
+.pizzaOrderPageLayout .browseSidebar{
+
+    position:fixed;
+
+    left:0;
+    top:0;
+
+    width:250px;
+
+    height:100vh;
+
+    z-index:1000;
+
+    overflow-y:auto;
+}
+
+
+/* =========================================
+   PIZZA ORDER CONTENT
+========================================= */
+
+.pizzaPage{
+
+    margin-left:250px;
+
+    width:calc(100% - 250px);
+
+    min-height:100vh;
+
+    background:#f7f7fb;
+
+    color:#1e293b;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.pizzaHeader{
+    height:76px;
+    background:white;
+    display:flex;
+    align-items:center;
+    padding:0 35px;
+    border-bottom:1px solid #eee;
+    gap:20px;
+}
+
+
+.backButton,
+.favoriteButton{
+    width:42px;
+    height:42px;
+    border:none;
+    border-radius:50%;
+    background:#f4f4f8;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    color:#333;
+}
+
+
+.backButton:hover,
+.favoriteButton:hover{
+    background:#6c63ff;
+    color:white;
+}
+
+
+.pizzaHeaderTitle{
+    flex:1;
+}
+
+
+.pizzaHeaderTitle h2{
+    margin:0;
+    font-size:21px;
+}
+
+
+.pizzaHeaderTitle p{
+    margin:3px 0 0;
+    color:#777;
+    font-size:12px;
+}
+
+
+
+/* =========================================
+   CONTAINER
+========================================= */
+
+.pizzaContainer{
+    max-width:1250px;
+    margin:auto;
+    padding:35px;
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:45px;
+}
+
+
+
+/* =========================================
+   IMAGE
+========================================= */
+
+.pizzaImageCard{
+    background:white;
+    border-radius:25px;
+    padding:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,.06);
+}
+
+
+.pizzaMainImage{
+    width:100%;
+    height:470px;
+    object-fit:cover;
+    border-radius:18px;
+    display:block;
+}
+
+
+.pizzaRating{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-top:15px;
+    font-size:14px;
+}
+
+
+.pizzaRating svg{
+    color:#f59e0b;
+}
+
+
+.pizzaRating span:last-child{
+    color:#777;
+}
+
+
+
+/* =========================================
+   DELIVERY INFO
+========================================= */
+
+.deliveryInfo{
+    margin-top:20px;
+    background:white;
+    border-radius:18px;
+    padding:18px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+    box-shadow:0 8px 25px rgba(0,0,0,.05);
+}
+
+
+.deliveryInfo > div{
+    display:flex;
+    gap:12px;
+    align-items:center;
+}
+
+
+.deliveryInfo svg{
+    color:#6c63ff;
+    font-size:20px;
+}
+
+
+.deliveryInfo strong,
+.deliveryInfo span{
+    display:block;
+}
+
+
+.deliveryInfo strong{
+    font-size:13px;
+}
+
+
+.deliveryInfo span{
+    margin-top:4px;
+    font-size:11px;
+    color:#777;
+}
+
+
+
+/* =========================================
+   DETAILS
+========================================= */
+
+.pizzaDetails{
+    background:white;
+    border-radius:25px;
+    padding:30px;
+    box-shadow:0 10px 30px rgba(0,0,0,.06);
+}
+
+
+.restaurantName{
+    color:#6c63ff;
+    font-size:14px;
+    font-weight:600;
+}
+
+
+.verified{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:17px;
+    height:17px;
+    background:#6c63ff;
+    color:white;
+    border-radius:50%;
+    margin-left:5px;
+    font-size:10px;
+}
+
+
+.pizzaDetails h1{
+    margin:8px 0;
+    font-size:34px;
+}
+
+
+.pizzaDescription{
+    color:#6b7280;
+    line-height:1.6;
+    font-size:14px;
+    max-width:650px;
+}
+
+
+.pizzaPrice{
+    font-size:27px;
+    font-weight:700;
+    margin:20px 0;
+}
+
+
+
+/* =========================================
+   OPTION SECTION
+========================================= */
+
+.optionSection{
+    margin-top:25px;
+}
+
+
+.optionTitle{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:12px;
+}
+
+
+.optionTitle h3{
+    margin:0;
+    font-size:16px;
+}
+
+
+.optionTitle span{
+    background:#f1efff;
+    color:#6c63ff;
+    padding:4px 9px;
+    border-radius:20px;
+    font-size:10px;
+    font-weight:600;
+}
+
+
+
+/* =========================================
+   SIZE
+========================================= */
+
+.sizeOptions{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+}
+
+
+.sizeOption{
+    border:1px solid #ddd;
+    background:white;
+    border-radius:12px;
+    padding:13px;
+    cursor:pointer;
+    text-align:left;
+}
+
+
+.sizeOption strong,
+.sizeOption span{
+    display:block;
+}
+
+
+.sizeOption strong{
+    font-size:13px;
+}
+
+
+.sizeOption span{
+    color:#777;
+    margin-top:5px;
+    font-size:12px;
+}
+
+
+.sizeOption.active{
+    border:2px solid #6c63ff;
+    background:#f5f3ff;
+}
+
+
+
+/* =========================================
+   CRUST
+========================================= */
+
+.crustOptions{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
+
+
+.crustOption{
+    border:1px solid #ddd;
+    border-radius:12px;
+    padding:13px;
+    display:flex;
+    align-items:center;
+    gap:9px;
+    cursor:pointer;
+    font-size:13px;
+}
+
+
+.crustOption input{
+    accent-color:#6c63ff;
+}
+
+
+.crustOption small{
+    margin-left:auto;
+    color:#6c63ff;
+}
+
+
+
+/* =========================================
+   TOPPINGS
+========================================= */
+
+.toppingGrid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
+
+
+.topping{
+    border:1px solid #ddd;
+    background:white;
+    border-radius:12px;
+    padding:11px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    cursor:pointer;
+    text-align:left;
+}
+
+
+.topping > span{
+    width:27px;
+    height:27px;
+    border-radius:8px;
+    background:#f2f2f5;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#6c63ff;
+    font-weight:700;
+}
+
+
+.topping strong,
+.topping small{
+    display:block;
+}
+
+
+.topping strong{
+    font-size:12px;
+}
+
+
+.topping small{
+    color:#777;
+    margin-top:3px;
+}
+
+
+.topping.active{
+    border-color:#6c63ff;
+    background:#f5f3ff;
+}
+
+
+.topping.active > span{
+    background:#6c63ff;
+    color:white;
+}
+
+
+
+/* =========================================
+   QUANTITY
+========================================= */
+
+.quantitySection{
+    margin-top:25px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+
+.quantitySection h3{
+    margin:0;
+    font-size:16px;
+}
+
+
+.quantityBox{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    border:1px solid #ddd;
+    padding:6px 10px;
+    border-radius:12px;
+}
+
+
+.quantityBox button{
+    width:30px;
+    height:30px;
+    border:none;
+    border-radius:8px;
+    background:#f2f2f5;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+
+.quantityBox span{
+    min-width:20px;
+    text-align:center;
+    font-weight:600;
+}
+
+
+
+/* =========================================
+   BOTTOM
+========================================= */
+
+.orderBottom{
+    border-top:1px solid #eee;
+    margin-top:28px;
+    padding-top:20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+
+
+.finalPrice span{
+    display:block;
+    color:#777;
+    font-size:11px;
+}
+
+
+.finalPrice strong{
+    display:block;
+    margin-top:3px;
+    font-size:25px;
+}
+
+
+.addPizzaButton{
+    border:none;
+    background:#6c63ff;
+    color:white;
+    padding:15px 30px;
+    border-radius:12px;
+    font-size:14px;
+    font-weight:600;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+
+.addPizzaButton:hover{
+    background:#584ee8;
+    transform:translateY(-1px);
+}
+
+
+
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media(max-width:1000px){
+
+    .pizzaContainer{
+        grid-template-columns:1fr;
+    }
+
+}
+
+
+@media(max-width:600px){
+
+    .pizzaContainer{
+        padding:15px;
+    }
+
+
+    .pizzaDetails{
+        padding:20px;
+    }
+
+
+    .pizzaMainImage{
+        height:320px;
+    }
+
+
+    .sizeOptions,
+    .crustOptions,
+    .toppingGrid{
+        grid-template-columns:1fr;
+    }
+
+
+    .deliveryInfo{
+        grid-template-columns:1fr;
+    }
+
+
+    .pizzaDetails h1{
+        font-size:27px;
+    }
+
+}

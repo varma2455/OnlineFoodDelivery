@@ -1,0 +1,71 @@
+.browseSidebar{
+
+    background:linear-gradient(180deg,#6D5DFC,#8B5CF6);
+    
+    padding:35px 25px;
+    
+    display:flex;
+    
+    flex-direction:column;
+    
+    color:white;
+    
+    }
+    
+    .logo{
+    
+    font-size:32px;
+    
+    font-weight:700;
+    
+    margin-bottom:50px;
+    
+    }
+    
+    .browseSidebar nav{
+    
+    display:flex;
+    
+    flex-direction:column;
+    
+    gap:15px;
+    
+    }
+    
+    .browseSidebar a{
+    
+    text-decoration:none;
+    
+    color:white;
+    
+    display:flex;
+    
+    align-items:center;
+    
+    gap:15px;
+    
+    padding:15px 18px;
+    
+    border-radius:15px;
+    
+    font-size:17px;
+    
+    transition:.35s;
+    
+    }
+    
+    .browseSidebar a:hover{
+    
+    background:rgba(255,255,255,.18);
+    
+    }
+    
+    .browseSidebar .active{
+    
+    background:white;
+    
+    color:#6D5DFC;
+    
+    font-weight:700;
+    
+    }

@@ -1,0 +1,165 @@
+.foodGallery{
+
+    margin-top:120px;
+    
+    }
+    
+    .galleryHeader{
+    
+    text-align:center;
+    
+    margin-bottom:60px;
+    
+    }
+    
+    .galleryHeader span{
+    
+    padding:12px 25px;
+    
+    background:#EEF2FF;
+    
+    color:#6C63FF;
+    
+    border-radius:40px;
+    
+    }
+    
+    .galleryHeader h2{
+    
+    font-size:58px;
+    
+    margin:25px 0;
+    
+    }
+    
+    .galleryHeader p{
+    
+    color:#64748B;
+    
+    font-size:18px;
+    
+    }
+    
+    .galleryGrid{
+    
+    columns:4 280px;
+    
+    column-gap:25px;
+    
+    }
+    
+    .galleryCard{
+    
+    position:relative;
+    
+    margin-bottom:25px;
+    
+    overflow:hidden;
+    
+    border-radius:30px;
+    
+    cursor:pointer;
+    
+    break-inside:avoid;
+    
+    }
+    
+    .galleryCard img{
+    
+    width:100%;
+    
+    display:block;
+    
+    object-fit:cover;
+    
+    transition:.6s;
+    
+    }
+    
+    .large img{
+    
+    height:450px;
+    
+    }
+    
+    .medium img{
+    
+    height:340px;
+    
+    }
+    
+    .small img{
+    
+    height:240px;
+    
+    }
+    
+    .galleryOverlay{
+    
+    position:absolute;
+    
+    left:0;
+    
+    bottom:0;
+    
+    width:100%;
+    
+    padding:25px;
+    
+    background:linear-gradient(
+    
+    transparent,
+    
+    rgba(0,0,0,.85)
+    
+    );
+    
+    color:white;
+    
+    transform:translateY(100%);
+    
+    transition:.4s;
+    
+    }
+    
+    .galleryCard:hover img{
+    
+    transform:scale(1.12);
+    
+    }
+    
+    .galleryCard:hover .galleryOverlay{
+    
+    transform:translateY(0);
+    
+    }
+    
+    .galleryBottom{
+    
+    display:flex;
+    
+    justify-content:space-between;
+    
+    align-items:center;
+    
+    margin-top:20px;
+    
+    }
+    
+    .galleryBottom button{
+    
+    width:50px;
+    
+    height:50px;
+    
+    border:none;
+    
+    border-radius:50%;
+    
+    background:white;
+    
+    color:#6C63FF;
+    
+    cursor:pointer;
+    
+    }

@@ -1,0 +1,432 @@
+/* ==========================================
+   Dashboard Hero Banner
+========================================== */
+
+.dashboard-hero{
+    width:100%;
+    min-height:380px;
+    padding:32px;
+    border-radius:22px;
+    background:linear-gradient(135deg,#6C63FF 0%,#5A52EA 100%);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:relative;
+    overflow:hidden;
+    box-shadow:0 20px 45px rgba(108,99,255,.25);
+}
+
+/* Decorative Circles */
+
+.dashboard-hero::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:220px;
+    height:220px;
+    background:rgba(255,255,255,.08);
+
+    border-radius:50%;
+
+    right:-80px;
+
+    top:-80px;
+
+}
+
+.dashboard-hero::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:140px;
+    height:140px;
+
+    background:rgba(255,255,255,.06);
+
+    border-radius:50%;
+
+    left:-60px;
+
+    bottom:-60px;
+
+}
+
+/* ==========================================
+   Hero Left
+========================================== */
+
+.hero-content{
+
+    width:52%;
+
+    z-index:2;
+
+}
+
+.hero-tag{
+
+    display:inline-block;
+
+    background:rgba(255,255,255,.18);
+
+    color:#fff;
+
+    padding:8px 16px;
+    font-size:13px;
+    margin-bottom:16px;
+
+    margin-bottom:22px;
+
+    backdrop-filter:blur(8px);
+
+}
+
+.hero-content h1{
+    color:#fff;
+    font-size:44px;
+    margin-bottom:16px;
+    line-height:1.15;
+    font-weight:700;
+}
+
+.hero-content p{
+    color:rgba(255,255,255,.88);
+    font-size:15px;
+    line-height:26px;
+    max-width:520px;
+}
+
+/* ==========================================
+   Buttons
+========================================== */
+
+.hero-buttons{
+    display:flex;
+    gap:14px;
+    margin-top:25px;
+}
+
+.order-btn{
+
+    border:none;
+
+    background:#ffffff;
+
+    color:#6C63FF;
+
+    padding:13px 22px;
+    font-size:15px;
+    border-radius:15px;
+    font-weight:600;
+
+    cursor:pointer;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    transition:.35s;
+
+}
+
+.order-btn:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 15px 30px rgba(0,0,0,.18);
+
+}
+
+.menu-btn{
+
+    border:2px solid rgba(255,255,255,.35);
+
+    background:transparent;
+
+    color:white;
+
+    padding:16px 28px;
+
+    border-radius:15px;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.35s;
+
+}
+
+.menu-btn:hover{
+
+    background:white;
+
+    color:#6C63FF;
+
+}
+
+/* ==========================================
+   Hero Stats
+========================================== */
+
+.hero-stats{
+
+    display:flex;
+
+    gap:30px;
+    margin-top:28px;
+
+}
+
+.hero-stats h3{
+
+    color:white;
+
+    font-size:24px;
+
+    margin-bottom:6px;
+
+}
+
+.hero-stats span{
+
+    color:rgba(255,255,255,.8);
+
+    font-size:13px;
+
+}
+
+/* ==========================================
+   Hero Image
+========================================== */
+
+.hero-image{
+    flex:1;
+    min-width:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+}
+
+.hero-image img{
+    width:min(100%,420px);
+    max-width:350px;
+    aspect-ratio:1/1;
+    height:auto;
+}
+
+/* ==========================================
+   Floating Cards
+========================================== */
+
+.floating-card{
+
+    position:absolute;
+
+    background:white;
+
+    padding:10px 14px;
+    border-radius:14px;
+    box-shadow:0 15px 30px rgba(0,0,0,.15);
+
+    animation:float 3s ease-in-out infinite;
+
+}
+
+.floating-card h4{
+
+    color:#222;
+
+    font-size:14px;
+
+    margin-bottom:4px;
+
+}
+
+
+.floating-card{
+    padding:8px 12px;
+    font-size:13px;
+}
+
+.card-one{
+    top:40px;
+    left:20px;
+}
+
+.card-two{
+    bottom:50px;
+    left:30px;
+}
+
+.card-three{
+    top:100px;
+    right:20px;
+}
+
+
+/* ==========================================
+   Floating Animation
+========================================== */
+
+@keyframes float{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-10px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ==========================================
+   Responsive
+========================================== */
+
+@media(max-width:1400px){
+
+.hero-content h1{
+
+    font-size:44px;
+
+}
+
+.hero-image img{
+
+    width:350px;
+
+    height:350px;
+
+}
+
+}
+
+@media(max-width:1100px){
+
+.dashboard-hero{
+
+    flex-direction:column;
+
+    text-align:center;
+
+    gap:40px;
+
+}
+
+.hero-content{
+
+    width:100%;
+
+}
+
+.hero-image{
+
+    width:100%;
+
+}
+
+.hero-buttons{
+
+    justify-content:center;
+
+}
+
+.hero-stats{
+
+    justify-content:center;
+
+}
+
+}
+
+@media (max-width:768px){
+
+    .dashboard-hero{
+        flex-direction:column;
+        padding:25px;
+        text-align:center;
+    }
+    
+    .hero-content{
+        width:100%;
+    }
+    
+    .hero-image{
+        margin-top:30px;
+    }
+    
+    .hero-buttons{
+        flex-direction:column;
+    }
+    
+    .hero-stats{
+        justify-content:center;
+        flex-wrap:wrap;
+    }
+    
+    .floating-card{
+        display:none;
+    }
+    
+    }
+
+@media(max-width:576px){
+
+.dashboard-hero{
+
+    border-radius:20px;
+
+    padding:25px;
+
+}
+
+.hero-tag{
+
+    font-size:12px;
+
+}
+
+.hero-content h1{
+
+    font-size:28px;
+
+}
+
+.hero-content p{
+
+    font-size:14px;
+
+    line-height:25px;
+
+}
+
+.hero-image img{
+
+    width:230px;
+
+    height:230px;
+
+}
+
+}

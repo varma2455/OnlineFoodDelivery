@@ -1,0 +1,547 @@
+/* ==========================================
+   CHECKOUT PAGE
+========================================== */
+
+.checkout-page{
+
+    width:90%;
+
+    max-width:1400px;
+
+    margin:40px auto 80px;
+
+}
+
+.checkout-header{
+
+    text-align:center;
+
+    margin-bottom:50px;
+
+}
+
+.checkout-header h1{
+
+    font-size:48px;
+
+    color:#222;
+
+    margin-bottom:15px;
+
+}
+
+.checkout-header p{
+
+    font-size:18px;
+
+    color:#666;
+
+}
+
+/* ==========================================
+   CHECKOUT LAYOUT
+========================================== */
+
+.checkout-container{
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr;
+
+    gap:40px;
+
+    align-items:flex-start;
+
+}
+
+/* ==========================================
+   FORM
+========================================== */
+
+.checkout-form{
+
+    background:#ffffff;
+
+    padding:40px;
+
+    border-radius:20px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+.checkout-form h2{
+
+    margin-bottom:30px;
+
+    color:#222;
+
+    font-size:30px;
+
+}
+
+.input-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    margin-bottom:22px;
+
+}
+
+.input-group label{
+
+    font-size:16px;
+
+    font-weight:600;
+
+    color:#444;
+
+    margin-bottom:8px;
+
+}
+
+.input-group input,
+.input-group textarea,
+.input-group select{
+
+    padding:14px 16px;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+    outline:none;
+
+    font-size:16px;
+
+    transition:.3s;
+
+}
+
+.input-group input:focus,
+.input-group textarea:focus,
+.input-group select:focus{
+
+    border-color:#ff5722;
+
+    box-shadow:0 0 5px rgba(255,87,34,.25);
+
+}
+/* ==========================================
+   INPUT ROW
+========================================== */
+
+.input-row{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:20px;
+
+}
+
+.input-group textarea{
+
+    resize:none;
+
+    min-height:120px;
+
+}
+
+/* ==========================================
+   ORDER SUMMARY
+========================================== */
+
+.checkout-summary{
+
+    background:#ffffff;
+
+    padding:35px;
+
+    border-radius:20px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+    position:sticky;
+
+    top:100px;
+
+}
+
+.checkout-summary h2{
+
+    text-align:center;
+
+    font-size:30px;
+
+    margin-bottom:30px;
+
+    color:#222;
+
+}
+
+/* ==========================================
+   SUMMARY ROWS
+========================================== */
+
+.summary-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:16px 0;
+
+    border-bottom:1px solid #eeeeee;
+
+    font-size:18px;
+
+    color:#444;
+
+}
+
+.summary-row.total{
+
+    margin-top:15px;
+
+    padding-top:20px;
+
+    border-top:2px solid #ff5722;
+
+    border-bottom:none;
+
+    font-size:22px;
+
+    font-weight:700;
+
+    color:#ff5722;
+
+}
+
+/* ==========================================
+   HOVER EFFECT
+========================================== */
+
+.checkout-form,
+.checkout-summary{
+
+    transition:.35s;
+
+}
+
+.checkout-form:hover,
+.checkout-summary:hover{
+
+    box-shadow:0 15px 40px rgba(0,0,0,.12);
+
+}
+/* ==========================================
+   COUPON BOX
+========================================== */
+
+.coupon-box{
+
+    display:flex;
+
+    gap:12px;
+
+    margin:30px 0;
+
+}
+
+.coupon-box input{
+
+    flex:1;
+
+    padding:15px 18px;
+
+    border:1px solid #dddddd;
+
+    border-radius:10px;
+
+    outline:none;
+
+    font-size:16px;
+
+    transition:.3s;
+
+}
+
+.coupon-box input:focus{
+
+    border-color:#ff5722;
+
+    box-shadow:0 0 8px rgba(255,87,34,.25);
+
+}
+
+.coupon-box button{
+
+    border:none;
+
+    background:#ff5722;
+
+    color:#ffffff;
+
+    padding:15px 24px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.coupon-box button:hover{
+
+    background:#e64a19;
+
+}
+
+/* ==========================================
+   PLACE ORDER BUTTON
+========================================== */
+
+.place-order-btn{
+
+    width:100%;
+
+    border:none;
+
+    background:#28a745;
+
+    color:#ffffff;
+
+    padding:18px;
+
+    border-radius:10px;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    margin-top:20px;
+
+    transition:.3s;
+
+}
+
+.place-order-btn:hover{
+
+    background:#218838;
+
+    transform:translateY(-3px);
+
+}
+
+/* ==========================================
+   BACK BUTTON
+========================================== */
+
+.back-cart-btn{
+
+    display:block;
+
+    text-align:center;
+
+    text-decoration:none;
+
+    margin-top:20px;
+
+    color:#555;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.back-cart-btn:hover{
+
+    color:#ff5722;
+
+}
+/* ==========================================
+   RESPONSIVE DESIGN
+========================================== */
+
+@media (max-width:992px){
+
+    .checkout-container{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .checkout-summary{
+
+        position:static;
+
+        margin-top:30px;
+
+    }
+
+}
+
+@media (max-width:768px){
+
+    .checkout-page{
+
+        width:95%;
+
+    }
+
+    .checkout-form{
+
+        padding:30px 20px;
+
+    }
+
+    .checkout-summary{
+
+        padding:30px 20px;
+
+    }
+
+    .input-row{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .coupon-box{
+
+        flex-direction:column;
+
+    }
+
+    .coupon-box input{
+
+        width:100%;
+
+    }
+
+    .coupon-box button{
+
+        width:100%;
+
+    }
+
+}
+
+@media (max-width:480px){
+
+    .checkout-header h1{
+
+        font-size:30px;
+
+    }
+
+    .checkout-header p{
+
+        font-size:16px;
+
+    }
+
+    .checkout-form h2{
+
+        font-size:24px;
+
+    }
+
+    .checkout-summary h2{
+
+        font-size:24px;
+
+    }
+
+    .summary-row{
+
+        font-size:16px;
+
+    }
+
+    .summary-row.total{
+
+        font-size:20px;
+
+    }
+
+    .place-order-btn{
+
+        padding:15px;
+
+        font-size:16px;
+
+    }
+
+}
+
+/* ==========================================
+   ANIMATIONS
+========================================== */
+
+.checkout-form,
+.checkout-summary{
+
+    animation:fadeUp .6s ease;
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(30px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ==========================================
+   SMOOTH SCROLL
+========================================== */
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+/* ==========================================
+   TEXT SELECTION
+========================================== */
+
+::selection{
+
+    background:#ff5722;
+
+    color:#ffffff;
+
+}
+
+/* ==========================================
+   END OF CHECKOUT PAGE
+========================================== */

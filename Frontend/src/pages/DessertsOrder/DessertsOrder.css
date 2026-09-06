@@ -1,0 +1,1101 @@
+* {
+    box-sizing: border-box;
+}
+
+
+/* =====================================
+   DESSERT ORDER PAGE WITH SIDEBAR
+===================================== */
+
+.dessertOrderPageLayout {
+
+    display: flex;
+
+    min-height: 100vh;
+
+    background: #f7f8fc;
+
+}
+
+
+/* =====================================
+   DASHBOARD SIDEBAR
+===================================== */
+
+.dessertOrderPageLayout .browseSidebar {
+
+    position: fixed;
+
+    left: 0;
+
+    top: 0;
+
+    width: 250px;
+
+    height: 100vh;
+
+    z-index: 1000;
+
+    overflow-y: auto;
+
+}
+
+
+/* =====================================
+   DESSERT ORDER CONTENT
+===================================== */
+
+.dessertOrderPage {
+
+    margin-left: 250px;
+
+    width: calc(100% - 250px);
+
+    min-height: 100vh;
+
+    background: #f7f8fc;
+
+    padding: 10px 20px;
+
+}
+
+
+/* =====================================
+   HEADER
+===================================== */
+
+.dessertHeader {
+
+    height: 58px;
+
+    max-width: 900px;
+
+    margin: 0 auto 12px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+}
+
+
+.dessertBackButton {
+
+    width: 34px;
+
+    height: 34px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: white;
+
+    color: #475569;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 15px
+        rgba(15, 23, 42, .05);
+
+}
+
+
+.dessertBackButton:hover {
+
+    background: #6c63ff;
+
+    color: white;
+
+}
+
+
+.dessertHeaderTitle {
+
+    flex: 1;
+
+}
+
+
+.dessertHeaderTitle h2 {
+
+    margin: 0;
+
+    color: #202a3c;
+
+    font-size: 17px;
+
+    line-height: 1.2;
+
+}
+
+
+.dessertHeaderTitle p {
+
+    margin: 3px 0 0;
+
+    color: #94a3b8;
+
+    font-size: 8px;
+
+}
+
+
+.dessertFavoriteButton {
+
+    width: 34px;
+
+    height: 34px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: white;
+
+    color: #64748b;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 15px
+        rgba(15, 23, 42, .05);
+
+}
+
+
+.dessertFavoriteButton:hover {
+
+    color: #ef4444;
+
+}
+
+
+/* =====================================
+   MAIN CONTAINER
+===================================== */
+
+.dessertOrderContainer {
+
+    width: 100%;
+
+    max-width: 900px;
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns:
+        395px 1fr;
+
+    gap: 34px;
+
+    align-items: start;
+
+}
+
+
+/* =====================================
+   LEFT SIDE
+===================================== */
+
+.dessertOrderLeft {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 14px;
+
+}
+
+
+/* =====================================
+   IMAGE
+===================================== */
+
+.dessertImageCard {
+
+    width: 100%;
+
+    height: 420px;
+
+    background: white;
+
+    padding: 14px;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 10px 30px
+        rgba(15, 23, 42, .08);
+
+    overflow: hidden;
+
+}
+
+
+.dessertImageCard img {
+
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    border-radius: 15px;
+
+}
+
+
+/* =====================================
+   RATING
+===================================== */
+
+.dessertRatingCard {
+
+    height: 45px;
+
+    background: white;
+
+    border-radius: 12px;
+
+    padding: 0 16px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    box-shadow:
+        0 7px 20px
+        rgba(15, 23, 42, .05);
+
+    font-size: 11px;
+
+}
+
+
+.dessertRatingCard svg {
+
+    color: #f59e0b;
+
+    font-size: 12px;
+
+}
+
+
+.dessertRatingCard strong {
+
+    color: #334155;
+
+}
+
+
+.dessertRatingCard span {
+
+    color: #94a3b8;
+
+}
+
+
+/* =====================================
+   DELIVERY CARD
+===================================== */
+
+.dessertDeliveryCard {
+
+    min-height: 58px;
+
+    background: white;
+
+    border-radius: 12px;
+
+    padding: 10px 14px;
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 10px;
+
+    box-shadow:
+        0 7px 20px
+        rgba(15, 23, 42, .05);
+
+}
+
+
+.dessertDeliveryItem {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+}
+
+
+.dessertDeliveryItem svg {
+
+    color: #6c63ff;
+
+    font-size: 14px;
+
+}
+
+
+.dessertDeliveryItem strong {
+
+    display: block;
+
+    color: #334155;
+
+    font-size: 10px;
+
+    margin-bottom: 3px;
+
+}
+
+
+.dessertDeliveryItem span {
+
+    display: block;
+
+    color: #94a3b8;
+
+    font-size: 8px;
+
+}
+
+
+/* =====================================
+   RIGHT CARD
+===================================== */
+
+.dessertOrderRight {
+
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 27px 24px 20px;
+
+    box-shadow:
+        0 10px 30px
+        rgba(15, 23, 42, .08);
+
+}
+
+
+/* =====================================
+   RESTAURANT
+===================================== */
+
+.dessertRestaurant {
+
+    color: #6c63ff;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    margin-bottom: 12px;
+
+}
+
+
+.dessertRestaurant span {
+
+    width: 14px;
+
+    height: 14px;
+
+    border-radius: 50%;
+
+    background: #6c63ff;
+
+    color: white;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-size: 7px;
+
+}
+
+
+/* =====================================
+   TITLE
+===================================== */
+
+.dessertOrderRight h1 {
+
+    margin: 0 0 9px;
+
+    font-size: 27px;
+
+    line-height: 1.15;
+
+    color: #202a3c;
+
+    letter-spacing: -.6px;
+
+}
+
+
+/* =====================================
+   DESCRIPTION
+===================================== */
+
+.dessertDescription {
+
+    margin: 0 0 18px;
+
+    color: #64748b;
+
+    font-size: 10px;
+
+    line-height: 1.6;
+
+}
+
+
+/* =====================================
+   PRICE
+===================================== */
+
+.dessertMainPrice {
+
+    color: #202a3c;
+
+    font-size: 22px;
+
+    font-weight: 800;
+
+    margin-bottom: 22px;
+
+}
+
+
+/* =====================================
+   SECTION
+===================================== */
+
+.dessertSection {
+
+    margin-bottom: 19px;
+
+}
+
+
+.dessertSectionTitle {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.dessertSectionTitle h3 {
+
+    margin: 0;
+
+    font-size: 12px;
+
+    color: #202a3c;
+
+}
+
+
+.dessertSectionTitle span {
+
+    background: #f1efff;
+
+    color: #6c63ff;
+
+    border-radius: 10px;
+
+    padding: 3px 7px;
+
+    font-size: 7px;
+
+    font-weight: 600;
+
+}
+
+
+/* =====================================
+   SIZE
+===================================== */
+
+.dessertSizeGrid {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr 1fr;
+
+    gap: 8px;
+
+}
+
+
+.dessertSizeOption {
+
+    height: 54px;
+
+    border: 1px solid #d9dce3;
+
+    background: white;
+
+    border-radius: 10px;
+
+    text-align: left;
+
+    padding: 9px;
+
+    cursor: pointer;
+
+}
+
+
+.dessertSizeOption.selected {
+
+    border-color: #6c63ff;
+
+    background: #f6f4ff;
+
+}
+
+
+.dessertSizeOption strong {
+
+    display: block;
+
+    font-size: 10px;
+
+    color: #202a3c;
+
+    margin-bottom: 5px;
+
+}
+
+
+.dessertSizeOption small {
+
+    font-size: 8px;
+
+    color: #777;
+
+}
+
+
+/* =====================================
+   TOPPING
+===================================== */
+
+.dessertToppingGrid {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 8px;
+
+}
+
+
+.dessertToppingOption {
+
+    height: 42px;
+
+    border: 1px solid #d9dce3;
+
+    background: white;
+
+    border-radius: 9px;
+
+    padding: 8px 10px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    cursor: pointer;
+
+    text-align: left;
+
+    color: #334155;
+
+    font-size: 9px;
+
+}
+
+
+.dessertToppingOption.selected {
+
+    border-color: #6c63ff;
+
+    background: #f6f4ff;
+
+}
+
+
+.dessertRadio {
+
+    color: #6c63ff;
+
+    font-size: 10px;
+
+}
+
+
+.dessertToppingOption small {
+
+    margin-left: auto;
+
+    color: #6c63ff;
+
+    font-size: 7px;
+
+}
+
+
+/* =====================================
+   EXTRAS
+===================================== */
+
+.dessertExtrasGrid {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 8px;
+
+}
+
+
+.dessertExtraOption {
+
+    height: 48px;
+
+    border: 1px solid #d9dce3;
+
+    background: white;
+
+    border-radius: 9px;
+
+    padding: 7px 9px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    cursor: pointer;
+
+    text-align: left;
+
+}
+
+
+.dessertExtraOption.selected {
+
+    border-color: #6c63ff;
+
+    background: #f6f4ff;
+
+}
+
+
+.dessertExtraPlus {
+
+    width: 23px;
+
+    height: 23px;
+
+    background: #f1f2f6;
+
+    color: #6c63ff;
+
+    border-radius: 6px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+}
+
+
+.dessertExtraText strong {
+
+    display: block;
+
+    color: #202a3c;
+
+    font-size: 9px;
+
+    margin-bottom: 3px;
+
+}
+
+
+.dessertExtraText small {
+
+    display: block;
+
+    color: #777;
+
+    font-size: 7px;
+
+}
+
+
+/* =====================================
+   QUANTITY
+===================================== */
+
+.dessertQuantityRow {
+
+    border-bottom: 1px solid #e5e7eb;
+
+    padding: 4px 0 20px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+}
+
+
+.dessertQuantityRow h3 {
+
+    margin: 0;
+
+    font-size: 12px;
+
+    color: #202a3c;
+
+}
+
+
+.dessertQuantityBox {
+
+    height: 34px;
+
+    min-width: 105px;
+
+    padding: 3px;
+
+    border: 1px solid #d9dce3;
+
+    border-radius: 9px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+}
+
+
+.dessertQuantityBox button {
+
+    width: 26px;
+
+    height: 26px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background: #f1f2f5;
+
+    color: #111827;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 8px;
+
+}
+
+
+.dessertQuantityBox span {
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+}
+
+
+/* =====================================
+   BOTTOM
+===================================== */
+
+.dessertBottom {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-end;
+
+    padding-top: 15px;
+
+}
+
+
+.dessertBottom span {
+
+    display: block;
+
+    color: #94a3b8;
+
+    font-size: 8px;
+
+    margin-bottom: 4px;
+
+}
+
+
+.dessertBottom strong {
+
+    display: block;
+
+    color: #202a3c;
+
+    font-size: 20px;
+
+}
+
+
+/* =====================================
+   ADD BUTTON
+===================================== */
+
+.dessertAddButton {
+
+    height: 34px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #6c63ff;
+
+    color: white;
+
+    padding: 0 13px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 5px;
+
+    cursor: pointer;
+
+    font-size: 8px;
+
+    font-weight: 600;
+
+}
+
+
+.dessertAddButton:hover {
+
+    background: #574ee9;
+
+}
+
+
+/* =====================================
+   ERROR
+===================================== */
+
+.dessertOrderError {
+
+    min-height: 100vh;
+
+    background: #f7f8fc;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+}
+
+
+.dessertErrorIcon {
+
+    font-size: 55px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.dessertOrderError h2 {
+
+    color: #1e293b;
+
+    margin: 5px 0;
+
+}
+
+
+.dessertOrderError p {
+
+    color: #94a3b8;
+
+    font-size: 12px;
+
+}
+
+
+.dessertOrderError button {
+
+    margin-top: 10px;
+
+    border: none;
+
+    background: #6c63ff;
+
+    color: white;
+
+    padding: 9px 16px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+}
+
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media (max-width: 850px) {
+
+    .dessertOrderPage {
+
+        margin-left: 0;
+
+        width: 100%;
+
+    }
+
+
+    .dessertOrderPageLayout .browseSidebar {
+
+        display: none;
+
+    }
+
+
+    .dessertOrderContainer {
+
+        grid-template-columns: 1fr;
+
+        max-width: 550px;
+
+    }
+
+
+    .dessertImageCard {
+
+        height: 380px;
+
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .dessertOrderPage {
+
+        padding: 15px 10px;
+
+    }
+
+
+    .dessertOrderRight {
+
+        padding: 20px 16px;
+
+    }
+
+
+    .dessertToppingGrid,
+    .dessertExtrasGrid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}

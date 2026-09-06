@@ -1,0 +1,279 @@
+/* ===========================
+   Google Font
+=========================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+/* ===========================
+   Page
+=========================== */
+
+.pizza-page{
+    background:#fafafa;
+    min-height:100vh;
+}
+
+/* ===========================
+   Hero
+=========================== */
+
+.pizza-hero{
+    height:420px;
+    background:linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),
+    url("https://images.unsplash.com/photo-1513104890138-7c749659a591?w=1600");
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:#fff;
+}
+
+.hero-content h1{
+    font-size:60px;
+    margin-bottom:20px;
+}
+
+.hero-content p{
+    font-size:20px;
+    width:700px;
+    max-width:90%;
+    margin:auto;
+    line-height:1.8;
+}
+
+.hero-btn{
+    margin-top:30px;
+    background:#ff5722;
+    color:#fff;
+    border:none;
+    padding:15px 35px;
+    border-radius:50px;
+    cursor:pointer;
+    font-size:18px;
+    transition:.3s;
+}
+
+.hero-btn:hover{
+    background:#e64a19;
+    transform:translateY(-4px);
+}
+
+/* ===========================
+   Search
+=========================== */
+
+.search-section{
+    display:flex;
+    justify-content:center;
+    margin:50px 0;
+}
+
+.search-section input{
+    width:600px;
+    max-width:90%;
+    padding:15px 20px;
+    border-radius:50px;
+    border:2px solid #eee;
+    font-size:16px;
+    outline:none;
+}
+
+.search-section input:focus{
+    border-color:#ff5722;
+}
+
+/* ===========================
+   Section Title
+=========================== */
+
+.title{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.title h2{
+    font-size:38px;
+    color:#333;
+}
+
+.title p{
+    color:#777;
+    margin-top:10px;
+}
+
+/* ===========================
+   Pizza Grid
+=========================== */
+
+.pizza-container{
+    width:90%;
+    margin:auto;
+    padding-bottom:80px;
+}
+
+.pizza-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+}
+
+/* ===========================
+   Pizza Card
+=========================== */
+
+.pizza-card{
+    background:#fff;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.pizza-card:hover{
+    transform:translateY(-8px);
+}
+
+.pizza-card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.pizza-info{
+    padding:20px;
+}
+
+.pizza-info h3{
+    color:#333;
+    margin-bottom:10px;
+}
+
+.restaurant{
+    color:#888;
+    font-size:15px;
+}
+
+.rating-time{
+    display:flex;
+    justify-content:space-between;
+    margin:18px 0;
+    font-size:15px;
+    color:#555;
+}
+
+.price-cart{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.price-cart h4{
+    color:#ff5722;
+    font-size:24px;
+}
+
+.price-cart button{
+    background:#ff5722;
+    color:#fff;
+    border:none;
+    padding:10px 18px;
+    border-radius:8px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.price-cart button:hover{
+    background:#e64a19;
+}
+
+/* ===========================
+   Why Choose Us
+=========================== */
+
+.why-pizza{
+    background:#fff;
+    padding:80px 8%;
+    text-align:center;
+}
+
+.why-pizza h2{
+    font-size:40px;
+    margin-bottom:50px;
+    color:#333;
+}
+
+.features{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:30px;
+}
+
+.feature{
+    background:#fafafa;
+    padding:35px;
+    border-radius:18px;
+    box-shadow:0 5px 15px rgba(0,0,0,.06);
+    transition:.3s;
+}
+
+.feature:hover{
+    transform:translateY(-6px);
+}
+
+.feature h3{
+    color:#ff5722;
+    margin-bottom:15px;
+}
+
+.feature p{
+    color:#666;
+    line-height:1.8;
+}
+
+/* ===========================
+   Not Found
+=========================== */
+
+.not-found{
+    text-align:center;
+    color:#ff5722;
+    grid-column:1/-1;
+    padding:50px;
+}
+
+/* ===========================
+   Responsive
+=========================== */
+
+@media(max-width:768px){
+
+.hero-content h1{
+    font-size:40px;
+}
+
+.hero-content p{
+    font-size:16px;
+}
+
+.title h2{
+    font-size:30px;
+}
+
+.why-pizza h2{
+    font-size:30px;
+}
+
+.search-section input{
+    width:90%;
+}
+
+}

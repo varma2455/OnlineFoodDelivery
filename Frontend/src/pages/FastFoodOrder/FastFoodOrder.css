@@ -1,0 +1,1018 @@
+/* =========================================
+   PAGE
+========================================= */
+
+.fastFoodOrderPageLayout {
+    display: flex;
+
+    min-height: 100vh;
+
+    background: #f7f8fc;
+}
+
+
+/* =========================================
+   SIDEBAR
+========================================= */
+
+.fastFoodOrderPageLayout .browseSidebar {
+
+    position: fixed;
+
+    left: 0;
+    top: 0;
+
+    width: 250px;
+
+    height: 100vh;
+
+    z-index: 1000;
+
+    overflow-y: auto;
+}
+
+
+/* =========================================
+   MAIN PAGE
+========================================= */
+
+.fastFoodOrderPage {
+
+    margin-left: 250px;
+
+    width: calc(100% - 250px);
+
+    min-height: 100vh;
+
+    background: #f7f8fc;
+
+    color: #1e293b;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.fastFoodOrderHeader {
+
+    height: 76px;
+
+    background: white;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    padding: 0 35px;
+
+    border-bottom: 1px solid #eeeeee;
+}
+
+
+.fastFoodOrderHeader > div {
+
+    flex: 1;
+}
+
+
+.fastFoodOrderHeader h2 {
+
+    margin: 0;
+
+    font-size: 21px;
+
+    color: #202a3c;
+}
+
+
+.fastFoodOrderHeader p {
+
+    margin: 3px 0 0;
+
+    color: #888;
+
+    font-size: 11px;
+}
+
+
+/* BACK */
+
+.fastFoodOrderBack {
+
+    width: 40px;
+
+    height: 40px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #f2f2f7;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    cursor: pointer;
+
+    color: #333;
+
+    transition: .2s;
+}
+
+
+.fastFoodOrderBack:hover {
+
+    background: #6c63ff;
+
+    color: white;
+}
+
+
+/* HEART */
+
+.fastFoodOrderHeart {
+
+    width: 42px;
+
+    height: 42px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #f5f5f7;
+
+    color: #777;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+
+.fastFoodOrderHeart:hover,
+.fastFoodOrderHeart.active {
+
+    color: #ef4444;
+
+    background: #fff0f2;
+}
+
+
+/* =========================================
+   CONTAINER
+========================================= */
+
+.fastFoodOrderContainer {
+
+    width: 100%;
+
+    max-width: 1050px;
+
+    margin: 0 auto;
+
+    padding: 40px 25px 60px;
+
+    display: grid;
+
+    grid-template-columns:
+        400px 1fr;
+
+    gap: 35px;
+
+    align-items: start;
+}
+
+
+/* =========================================
+   LEFT
+========================================= */
+
+.fastFoodOrderLeft {
+
+    position: sticky;
+
+    top: 25px;
+}
+
+
+/* =========================================
+   IMAGE
+========================================= */
+
+.fastFoodOrderImageCard {
+
+    width: 100%;
+
+    height: 410px;
+
+    background: white;
+
+    border-radius: 22px;
+
+    overflow: hidden;
+
+    position: relative;
+
+    box-shadow:
+        0 8px 30px
+        rgba(0,0,0,.07);
+}
+
+
+.fastFoodOrderImageCard img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+
+.fastFoodOrderBadge {
+
+    position: absolute;
+
+    left: 15px;
+
+    top: 15px;
+
+    background: #6c63ff;
+
+    color: white;
+
+    padding: 7px 11px;
+
+    border-radius: 15px;
+
+    font-size: 9px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================
+   DELIVERY
+========================================= */
+
+.fastFoodOrderDelivery {
+
+    margin-top: 14px;
+
+    background: white;
+
+    border-radius: 15px;
+
+    padding: 13px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 8px;
+
+    box-shadow:
+        0 5px 18px
+        rgba(0,0,0,.04);
+}
+
+
+.fastFoodOrderDelivery > div {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 5px;
+
+    color: #777;
+
+    font-size: 8px;
+
+    text-align: center;
+}
+
+
+.fastFoodOrderDelivery svg {
+
+    color: #6c63ff;
+
+    font-size: 11px;
+}
+
+
+.fastFoodOrderDelivery > div:first-child svg {
+
+    color: #f59e0b;
+}
+
+
+.fastFoodOrderDelivery strong {
+
+    color: #333;
+
+    font-size: 10px;
+}
+
+
+/* =========================================
+   DESCRIPTION
+========================================= */
+
+.fastFoodOrderDescription {
+
+    margin-top: 14px;
+
+    padding: 18px;
+
+    background: white;
+
+    border-radius: 15px;
+}
+
+
+.fastFoodOrderDescription h3 {
+
+    margin: 0 0 7px;
+
+    font-size: 14px;
+}
+
+
+.fastFoodOrderDescription p {
+
+    margin: 0;
+
+    color: #777;
+
+    font-size: 9px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   RIGHT
+========================================= */
+
+.fastFoodOrderRight {
+
+    background: white;
+
+    border-radius: 22px;
+
+    padding: 27px;
+
+    box-shadow:
+        0 8px 30px
+        rgba(0,0,0,.06);
+}
+
+
+/* =========================================
+   RESTAURANT
+========================================= */
+
+.fastFoodOrderRestaurant > span {
+
+    color: #6c63ff;
+
+    font-size: 9px;
+
+    font-weight: 700;
+}
+
+
+.fastFoodOrderRestaurant h1 {
+
+    margin: 6px 0;
+
+    font-size: 28px;
+
+    color: #202a3c;
+
+    line-height: 1.15;
+}
+
+
+.fastFoodOrderRating {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    color: #f59e0b;
+
+    font-size: 10px;
+}
+
+
+.fastFoodOrderRating span {
+
+    color: #888;
+}
+
+
+/* =========================================
+   SECTION
+========================================= */
+
+.fastFoodOrderSection {
+
+    margin-top: 25px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid #eeeeee;
+}
+
+
+.fastFoodOrderSectionTitle {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 12px;
+}
+
+
+.fastFoodOrderSectionTitle h3 {
+
+    margin: 0;
+
+    font-size: 14px;
+}
+
+
+.fastFoodOrderSectionTitle span {
+
+    padding: 4px 8px;
+
+    border-radius: 10px;
+
+    background: #f1f0ff;
+
+    color: #6c63ff;
+
+    font-size: 7px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================
+   OPTIONS
+========================================= */
+
+.fastFoodOptionGrid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 9px;
+}
+
+
+.fastFoodOption {
+
+    min-height: 58px;
+
+    padding: 10px;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 10px;
+
+    background: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+
+.fastFoodOption:hover {
+
+    border-color: #6c63ff;
+}
+
+
+.fastFoodOption.active {
+
+    border-color: #6c63ff;
+
+    background: #f5f3ff;
+}
+
+
+.fastFoodOption strong {
+
+    display: block;
+
+    color: #333;
+
+    font-size: 9px;
+}
+
+
+.fastFoodOption small {
+
+    display: block;
+
+    margin-top: 4px;
+
+    color: #888;
+
+    font-size: 7px;
+}
+
+
+.fastFoodOption svg {
+
+    color: #6c63ff;
+
+    font-size: 12px;
+}
+
+
+/* =========================================
+   EXTRAS
+========================================= */
+
+.fastFoodExtraGrid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 9px;
+}
+
+
+.fastFoodExtra {
+
+    min-height: 55px;
+
+    padding: 10px;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 10px;
+
+    background: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+
+.fastFoodExtra:hover {
+
+    border-color: #6c63ff;
+}
+
+
+.fastFoodExtra.active {
+
+    border-color: #6c63ff;
+
+    background: #f5f3ff;
+}
+
+
+.fastFoodExtra strong {
+
+    display: block;
+
+    color: #333;
+
+    font-size: 9px;
+}
+
+
+.fastFoodExtra small {
+
+    display: block;
+
+    margin-top: 4px;
+
+    color: #6c63ff;
+
+    font-size: 7px;
+
+    font-weight: 700;
+}
+
+
+.fastFoodExtra svg {
+
+    color: #6c63ff;
+
+    font-size: 12px;
+}
+
+
+/* =========================================
+   QUANTITY
+========================================= */
+
+.fastFoodOrderQuantity {
+
+    margin-top: 25px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid #eeeeee;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+
+.fastFoodOrderQuantity h3 {
+
+    margin: 0;
+
+    font-size: 14px;
+}
+
+
+.fastFoodOrderQuantity p {
+
+    margin: 4px 0 0;
+
+    color: #888;
+
+    font-size: 8px;
+}
+
+
+/* =========================================
+   QUANTITY CONTROL
+========================================= */
+
+.fastFoodQuantityControl {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 5px;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 10px;
+}
+
+
+.fastFoodQuantityControl button {
+
+    width: 30px;
+
+    height: 30px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background: #f1f0ff;
+
+    color: #6c63ff;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    cursor: pointer;
+}
+
+
+.fastFoodQuantityControl strong {
+
+    min-width: 15px;
+
+    text-align: center;
+
+    font-size: 12px;
+}
+
+
+/* =========================================
+   BOTTOM
+========================================= */
+
+.fastFoodOrderBottom {
+
+    margin-top: 25px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid #eeeeee;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+}
+
+
+.fastFoodOrderBottom small {
+
+    display: block;
+
+    color: #888;
+
+    font-size: 8px;
+}
+
+
+.fastFoodOrderBottom strong {
+
+    display: block;
+
+    margin-top: 2px;
+
+    color: #6c63ff;
+
+    font-size: 24px;
+}
+
+
+.fastFoodOrderBottom span {
+
+    color: #999;
+
+    font-size: 7px;
+}
+
+
+/* =========================================
+   ADD CART
+========================================= */
+
+.fastFoodAddCart {
+
+    min-width: 160px;
+
+    height: 46px;
+
+    border: none;
+
+    border-radius: 11px;
+
+    background: #6c63ff;
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+
+.fastFoodAddCart:hover {
+
+    background: #574ee9;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px
+        rgba(108,99,255,.25);
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media(max-width:1050px) {
+
+    .fastFoodOrderContainer {
+
+        grid-template-columns:
+            340px 1fr;
+
+        gap: 25px;
+    }
+
+
+    .fastFoodOrderImageCard {
+
+        height: 350px;
+    }
+
+}
+
+
+/* =========================================
+   SIDEBAR / MOBILE
+========================================= */
+
+@media(max-width:850px) {
+
+    .fastFoodOrderPageLayout {
+
+        display: block;
+    }
+
+
+    .fastFoodOrderPageLayout .browseSidebar {
+
+        position: relative;
+
+        width: 100%;
+
+        height: auto;
+
+        min-height: auto;
+
+        z-index: 100;
+    }
+
+
+    .fastFoodOrderPage {
+
+        margin-left: 0;
+
+        width: 100%;
+    }
+
+
+    .fastFoodOrderContainer {
+
+        grid-template-columns: 1fr;
+
+        max-width: 600px;
+
+        padding: 25px 20px 45px;
+    }
+
+
+    .fastFoodOrderLeft {
+
+        position: relative;
+
+        top: auto;
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media(max-width:600px) {
+
+    .fastFoodOrderHeader {
+
+        height: 68px;
+
+        padding: 0 15px;
+
+        gap: 10px;
+    }
+
+
+    .fastFoodOrderHeader h2 {
+
+        font-size: 18px;
+    }
+
+
+    .fastFoodOrderHeader p {
+
+        font-size: 9px;
+    }
+
+
+    .fastFoodOrderContainer {
+
+        padding: 18px 12px 35px;
+
+        gap: 18px;
+    }
+
+
+    .fastFoodOrderRight {
+
+        padding: 20px 16px;
+
+        border-radius: 18px;
+    }
+
+
+    .fastFoodOrderImageCard {
+
+        height: 330px;
+
+        border-radius: 18px;
+    }
+
+
+    .fastFoodOrderDelivery {
+
+        grid-template-columns: 1fr;
+
+        gap: 10px;
+    }
+
+
+    .fastFoodOptionGrid {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .fastFoodExtraGrid {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .fastFoodOrderRestaurant h1 {
+
+        font-size: 24px;
+    }
+
+
+    .fastFoodOrderBottom {
+
+        align-items: stretch;
+
+        flex-direction: column;
+    }
+
+
+    .fastFoodAddCart {
+
+        width: 100%;
+    }
+
+}

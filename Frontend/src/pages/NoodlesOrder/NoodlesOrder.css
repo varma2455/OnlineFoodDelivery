@@ -1,0 +1,1104 @@
+/* =========================================================
+   NOODLES ORDER PAGE
+   Same design as Burger Order Page
+========================================================= */
+
+
+/* =========================================================
+   PAGE LAYOUT
+========================================================= */
+
+.noodlesOrderPageLayout{
+    display:flex;
+
+    min-height:100vh;
+
+    width:100%;
+
+    background:#f7f8fc;
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.noodlesOrderPageLayout .browseSidebar{
+    position:fixed;
+
+    left:0;
+    top:0;
+
+    width:250px;
+    height:100vh;
+
+    z-index:1000;
+
+    overflow-y:auto;
+}
+
+
+/* =========================================================
+   MAIN PAGE
+========================================================= */
+
+.noodlesOrderPage{
+    margin-left:250px;
+
+    width:calc(100% - 250px);
+
+    min-height:100vh;
+
+    background:#f7f8fc;
+
+    padding:10px 20px;
+
+    box-sizing:border-box;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.noodlesHeader{
+    height:58px;
+
+    max-width:900px;
+
+    margin:0 auto 12px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+}
+
+
+.noodlesBackButton{
+    width:34px;
+    height:34px;
+
+    border:none;
+
+    border-radius:9px;
+
+    background:white;
+
+    color:#475569;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 5px 15px
+        rgba(15,23,42,.05);
+
+    transition:.2s;
+}
+
+
+.noodlesBackButton:hover{
+    background:#6c63ff;
+
+    color:white;
+}
+
+
+.noodlesHeaderTitle{
+    flex:1;
+}
+
+
+.noodlesHeaderTitle h2{
+    margin:0;
+
+    color:#202a3c;
+
+    font-size:17px;
+}
+
+
+.noodlesHeaderTitle p{
+    margin:3px 0 0;
+
+    color:#94a3b8;
+
+    font-size:8px;
+}
+
+
+.noodlesFavoriteButton{
+    width:34px;
+    height:34px;
+
+    border:none;
+
+    border-radius:9px;
+
+    background:white;
+
+    color:#64748b;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 5px 15px
+        rgba(15,23,42,.05);
+
+    transition:.2s;
+}
+
+
+.noodlesFavoriteButton:hover{
+    color:#ef4444;
+}
+
+
+/* =========================================================
+   ORDER CONTAINER
+========================================================= */
+
+.noodlesOrderContainer{
+    width:100%;
+
+    max-width:900px;
+
+    margin:0 auto;
+
+    display:grid;
+
+    grid-template-columns:395px 1fr;
+
+    gap:34px;
+
+    align-items:start;
+}
+
+
+/* =========================================================
+   LEFT SIDE
+========================================================= */
+
+.noodlesOrderLeft{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:14px;
+}
+
+
+/* =========================================================
+   FOOD IMAGE
+========================================================= */
+
+.noodlesImageCard{
+    width:100%;
+
+    height:420px;
+
+    background:white;
+
+    padding:14px;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 10px 30px
+        rgba(15,23,42,.08);
+}
+
+
+.noodlesImageCard img{
+    width:100%;
+
+    height:100%;
+
+    display:block;
+
+    object-fit:cover;
+
+    border-radius:15px;
+}
+
+
+/* =========================================================
+   RATING
+========================================================= */
+
+.noodlesRatingCard{
+    height:45px;
+
+    background:white;
+
+    border-radius:12px;
+
+    padding:0 16px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    box-shadow:
+        0 7px 20px
+        rgba(15,23,42,.05);
+
+    font-size:11px;
+}
+
+
+.noodlesRatingCard svg{
+    color:#f59e0b;
+
+    font-size:12px;
+}
+
+
+.noodlesRatingCard strong{
+    color:#334155;
+}
+
+
+.noodlesRatingCard span{
+    color:#94a3b8;
+}
+
+
+/* =========================================================
+   DELIVERY
+========================================================= */
+
+.noodlesDeliveryCard{
+    min-height:58px;
+
+    background:white;
+
+    border-radius:12px;
+
+    padding:10px 14px;
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:10px;
+
+    box-shadow:
+        0 7px 20px
+        rgba(15,23,42,.05);
+}
+
+
+.noodlesDeliveryItem{
+    display:flex;
+
+    align-items:center;
+
+    gap:9px;
+}
+
+
+.noodlesDeliveryItem svg{
+    color:#6c63ff;
+
+    font-size:14px;
+}
+
+
+.noodlesDeliveryItem strong{
+    display:block;
+
+    color:#334155;
+
+    font-size:10px;
+
+    margin-bottom:3px;
+}
+
+
+.noodlesDeliveryItem span{
+    display:block;
+
+    color:#94a3b8;
+
+    font-size:8px;
+}
+
+
+/* =========================================================
+   RIGHT ORDER CARD
+========================================================= */
+
+.noodlesOrderRight{
+    background:white;
+
+    border-radius:20px;
+
+    padding:27px 24px 20px;
+
+    box-shadow:
+        0 10px 30px
+        rgba(15,23,42,.08);
+}
+
+
+/* =========================================================
+   RESTAURANT
+========================================================= */
+
+.noodlesRestaurant{
+    color:#6c63ff;
+
+    font-size:10px;
+
+    font-weight:700;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:5px;
+
+    margin-bottom:12px;
+}
+
+
+.noodlesRestaurant span{
+    width:14px;
+    height:14px;
+
+    border-radius:50%;
+
+    background:#6c63ff;
+
+    color:white;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:7px;
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.noodlesOrderRight h1{
+    margin:0 0 9px;
+
+    font-size:27px;
+
+    line-height:1.15;
+
+    color:#202a3c;
+
+    letter-spacing:-.6px;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.noodlesDescription{
+    margin:0 0 18px;
+
+    color:#64748b;
+
+    font-size:10px;
+
+    line-height:1.6;
+}
+
+
+/* =========================================================
+   MAIN PRICE
+========================================================= */
+
+.noodlesMainPrice{
+    color:#202a3c;
+
+    font-size:22px;
+
+    font-weight:800;
+
+    margin-bottom:22px;
+}
+
+
+/* =========================================================
+   SECTION
+========================================================= */
+
+.noodlesSection{
+    margin-bottom:19px;
+}
+
+
+.noodlesSectionTitle{
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    margin-bottom:10px;
+}
+
+
+.noodlesSectionTitle h3{
+    margin:0;
+
+    font-size:12px;
+
+    color:#202a3c;
+}
+
+
+.noodlesSectionTitle span{
+    background:#f1efff;
+
+    color:#6c63ff;
+
+    border-radius:10px;
+
+    padding:3px 7px;
+
+    font-size:7px;
+
+    font-weight:600;
+}
+
+
+/* =========================================================
+   PORTION
+========================================================= */
+
+.noodlesPortionGrid{
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr 1fr;
+
+    gap:8px;
+}
+
+
+.noodlesPortionOption{
+    height:54px;
+
+    border:1px solid #d9dce3;
+
+    background:white;
+
+    border-radius:10px;
+
+    text-align:left;
+
+    padding:9px;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+
+.noodlesPortionOption:hover{
+    border-color:#6c63ff;
+}
+
+
+.noodlesPortionOption.selected{
+    border-color:#6c63ff;
+
+    background:#f6f4ff;
+}
+
+
+.noodlesPortionOption strong{
+    display:block;
+
+    font-size:10px;
+
+    color:#202a3c;
+
+    margin-bottom:5px;
+}
+
+
+.noodlesPortionOption small{
+    font-size:8px;
+
+    color:#777;
+}
+
+
+/* =========================================================
+   NOODLES TYPE
+========================================================= */
+
+.noodlesProteinGrid{
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:8px;
+}
+
+
+.noodlesProteinOption{
+    height:42px;
+
+    border:1px solid #d9dce3;
+
+    background:white;
+
+    border-radius:9px;
+
+    padding:8px 10px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    cursor:pointer;
+
+    text-align:left;
+
+    color:#334155;
+
+    font-size:9px;
+
+    transition:.2s;
+}
+
+
+.noodlesProteinOption:hover{
+    border-color:#6c63ff;
+}
+
+
+.noodlesProteinOption.selected{
+    border-color:#6c63ff;
+
+    background:#f6f4ff;
+}
+
+
+.noodlesRadio{
+    color:#6c63ff;
+
+    font-size:10px;
+}
+
+
+.noodlesProteinOption small{
+    margin-left:auto;
+
+    color:#6c63ff;
+
+    font-size:7px;
+}
+
+
+/* =========================================================
+   ADD-ONS
+========================================================= */
+
+.noodlesAddonsGrid{
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:8px;
+}
+
+
+.noodlesAddonOption{
+    height:48px;
+
+    border:1px solid #d9dce3;
+
+    background:white;
+
+    border-radius:9px;
+
+    padding:7px 9px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    cursor:pointer;
+
+    text-align:left;
+
+    transition:.2s;
+}
+
+
+.noodlesAddonOption:hover{
+    border-color:#6c63ff;
+}
+
+
+.noodlesAddonOption.selected{
+    border-color:#6c63ff;
+
+    background:#f6f4ff;
+}
+
+
+.noodlesAddonPlus{
+    width:23px;
+    height:23px;
+
+    background:#f1f2f6;
+
+    color:#6c63ff;
+
+    border-radius:6px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:13px;
+
+    font-weight:700;
+}
+
+
+.noodlesAddonText strong{
+    display:block;
+
+    color:#202a3c;
+
+    font-size:9px;
+
+    margin-bottom:3px;
+}
+
+
+.noodlesAddonText small{
+    display:block;
+
+    color:#777;
+
+    font-size:7px;
+}
+
+
+/* =========================================================
+   SPECIAL REQUEST
+========================================================= */
+
+.noodlesSpecialRequest{
+    margin-bottom:18px;
+}
+
+
+.noodlesSpecialRequest h3{
+    margin:0 0 8px;
+
+    color:#202a3c;
+
+    font-size:12px;
+}
+
+
+.noodlesSpecialRequest textarea{
+    width:100%;
+
+    height:55px;
+
+    resize:none;
+
+    border:1px solid #d9dce3;
+
+    border-radius:9px;
+
+    padding:9px 10px;
+
+    outline:none;
+
+    color:#334155;
+
+    font-size:9px;
+
+    font-family:inherit;
+}
+
+
+.noodlesSpecialRequest textarea:focus{
+    border-color:#6c63ff;
+
+    box-shadow:
+        0 0 0 2px
+        rgba(108,99,255,.08);
+}
+
+
+.noodlesSpecialRequest textarea::placeholder{
+    color:#a0a5b5;
+}
+
+
+/* =========================================================
+   QUANTITY
+========================================================= */
+
+.noodlesQuantityRow{
+    border-bottom:1px solid #e5e7eb;
+
+    padding:4px 0 20px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+}
+
+
+.noodlesQuantityRow h3{
+    margin:0;
+
+    font-size:12px;
+
+    color:#202a3c;
+}
+
+
+.noodlesQuantityBox{
+    height:34px;
+
+    min-width:105px;
+
+    padding:3px;
+
+    border:1px solid #d9dce3;
+
+    border-radius:9px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+}
+
+
+.noodlesQuantityBox button{
+    width:26px;
+
+    height:26px;
+
+    border:none;
+
+    border-radius:7px;
+
+    background:#f1f2f5;
+
+    color:#111827;
+
+    cursor:pointer;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:8px;
+}
+
+
+.noodlesQuantityBox button:hover{
+    background:#e7e5ff;
+
+    color:#6c63ff;
+}
+
+
+.noodlesQuantityBox span{
+    font-size:11px;
+
+    font-weight:600;
+}
+
+
+/* =========================================================
+   BOTTOM
+========================================================= */
+
+.noodlesBottom{
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-end;
+
+    padding-top:15px;
+}
+
+
+.noodlesBottom span{
+    display:block;
+
+    color:#94a3b8;
+
+    font-size:8px;
+
+    margin-bottom:4px;
+}
+
+
+.noodlesBottom strong{
+    display:block;
+
+    color:#202a3c;
+
+    font-size:20px;
+}
+
+
+/* =========================================================
+   ADD TO CART
+========================================================= */
+
+.noodlesAddButton{
+    height:34px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#6c63ff;
+
+    color:white;
+
+    padding:0 13px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:5px;
+
+    cursor:pointer;
+
+    font-size:8px;
+
+    font-weight:600;
+
+    transition:.2s;
+}
+
+
+.noodlesAddButton:hover{
+    background:#574ee9;
+
+    transform:translateY(-1px);
+}
+
+
+/* =========================================================
+   ERROR PAGE
+========================================================= */
+
+.noodlesOrderError{
+    min-height:100vh;
+
+    background:#f7f8fc;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+}
+
+
+.noodlesErrorIcon{
+    font-size:55px;
+
+    margin-bottom:10px;
+}
+
+
+.noodlesOrderError h2{
+    margin:5px 0;
+
+    color:#1e293b;
+}
+
+
+.noodlesOrderError p{
+    color:#94a3b8;
+
+    font-size:12px;
+}
+
+
+.noodlesOrderError button{
+    margin-top:10px;
+
+    border:none;
+
+    background:#6c63ff;
+
+    color:white;
+
+    padding:9px 16px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media(max-width:850px){
+
+    .noodlesOrderPage{
+        margin-left:0;
+
+        width:100%;
+    }
+
+
+    .noodlesOrderPageLayout .browseSidebar{
+        position:relative;
+
+        width:100%;
+
+        height:auto;
+
+        min-height:auto;
+    }
+
+
+    .noodlesOrderContainer{
+        grid-template-columns:1fr;
+
+        max-width:550px;
+    }
+
+
+    .noodlesImageCard{
+        height:380px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:600px){
+
+    .noodlesOrderPage{
+        padding:10px 12px;
+    }
+
+
+    .noodlesOrderContainer{
+        gap:18px;
+    }
+
+
+    .noodlesOrderRight{
+        padding:20px 16px;
+    }
+
+
+    .noodlesHeader{
+        padding:0 4px;
+    }
+
+
+    .noodlesProteinGrid,
+    .noodlesAddonsGrid{
+        grid-template-columns:1fr;
+    }
+
+
+    .noodlesPortionGrid{
+        grid-template-columns:
+            1fr 1fr 1fr;
+    }
+
+
+    .noodlesImageCard{
+        height:300px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media(max-width:400px){
+
+    .noodlesOrderPage{
+        padding:8px 10px;
+    }
+
+
+    .noodlesOrderRight{
+        padding:17px 14px;
+    }
+
+
+    .noodlesOrderRight h1{
+        font-size:23px;
+    }
+
+
+    .noodlesImageCard{
+        height:250px;
+    }
+
+}

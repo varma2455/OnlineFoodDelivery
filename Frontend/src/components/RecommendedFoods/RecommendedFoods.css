@@ -1,0 +1,37 @@
+.recommendedFoods{
+
+    margin-top:45px;
+    
+    }
+    
+    .foodGrid{
+    
+    display:grid;
+    
+    grid-template-columns:repeat(4,1fr);
+    
+    gap:25px;
+    
+    margin-top:25px;
+    
+    }
+    
+    @media(max-width:1200px){
+    
+    .foodGrid{
+    
+    grid-template-columns:repeat(2,1fr);
+    
+    }
+    
+    }
+    
+    @media(max-width:700px){
+    
+    .foodGrid{
+    
+    grid-template-columns:1fr;
+    
+    }
+    
+    }

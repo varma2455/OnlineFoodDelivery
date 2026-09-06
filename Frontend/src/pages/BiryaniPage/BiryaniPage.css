@@ -1,0 +1,961 @@
+*{
+    box-sizing:border-box;
+}
+
+.biryaniMarketplace{
+    min-height:100vh;
+    background:#f7f8fc;
+    color:#1e293b;
+    padding:0 38px 50px;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.biryaniTopHeader{
+    height:78px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+    border-bottom:1px solid #e9e9ef;
+}
+
+.biryaniBackButton{
+    width:40px;
+    height:40px;
+    border:none;
+    border-radius:12px;
+    background:white;
+    color:#475569;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    box-shadow:0 4px 15px rgba(15,23,42,.05);
+}
+
+.biryaniBackButton:hover{
+    background:#6c63ff;
+    color:white;
+}
+
+.biryaniHeaderText{
+    flex:1;
+}
+
+.biryaniHeaderText span{
+    color:#6c63ff;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
+
+.biryaniHeaderText h1{
+    margin:2px 0 0;
+    font-size:24px;
+    line-height:1;
+    color:#172033;
+}
+
+.biryaniHeaderRight{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.biryaniLocation{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    border:none;
+    background:white;
+    padding:8px 13px;
+    border-radius:12px;
+    cursor:pointer;
+    text-align:left;
+}
+
+.biryaniLocation small{
+    display:block;
+    color:#94a3b8;
+    font-size:9px;
+}
+
+.biryaniLocation strong{
+    display:block;
+    color:#334155;
+    font-size:11px;
+}
+
+.biryaniLocation svg{
+    font-size:9px;
+    color:#94a3b8;
+}
+
+.biryaniLocationDot{
+    color:#22c55e;
+    font-size:10px;
+}
+
+.biryaniCart{
+    height:40px;
+    padding:0 16px;
+    border:none;
+    border-radius:12px;
+    background:#6c63ff;
+    color:white;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.biryaniCart:hover{
+    background:#584ee8;
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.biryaniHero{
+    margin-top:25px;
+    min-height:280px;
+    border-radius:24px;
+    overflow:hidden;
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    background:
+        linear-gradient(
+            110deg,
+            #26205d 0%,
+            #40378b 55%,
+            #665ee8 100%
+        );
+}
+
+.biryaniHeroContent{
+    padding:42px 45px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    position:relative;
+    z-index:2;
+}
+
+.biryaniHeroTag{
+    width:max-content;
+    display:flex;
+    align-items:center;
+    gap:7px;
+    padding:7px 12px;
+    border-radius:20px;
+    background:rgba(255,255,255,.13);
+    color:#ddd9ff;
+    font-size:10px;
+    font-weight:700;
+}
+
+.biryaniHeroTag svg{
+    color:#ff9b52;
+}
+
+.biryaniHero h2{
+    color:white;
+    font-size:39px;
+    line-height:1.08;
+    margin:16px 0 10px;
+    max-width:510px;
+    letter-spacing:-1.3px;
+}
+
+.biryaniHero h2 span{
+    color:#a9a2ff;
+    margin-left:5px;
+}
+
+.biryaniHeroContent > p{
+    margin:0 0 22px;
+    color:#d8d6ee;
+    font-size:13px;
+    line-height:1.6;
+    max-width:450px;
+}
+
+.biryaniSearchBox{
+    width:min(470px,100%);
+    height:49px;
+    background:white;
+    border-radius:13px;
+    display:flex;
+    align-items:center;
+    gap:11px;
+    padding:0 16px;
+}
+
+.biryaniSearchBox svg{
+    color:#94a3b8;
+    font-size:14px;
+}
+
+.biryaniSearchBox input{
+    border:none;
+    outline:none;
+    width:100%;
+    font-size:13px;
+    color:#334155;
+    background:transparent;
+}
+
+.biryaniSearchBox input::placeholder{
+    color:#94a3b8;
+}
+
+.biryaniHeroImage{
+    position:relative;
+    min-height:280px;
+}
+
+.biryaniHeroImage::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+        linear-gradient(
+            90deg,
+            #322c72 0%,
+            transparent 55%
+        );
+}
+
+.biryaniHeroImage img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+
+/* =========================================
+   FILTERS
+========================================= */
+
+.biryaniFiltersSection{
+    margin-top:20px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.biryaniFilterLeft{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    flex-wrap:wrap;
+}
+
+.biryaniFilterLeft > svg{
+    color:#64748b;
+    font-size:13px;
+    margin-right:3px;
+}
+
+.biryaniFilter{
+    border:1px solid #e4e7ee;
+    background:white;
+    color:#64748b;
+    padding:9px 17px;
+    border-radius:22px;
+    cursor:pointer;
+    font-size:11px;
+    font-weight:600;
+    transition:.2s;
+}
+
+.biryaniFilter:hover{
+    border-color:#6c63ff;
+    color:#6c63ff;
+}
+
+.biryaniFilter.active{
+    background:#6c63ff;
+    border-color:#6c63ff;
+    color:white;
+}
+
+.biryaniSortButton{
+    border:1px solid #e4e7ee;
+    background:white;
+    color:#475569;
+    padding:9px 14px;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    cursor:pointer;
+    font-size:11px;
+}
+
+.biryaniSortButton svg{
+    font-size:8px;
+}
+
+
+/* =========================================
+   SECTION HEADING
+========================================= */
+
+.biryaniSectionHeading{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    margin-bottom:16px;
+}
+
+.biryaniSectionHeading > div > span{
+    color:#6c63ff;
+    font-size:9px;
+    font-weight:800;
+    letter-spacing:1.2px;
+}
+
+.biryaniSectionHeading h2{
+    margin:4px 0 0;
+    font-size:23px;
+    letter-spacing:-.5px;
+    color:#1e293b;
+}
+
+.biryaniSectionHeading p{
+    margin:5px 0 0;
+    color:#94a3b8;
+    font-size:11px;
+}
+
+.biryaniSectionHeading > button{
+    border:none;
+    background:none;
+    color:#6c63ff;
+    font-size:11px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+
+/* =========================================
+   RESTAURANTS
+========================================= */
+
+.biryaniRestaurants{
+    margin-top:20px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 20px;
+}
+
+.biryaniRestaurantScroller{
+    display:grid;
+    grid-template-columns:
+        repeat(4,minmax(0,1fr));
+    gap:14px;
+}
+
+.biryaniRestaurantCard{
+    border:1px solid #edf0f5;
+    background:white;
+    border-radius:16px;
+    padding:8px;
+    display:flex;
+    align-items:center;
+    gap:11px;
+    cursor:pointer;
+    text-align:left;
+    transition:.25s;
+}
+
+.biryaniRestaurantCard:hover{
+    transform:translateY(-2px);
+    border-color:#d9d5ff;
+    box-shadow:
+        0 10px 25px rgba(15,23,42,.06);
+}
+
+.biryaniRestaurantCard.selected{
+    border-color:#6c63ff;
+    box-shadow:
+        0 8px 24px rgba(108,99,255,.12);
+}
+
+.biryaniRestaurantImage{
+    width:68px;
+    height:68px;
+    border-radius:12px;
+    overflow:hidden;
+    flex-shrink:0;
+}
+
+.biryaniRestaurantImage img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.biryaniRestaurantInfo{
+    min-width:0;
+}
+
+.biryaniRestaurantInfo h3{
+    margin:0 0 7px;
+    font-size:12px;
+    color:#1e293b;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.biryaniRestaurantInfo > div{
+    display:flex;
+    align-items:center;
+    gap:5px;
+    color:#94a3b8;
+    font-size:9px;
+}
+
+.biryaniMiniRating{
+    color:#f59e0b;
+    display:flex;
+    align-items:center;
+    gap:3px;
+    font-weight:700;
+}
+
+.biryaniMiniRating svg{
+    font-size:8px;
+}
+
+
+/* =========================================
+   BIRYANI PRODUCTS
+========================================= */
+
+.biryaniProducts{
+    margin-top:20px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 20px;
+}
+
+.biryaniResultCount{
+    background:#eeeefe;
+    color:#6c63ff;
+    padding:7px 11px;
+    border-radius:8px;
+    font-size:10px;
+    font-weight:700;
+}
+
+.modernBiryaniGrid{
+    display:grid;
+    grid-template-columns:
+        repeat(4,minmax(0,1fr));
+    gap:22px;
+}
+
+.modernBiryaniCard{
+    background:white;
+    border:1px solid #edf0f5;
+    border-radius:19px;
+    overflow:hidden;
+    transition:.3s;
+}
+
+.modernBiryaniCard:hover{
+    transform:translateY(-5px);
+    box-shadow:
+        0 18px 40px rgba(15,23,42,.09);
+}
+
+
+/* =========================================
+   BIRYANI IMAGE
+========================================= */
+
+.modernBiryaniImage{
+    height:190px;
+    position:relative;
+    overflow:hidden;
+}
+
+.modernBiryaniImage img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.45s;
+}
+
+.modernBiryaniCard:hover
+.modernBiryaniImage img{
+    transform:scale(1.06);
+}
+
+.biryaniImageGradient{
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    height:55px;
+    background:
+        linear-gradient(
+            transparent,
+            rgba(0,0,0,.18)
+        );
+    pointer-events:none;
+}
+
+.modernBiryaniBadge{
+    position:absolute;
+    top:12px;
+    left:12px;
+    background:white;
+    color:#f15b35;
+    padding:6px 9px;
+    border-radius:8px;
+    font-size:9px;
+    font-weight:800;
+    z-index:2;
+    box-shadow:
+        0 5px 15px rgba(0,0,0,.1);
+}
+
+.modernBiryaniHeart{
+    position:absolute;
+    top:12px;
+    right:12px;
+    width:32px;
+    height:32px;
+    border:none;
+    border-radius:50%;
+    background:rgba(255,255,255,.94);
+    color:#64748b;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    z-index:3;
+}
+
+.modernBiryaniHeart:hover{
+    color:#ef4444;
+}
+
+
+/* =========================================
+   BIRYANI CONTENT
+========================================= */
+
+.modernBiryaniContent{
+    padding:17px;
+}
+
+.biryaniNameRow{
+    display:flex;
+    align-items:center;
+    gap:7px;
+}
+
+.biryaniNameRow h3{
+    margin:0;
+    font-size:16px;
+    font-weight:700;
+    color:#172033;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.biryaniVegMark{
+    color:#16a34a;
+    font-size:9px;
+}
+
+.biryaniNonVegMark{
+    color:#dc2626;
+    font-size:9px;
+}
+
+.modernBiryaniRestaurant{
+    margin:6px 0 10px;
+    color:#94a3b8;
+    font-size:10px;
+}
+
+.modernBiryaniMeta{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    color:#94a3b8;
+    font-size:9px;
+}
+
+.modernBiryaniMeta svg{
+    font-size:8px;
+}
+
+.modernBiryaniRating{
+    color:#f59e0b;
+    display:flex;
+    align-items:center;
+    gap:3px;
+    font-weight:700;
+}
+
+.modernBiryaniDivider{
+    height:1px;
+    background:#f0f1f5;
+    margin:13px 0;
+}
+
+
+/* =========================================
+   PRICE
+========================================= */
+
+.modernBiryaniBottom{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+}
+
+.modernBiryaniPrice{
+    display:flex;
+    align-items:baseline;
+    gap:7px;
+}
+
+.modernBiryaniPrice strong{
+    color:#6c63ff;
+    font-size:20px;
+}
+
+.modernBiryaniPrice del{
+    color:#a1a1aa;
+    font-size:10px;
+}
+
+
+/* =========================================
+   ADD BUTTON
+========================================= */
+
+.addBiryaniButton{
+    border:none;
+    background:#6c63ff;
+    color:white;
+    height:34px;
+    min-width:65px;
+    padding:0 12px;
+    border-radius:9px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:5px;
+    cursor:pointer;
+    font-size:10px;
+    font-weight:700;
+    transition:.2s;
+}
+
+.addBiryaniButton:hover{
+    background:#584ee8;
+    transform:translateY(-1px);
+}
+
+.addBiryaniButton svg{
+    font-size:9px;
+}
+
+
+/* =========================================
+   NO RESULTS
+========================================= */
+
+.noBiryaniResults{
+    background:white;
+    border:1px solid #edf0f5;
+    border-radius:18px;
+    padding:55px 20px;
+    text-align:center;
+}
+
+.noBiryaniResults > div{
+    font-size:38px;
+}
+
+.noBiryaniResults h3{
+    margin:12px 0 5px;
+    font-size:18px;
+}
+
+.noBiryaniResults p{
+    margin:0;
+    color:#94a3b8;
+    font-size:12px;
+}
+
+.noBiryaniResults button{
+    margin-top:15px;
+    border:none;
+    background:#6c63ff;
+    color:white;
+    padding:9px 18px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:11px;
+}
+
+
+/* =========================================
+   DELIVERY BANNER
+========================================= */
+
+.biryaniDeliveryBanner{
+    margin-top:42px;
+    background:white;
+    border:1px solid #edf0f5;
+    border-radius:18px;
+    padding:18px 22px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+}
+
+.biryaniDeliveryIcon{
+    width:45px;
+    height:45px;
+    border-radius:13px;
+    background:#eeeefe;
+    color:#6c63ff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:18px;
+}
+
+.biryaniDeliveryBanner h3{
+    margin:0 0 4px;
+    font-size:14px;
+    color:#172033;
+}
+
+.biryaniDeliveryBanner p{
+    margin:0;
+    color:#94a3b8;
+    font-size:10px;
+}
+
+.biryaniDeliveryTime{
+    margin-left:auto;
+    display:flex;
+    align-items:baseline;
+    gap:5px;
+}
+
+.biryaniDeliveryTime strong{
+    color:#6c63ff;
+    font-size:24px;
+}
+
+.biryaniDeliveryTime span{
+    color:#94a3b8;
+    font-size:10px;
+}
+
+/* =========================================
+   BIRYANI PAGE WITH SIDEBAR
+========================================= */
+
+.biryaniPageLayout{
+    display:flex;
+    min-height:100vh;
+    background:#f7f8fc;
+}
+
+
+/* SIDEBAR */
+
+.biryaniPageLayout .browseSidebar{
+    position:fixed;
+    left:0;
+    top:0;
+
+    width:250px;
+    height:100vh;
+
+    flex-shrink:0;
+
+    overflow-y:auto;
+    z-index:1000;
+}
+
+
+/* BIRYANI CONTENT */
+
+.biryaniMarketplace{
+    margin-left:250px;
+
+    width:calc(100% - 250px);
+
+    min-height:100vh;
+
+    background:#f7f8fc;
+
+    color:#1e293b;
+
+    padding:0 38px 50px;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media(max-width:850px){
+
+    .biryaniPageLayout{
+        display:block;
+    }
+
+    .biryaniPageLayout .browseSidebar{
+        position:relative;
+
+        width:100%;
+        height:auto;
+
+        min-height:auto;
+    }
+
+    .biryaniMarketplace{
+        margin-left:0;
+
+        width:100%;
+
+        padding:0 20px 40px;
+    }
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media(max-width:1100px){
+
+    .modernBiryaniGrid{
+        grid-template-columns:
+            repeat(3,minmax(0,1fr));
+    }
+
+    .biryaniRestaurantScroller{
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+    }
+
+}
+
+
+@media(max-width:850px){
+
+    .biryaniMarketplace{
+        padding:0 20px 40px;
+    }
+
+    .biryaniHero{
+        grid-template-columns:1fr;
+    }
+
+    .biryaniHeroImage{
+        display:none;
+    }
+
+    .modernBiryaniGrid{
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+    }
+
+}
+
+
+@media(max-width:600px){
+
+    .biryaniMarketplace{
+        padding:0 14px 30px;
+    }
+
+    .biryaniTopHeader{
+        height:68px;
+    }
+
+    .biryaniHeaderText h1{
+        font-size:20px;
+    }
+
+    .biryaniLocation{
+        display:none;
+    }
+
+    .biryaniCart{
+        padding:0 12px;
+    }
+
+    .biryaniHeroContent{
+        padding:30px 25px;
+    }
+
+    .biryaniHero h2{
+        font-size:30px;
+    }
+
+    .biryaniFiltersSection{
+        align-items:flex-start;
+        gap:12px;
+        flex-direction:column;
+    }
+
+    .biryaniFilterLeft{
+        width:100%;
+    }
+
+    .biryaniSortButton{
+        align-self:flex-end;
+    }
+
+    .biryaniRestaurantScroller{
+        grid-template-columns:1fr;
+    }
+
+    .modernBiryaniGrid{
+        grid-template-columns:1fr;
+        gap:16px;
+    }
+
+    .modernBiryaniImage{
+        height:210px;
+    }
+
+    .biryaniDeliveryBanner{
+        flex-wrap:wrap;
+    }
+
+    .biryaniDeliveryTime{
+        margin-left:0;
+    }
+
+}

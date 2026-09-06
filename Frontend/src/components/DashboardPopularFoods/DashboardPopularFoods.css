@@ -1,0 +1,267 @@
+/* ==========================================
+   Popular Foods Section
+========================================== */
+
+.popular-foods{
+    width:100%;
+    background:#ffffff;
+    border-radius:20px;
+    padding:22px;
+    box-shadow:0 12px 35px rgba(0,0,0,.08);
+}
+
+/* ==========================================
+   Header
+========================================== */
+
+.popular-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.popular-header h2{
+    font-size:20px;
+    font-weight:700;
+    color:#222;
+    margin-bottom:6px;
+}
+
+.popular-header p{
+    color:#8a8a8a;
+    font-size:15px;
+}
+
+.popular-header button{
+    border:none;
+    background:#6C63FF;
+    color:#fff;
+    padding:10px 18px;
+    font-size:13px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:600;
+    transition:.3s;
+}
+
+.popular-header button:hover{
+    background:#584EF5;
+    transform:translateY(-2px);
+}
+
+/* ==========================================
+   Food Grid
+========================================== */
+
+.food-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+}
+
+/* ==========================================
+   Food Card
+========================================== */
+
+.food-card{
+    background:#fff;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 12px 25px rgba(0,0,0,.06);
+    transition:.35s;
+    cursor:pointer;
+    position:relative;
+}
+
+.food-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 20px 40px rgba(0,0,0,.12);
+}
+
+/* ==========================================
+   Food Image
+========================================== */
+
+.food-image{
+    width:100%;
+    height:160px;
+    overflow:hidden;
+}
+
+.food-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.5s;
+}
+
+.food-card:hover img{
+    transform:scale(1.08);
+}
+
+/* ==========================================
+   Food Details
+========================================== */
+
+.food-details{
+    padding:16px;
+}
+
+.food-category{
+    display:inline-block;
+    background:#F2EEFF;
+    color:#6C63FF;
+    padding:5px 10px;
+    font-size:11px;
+    border-radius:25px;
+    font-weight:600;
+    margin-bottom:12px;
+}
+
+.food-details h3{
+    font-size:18px;
+    margin-bottom:10px;
+    color:#222;
+}
+
+/* ==========================================
+   Rating
+========================================== */
+
+.food-rating{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:14px;
+}
+
+.food-rating span{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    font-size:13px;
+    color:#777;
+}
+
+.food-rating svg:first-child{
+    color:#FFD43B;
+}
+
+/* ==========================================
+   Bottom
+========================================== */
+
+.food-bottom{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.food-bottom h2{
+    color:#6C63FF;
+    font-size:24px;
+    font-weight:700;
+}
+
+.food-bottom button{
+    width:42px;
+    height:42px;
+    font-size:16px;
+    border:none;
+    border-radius:50%;
+    background:#6C63FF;
+    color:white;
+    cursor:pointer;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    transition:.3s;
+}
+
+.food-bottom button:hover{
+    background:#584EF5;
+    transform:rotate(-15deg) scale(1.1);
+}
+
+/* ==========================================
+   Hover Effects
+========================================== */
+
+.food-card:hover .food-details h3{
+    color:#6C63FF;
+}
+
+.food-card:hover .food-category{
+    background:#6C63FF;
+    color:white;
+}
+
+/* ==========================================
+   Responsive
+========================================== */
+
+@media(max-width:1400px){
+
+.food-grid{
+    grid-template-columns:repeat(2,1fr);
+}
+
+}
+
+@media(max-width:992px){
+
+.popular-foods{
+    padding:25px;
+}
+
+.food-grid{
+    gap:20px;
+}
+
+}
+
+@media (max-width:768px){
+
+    .popular-header{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:15px;
+    }
+    
+    .food-grid{
+        grid-template-columns:1fr;
+    }
+    
+    .food-image{
+        height:220px;
+    }
+    
+    }
+
+@media(max-width:576px){
+
+.popular-foods{
+    padding:20px;
+    border-radius:18px;
+}
+
+.food-details{
+    padding:18px;
+}
+
+.food-details h3{
+    font-size:18px;
+}
+
+.food-bottom h2{
+    font-size:20px;
+}
+
+.food-bottom button{
+    width:45px;
+    height:45px;
+    font-size:16px;
+}
+
+}

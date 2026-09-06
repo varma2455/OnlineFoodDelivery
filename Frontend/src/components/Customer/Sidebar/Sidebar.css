@@ -1,0 +1,589 @@
+/* ===========================================
+   FOODEXPRESS PREMIUM SIDEBAR
+=========================================== */
+
+.sidebar{
+
+    width:280px;
+
+    height:100vh;
+
+    position:fixed;
+
+    left:0;
+
+    top:0;
+
+    background:#ffffff;
+
+    border-right:1px solid #ececec;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:space-between;
+
+    transition:.35s ease;
+
+    overflow:hidden;
+
+    z-index:1000;
+
+    box-shadow:6px 0 25px rgba(0,0,0,.06);
+
+}
+
+/* ========================================= */
+
+.sidebar.collapsed{
+
+    width:95px;
+
+}
+
+/* ========================================= */
+
+.sidebar-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:22px;
+
+    border-bottom:1px solid #f2f2f2;
+
+}
+
+.logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+.logo-icon{
+
+    width:55px;
+
+    height:55px;
+
+    background:#ff6b00;
+
+    color:#ffffff;
+
+    border-radius:50%;
+
+    padding:13px;
+
+    font-size:26px;
+
+    box-shadow:0 10px 25px rgba(255,107,0,.25);
+
+}
+
+.logo h2{
+
+    font-size:29px;
+
+    color:#222;
+
+    font-weight:700;
+
+}
+
+.logo span{
+
+    color:#ff6b00;
+
+}
+
+.collapse-btn{
+
+    width:42px;
+
+    height:42px;
+
+    border:none;
+
+    background:#f8f8f8;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    font-size:18px;
+
+}
+
+.collapse-btn:hover{
+
+    background:#ff6b00;
+
+    color:#fff;
+
+}
+
+/* ========================================= */
+
+.sidebar-user{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:25px 22px;
+
+}
+
+.avatar{
+
+    width:70px;
+
+    height:70px;
+
+    border-radius:50%;
+
+    background:linear-gradient(135deg,#ff6b00,#ff9248);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:#fff;
+
+    font-size:30px;
+
+    font-weight:700;
+
+    flex-shrink:0;
+
+    box-shadow:0 10px 25px rgba(255,107,0,.25);
+
+}
+
+.user-details{
+
+    overflow:hidden;
+
+}
+
+.user-details h4{
+
+    color:#222;
+
+    font-size:18px;
+
+    margin-bottom:4px;
+
+    white-space:nowrap;
+
+}
+
+.user-details p{
+
+    color:#777;
+
+    font-size:13px;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+}
+
+/* ========================================= */
+
+.sidebar-menu{
+
+    list-style:none;
+
+    padding:0 15px;
+
+    margin:0;
+
+    flex:1;
+
+    overflow-y:auto;
+
+}
+
+.sidebar-menu::-webkit-scrollbar{
+
+    width:5px;
+
+}
+
+.sidebar-menu::-webkit-scrollbar-thumb{
+
+    background:#ff6b00;
+
+    border-radius:20px;
+
+}
+
+.sidebar-menu li{
+
+    margin-bottom:8px;
+
+}
+
+.sidebar-menu li a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:16px;
+
+    text-decoration:none;
+
+    color:#555;
+
+    padding:15px 18px;
+
+    border-radius:15px;
+
+    transition:.3s;
+
+    position:relative;
+
+    font-weight:500;
+
+}
+
+.sidebar-menu li a:hover{
+
+    background:#fff4ed;
+
+    color:#ff6b00;
+
+    transform:translateX(6px);
+
+}
+
+.sidebar-menu li.active a{
+
+    background:linear-gradient(135deg,#ff6b00,#ff9248);
+
+    color:#fff;
+
+    box-shadow:0 12px 25px rgba(255,107,0,.30);
+
+}
+
+.icon{
+
+    font-size:22px;
+
+    min-width:24px;
+
+}
+
+/* ========================================= */
+
+.badge{
+
+    margin-left:auto;
+
+    background:#ff3d3d;
+
+    color:#fff;
+
+    min-width:24px;
+
+    height:24px;
+
+    border-radius:50px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    padding:0 8px;
+
+}
+
+/* ========================================= */
+
+.sidebar-offer{
+
+    margin:18px;
+
+    padding:22px;
+
+    border-radius:22px;
+
+    background:linear-gradient(135deg,#1f2937,#111827);
+
+    color:#fff;
+
+    text-align:center;
+
+}
+
+.sidebar-offer h2{
+
+    font-size:34px;
+
+    color:#ffd54f;
+
+    margin-bottom:10px;
+
+}
+
+.sidebar-offer p{
+
+    opacity:.9;
+
+    line-height:1.6;
+
+    margin-bottom:18px;
+
+}
+
+.sidebar-offer button{
+
+    width:100%;
+
+    padding:13px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#ff6b00;
+
+    color:#fff;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.sidebar-offer button:hover{
+
+    transform:translateY(-3px);
+
+    background:#ff8126;
+
+}
+
+/* ========================================= */
+
+.logout-btn{
+
+    margin:18px;
+
+    border:none;
+
+    background:#dc3545;
+
+    color:#fff;
+
+    padding:16px;
+
+    border-radius:15px;
+
+    cursor:pointer;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:14px;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.logout-btn:hover{
+
+    background:#bb2d3b;
+
+    transform:translateY(-3px);
+
+}
+
+/* ========================================= */
+
+.sidebar.collapsed .sidebar-header{
+
+    justify-content:center;
+
+}
+
+.sidebar.collapsed .collapse-btn{
+
+    position:absolute;
+
+    top:18px;
+
+    right:-16px;
+
+    width:34px;
+
+    height:34px;
+
+    border-radius:50%;
+
+    background:#ff6b00;
+
+    color:#fff;
+
+    box-shadow:0 8px 18px rgba(255,107,0,.35);
+
+}
+
+.sidebar.collapsed .sidebar-user{
+
+    justify-content:center;
+
+}
+
+.sidebar.collapsed .sidebar-menu li a{
+
+    justify-content:center;
+
+    padding:16px;
+
+}
+
+.sidebar.collapsed .badge{
+
+    position:absolute;
+
+    right:8px;
+
+    top:6px;
+
+    transform:scale(.8);
+
+}
+
+.sidebar.collapsed .sidebar-offer{
+
+    display:none;
+
+}
+
+.sidebar.collapsed .logout-btn span{
+
+    display:none;
+
+}
+
+/* ========================================= */
+
+@media(max-width:991px){
+
+.sidebar{
+
+    transform:translateX(-100%);
+
+}
+
+.sidebar.show{
+
+    transform:translateX(0);
+
+}
+
+}
+
+/* ========================================= */
+
+@media(max-width:768px){
+
+.sidebar{
+
+    width:260px;
+
+}
+
+.logo h2{
+
+    font-size:24px;
+
+}
+
+.avatar{
+
+    width:60px;
+
+    height:60px;
+
+    font-size:26px;
+
+}
+
+.sidebar-menu li a{
+
+    padding:14px;
+
+}
+
+}
+
+/* ========================================= */
+
+@media(max-width:500px){
+
+.sidebar{
+
+    width:240px;
+
+}
+
+.sidebar-header{
+
+    padding:18px;
+
+}
+
+.logo-icon{
+
+    width:48px;
+
+    height:48px;
+
+    font-size:22px;
+
+}
+
+.logout-btn{
+
+    margin:14px;
+
+}
+
+}

@@ -1,0 +1,124 @@
+.nearbyRestaurants {
+    margin-top: 70px;
+}
+
+.restaurantHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.restaurantHeader h2 {
+    font-size: 32px;
+    color: #1f2937;
+}
+
+.restaurantHeader p {
+    color: #64748b;
+    margin-top: 8px;
+}
+
+.restaurantHeader button {
+    background: #6C63FF;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.restaurantHeader button:hover {
+    transform: translateY(-3px);
+}
+
+.restaurantGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px,1fr));
+    gap: 30px;
+}
+
+.restaurantCard {
+    background: white;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 20px 45px rgba(0,0,0,.08);
+    transition: .4s;
+}
+
+.restaurantCard:hover {
+    transform: translateY(-10px);
+}
+
+.restaurantImage {
+    position: relative;
+}
+
+.restaurantImage img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.restaurantOffer {
+    position: absolute;
+    left: 15px;
+    bottom: 15px;
+    background: #ff5722;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 25px;
+    font-size: 13px;
+}
+
+.favoriteBtn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 42px;
+    height: 42px;
+    border: none;
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+}
+
+.restaurantInfo {
+    padding: 22px;
+}
+
+.restaurantTop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.restaurantInfo p {
+    color: #64748b;
+    margin: 10px 0;
+}
+
+.restaurantMeta {
+    display: flex;
+    justify-content: space-between;
+    margin: 18px 0;
+    color: #6b7280;
+}
+
+.restaurantMeta span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.visitRestaurant {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 15px;
+    background: #6C63FF;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+}

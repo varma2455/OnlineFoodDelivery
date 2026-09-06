@@ -1,0 +1,206 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#f5f7fb;
+}
+
+/* Main Dashboard */
+
+.dashboard-sidebar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:250px;
+    height:100vh;
+    overflow-y:auto;
+    z-index:1000;
+}
+
+.dashboard{
+    width:100%;
+    min-height:100vh;
+    display:flex;
+    background:#f5f7fb;
+}
+
+/* Right Side */
+
+.dashboard-content{
+    margin-left:250px;
+    width:calc(100% - 250px);
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    overflow-x:hidden;
+}
+
+
+/* Main Wrapper */
+
+.dashboard-wrapper{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) 360px;
+    gap:15px;
+    padding:10px 20px 20px;
+    padding-top:10px;
+    width:100%;
+    align-items:start;
+}
+
+/* Left Section */
+
+.left-section{
+    min-width:0;
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+.right-section{
+    width:350px;
+    min-width:350px;
+    display:flex;
+    flex-direction:column;
+    margin-top:0px;
+    gap:20px;
+}
+
+/* Common Card */
+
+.card{
+    background:#ffffff;
+    border-radius:22px;
+    padding:18px;
+    box-shadow:0 8px 25px rgba(0,0,0,.06);
+}
+
+
+
+/* Images */
+
+img{
+    max-width:100%;
+    display:block;
+}
+
+/* Buttons */
+
+button{
+    border:none;
+    outline:none;
+    cursor:pointer;
+}
+
+/* Links */
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+/* List */
+
+ul{
+    list-style:none;
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar{
+    width:6px;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#6d4aff;
+    border-radius:50px;
+}
+
+::-webkit-scrollbar-track{
+    background:#ececec;
+}
+
+/* Tablet */
+
+@media(max-width:1200px){
+
+.dashboard-wrapper{
+    grid-template-columns:1fr;
+}
+
+.right-section{
+    width:100%;
+}
+
+}
+
+/* Mobile */
+
+@media (max-width:768px){
+
+    .dashboard-sidebar{
+        display:none;
+    }
+    
+    .dashboard-content{
+        margin-left:0;
+        width:100%;
+    }
+    
+    .dashboard-wrapper{
+        grid-template-columns:1fr;
+        padding:15px;
+        gap:20px;
+    }
+    
+    .right-section{
+        width:100%;
+        min-width:0;
+    }
+    
+    .left-section{
+        width:100%;
+    }
+    
+}
+
+
+/* Small Mobile */
+
+@media(max-width:480px){
+
+.dashboard-wrapper{
+    padding:10px;
+}
+
+.card{
+    border-radius:18px;
+    padding:16px;
+}
+
+}
+
+
+html,
+body,
+#root{
+    overflow-x:hidden;
+    width:100%;
+}
+
+
+
+img{
+    max-width:100%;
+    height:auto;
+}
+
+

@@ -1,0 +1,87 @@
+.trendCard{
+
+    background:white;
+    
+    border-radius:22px;
+    
+    overflow:hidden;
+    
+    box-shadow:0 15px 35px rgba(0,0,0,.08);
+    
+    position:relative;
+    
+    transition:.3s;
+    
+    }
+    
+    .trendCard:hover{
+    
+    transform:translateY(-10px);
+    
+    }
+    
+    .offer{
+    
+    position:absolute;
+    
+    top:15px;
+    
+    left:15px;
+    
+    background:#ff5722;
+    
+    color:white;
+    
+    padding:8px 14px;
+    
+    border-radius:50px;
+    
+    font-size:13px;
+    
+    font-weight:600;
+    
+    }
+    
+    .trendCard img{
+    
+    width:100%;
+    
+    height:220px;
+    
+    object-fit:cover;
+    
+    }
+    
+    .trendInfo{
+    
+    padding:20px;
+    
+    }
+    
+    .trendBottom{
+    
+    display:flex;
+    
+    justify-content:space-between;
+    
+    align-items:center;
+    
+    margin-top:20px;
+    
+    }
+    
+    .trendBottom button{
+    
+    padding:12px 20px;
+    
+    border:none;
+    
+    background:#6D5DFC;
+    
+    color:white;
+    
+    border-radius:12px;
+    
+    cursor:pointer;
+    
+    }

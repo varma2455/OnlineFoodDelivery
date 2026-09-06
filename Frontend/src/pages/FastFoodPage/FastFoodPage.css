@@ -1,0 +1,1194 @@
+*{
+    box-sizing:border-box;
+}
+
+
+/* =========================================
+   FAST FOOD PAGE
+========================================= */
+
+.fastFoodPageLayout{
+    display:flex;
+    min-height:100vh;
+    background:#f7f8fc;
+}
+
+
+/* =========================================
+   SIDEBAR
+========================================= */
+
+.fastFoodPageLayout .browseSidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:250px;
+    height:100vh;
+    flex-shrink:0;
+    overflow-y:auto;
+    z-index:1000;
+}
+
+
+/* =========================================
+   MAIN MARKETPLACE
+========================================= */
+
+.fastFoodMarketplace{
+    margin-left:250px;
+    width:calc(100% - 250px);
+    min-height:100vh;
+    background:#f7f8fc;
+    color:#1e293b;
+    padding:0 38px 50px;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.fastFoodTopHeader{
+    height:78px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+    border-bottom:1px solid #e9e9ef;
+    background:#f7f8fc;
+}
+
+.fastFoodBackButton{
+    width:40px;
+    height:40px;
+    border:none;
+    border-radius:12px;
+    background:white;
+    color:#475569;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    box-shadow:0 4px 15px rgba(15,23,42,.05);
+}
+
+.fastFoodBackButton:hover{
+    background:#6c63ff;
+    color:white;
+}
+
+.fastFoodHeaderTitle{
+    flex:1;
+}
+
+.fastFoodHeaderTitle h2{
+    margin:2px 0 0;
+    font-size:24px;
+    line-height:1;
+    color:#172033;
+}
+
+.fastFoodHeaderTitle p{
+    margin:5px 0 0;
+    color:#94a3b8;
+    font-size:10px;
+}
+
+.fastFoodHeaderLocation{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.fastFoodHeaderLocation > span{
+    color:#22c55e;
+    font-size:10px;
+}
+
+.fastFoodHeaderLocation small{
+    display:block;
+    color:#94a3b8;
+    font-size:9px;
+}
+
+.fastFoodHeaderLocation strong{
+    display:block;
+    color:#334155;
+    font-size:11px;
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.fastFoodHero{
+    margin-top:25px;
+    min-height:280px;
+    border-radius:24px;
+    overflow:hidden;
+
+    display:grid;
+
+    grid-template-columns:1.1fr .9fr;
+
+    background:
+        linear-gradient(
+            110deg,
+            #26205d 0%,
+            #40378b 55%,
+            #665ee8 100%
+        );
+
+    position:relative;
+}
+
+
+/* =========================================
+   HERO CONTENT
+========================================= */
+
+.fastFoodHeroContent{
+    padding:42px 45px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    position:relative;
+
+    z-index:2;
+}
+
+.fastFoodHeroBadge{
+    width:max-content;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    padding:7px 12px;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,.13);
+
+    color:#ddd9ff;
+
+    font-size:10px;
+
+    font-weight:700;
+
+    letter-spacing:.4px;
+}
+
+.fastFoodHeroBadge svg{
+    color:#ff9b52;
+}
+
+.fastFoodHero h1{
+    color:white;
+
+    font-size:39px;
+
+    line-height:1.08;
+
+    margin:16px 0 10px;
+
+    max-width:510px;
+
+    letter-spacing:-1.3px;
+}
+
+.fastFoodHero h1 span{
+    color:#a9a2ff;
+}
+
+.fastFoodHero p{
+    margin:0 0 22px;
+
+    color:#d8d6ee;
+
+    font-size:13px;
+
+    line-height:1.6;
+
+    max-width:450px;
+}
+
+
+/* =========================================
+   SEARCH
+========================================= */
+
+.fastFoodSearchBox{
+    width:min(470px,100%);
+
+    height:49px;
+
+    background:white;
+
+    border-radius:13px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:11px;
+
+    padding:0 16px;
+}
+
+.fastFoodSearchBox svg{
+    color:#94a3b8;
+
+    font-size:14px;
+}
+
+.fastFoodSearchBox input{
+    border:none;
+
+    outline:none;
+
+    width:100%;
+
+    font-size:13px;
+
+    color:#334155;
+
+    background:transparent;
+}
+
+.fastFoodSearchBox input::placeholder{
+    color:#94a3b8;
+}
+
+
+/* =========================================
+   HERO STATS
+========================================= */
+
+.fastFoodHeroStats{
+    display:flex;
+
+    gap:8px;
+
+    margin-top:16px;
+}
+
+.fastFoodHeroStats div{
+    background:rgba(255,255,255,.12);
+
+    border-radius:9px;
+
+    padding:7px 10px;
+}
+
+.fastFoodHeroStats strong{
+    display:block;
+
+    color:white;
+
+    font-size:13px;
+}
+
+.fastFoodHeroStats span{
+    display:block;
+
+    margin-top:2px;
+
+    color:#d8d6ee;
+
+    font-size:7px;
+}
+
+
+/* =========================================
+   HERO IMAGE
+========================================= */
+
+.fastFoodHeroImage{
+    position:relative;
+
+    min-height:280px;
+
+    overflow:hidden;
+}
+
+.fastFoodHeroImage::after{
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        linear-gradient(
+            90deg,
+            #322c72 0%,
+            transparent 55%
+        );
+}
+
+.fastFoodHeroImage img{
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+}
+
+
+/* =========================================
+   FILTER HEADER
+========================================= */
+
+.fastFoodFilterHeader{
+    margin-top:20px;
+
+    padding-top:30px;
+
+    padding-bottom:30px;
+
+    margin-bottom:20px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+}
+
+.fastFoodFilterHeader h2{
+    margin:0;
+
+    font-size:23px;
+
+    color:#1e293b;
+
+    letter-spacing:-.5px;
+}
+
+.fastFoodFilterHeader p{
+    margin:5px 0 0;
+
+    color:#94a3b8;
+
+    font-size:11px;
+}
+
+
+/* =========================================
+   SORT
+========================================= */
+
+.fastFoodSort{
+    border:1px solid #e4e7ee;
+
+    background:white;
+
+    color:#475569;
+
+    padding:9px 14px;
+
+    border-radius:10px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    cursor:pointer;
+
+    font-size:11px;
+}
+
+.fastFoodSort svg{
+    font-size:8px;
+}
+
+
+/* =========================================
+   FILTERS
+========================================= */
+
+.fastFoodFilters{
+    display:flex;
+
+    align-items:center;
+
+    gap:9px;
+
+    overflow-x:auto;
+
+    scrollbar-width:none;
+
+    margin-bottom:25px;
+}
+
+.fastFoodFilters::-webkit-scrollbar{
+    display:none;
+}
+
+.fastFoodFilters button{
+    flex-shrink:0;
+
+    border:1px solid #e4e7ee;
+
+    background:white;
+
+    color:#64748b;
+
+    padding:9px 17px;
+
+    border-radius:22px;
+
+    cursor:pointer;
+
+    font-size:11px;
+
+    font-weight:600;
+
+    transition:.2s;
+}
+
+.fastFoodFilters button:hover{
+    border-color:#6c63ff;
+
+    color:#6c63ff;
+}
+
+.fastFoodFilters button.active{
+    background:#6c63ff;
+
+    border-color:#6c63ff;
+
+    color:white;
+}
+
+
+/* =========================================
+   RESTAURANTS
+========================================= */
+
+.fastFoodRestaurants{
+    margin-top:20px;
+
+    padding-top:30px;
+
+    padding-bottom:30px;
+
+    margin-bottom:20px;
+}
+
+.fastFoodSectionHeader{
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-end;
+
+    margin-bottom:16px;
+}
+
+.fastFoodSectionHeader h2{
+    margin:4px 0 0;
+
+    font-size:23px;
+
+    letter-spacing:-.5px;
+
+    color:#1e293b;
+}
+
+.fastFoodSectionHeader p{
+    margin:5px 0 0;
+
+    color:#94a3b8;
+
+    font-size:11px;
+}
+
+
+/* =========================================
+   RESTAURANT GRID
+========================================= */
+
+.fastFoodRestaurantGrid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,minmax(0,1fr));
+
+    gap:14px;
+}
+
+.fastFoodRestaurantCard{
+    border:1px solid #edf0f5;
+
+    background:white;
+
+    border-radius:16px;
+
+    overflow:hidden;
+
+    cursor:pointer;
+
+    text-align:left;
+
+    padding:0;
+
+    transition:.25s;
+}
+
+.fastFoodRestaurantCard:hover{
+    transform:translateY(-2px);
+
+    border-color:#d9d5ff;
+
+    box-shadow:
+        0 10px 25px
+        rgba(15,23,42,.06);
+}
+
+.fastFoodRestaurantCard.active{
+    border-color:#6c63ff;
+
+    box-shadow:
+        0 8px 24px
+        rgba(108,99,255,.12);
+}
+
+
+/* =========================================
+   RESTAURANT IMAGE
+========================================= */
+
+.fastFoodRestaurantImage{
+    width:100%;
+
+    height:120px;
+
+    overflow:hidden;
+}
+
+.fastFoodRestaurantImage img{
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+    transition:.35s;
+}
+
+.fastFoodRestaurantCard:hover
+.fastFoodRestaurantImage img{
+    transform:scale(1.05);
+}
+
+
+/* =========================================
+   RESTAURANT INFO
+========================================= */
+
+.fastFoodRestaurantInfo{
+    padding:12px;
+}
+
+.fastFoodRestaurantInfo strong{
+    display:block;
+
+    margin-bottom:5px;
+
+    color:#1e293b;
+
+    font-size:12px;
+}
+
+.fastFoodRestaurantInfo span{
+    display:block;
+
+    color:#94a3b8;
+
+    font-size:9px;
+}
+
+
+/* =========================================
+   PRODUCTS
+========================================= */
+
+.fastFoodProducts{
+    margin-top:20px;
+
+    padding-top:30px;
+
+    padding-bottom:30px;
+
+    margin-bottom:20px;
+}
+
+.fastFoodProductHeader{
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-end;
+
+    margin-bottom:16px;
+}
+
+.fastFoodProductHeader h2{
+    margin:4px 0 0;
+
+    font-size:23px;
+
+    letter-spacing:-.5px;
+
+    color:#1e293b;
+}
+
+.fastFoodProductHeader p{
+    margin:5px 0 0;
+
+    color:#94a3b8;
+
+    font-size:11px;
+}
+
+
+/* =========================================
+   PRODUCT GRID
+========================================= */
+
+.fastFoodProductGrid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,minmax(0,1fr));
+
+    gap:22px;
+}
+
+
+/* =========================================
+   PRODUCT CARD
+========================================= */
+
+.fastFoodCard{
+    background:white;
+
+    border:1px solid #edf0f5;
+
+    border-radius:19px;
+
+    overflow:hidden;
+
+    transition:.3s;
+}
+
+.fastFoodCard:hover{
+    transform:translateY(-5px);
+
+    box-shadow:
+        0 18px 40px
+        rgba(15,23,42,.09);
+}
+
+
+/* =========================================
+   PRODUCT IMAGE
+========================================= */
+
+.fastFoodCardImage{
+    height:190px;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.fastFoodCardImage img{
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+    transition:.45s;
+}
+
+.fastFoodCard:hover
+.fastFoodCardImage img{
+    transform:scale(1.06);
+}
+
+
+/* =========================================
+   BADGE
+========================================= */
+
+.fastFoodBadge{
+    position:absolute;
+
+    top:12px;
+
+    left:12px;
+
+    background:white;
+
+    color:#f15b35;
+
+    padding:6px 9px;
+
+    border-radius:8px;
+
+    font-size:9px;
+
+    font-weight:800;
+
+    z-index:2;
+
+    box-shadow:
+        0 5px 15px
+        rgba(0,0,0,.1);
+}
+
+
+/* =========================================
+   HEART
+========================================= */
+
+.fastFoodHeart{
+    position:absolute;
+
+    top:12px;
+
+    right:12px;
+
+    width:32px;
+
+    height:32px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.94);
+
+    color:#64748b;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    cursor:pointer;
+
+    z-index:3;
+
+    transition:.2s;
+}
+
+.fastFoodHeart:hover{
+    color:#ef4444;
+}
+
+.fastFoodHeart.active{
+    color:#ef4444;
+}
+
+
+/* =========================================
+   PRODUCT CONTENT
+========================================= */
+
+.fastFoodCardContent{
+    padding:17px;
+}
+
+.fastFoodRestaurantName{
+    display:block;
+
+    margin-bottom:6px;
+
+    color:#6c63ff;
+
+    font-size:10px;
+
+    font-weight:700;
+}
+
+.fastFoodCard h3{
+    margin:0;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    color:#172033;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+}
+
+.fastFoodCardContent > p{
+    margin:6px 0 10px;
+
+    color:#94a3b8;
+
+    font-size:9px;
+
+    line-height:1.5;
+
+    min-height:28px;
+}
+
+
+/* =========================================
+   PRODUCT INFO
+========================================= */
+
+.fastFoodInfo{
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    color:#94a3b8;
+
+    font-size:9px;
+}
+
+.fastFoodInfo span{
+    display:flex;
+
+    align-items:center;
+
+    gap:3px;
+}
+
+.fastFoodInfo span:first-child{
+    color:#f59e0b;
+
+    font-weight:700;
+}
+
+.fastFoodInfo svg{
+    font-size:8px;
+}
+
+
+/* =========================================
+   PRICE
+========================================= */
+
+.fastFoodPriceRow{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:10px;
+
+    border-top:1px solid #f0f1f5;
+
+    margin-top:13px;
+
+    padding-top:13px;
+}
+
+.fastFoodPriceRow strong{
+    color:#6c63ff;
+
+    font-size:20px;
+}
+
+.fastFoodPriceRow del{
+    margin-left:7px;
+
+    color:#a1a1aa;
+
+    font-size:10px;
+}
+
+.fastFoodPriceRow button{
+    border:none;
+
+    background:#6c63ff;
+
+    color:white;
+
+    height:34px;
+
+    min-width:65px;
+
+    padding:0 12px;
+
+    border-radius:9px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:5px;
+
+    cursor:pointer;
+
+    font-size:10px;
+
+    font-weight:700;
+
+    transition:.2s;
+}
+
+.fastFoodPriceRow button:hover{
+    background:#584ee8;
+
+    transform:translateY(-1px);
+}
+
+.fastFoodPriceRow button svg{
+    font-size:9px;
+}
+
+
+/* =========================================
+   EMPTY STATE
+========================================= */
+
+.fastFoodEmpty{
+    background:white;
+
+    border:1px solid #edf0f5;
+
+    border-radius:18px;
+
+    padding:55px 20px;
+
+    text-align:center;
+}
+
+.fastFoodEmpty span{
+    display:block;
+
+    font-size:38px;
+}
+
+.fastFoodEmpty h3{
+    margin:12px 0 5px;
+
+    font-size:18px;
+
+    color:#1e293b;
+}
+
+.fastFoodEmpty p{
+    margin:0;
+
+    color:#94a3b8;
+
+    font-size:12px;
+}
+
+
+/* =========================================
+   DELIVERY BANNER
+========================================= */
+
+.fastFoodDeliveryBanner{
+    margin-top:42px;
+
+    background:white;
+
+    border:1px solid #edf0f5;
+
+    border-radius:18px;
+
+    padding:18px 22px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+}
+
+.fastFoodDeliveryBanner > div:first-child{
+    width:44px;
+
+    height:44px;
+
+    border-radius:12px;
+
+    background:#eeedff;
+
+    color:#6c63ff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:18px;
+
+    flex-shrink:0;
+}
+
+.fastFoodDeliveryBanner h3{
+    margin:0;
+
+    font-size:14px;
+
+    color:#1e293b;
+}
+
+.fastFoodDeliveryBanner p{
+    margin:4px 0 0;
+
+    color:#94a3b8;
+
+    font-size:10px;
+
+    line-height:1.5;
+}
+
+
+/* =========================================
+   RESPONSIVE
+   Same breakpoints as PizzaPage.css
+========================================= */
+
+@media(max-width:1200px){
+
+    .fastFoodProductGrid{
+        grid-template-columns:
+            repeat(3,minmax(0,1fr));
+    }
+
+    .fastFoodRestaurantGrid{
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+    }
+
+}
+
+
+@media(max-width:900px){
+
+    .fastFoodMarketplace{
+        padding:0 20px 40px;
+    }
+
+    .fastFoodHero{
+        grid-template-columns:1fr;
+    }
+
+    .fastFoodHeroImage{
+        display:none;
+    }
+
+    .fastFoodFilterHeader{
+        align-items:flex-start;
+
+        gap:15px;
+
+        flex-direction:column;
+    }
+
+    .fastFoodProductGrid{
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+    }
+
+}
+
+
+@media(max-width:650px){
+
+    .fastFoodMarketplace{
+        padding:0 14px 30px;
+    }
+
+    .fastFoodHeaderLocation{
+        display:none;
+    }
+
+    .fastFoodHeroContent{
+        padding:30px 25px;
+    }
+
+    .fastFoodHero h1{
+        font-size:30px;
+    }
+
+    .fastFoodFilters{
+        width:100%;
+
+        overflow-x:auto;
+
+        padding-bottom:5px;
+    }
+
+    .fastFoodFilters button{
+        flex-shrink:0;
+    }
+
+    .fastFoodRestaurantGrid{
+        grid-template-columns:1fr;
+    }
+
+    .fastFoodProductGrid{
+        grid-template-columns:1fr;
+    }
+
+    .fastFoodCardImage{
+        height:220px;
+    }
+
+    .fastFoodDeliveryBanner{
+        align-items:flex-start;
+    }
+
+}
+
+
+@media(max-width:400px){
+
+    .fastFoodMarketplace{
+        padding:0 10px 25px;
+    }
+
+    .fastFoodHeroContent{
+        padding:25px 20px;
+    }
+
+    .fastFoodHero h1{
+        font-size:27px;
+    }
+
+    .fastFoodHeroStats{
+        flex-wrap:wrap;
+    }
+
+}

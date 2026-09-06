@@ -1,0 +1,905 @@
+*{
+    box-sizing:border-box;
+}
+
+.pizzaMarketplace{
+    min-height:100vh;
+    background:#f7f8fc;
+    color:#1e293b;
+    padding:0 38px 50px;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.pizzaTopHeader{
+    height:78px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+    border-bottom:1px solid #e9e9ef;
+    background:#f7f8fc;
+}
+
+.pizzaBackButton{
+    width:40px;
+    height:40px;
+    border:none;
+    border-radius:12px;
+    background:white;
+    color:#475569;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    box-shadow:0 4px 15px rgba(15,23,42,.05);
+}
+
+.pizzaBackButton:hover{
+    background:#6c63ff;
+    color:white;
+}
+
+.pizzaHeaderText{
+    flex:1;
+}
+
+.pizzaHeaderText span{
+    color:#6c63ff;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
+
+.pizzaHeaderText h1{
+    margin:2px 0 0;
+    font-size:24px;
+    line-height:1;
+    color:#172033;
+}
+
+.pizzaHeaderRight{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.headerLocation{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    border:none;
+    background:white;
+    padding:8px 13px;
+    border-radius:12px;
+    cursor:pointer;
+    text-align:left;
+}
+
+.headerLocation small{
+    display:block;
+    color:#94a3b8;
+    font-size:9px;
+}
+
+.headerLocation strong{
+    display:block;
+    color:#334155;
+    font-size:11px;
+}
+
+.headerLocation svg{
+    font-size:9px;
+    color:#94a3b8;
+}
+
+.locationDot{
+    color:#22c55e;
+    font-size:10px;
+}
+
+.headerCart{
+    height:40px;
+    padding:0 16px;
+    border:none;
+    border-radius:12px;
+    background:#6c63ff;
+    color:white;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    cursor:pointer;
+    font-weight:600;
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.pizzaHero{
+    margin-top:25px;
+    min-height:280px;
+    border-radius:24px;
+    overflow:hidden;
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    background:linear-gradient(
+        110deg,
+        #26205d 0%,
+        #40378b 55%,
+        #665ee8 100%
+    );
+    position:relative;
+}
+
+.pizzaHeroContent{
+    padding:42px 45px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    position:relative;
+    z-index:2;
+}
+
+.heroTag{
+    width:max-content;
+    display:flex;
+    align-items:center;
+    gap:7px;
+    padding:7px 12px;
+    border-radius:20px;
+    background:rgba(255,255,255,.13);
+    color:#ddd9ff;
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:.4px;
+}
+
+.heroTag svg{
+    color:#ff9b52;
+}
+
+.pizzaHero h2{
+    color:white;
+    font-size:39px;
+    line-height:1.08;
+    margin:16px 0 10px;
+    max-width:510px;
+    letter-spacing:-1.3px;
+}
+
+.pizzaHero h2 span{
+    color:#a9a2ff;
+}
+
+.pizzaHeroContent > p{
+    margin:0 0 22px;
+    color:#d8d6ee;
+    font-size:13px;
+    line-height:1.6;
+    max-width:450px;
+}
+
+.pizzaSearchBox{
+    width:min(470px,100%);
+    height:49px;
+    background:white;
+    border-radius:13px;
+    display:flex;
+    align-items:center;
+    gap:11px;
+    padding:0 16px;
+}
+
+.pizzaSearchBox svg{
+    color:#94a3b8;
+    font-size:14px;
+}
+
+.pizzaSearchBox input{
+    border:none;
+    outline:none;
+    width:100%;
+    font-size:13px;
+    color:#334155;
+    background:transparent;
+}
+
+.pizzaSearchBox input::placeholder{
+    color:#94a3b8;
+}
+
+.pizzaHeroImage{
+    position:relative;
+    min-height:280px;
+}
+
+.pizzaHeroImage::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        90deg,
+        #322c72 0%,
+        transparent 55%
+    );
+}
+
+.pizzaHeroImage img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+
+/* =========================================
+   FILTERS
+========================================= */
+
+.pizzaFiltersSection{
+    margin-top:20px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.pizzaFilterLeft{
+    display:flex;
+    align-items:center;
+    gap:9px;
+}
+
+.pizzaFilterLeft > svg{
+    color:#64748b;
+    font-size:13px;
+    margin-right:3px;
+}
+
+.pizzaFilter{
+    border:1px solid #e4e7ee;
+    background:white;
+    color:#64748b;
+    padding:9px 17px;
+    border-radius:22px;
+    cursor:pointer;
+    font-size:11px;
+    font-weight:600;
+    transition:.2s;
+}
+
+.pizzaFilter:hover{
+    border-color:#6c63ff;
+    color:#6c63ff;
+}
+
+.pizzaFilter.active{
+    background:#6c63ff;
+    border-color:#6c63ff;
+    color:white;
+}
+
+.sortButton{
+    border:1px solid #e4e7ee;
+    background:white;
+    color:#475569;
+    padding:9px 14px;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    cursor:pointer;
+    font-size:11px;
+}
+
+.sortButton svg{
+    font-size:8px;
+}
+
+
+/* =========================================
+   SECTION HEADINGS
+========================================= */
+
+.sectionHeading{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    margin-bottom:16px;
+}
+
+.sectionHeading > div > span{
+    color:#6c63ff;
+    font-size:9px;
+    font-weight:800;
+    letter-spacing:1.2px;
+}
+
+.sectionHeading h2{
+    margin:4px 0 0;
+    font-size:23px;
+    letter-spacing:-.5px;
+    color:#1e293b;
+}
+
+.sectionHeading p{
+    margin:5px 0 0;
+    color:#94a3b8;
+    font-size:11px;
+}
+
+.sectionHeading > button{
+    border:none;
+    background:none;
+    color:#6c63ff;
+    font-size:11px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+
+/* =========================================
+   RESTAURANTS
+========================================= */
+
+.pizzaRestaurants{
+    margin-top:20px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 20px;
+}
+
+.restaurantScroller{
+    display:grid;
+    grid-template-columns:
+        repeat(4,minmax(0,1fr));
+    gap:14px;
+}
+
+.restaurantMiniCard{
+    border:1px solid #edf0f5;
+    background:white;
+    border-radius:16px;
+    padding:8px;
+    display:flex;
+    align-items:center;
+    gap:11px;
+    cursor:pointer;
+    text-align:left;
+    transition:.25s;
+}
+
+.restaurantMiniCard:hover{
+    transform:translateY(-2px);
+    border-color:#d9d5ff;
+    box-shadow:0 10px 25px rgba(15,23,42,.06);
+}
+
+.restaurantMiniCard.selected{
+    border-color:#6c63ff;
+    box-shadow:0 8px 24px rgba(108,99,255,.12);
+}
+
+.restaurantMiniImage{
+    width:68px;
+    height:68px;
+    border-radius:12px;
+    overflow:hidden;
+    flex-shrink:0;
+}
+
+.restaurantMiniImage img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.restaurantMiniInfo{
+    min-width:0;
+}
+
+.restaurantMiniInfo h3{
+    margin:0 0 7px;
+    font-size:12px;
+    color:#1e293b;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.restaurantMiniInfo > div{
+    display:flex;
+    align-items:center;
+    gap:5px;
+    color:#94a3b8;
+    font-size:9px;
+}
+
+.miniRating{
+    color:#f59e0b;
+    display:flex;
+    align-items:center;
+    gap:3px;
+    font-weight:700;
+}
+
+.miniRating svg{
+    font-size:8px;
+}
+
+
+/* =========================================
+   PRODUCTS
+========================================= */
+
+.pizzaProducts{
+    margin-top:20px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 20px;
+}
+
+.resultCount{
+    background:#eeeefe;
+    color:#6c63ff;
+    padding:7px 11px;
+    border-radius:8px;
+    font-size:10px;
+    font-weight:700;
+}
+
+.modernPizzaGrid{
+    display:grid;
+    grid-template-columns:
+        repeat(4,minmax(0,1fr));
+    gap:22px;
+}
+
+.modernPizzaCard{
+    background:white;
+    border:1px solid #edf0f5;
+    border-radius:19px;
+    overflow:hidden;
+    transition:.3s;
+}
+
+.modernPizzaCard:hover{
+    transform:translateY(-5px);
+    box-shadow:
+        0 18px 40px rgba(15,23,42,.09);
+}
+
+
+/* =========================================
+   PRODUCT IMAGE
+========================================= */
+
+.modernPizzaImage{
+    height:190px;
+    position:relative;
+    overflow:hidden;
+}
+
+.modernPizzaImage img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.45s;
+}
+
+.modernPizzaCard:hover .modernPizzaImage img{
+    transform:scale(1.06);
+}
+
+.imageGradient{
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    height:55px;
+    background:linear-gradient(
+        transparent,
+        rgba(0,0,0,.18)
+    );
+    pointer-events:none;
+}
+
+.modernBadge{
+    position:absolute;
+    top:12px;
+    left:12px;
+    background:white;
+    color:#f15b35;
+    padding:6px 9px;
+    border-radius:8px;
+    font-size:9px;
+    font-weight:800;
+    z-index:2;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.modernHeart{
+    position:absolute;
+    top:12px;
+    right:12px;
+    width:32px;
+    height:32px;
+    border:none;
+    border-radius:50%;
+    background:rgba(255,255,255,.94);
+    color:#64748b;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    z-index:3;
+}
+
+.modernHeart:hover{
+    color:#ef4444;
+}
+
+
+/* =========================================
+   PRODUCT CONTENT
+========================================= */
+
+.modernPizzaContent{
+    padding:17px;
+}
+
+.pizzaNameRow{
+    display:flex;
+    align-items:center;
+    gap:7px;
+}
+
+.pizzaNameRow h3{
+    margin:0;
+    font-size:16px;
+    font-weight:700;
+    color:#172033;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.vegMark{
+    color:#16a34a;
+    font-size:9px;
+}
+
+.nonVegMark{
+    color:#dc2626;
+    font-size:9px;
+}
+
+.modernRestaurant{
+    margin:6px 0 10px;
+    color:#94a3b8;
+    font-size:10px;
+}
+
+.modernMeta{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    color:#94a3b8;
+    font-size:9px;
+}
+
+.modernMeta svg{
+    font-size:8px;
+}
+
+.modernRating{
+    color:#f59e0b;
+    display:flex;
+    align-items:center;
+    gap:3px;
+    font-weight:700;
+}
+
+.modernDivider{
+    height:1px;
+    background:#f0f1f5;
+    margin:13px 0;
+}
+
+.modernBottom{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+}
+
+.modernPrice{
+    display:flex;
+    align-items:baseline;
+    gap:7px;
+}
+
+.modernPrice strong{
+    color:#6c63ff;
+    font-size:20px;
+}
+
+.modernPrice del{
+    color:#a1a1aa;
+    font-size:10px;
+}
+
+.addPizzaButton{
+    border:none;
+    background:#6c63ff;
+    color:white;
+    height:34px;
+    min-width:65px;
+    padding:0 12px;
+    border-radius:9px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:5px;
+    cursor:pointer;
+    font-size:10px;
+    font-weight:700;
+    transition:.2s;
+}
+
+.addPizzaButton:hover{
+    background:#584ee8;
+    transform:translateY(-1px);
+}
+
+.addPizzaButton svg{
+    font-size:9px;
+}
+
+
+/* =========================================
+   NO RESULTS
+========================================= */
+
+.noPizzaResults{
+    background:white;
+    border:1px solid #edf0f5;
+    border-radius:18px;
+    padding:55px 20px;
+    text-align:center;
+}
+
+.noPizzaResults > div{
+    font-size:38px;
+}
+
+.noPizzaResults h3{
+    margin:12px 0 5px;
+    font-size:18px;
+}
+
+.noPizzaResults p{
+    margin:0;
+    color:#94a3b8;
+    font-size:12px;
+}
+
+.noPizzaResults button{
+    margin-top:15px;
+    border:none;
+    background:#6c63ff;
+    color:white;
+    padding:9px 18px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:11px;
+}
+
+
+/* =========================================
+   DELIVERY BANNER
+========================================= */
+
+.pizzaDeliveryBanner{
+    margin-top:42px;
+    background:white;
+    border:1px solid #edf0f5;
+    border-radius:18px;
+    padding:18px 22px;
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.deliveryIcon{
+    width:44px;
+    height:44px;
+    border-radius:12px;
+    background:#eeedff;
+    color:#6c63ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:18px;
+}
+
+.pizzaDeliveryBanner h3{
+    margin:0;
+    font-size:14px;
+}
+
+.pizzaDeliveryBanner p{
+    margin:4px 0 0;
+    color:#94a3b8;
+    font-size:10px;
+}
+
+.deliveryTime{
+    margin-left:auto;
+    display:flex;
+    align-items:baseline;
+    gap:4px;
+}
+
+.deliveryTime strong{
+    font-size:22px;
+    color:#6c63ff;
+}
+
+.deliveryTime span{
+    font-size:10px;
+    color:#94a3b8;
+}
+
+
+/* =========================================
+   PIZZA PAGE WITH SIDEBAR
+========================================= */
+
+.pizzaPageLayout{
+    display:flex;
+    min-height:100vh;
+    background:#f7f8fc;
+}
+
+
+/* =========================================
+   SIDEBAR
+========================================= */
+
+.pizzaPageLayout .browseSidebar{
+    position:fixed;
+    left:0;
+    top:0;
+
+    width:250px;
+    height:100vh;
+
+    flex-shrink:0;
+
+    overflow-y:auto;
+
+    z-index:1000;
+}
+
+
+/* =========================================
+   PIZZA CONTENT
+========================================= */
+
+.pizzaMarketplace{
+    margin-left:250px;
+
+    width:calc(100% - 250px);
+
+    min-height:100vh;
+
+    background:#f7f8fc;
+
+    color:#1e293b;
+
+    padding:0 38px 50px;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media(max-width:1200px){
+
+    .modernPizzaGrid{
+        grid-template-columns:
+            repeat(3,minmax(0,1fr));
+    }
+
+    .restaurantScroller{
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+    }
+
+}
+
+
+@media(max-width:900px){
+
+    .pizzaMarketplace{
+        padding:0 20px 40px;
+    }
+
+    .pizzaHero{
+        grid-template-columns:1fr;
+    }
+
+    .pizzaHeroImage{
+        display:none;
+    }
+
+    .pizzaFiltersSection{
+        align-items:flex-start;
+        gap:15px;
+        flex-direction:column;
+    }
+
+    .modernPizzaGrid{
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+    }
+
+}
+
+
+@media(max-width:650px){
+
+    .pizzaMarketplace{
+        padding:0 14px 30px;
+    }
+
+    .pizzaHeaderRight{
+        display:none;
+    }
+
+    .pizzaHeroContent{
+        padding:30px 25px;
+    }
+
+    .pizzaHero h2{
+        font-size:30px;
+    }
+
+    .pizzaFilterLeft{
+        width:100%;
+        overflow-x:auto;
+        padding-bottom:5px;
+    }
+
+    .pizzaFilter{
+        flex-shrink:0;
+    }
+
+    .restaurantScroller{
+        grid-template-columns:1fr;
+    }
+
+    .modernPizzaGrid{
+        grid-template-columns:1fr;
+    }
+
+    .sectionHeading h2{
+        font-size:20px;
+    }
+
+    .pizzaDeliveryBanner{
+        align-items:flex-start;
+    }
+
+    .deliveryTime{
+        display:none;
+    }
+
+}

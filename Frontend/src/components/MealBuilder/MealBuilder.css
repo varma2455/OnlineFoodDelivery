@@ -1,0 +1,173 @@
+.mealBuilder{
+
+    margin-top:120px;
+    
+    }
+    
+    .builderHeader{
+    
+    text-align:center;
+    
+    margin-bottom:60px;
+    
+    }
+    
+    .builderHeader span{
+    
+    padding:12px 22px;
+    
+    background:#EEF2FF;
+    
+    color:#6C63FF;
+    
+    border-radius:40px;
+    
+    }
+    
+    .builderHeader h1{
+    
+    font-size:60px;
+    
+    margin:20px 0;
+    
+    }
+    
+    .builderHeader p{
+    
+    color:#64748B;
+    
+    font-size:18px;
+    
+    }
+    
+    .builderContainer{
+    
+    display:grid;
+    
+    grid-template-columns:2fr 1fr;
+    
+    gap:40px;
+    
+    }
+    
+    .ingredientGrid{
+    
+    display:grid;
+    
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    
+    gap:25px;
+    
+    }
+    
+    .ingredientCard{
+    
+    background:white;
+    
+    padding:25px;
+    
+    border-radius:25px;
+    
+    text-align:center;
+    
+    box-shadow:0 20px 40px rgba(0,0,0,.08);
+    
+    transition:.4s;
+    
+    }
+    
+    .ingredientCard:hover{
+    
+    transform:translateY(-10px);
+    
+    }
+    
+    .ingredientCard img{
+    
+    width:120px;
+    
+    height:120px;
+    
+    object-fit:contain;
+    
+    margin:auto;
+    
+    }
+    
+    .ingredientCard button{
+    
+    margin-top:20px;
+    
+    width:100%;
+    
+    padding:14px;
+    
+    border:none;
+    
+    background:#6C63FF;
+    
+    color:white;
+    
+    border-radius:15px;
+    
+    cursor:pointer;
+    
+    }
+    
+    .summaryCard{
+    
+    background:white;
+    
+    padding:30px;
+    
+    border-radius:30px;
+    
+    height:fit-content;
+    
+    box-shadow:0 20px 40px rgba(0,0,0,.08);
+    
+    position:sticky;
+    
+    top:120px;
+    
+    }
+    
+    .selectedItem{
+    
+    display:flex;
+    
+    justify-content:space-between;
+    
+    margin:18px 0;
+    
+    }
+    
+    .summary{
+    
+    display:flex;
+    
+    justify-content:space-between;
+    
+    margin:25px 0;
+    
+    }
+    
+    .summaryCard button{
+    
+    width:100%;
+    
+    padding:16px;
+    
+    border:none;
+    
+    background:#10B981;
+    
+    color:white;
+    
+    border-radius:16px;
+    
+    font-size:17px;
+    
+    cursor:pointer;
+    
+    }

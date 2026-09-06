@@ -1,0 +1,55 @@
+.browseFilters{
+    display:flex;
+    
+    gap:15px;
+    
+    margin:10px 0;
+    
+    overflow-x:auto;
+    
+    padding-bottom:10px;
+    padding-top: 30px;
+    
+    }
+    
+    .browseFilters::-webkit-scrollbar{
+    
+    display:none;
+    
+    }
+    
+    .browseFilters button{
+    
+    padding:14px 24px;
+    
+    border:none;
+    
+    background:white;
+    
+    border-radius:15px;
+    
+    font-size:15px;
+    
+    cursor:pointer;
+    
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+    
+    transition:.3s;
+    
+    white-space:nowrap;
+    
+    }
+    
+    .activeFilter{
+    
+    background:#6D5DFC !important;
+    
+    color:white;
+    
+    }
+    
+    .browseFilters button:hover{
+    
+    transform:translateY(-3px);
+    
+    }

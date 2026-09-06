@@ -1,0 +1,532 @@
+/* ==========================================
+   FOOD MANAGEMENT PAGE
+========================================== */
+
+.food-management-page{
+
+    width:90%;
+
+    max-width:1400px;
+
+    margin:40px auto 80px;
+
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.food-header{
+
+    text-align:center;
+
+    margin-bottom:40px;
+
+}
+
+.food-header h1{
+
+    font-size:46px;
+
+    color:#222;
+
+    margin-bottom:10px;
+
+}
+
+.food-header p{
+
+    font-size:18px;
+
+    color:#666;
+
+}
+
+/* ==========================================
+   TOOLBAR
+========================================== */
+
+.food-toolbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+    margin-bottom:35px;
+
+    flex-wrap:wrap;
+
+}
+
+.food-toolbar input{
+
+    flex:1;
+
+    min-width:250px;
+
+    padding:14px 18px;
+
+    border:1px solid #dddddd;
+
+    border-radius:10px;
+
+    outline:none;
+
+    font-size:16px;
+
+    transition:.3s;
+
+}
+
+.food-toolbar input:focus{
+
+    border-color:#ff5722;
+
+    box-shadow:0 0 8px rgba(255,87,34,.25);
+
+}
+
+.add-food-btn{
+
+    border:none;
+
+    background:#28a745;
+
+    color:#ffffff;
+
+    padding:14px 26px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.add-food-btn:hover{
+
+    background:#218838;
+
+    transform:translateY(-3px);
+
+}
+
+/* ==========================================
+   FOOD GRID
+========================================== */
+
+.food-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+
+    gap:30px;
+
+}
+/* ==========================================
+   FOOD CARD
+========================================== */
+
+.food-card{
+
+    background:#ffffff;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+.food-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 15px 35px rgba(0,0,0,.12);
+
+}
+
+/* ==========================================
+   FOOD IMAGE
+========================================== */
+
+.food-card img{
+
+    width:100%;
+
+    height:220px;
+
+    object-fit:cover;
+
+}
+
+/* ==========================================
+   FOOD CONTENT
+========================================== */
+
+.food-content{
+
+    padding:20px;
+
+}
+
+.food-content h2{
+
+    color:#222;
+
+    font-size:24px;
+
+    margin-bottom:10px;
+
+}
+
+.food-content p{
+
+    color:#666;
+
+    font-size:15px;
+
+    line-height:24px;
+
+    margin-bottom:15px;
+
+}
+
+.food-content h3{
+
+    color:#ff5722;
+
+    font-size:22px;
+
+    margin-bottom:12px;
+
+}
+
+.food-content span{
+
+    display:inline-block;
+
+    background:#fff3ef;
+
+    color:#ff5722;
+
+    padding:6px 14px;
+
+    border-radius:20px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+/* ==========================================
+   FOOD ACTIONS
+========================================== */
+
+.food-actions{
+
+    display:flex;
+
+    gap:12px;
+
+    padding:20px;
+
+    border-top:1px solid #eeeeee;
+
+}
+
+.food-actions button{
+
+    flex:1;
+
+    border:none;
+
+    padding:13px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.edit-btn{
+
+    background:#007bff;
+
+    color:#ffffff;
+
+}
+
+.edit-btn:hover{
+
+    background:#0056b3;
+
+}
+
+.delete-btn{
+
+    background:#dc3545;
+
+    color:#ffffff;
+
+}
+
+.delete-btn:hover{
+
+    background:#c82333;
+
+}
+/* ==========================================
+   BUTTON EFFECTS
+========================================== */
+
+.food-actions button:active{
+
+    transform:scale(.98);
+
+}
+
+.add-food-btn:active{
+
+    transform:scale(.98);
+
+}
+
+/* ==========================================
+   CARD ANIMATION
+========================================== */
+
+.food-card{
+
+    animation:fadeUp .7s ease;
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(30px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ==========================================
+   SEARCH BAR ANIMATION
+========================================== */
+
+.food-toolbar input{
+
+    transition:border-color .3s, box-shadow .3s;
+
+}
+
+.food-toolbar input::placeholder{
+
+    color:#999999;
+
+}
+
+/* ==========================================
+   CATEGORY BADGE EFFECT
+========================================== */
+
+.food-content span{
+
+    transition:.3s;
+
+}
+
+.food-card:hover .food-content span{
+
+    background:#ff5722;
+
+    color:#ffffff;
+
+}
+
+/* ==========================================
+   IMAGE HOVER EFFECT
+========================================== */
+
+.food-card img{
+
+    transition:transform .4s ease;
+
+}
+
+.food-card:hover img{
+
+    transform:scale(1.05);
+
+}
+/* ==========================================
+   RESPONSIVE DESIGN
+========================================== */
+
+@media (max-width:992px){
+
+    .food-grid{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+}
+
+@media (max-width:768px){
+
+    .food-management-page{
+
+        width:95%;
+
+    }
+
+    .food-header h1{
+
+        font-size:34px;
+
+    }
+
+    .food-header p{
+
+        font-size:16px;
+
+    }
+
+    .food-toolbar{
+
+        flex-direction:column;
+
+        align-items:stretch;
+
+    }
+
+    .food-toolbar input{
+
+        width:100%;
+
+    }
+
+    .add-food-btn{
+
+        width:100%;
+
+    }
+
+    .food-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media (max-width:480px){
+
+    .food-management-page{
+
+        width:96%;
+
+    }
+
+    .food-header h1{
+
+        font-size:28px;
+
+    }
+
+    .food-header p{
+
+        font-size:15px;
+
+    }
+
+    .food-content{
+
+        padding:16px;
+
+    }
+
+    .food-content h2{
+
+        font-size:20px;
+
+    }
+
+    .food-content h3{
+
+        font-size:18px;
+
+    }
+
+    .food-actions{
+
+        flex-direction:column;
+
+    }
+
+    .food-actions button{
+
+        width:100%;
+
+    }
+
+}
+
+/* ==========================================
+   SMOOTH SCROLL
+========================================== */
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+/* ==========================================
+   TEXT SELECTION
+========================================== */
+
+::selection{
+
+    background:#ff5722;
+
+    color:#ffffff;
+
+}
+
+/* ==========================================
+   END OF FOOD MANAGEMENT
+========================================== */

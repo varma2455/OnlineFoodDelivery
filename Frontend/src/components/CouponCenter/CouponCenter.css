@@ -1,0 +1,167 @@
+.couponCenter{
+
+    margin-top:120px;
+    
+    }
+    
+    .couponHeader{
+    
+    display:flex;
+    
+    justify-content:space-between;
+    
+    align-items:center;
+    
+    margin-bottom:45px;
+    
+    }
+    
+    .couponHeader span{
+    
+    padding:12px 22px;
+    
+    background:#EEF2FF;
+    
+    color:#6C63FF;
+    
+    border-radius:30px;
+    
+    }
+    
+    .couponHeader h2{
+    
+    font-size:50px;
+    
+    margin:20px 0;
+    
+    }
+    
+    .couponHeader p{
+    
+    color:#64748B;
+    
+    }
+    
+    .couponHeader button{
+    
+    padding:15px 30px;
+    
+    background:#6C63FF;
+    
+    border:none;
+    
+    color:white;
+    
+    border-radius:30px;
+    
+    cursor:pointer;
+    
+    }
+    
+    .couponGrid{
+    
+    display:grid;
+    
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    
+    gap:30px;
+    
+    }
+    
+    .couponCard{
+    
+    background:white;
+    
+    border-left:8px solid var(--accent);
+    
+    border-radius:25px;
+    
+    padding:30px;
+    
+    box-shadow:0 20px 40px rgba(0,0,0,.08);
+    
+    transition:.4s;
+    
+    }
+    
+    .couponCard:hover{
+    
+    transform:translateY(-10px);
+    
+    }
+    
+    .couponTop{
+    
+    display:flex;
+    
+    justify-content:space-between;
+    
+    align-items:center;
+    
+    margin-bottom:20px;
+    
+    }
+    
+    .couponIcon{
+    
+    width:60px;
+    
+    height:60px;
+    
+    border-radius:18px;
+    
+    background:var(--accent);
+    
+    color:white;
+    
+    display:flex;
+    
+    justify-content:center;
+    
+    align-items:center;
+    
+    font-size:24px;
+    
+    }
+    
+    .couponCard h3{
+    
+    font-size:30px;
+    
+    margin-bottom:12px;
+    
+    }
+    
+    .couponCard p{
+    
+    color:#64748B;
+    
+    margin-bottom:25px;
+    
+    }
+    
+    .couponCard button{
+    
+    width:100%;
+    
+    padding:15px;
+    
+    background:var(--accent);
+    
+    border:none;
+    
+    border-radius:15px;
+    
+    color:white;
+    
+    cursor:pointer;
+    
+    display:flex;
+    
+    justify-content:center;
+    
+    align-items:center;
+    
+    gap:10px;
+    
+    }

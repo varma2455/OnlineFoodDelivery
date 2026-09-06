@@ -1,0 +1,283 @@
+/* ==========================================
+   Best Offers
+========================================== */
+
+.best-offers{
+    width:100%;
+    background:#fff;
+    border-radius:22px;
+    padding:22px;
+    box-shadow:0 12px 35px rgba(0,0,0,.08);
+}
+
+/* ==========================================
+   Header
+========================================== */
+
+.offers-header{
+    margin-bottom:18px;
+}
+
+.offers-header h2{
+    font-size:24px;
+    font-weight:700;
+    color:#222;
+    margin-bottom:5px;
+}
+
+.offers-header p{
+    color:#888;
+    font-size:14px;
+}
+
+/* ==========================================
+   Offers List
+========================================== */
+
+.offers-list{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+
+/* ==========================================
+   Offer Card
+========================================== */
+
+.offer-card{
+    background:#fafafa;
+    border-radius:18px;
+    border:1px solid #ececec;
+    overflow:hidden;
+    transition:.35s;
+    cursor:pointer;
+}
+
+.offer-card:hover{
+    box-shadow:0 15px 35px rgba(0,0,0,.12);
+    transform:translateY(-2px);
+}
+
+/* ==========================================
+   Preview
+========================================== */
+
+.offer-preview{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    padding:16px 18px;
+}
+
+/* ==========================================
+   Icon
+========================================== */
+
+.offer-icon{
+
+    width:56px;
+    height:56px;
+
+    border-radius:16px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    color:white;
+
+    font-size:22px;
+
+    flex-shrink:0;
+}
+
+/* ==========================================
+   Text
+========================================== */
+
+.offer-info{
+    flex:1;
+}
+
+.offer-info h4{
+    font-size:18px;
+    color:#222;
+    margin-bottom:5px;
+}
+
+.offer-info span{
+    font-size:13px;
+    color:#777;
+    font-weight:600;
+}
+
+/* ==========================================
+   Apply Button
+========================================== */
+
+.offer-preview button{
+
+    border:none;
+
+    background:#6C63FF;
+
+    color:white;
+
+    padding:10px 16px;
+
+    border-radius:10px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    cursor:pointer;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    transition:.3s;
+}
+
+.offer-preview button:hover{
+
+    background:#564cf5;
+
+}
+
+.offer-preview button svg{
+
+    transition:.3s;
+
+}
+
+.offer-preview button:hover svg{
+
+    transform:translateX(4px);
+
+}
+
+/* ==========================================
+   Expand Details
+========================================== */
+
+.offer-details{
+
+    max-height:0;
+
+    overflow:hidden;
+
+    transition:max-height .45s ease,padding .35s ease;
+
+    padding:0 20px;
+
+    background:#fff;
+
+}
+
+.offer-card:hover .offer-details{
+
+    max-height:220px;
+
+    padding:0 20px 18px;
+
+}
+
+.offer-details h5{
+
+    color:#444;
+
+    font-size:15px;
+
+    margin-bottom:12px;
+
+    margin-top:5px;
+
+}
+
+.offer-details ul{
+
+    padding:0;
+
+    margin:0;
+
+}
+
+.offer-details li{
+
+    list-style:none;
+
+    font-size:14px;
+
+    color:#666;
+
+    padding:7px 0;
+
+    border-bottom:1px dashed #eee;
+
+}
+
+.offer-details li:last-child{
+
+    border-bottom:none;
+
+}
+
+/* ==========================================
+   Mobile
+========================================== */
+
+@media(max-width:768px){
+
+    .offer-preview{
+
+        flex-wrap:wrap;
+
+        gap:12px;
+
+    }
+
+    .offer-info{
+
+        width:100%;
+
+    }
+
+    .offer-preview button{
+
+        width:100%;
+
+        justify-content:center;
+
+    }
+
+}
+
+@media(max-width:480px){
+
+    .best-offers{
+
+        padding:18px;
+
+        border-radius:18px;
+
+    }
+
+    .offer-icon{
+
+        width:50px;
+        height:50px;
+        font-size:20px;
+
+    }
+
+    .offer-info h4{
+
+        font-size:16px;
+
+    }
+
+}

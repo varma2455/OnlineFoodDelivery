@@ -1,54 +1,36 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-
-
 import { sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "../../firebase";
-
+import { StoreContext } from "../../context/StoreContext";
 import "./ForgotPassword.css";
 
 const ForgotPassword = () => {
-
+    const { showToast } = useContext(StoreContext);
     const [email, setEmail] = useState("");
-
     const [loading, setLoading] = useState(false);
 
     const handleSubmit = async (e) => {
-
         e.preventDefault();
-    
         try {
-    
             setLoading(true);
-    
             await sendPasswordResetEmail(auth, email);
-    
-            alert("Password reset link has been sent to your email.");
-    
+            showToast("Password reset link has been sent to your email! 📩", "success");
             setEmail("");
-    
         } catch (error) {
-    
             switch (error.code) {
-    
                 case "auth/user-not-found":
-                    alert("No account found with this email.");
+                    showToast("No account found with this email.", "error");
                     break;
-    
                 case "auth/invalid-email":
-                    alert("Please enter a valid email.");
+                    showToast("Please enter a valid email.", "error");
                     break;
-    
                 default:
-                    alert(error.message);
+                    showToast(error.message || "Failed to send reset link.", "error");
             }
-    
         } finally {
-    
             setLoading(false);
-    
         }
-    
     };
     
     return(

@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { API_BASE_URL } from "../../config/api";
 import "./Dashboard.css";
 
 
@@ -140,6 +143,88 @@ const stats = [
 
 
 const Dashboard = () => {
+    const navigate = useNavigate();
+    const [dashStats, setDashStats] = useState(null);
+    const [ordersList, setOrdersList] = useState(recentOrders);
+
+    useEffect(() => {
+        const fetchDashboardData = async () => {
+            try {
+                const token = localStorage.getItem("token");
+                if (!token) return;
+                const API_BASE = API_BASE_URL;
+                const { data } = await axios.get(`${API_BASE}/api/admin/dashboard`, {
+                    headers: { Authorization: `Bearer ${token}` }
+                });
+                if (data.success) {
+                    setDashStats(data.stats);
+                    if (data.recentOrders && data.recentOrders.length > 0) {
+                        setOrdersList(data.recentOrders.map((o) => ({
+                            id: `#FD${(o._id || "").slice(-4).toUpperCase()}`,
+                            customer: o.user?.fullName || "Customer",
+                            restaurant: "FoodExpress Kitchen",
+                            amount: `₹${o.finalAmount || o.totalAmount || 0}`,
+                            status: o.orderStatus
+                        })));
+                    }
+                }
+            } catch (err) {
+                console.warn("Admin dashboard data note:", err.message);
+            }
+        };
+        fetchDashboardData();
+    }, []);
+
+    const activeStats = [
+        {
+            title: "Total Customers",
+            value: dashStats?.users ? dashStats.users.toLocaleString() : "12,450",
+            icon: <FaUsers />,
+            change: "+12%"
+        },
+        {
+            title: "Restaurants",
+            value: "235",
+            icon: <FaStore />,
+            change: "+8%"
+        },
+        {
+            title: "Delivery Partners",
+            value: "412",
+            icon: <FaMotorcycle />,
+            change: "+6%"
+        },
+        {
+            title: "Foods",
+            value: dashStats?.foods ? dashStats.foods.toLocaleString() : "1856",
+            icon: <FaHamburger />,
+            change: "+15%"
+        },
+        {
+            title: "Orders",
+            value: dashStats?.orders ? dashStats.orders.toLocaleString() : "7,891",
+            icon: <FaShoppingBag />,
+            change: "+18%"
+        },
+        {
+            title: "Revenue",
+            value: dashStats?.revenue ? `₹${dashStats.revenue.toLocaleString()}` : "$98,540",
+            icon: <FaMoneyBillWave />,
+            change: "+23%"
+        },
+        {
+            title: "Pending Orders",
+            value: dashStats?.pendingOrders ? dashStats.pendingOrders.toLocaleString() : "142",
+            icon: <FaClipboardList />,
+            change: "-5%"
+        },
+        {
+            title: "Growth",
+            value: "87%",
+            icon: <FaChartLine />,
+            change: "+10%"
+        }
+    ];
 
     return (
 
@@ -227,7 +312,7 @@ const Dashboard = () => {
 
                 </div>
 
-                <button>
+                <button onClick={() => navigate("/admin/orders")}>
 
                     View Reports
 
@@ -243,7 +328,7 @@ const Dashboard = () => {
 
                 {
 
-                    stats.map((item, index) => (
+                    activeStats.map((item, index) => (
 
                         <div
                             className="stat-card"
@@ -300,7 +385,7 @@ const Dashboard = () => {
 
                 <div className="action-grid">
 
-                    <button>
+                    <button onClick={() => navigate("/admin/foods")}>
 
                         <FaPlus />
 
@@ -308,23 +393,23 @@ const Dashboard = () => {
 
                     </button>
 
-                    <button>
+                    <button onClick={() => navigate("/admin/foods")}>
 
                         <FaStore />
 
-                        Add Restaurant
+                        Manage Foods
 
                     </button>
 
-                    <button>
+                    <button onClick={() => navigate("/admin/orders")}>
 
                         <FaGift />
 
-                        Create Coupon
+                        Coupons & Orders
 
                     </button>
 
-                    <button>
+                    <button onClick={() => navigate("/admin/orders")}>
 
                         <FaFileAlt />
 
@@ -332,11 +417,11 @@ const Dashboard = () => {
 
                     </button>
 
-                    <button>
+                    <button onClick={() => navigate("/admin/users")}>
 
                         <FaCog />
 
-                        Settings
+                        Manage Users
 
                     </button>
 
@@ -529,7 +614,7 @@ const Dashboard = () => {
 
                 {
 
-                    recentOrders.map((order,index)=>(
+                    ordersList.map((order,index)=>(
 
                         <tr key={index}>
 
@@ -560,7 +645,7 @@ const Dashboard = () => {
                             <td>
 
                                 <span
-                                    className={`status ${order.status.toLowerCase()}`}
+                                    className={`status ${(order.status || "pending").toLowerCase()}`}
                                 >
 
                                     {order.status}
@@ -599,7 +684,7 @@ const Dashboard = () => {
 
         <h1>
 
-            $12,450
+            {dashStats?.revenue ? `₹${dashStats.revenue.toLocaleString()}` : "$12,450"}
 
         </h1>
 
@@ -621,7 +706,7 @@ const Dashboard = () => {
 
         <h1>
 
-            $2,45,890
+            {dashStats?.revenue ? `₹${dashStats.revenue.toLocaleString()}` : "$2,45,890"}
 
         </h1>
 

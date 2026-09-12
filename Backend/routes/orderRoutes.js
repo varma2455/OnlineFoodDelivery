@@ -1,5 +1,4 @@
 import express from "express";
-
 import {
     placeOrder,
     getMyOrders,
@@ -9,58 +8,32 @@ import {
     updateOrderStatus,
     getOrderStatistics
 } from "../controllers/orderController.js";
-
 import { protect } from "../middleware/authMiddleware.js";
 import { isAdmin } from "../middleware/adminMiddleware.js";
+import authorize from "../middleware/roleMiddleware.js";
 
 const router = express.Router();
 
-/*
-===========================================
-User Routes
-===========================================
-*/
-
-// Place Order
+// User routes - Direct Order Placement & History
 router.post("/", protect, placeOrder);
-
-// Get My Orders
 router.get("/my-orders", protect, getMyOrders);
 
-// Get Order Details
+// Flexible GET /: if admin/staff returns all orders, if customer returns their orders
+router.get("/", protect, (req, res, next) => {
+    if (["admin", "restaurant", "delivery"].includes(req.user.role)) {
+        return getAllOrders(req, res, next);
+    }
+    return getMyOrders(req, res, next);
+});
+
+// Admin & Staff Routes
+router.get("/admin/all", protect, authorize("admin", "restaurant", "delivery"), getAllOrders);
+router.get("/admin/statistics", protect, isAdmin, getOrderStatistics);
+router.put("/admin/:id/status", protect, authorize("admin", "restaurant", "delivery"), updateOrderStatus);
+router.put("/:id/status", protect, authorize("admin", "restaurant", "delivery"), updateOrderStatus);
+
+// Order details & Cancel
 router.get("/:id", protect, getOrderById);
-
-// Cancel Order
 router.put("/:id/cancel", protect, cancelOrder);
-
-/*
-===========================================
-Admin Routes
-===========================================
-*/
-
-// Get All Orders
-router.get(
-    "/admin/all",
-    protect,
-    isAdmin,
-    getAllOrders
-);
-
-// Update Order Status
-router.put(
-    "/admin/:id/status",
-    protect,
-    isAdmin,
-    updateOrderStatus
-);
-
-// Order Statistics
-router.get(
-    "/admin/statistics",
-    protect,
-    isAdmin,
-    getOrderStatistics
-);
 
 export default router;

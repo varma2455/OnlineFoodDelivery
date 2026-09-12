@@ -1,451 +1,419 @@
-/* ==========================================
-   Wallet Card
-========================================== */
+/* ========================================================
+   FOODEXPRESS DASHBOARD - WALLET CARD (SWIGGY-INSPIRED)
+   ======================================================== */
 
-.wallet-card{
-
-    background:#ffffff;
-
-    border-radius:25px;
-
-    padding:25px;
-
-    box-shadow:0 12px 35px rgba(0,0,0,.08);
-
+.foodexpress-wallet-widget {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 20px 22px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+  border: 1px solid #e5e7eb;
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
+  min-width: 0;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
-/* ==========================================
-   Wallet Header
-========================================== */
-
-.wallet-header{
-
-    background:linear-gradient(135deg,#6C63FF,#584EF5);
-
-    border-radius:20px;
-
-    padding:25px;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    color:white;
-
-    margin-bottom:25px;
-
+.foodexpress-wallet-widget:hover {
+  border-color: #d1d5db;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.06);
 }
 
-.wallet-header p{
-
-    font-size:14px;
-
-    opacity:.9;
-
-    margin-bottom:8px;
-
+/* Gradient Card */
+.wallet-gradient-card {
+  background: linear-gradient(135deg, #ff5200 0%, #ff7a00 100%);
+  border-radius: 16px;
+  padding: 22px 20px;
+  color: #ffffff;
+  box-shadow: 0 8px 24px rgba(255, 82, 0, 0.3);
+  margin-bottom: 18px;
 }
 
-.wallet-header h2{
-
-    font-size:34px;
-
-    font-weight:700;
-
+.wallet-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
 }
 
-.wallet-icon{
-
-    width:70px;
-
-    height:70px;
-
-    background:rgba(255,255,255,.15);
-
-    border-radius:18px;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    font-size:30px;
-
+.wallet-label {
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0.9;
+  letter-spacing: 0.3px;
+  display: block;
+  margin-bottom: 4px;
 }
 
-/* ==========================================
-   Reward Box
-========================================== */
-
-.reward-box{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:18px;
-
-    background:#F8F8FF;
-
-    border-radius:18px;
-
-    padding:18px;
-
-    margin-bottom:25px;
-
+.wallet-amount {
+  font-size: 32px;
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: -0.5px;
 }
 
-.reward-box svg{
-
-    font-size:30px;
-
-    color:#FFD43B;
-
+.wallet-badge-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
 }
 
-.reward-box h4{
-
-    color:#222;
-
-    margin-bottom:5px;
-
+.wallet-card-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.reward-box p{
-
-    color:#777;
-
-    font-size:14px;
-
+.membership-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
 }
 
-/* ==========================================
-   Buttons
-========================================== */
-
-.wallet-buttons{
-
-    display:flex;
-
-    gap:15px;
-
-    margin-bottom:25px;
-
+.crown-icon {
+  color: #facc15;
 }
 
-.wallet-buttons button{
-
-    flex:1;
-
-    border:none;
-
-    padding:14px;
-
-    border-radius:14px;
-
-    cursor:pointer;
-
-    font-size:15px;
-
-    font-weight:600;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    gap:10px;
-
-    transition:.3s;
-
+.secure-badge {
+  font-size: 11px;
+  opacity: 0.85;
 }
 
-.add-money{
-
-    background:#6C63FF;
-
-    color:white;
-
+/* Rewards Bar */
+.wallet-rewards-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #fff8f0;
+  border: 1px solid #fed7aa;
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin-bottom: 18px;
 }
 
-.add-money:hover{
-
-    background:#584EF5;
-
-    transform:translateY(-3px);
-
+.reward-icon-bubble {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: #ff5200;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
 }
 
-.withdraw-money{
-
-    background:#EEF1FF;
-
-    color:#6C63FF;
-
+.reward-text-group {
+  flex-grow: 1;
 }
 
-.withdraw-money:hover{
-
-    background:#E0E5FF;
-
-    transform:translateY(-3px);
-
+.reward-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #1e293b;
 }
 
-/* ==========================================
-   Divider
-========================================== */
-
-.wallet-divider{
-
-    width:100%;
-
-    height:1px;
-
-    background:#ececec;
-
-    margin:25px 0;
-
+.reward-value {
+  font-size: 11px;
+  color: #64748b;
+  margin-top: 2px;
 }
 
-/* ==========================================
-   Transactions
-========================================== */
-
-.wallet-transactions h3{
-
-    margin-bottom:20px;
-
-    color:#222;
-
+.btn-redeem-coins {
+  background: #1e293b;
+  color: #ffffff;
+  border: none;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.transaction-item{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    padding:15px 0;
-
-    border-bottom:1px solid #f0f0f0;
-
+.btn-redeem-coins:hover {
+  background: #0f172a;
+  transform: translateY(-1px);
 }
 
-.transaction-item:last-child{
-
-    border-bottom:none;
-
+/* Action Buttons */
+.wallet-action-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 22px;
 }
 
-.transaction-left{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:15px;
-
+.btn-wallet-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 16px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.transaction-icon{
-
-    width:50px;
-
-    height:50px;
-
-    border-radius:15px;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    color:white;
-
-    font-size:18px;
-
+.btn-wallet-action.add-funds {
+  background: #ff5200;
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 4px 12px rgba(255, 82, 0, 0.25);
 }
 
-.credit{
-
-    background:#00C896;
-
+.btn-wallet-action.add-funds:hover {
+  background: #e04800;
+  transform: translateY(-2px);
 }
 
-.debit{
-
-    background:#FF6B6B;
-
+.btn-wallet-action.pay-bills {
+  background: #f8fafc;
+  color: #334155;
+  border: 1px solid #e2e8f0;
 }
 
-.transaction-left h4{
-
-    font-size:15px;
-
-    color:#222;
-
-    margin-bottom:5px;
-
+.btn-wallet-action.pay-bills:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
 }
 
-.transaction-left span{
-
-    font-size:13px;
-
-    color:#888;
-
+/* History Section */
+.wallet-history-section {
+  padding-top: 14px;
+  border-top: 1px dashed #e2e8f0;
 }
 
-.credit-text{
-
-    color:#00C896;
-
-    font-weight:700;
-
+.history-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 12px 0;
 }
 
-.debit-text{
-
-    color:#FF4D4F;
-
-    font-weight:700;
-
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-/* ==========================================
-   Hover
-========================================== */
-
-.transaction-item:hover{
-
-    transform:translateX(5px);
-
-    transition:.3s;
-
+.history-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
 }
 
-.transaction-item:hover .transaction-icon{
-
-    transform:scale(1.08);
-
+.history-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
-/* ==========================================
-   Responsive
-========================================== */
-
-@media(max-width:992px){
-
-.wallet-header{
-
-    padding:20px;
-
+.history-dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  flex-shrink: 0;
 }
 
-.wallet-header h2{
-
-    font-size:28px;
-
+.history-dot.credit {
+  background: #e6f9f0;
+  color: #0f8a65;
 }
 
-.wallet-buttons{
-
-    flex-direction:column;
-
+.history-dot.debit {
+  background: #fef2f2;
+  color: #e53e3e;
 }
 
+.history-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 2px;
 }
 
-@media (max-width:768px){
-
-    .wallet-card{
-        width:100%;
-        padding:20px;
-    }
-    
-    .wallet-header{
-        flex-direction:column;
-        gap:20px;
-        text-align:center;
-    }
-    
-    .wallet-buttons{
-        flex-direction:column;
-    }
-    
-    .transaction-item{
-        flex-direction:column;
-        align-items:flex-start;
-        gap:15px;
-    }
-    
+.history-date {
+  font-size: 11px;
+  color: #94a3b8;
 }
 
-
-@media(max-width:576px){
-
-.wallet-card{
-
-    border-radius:18px;
-
-    padding:18px;
-
+.history-amount {
+  font-size: 13px;
+  font-weight: 700;
 }
 
-.wallet-header{
-
-    flex-direction:column;
-
-    gap:20px;
-
-    text-align:center;
-
+.history-amount.credit {
+  color: #0f8a65;
 }
 
-.wallet-header h2{
-
-    font-size:26px;
-
+.history-amount.debit {
+  color: #e53e3e;
 }
 
-.wallet-icon{
-
-    width:60px;
-
-    height:60px;
-
-    font-size:24px;
-
+/* Modal */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  padding: 20px;
 }
 
-.reward-box{
-
-    padding:15px;
-
+.topup-modal-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 28px;
+  max-width: 440px;
+  width: 100%;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+  animation: modalPop 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.wallet-buttons button{
-
-    font-size:14px;
-
-    padding:12px;
-
+@keyframes modalPop {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
-.transaction-icon{
-
-    width:45px;
-
-    height:45px;
-
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
 }
 
+.modal-header h3 {
+  font-size: 19px;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+}
+
+.btn-close-modal {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.btn-close-modal:hover {
+  color: #1e293b;
+}
+
+.modal-sub {
+  font-size: 13px;
+  color: #64748b;
+  margin: 0 0 20px 0;
+}
+
+.quick-amount-buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.amt-pill {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1.5px solid #e2e8f0;
+  background: #f8fafc;
+  font-size: 14px;
+  font-weight: 700;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.amt-pill.active {
+  border-color: #ff5200;
+  background: #fff8f5;
+  color: #ff5200;
+}
+
+.amount-input-box {
+  display: flex;
+  align-items: center;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 10px 14px;
+  margin-bottom: 22px;
+  transition: border-color 0.2s ease;
+}
+
+.amount-input-box:focus-within {
+  border-color: #ff5200;
+}
+
+.rupee-sign {
+  font-size: 20px;
+  font-weight: 700;
+  color: #ff5200;
+  margin-right: 8px;
+}
+
+.amount-input-box input {
+  border: none;
+  outline: none;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1e293b;
+  width: 100%;
+}
+
+.btn-confirm-topup {
+  width: 100%;
+  background: #ff5200;
+  color: #ffffff;
+  border: none;
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(255, 82, 0, 0.3);
+  transition: all 0.2s ease;
+}
+
+.btn-confirm-topup:hover {
+  background: #e04800;
+  transform: translateY(-2px);
 }

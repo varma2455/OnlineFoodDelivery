@@ -30,7 +30,9 @@ const foodSchema = new mongoose.Schema(
         "Fast Food",
         "Snacks",
         "Salads",
-        "Sea Food"
+        "Sea Food",
+        "Noodles",
+        "Drinks"
       ],
     },
 
@@ -89,7 +91,23 @@ const foodSchema = new mongoose.Schema(
 
     restaurant: {
       type: String,
-      default: "Online Food Delivery",
+      default: "FoodExpress Kitchen",
+    },
+
+    area: {
+      type: String,
+      default: "Hyderabad",
+      trim: true,
+    },
+
+    areas: {
+      type: [String],
+      default: ["Hyderabad", "Bhimavaram"],
+    },
+
+    customizationOptions: {
+      type: mongoose.Schema.Types.Mixed,
+      default: null,
     }
   },
   {

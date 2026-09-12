@@ -52,7 +52,7 @@ Stores:
 */
 
 router.post(
-    "/add",
+    ["/", "/add"],
     protect,
     addToCart
 );
@@ -122,6 +122,35 @@ router.put(
 ==================================================
 REMOVE CART ITEM
 
+/*
+==================================================
+CLEAR CART
+
+DELETE /api/cart/clear/all
+DELETE /api/cart/clear
+
+Removes all cart items belonging to the
+currently logged-in user.
+==================================================
+*/
+
+router.delete(
+    "/clear/all",
+    protect,
+    clearCart
+);
+
+router.delete(
+    "/clear",
+    protect,
+    clearCart
+);
+
+
+/*
+==================================================
+REMOVE CART ITEM
+
 DELETE /api/cart/:id
 
 Removes one cart item belonging to the
@@ -133,24 +162,6 @@ router.delete(
     "/:id",
     protect,
     removeCartItem
-);
-
-
-/*
-==================================================
-CLEAR CART
-
-DELETE /api/cart/clear/all
-
-Removes all cart items belonging to the
-currently logged-in user.
-==================================================
-*/
-
-router.delete(
-    "/clear/all",
-    protect,
-    clearCart
 );
 
 

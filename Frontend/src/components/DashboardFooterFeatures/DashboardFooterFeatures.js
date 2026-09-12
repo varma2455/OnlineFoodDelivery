@@ -1,126 +1,86 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./DashboardFooterFeatures.css";
 
 import {
-    FaMotorcycle,
-    FaShieldAlt,
-    FaHamburger,
-    FaHeadset,
-    FaArrowRight
+  FaMotorcycle,
+  FaShieldAlt,
+  FaUtensils,
+  FaHeadset,
+  FaArrowRight
 } from "react-icons/fa";
 
 const features = [
-
-    {
-        id:1,
-        title:"Fast Delivery",
-        description:"Hot and fresh food delivered within 30 minutes.",
-        icon:<FaMotorcycle />,
-        color:"#6C63FF"
-    },
-
-    {
-        id:2,
-        title:"Secure Payment",
-        description:"100% secure online payment with trusted gateways.",
-        icon:<FaShieldAlt />,
-        color:"#00C896"
-    },
-
-    {
-        id:3,
-        title:"Fresh Food",
-        description:"Prepared using premium quality ingredients every day.",
-        icon:<FaHamburger />,
-        color:"#FF8A00"
-    },
-
-    {
-        id:4,
-        title:"24/7 Support",
-        description:"Our support team is available anytime to help you.",
-        icon:<FaHeadset />,
-        color:"#FF5C8A"
-    }
-
+  {
+    id: 1,
+    title: "Fast 30-Min Delivery",
+    description: "Lightning-fast doorstep delivery straight from hot kitchen stoves.",
+    icon: <FaMotorcycle />,
+    color: "#ff5200",
+    link: "/browse-food"
+  },
+  {
+    id: 2,
+    title: "100% Secure Checkout",
+    description: "Encrypted payments via UPI, Cards, NetBanking, and FoodExpress Wallet.",
+    icon: <FaShieldAlt />,
+    color: "#0f8a65",
+    link: "/cart"
+  },
+  {
+    id: 3,
+    title: "Hygiene & Freshness",
+    description: "FSSAI audited partner kitchens adhering to rigorous safety standards.",
+    icon: <FaUtensils />,
+    color: "#f59e0b",
+    link: "/browse-food"
+  },
+  {
+    id: 4,
+    title: "24/7 Priority Support",
+    description: "Dedicated assistance for tracking, cancellations, and order refunds.",
+    icon: <FaHeadset />,
+    color: "#2563eb",
+    link: "/contact"
+  }
 ];
 
 const DashboardFooterFeatures = () => {
+  const navigate = useNavigate();
 
-    return (
+  return (
+    <section className="foodexpress-footer-features">
+      <div className="features-header-block">
+        <span className="features-badge-pill">✨ The FoodExpress Promise</span>
+        <h2>Why Order With FoodExpress?</h2>
+        <p>Premium food delivery experience handcrafted for convenience, taste, and speed.</p>
+      </div>
 
-        <section className="footer-features">
-
-            <div className="footer-header">
-
-                <div>
-
-                    <h2>
-                        Why Choose FoodExpress?
-                    </h2>
-
-                    <p>
-                        Premium food delivery experience built for everyone.
-                    </p>
-
-                </div>
-
+      <div className="features-cards-grid">
+        {features.map((item) => (
+          <div
+            className="single-feature-card"
+            key={item.id}
+            onClick={() => navigate(item.link)}
+          >
+            <div
+              className="feature-icon-wrapper"
+              style={{ backgroundColor: `${item.color}15`, color: item.color }}
+            >
+              {item.icon}
             </div>
 
-            <div className="features-grid">
+            <h4 className="feature-item-title">{item.title}</h4>
+            <p className="feature-item-desc">{item.description}</p>
 
-                {
-
-                    features.map((feature)=>(
-
-                        <div
-                            className="feature-card"
-                            key={feature.id}
-                        >
-
-                            <div
-                                className="feature-icon"
-                                style={{
-                                    background:feature.color
-                                }}
-                            >
-
-                                {feature.icon}
-
-                            </div>
-
-                            <h3>
-
-                                {feature.title}
-
-                            </h3>
-
-                            <p>
-
-                                {feature.description}
-
-                            </p>
-
-                            <button>
-
-                                Learn More
-
-                                <FaArrowRight/>
-
-                            </button>
-
-                        </div>
-
-                    ))
-
-                }
-
-            </div>
-
-        </section>
-
-    );
-
+            <span className="feature-learn-more" style={{ color: item.color }}>
+              Explore <FaArrowRight className="arrow-icon" />
+            </span>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
 };
 
 export default DashboardFooterFeatures;

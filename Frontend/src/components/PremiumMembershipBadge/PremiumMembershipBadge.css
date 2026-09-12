@@ -1,0 +1,148 @@
+/* ==========================================================================
+   FoodExpress — Premium Membership Badge Component Styles
+   ========================================================================== */
+
+.membership-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 18px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.7px;
+    border: 1.5px solid;
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.08),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.45);
+    transition: all 0.25s ease;
+    text-transform: uppercase;
+    font-family: inherit;
+    line-height: 1.2;
+    white-space: nowrap;
+    user-select: none;
+    cursor: default;
+}
+
+.membership-badge:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 7px 18px rgba(0, 0, 0, 0.12);
+}
+
+/* ==========================================================================
+   1. SILVER BADGE
+   Border:     #64748B
+   Secondary:  #CBD5E1
+   Background: #F8FAFC
+   Text:       #334155
+   ========================================================================== */
+.membership-badge.silver {
+    border-color: #64748B;
+    color: #334155;
+    background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%);
+    box-shadow:
+        0 4px 14px rgba(100, 116, 139, 0.16),
+        inset 0 0 0 1px rgba(203, 213, 225, 0.5);
+}
+
+.membership-badge.silver:hover {
+    border-color: #475569;
+    color: #1E293B;
+    box-shadow:
+        0 7px 20px rgba(100, 116, 139, 0.25),
+        inset 0 0 0 1px rgba(203, 213, 225, 0.75);
+}
+
+/* ==========================================================================
+   2. GOLD BADGE
+   Border:     #D4A017
+   Secondary:  #F4D06F
+   Background: #FFF9E6
+   Text:       #8A6500
+   Subtle gold glow
+   ========================================================================== */
+.membership-badge.gold {
+    border-color: #D4A017;
+    color: #8A6500;
+    background: linear-gradient(135deg, #FFF9E6 0%, #FFF3CC 100%);
+    box-shadow:
+        0 4px 16px rgba(212, 160, 23, 0.22),
+        0 0 10px rgba(244, 208, 111, 0.3),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.65);
+}
+
+.membership-badge.gold:hover {
+    border-color: #B8860B;
+    color: #6B4E00;
+    box-shadow:
+        0 7px 22px rgba(212, 160, 23, 0.32),
+        0 0 16px rgba(244, 208, 111, 0.45),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.85);
+}
+
+/* ==========================================================================
+   3. PLATINUM BADGE (NO CROWN ICON)
+   Border:     #6D5A8D
+   Secondary:  #C4B5D9
+   Background: #F7F3FA
+   Text:       #493B5D
+   Subtle luxury shadow
+   ========================================================================== */
+.membership-badge.platinum {
+    border-color: #6D5A8D;
+    color: #493B5D;
+    background: linear-gradient(135deg, #F7F3FA 0%, #EFEBFA 100%);
+    box-shadow:
+        0 4px 16px rgba(109, 90, 141, 0.22),
+        0 2px 10px rgba(196, 181, 217, 0.25),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.65);
+}
+
+.membership-badge.platinum:hover {
+    border-color: #554371;
+    color: #362945;
+    box-shadow:
+        0 7px 22px rgba(109, 90, 141, 0.32),
+        0 4px 14px rgba(196, 181, 217, 0.38),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.85);
+}
+
+/* ==========================================================================
+   4. FREE MEMBER BADGE
+   Border:     #CBD5E1
+   Background: #F1F5F9
+   Text:       #64748B
+   ========================================================================== */
+.membership-badge.free {
+    border-color: #CBD5E1;
+    color: #64748B;
+    background: #F1F5F9;
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.05),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+}
+
+.membership-badge.free:hover {
+    border-color: #94A3B8;
+    color: #475569;
+    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.09);
+}
+
+/* ==========================================================================
+   OPTIONAL SIZES
+   ========================================================================== */
+.membership-badge.size-sm {
+    padding: 4px 12px;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    border-radius: 8px;
+    border-width: 1.2px;
+}
+
+.membership-badge.size-lg {
+    padding: 10px 24px;
+    font-size: 16px;
+    letter-spacing: 0.8px;
+    border-radius: 14px;
+    border-width: 2px;
+}

@@ -4,9 +4,7 @@ import { adminAuth } from "./config/firebaseAdmin.js";
 try {
 
     console.log("Firebase Admin Connected ✅");
-
-    console.log(app.name);
-
+    console.log(app ? app.name : "App not initialized (no service account configured)");
     console.log(typeof adminAuth);
 
 } catch (err) {

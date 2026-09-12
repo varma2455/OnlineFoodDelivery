@@ -19,7 +19,7 @@ body{
 
     background:#f7f8fc;
 
-    overflow-x:hidden;
+    overflow-x:clip;
 
 }
 

@@ -1,0 +1,365 @@
+/* ===================================================
+   FOODEXPRESS DASHBOARD - FILTERS COMPONENT
+=================================================== */
+
+.dashboard-filters-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 20px 22px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+  border: 1px solid #e5e7eb;
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
+  min-width: 0;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.dashboard-filters-card:hover {
+  border-color: #d1d5db;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.06);
+}
+
+/* Header */
+.filters-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.filters-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.filters-icon-badge {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: #fff4ed;
+  color: #ff5200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+.filters-title-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filters-title-meta h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+  letter-spacing: -0.2px;
+}
+
+.filters-active-badge {
+  background: #ff5200;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 12px;
+  letter-spacing: 0.2px;
+}
+
+.filters-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filters-clear-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #f1f5f9;
+  border: none;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filters-clear-btn:hover {
+  background: #fee2e2;
+  color: #ef4444;
+}
+
+.clear-icon {
+  font-size: 10px;
+}
+
+.filters-mobile-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  color: #64748b;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 4px;
+}
+
+/* Card Body */
+.filters-card-body {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.filter-divider {
+  height: 1px;
+  background: #f1f5f9;
+  margin: 0;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.filter-group-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #334155;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+}
+
+/* Dietary Pills */
+.dietary-pills-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dietary-chip {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 7px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dietary-chip:hover {
+  border-color: #cbd5e1;
+  background: #f1f5f9;
+}
+
+.dietary-chip.active {
+  background: #1e293b;
+  color: #ffffff;
+  border-color: #1e293b;
+}
+
+.dietary-chip.veg.active {
+  background: #0f8a65;
+  border-color: #0f8a65;
+}
+
+.dietary-chip.nonveg.active {
+  background: #e53e3e;
+  border-color: #e53e3e;
+}
+
+.dot {
+  font-size: 11px;
+}
+
+.dot.veg {
+  color: #0f8a65;
+}
+
+.dietary-chip.active .dot.veg {
+  color: #ffffff;
+}
+
+.dot.nonveg {
+  color: #e53e3e;
+}
+
+.dietary-chip.active .dot.nonveg {
+  color: #ffffff;
+}
+
+/* Checkbox Options List */
+.filter-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.filter-checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #475569;
+  transition: color 0.15s ease;
+}
+
+.filter-checkbox-row:hover {
+  color: #1e293b;
+}
+
+.filter-checkbox-row input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.custom-checkmark {
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 5px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.filter-checkbox-row:hover .custom-checkmark {
+  border-color: #ff5200;
+}
+
+.filter-checkbox-row input[type="checkbox"]:checked ~ .custom-checkmark {
+  background: #ff5200;
+  border-color: #ff5200;
+}
+
+.filter-checkbox-row input[type="checkbox"]:checked ~ .custom-checkmark::after {
+  content: "";
+  display: block;
+  width: 5px;
+  height: 9px;
+  border: solid #ffffff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg) translate(-0.5px, -1px);
+}
+
+.filter-option-label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.star-icon {
+  color: #facc15;
+  font-size: 12px;
+}
+
+/* Price Range */
+.filter-price-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price-current-value {
+  font-size: 13px;
+  font-weight: 700;
+  color: #ff5200;
+  background: #fff4ed;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+.price-slider-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.price-range-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+}
+
+.price-range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #ff5200;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(255, 82, 0, 0.4);
+  transition: transform 0.15s ease;
+}
+
+.price-range-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+.price-range-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #ff5200;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 6px rgba(255, 82, 0, 0.4);
+}
+
+.price-range-bounds {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #94a3b8;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .filters-mobile-toggle {
+    display: block;
+  }
+
+  .filters-card-body {
+    display: none;
+    margin-top: 14px;
+  }
+
+  .filters-card-body.mobile-open {
+    display: flex;
+  }
+}

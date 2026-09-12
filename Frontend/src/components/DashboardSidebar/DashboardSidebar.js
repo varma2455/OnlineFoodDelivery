@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import "./DashboardSidebar.css";
 
 import {
@@ -19,10 +19,12 @@ import {
 } from "react-icons/fa";
 
 const DashboardSidebar = () => {
+    const location = useLocation();
+    const navigate = useNavigate();
 
     return (
 
-        <aside className="dashboard-sidebar">
+        <aside className="dashboard-sidebar sidebar">
 
             {/* Logo */}
 
@@ -36,7 +38,7 @@ const DashboardSidebar = () => {
 
                     <h2>FoodExpress</h2>
 
-                    <p>Food Delivery</p>
+                    <p>FOOD DELIVERY</p>
 
                 </div>
 
@@ -47,79 +49,92 @@ const DashboardSidebar = () => {
             <ul className="sidebar-menu">
 
     <li>
-        <NavLink to="/dashboard">
+        <NavLink to="/dashboard" className={({ isActive }) => (isActive ? "sidebar-item active" : "sidebar-item")}>
             <FaHome />
             <span>Dashboard</span>
         </NavLink>
     </li>
 
     <li>
-    <NavLink
-    to="/browse-food"
-    className={
-        location.pathname === "/browse-food" ||
-        location.pathname === "/biryani" ||
-        location.pathname.startsWith("/order-burger") ||
-        location.pathname.startsWith("/order-pizza") ||
-        location.pathname.startsWith("/order-fastfood") ||
-        location.pathname.startsWith("/order-drink") ||
-        location.pathname.startsWith("/order-dessert") ||
-        location.pathname.startsWith("/order-noodles") ||
-        location.pathname.startsWith("/order-salads") ||
-        location.pathname.startsWith("/order-biryani")
-            ? "active"
-            : ""
-    }
->
-    <FaUtensils />
-    Browse Food
-</NavLink>
+        <NavLink
+            to="/browse-food"
+            className={({ isActive }) =>
+                !location.pathname.startsWith("/my-orders") &&
+                !location.pathname.startsWith("/orders") &&
+                (isActive ||
+                    location.pathname === "/browse-food" ||
+                    location.pathname === "/biryani" ||
+                    location.pathname.startsWith("/category/") ||
+                    location.pathname.startsWith("/order-burger") ||
+                    location.pathname.startsWith("/order-pizza") ||
+                    location.pathname.startsWith("/order-fastfood") ||
+                    location.pathname.startsWith("/order-drink") ||
+                    location.pathname.startsWith("/order-dessert") ||
+                    location.pathname.startsWith("/order-noodles") ||
+                    location.pathname.startsWith("/order-salads") ||
+                    location.pathname.startsWith("/order-biryani"))
+                    ? "sidebar-item active"
+                    : "sidebar-item"
+            }
+        >
+            <FaUtensils />
+            <span>Browse Food</span>
+        </NavLink>
     </li>
 
     <li>
-        <NavLink to="/orders">
+        <NavLink
+            to="/my-orders"
+            className={({ isActive }) =>
+                isActive ||
+                location.pathname.startsWith("/my-orders") ||
+                location.pathname.startsWith("/orders")
+                    ? "sidebar-item active"
+                    : "sidebar-item"
+            }
+        >
             <FaClipboardList />
             <span>My Orders</span>
         </NavLink>
     </li>
 
     <li>
-        <NavLink to="/cart">
+        <NavLink to="/cart" className={({ isActive }) => (isActive ? "sidebar-item active" : "sidebar-item")}>
             <FaShoppingCart />
             <span>Cart</span>
         </NavLink>
     </li>
 
     <li>
-        <NavLink to="/profile">
+        <NavLink to="/profile" className={({ isActive }) => (isActive ? "sidebar-item active" : "sidebar-item")}>
             <FaUser />
             <span>Profile</span>
         </NavLink>
     </li>
 
     <li>
-        <NavLink to="/offers">
+        <NavLink to="/offers" className={({ isActive }) => (isActive ? "sidebar-item active" : "sidebar-item")}>
             <FaPercent />
             <span>Offers</span>
         </NavLink>
     </li>
 
     <li>
-        <NavLink to="/rewards">
+        <NavLink to="/rewards" className={({ isActive }) => (isActive ? "sidebar-item active" : "sidebar-item")}>
             <FaGift />
             <span>Rewards</span>
         </NavLink>
     </li>
 
     <li>
-        <NavLink to="/support">
+        <NavLink to="/support" className={({ isActive }) => (isActive ? "sidebar-item active" : "sidebar-item")}>
             <FaHeadset />
             <span>Support</span>
         </NavLink>
     </li>
 
     <li>
-        <NavLink to="/settings">
+        <NavLink to="/settings" className={({ isActive }) => (isActive ? "sidebar-item active" : "sidebar-item")}>
             <FaCog />
             <span>Settings</span>
         </NavLink>
@@ -142,7 +157,7 @@ const DashboardSidebar = () => {
                     Get unlimited free delivery and exclusive discounts.
                 </p>
 
-                <button>
+                <button type="button" onClick={() => navigate("/membership")}>
                     Upgrade Now
                 </button>
 
@@ -152,7 +167,11 @@ const DashboardSidebar = () => {
 
             <div className="logout-section">
 
-                <button className="logout-btn">
+                <button className="logout-btn" onClick={() => {
+                    localStorage.removeItem("token");
+                    localStorage.removeItem("user");
+                    navigate("/login");
+                }}>
 
                     <FaSignOutAlt />
 

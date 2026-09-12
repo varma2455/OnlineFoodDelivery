@@ -307,19 +307,40 @@
 @media(max-width:600px){
 
     .browseHero{
-        padding:16px;
-        border-radius:16px;
+        padding:18px 14px;
+        border-radius:18px;
+        margin-top:14px;
     }
 
     .heroLeft h1{
-        font-size:28px;
+        font-size:24px;
+        line-height:1.2;
     }
 
     .heroStats{
-        grid-template-columns:repeat(2,1fr);
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+        gap:8px;
+    }
+
+    .heroStats > div{
+        padding:8px;
+    }
+
+    .heroStats h3{
+        font-size:14px;
+    }
+
+    .heroSearch{
+        padding:4px 6px;
+    }
+
+    .heroSearch input{
+        padding:6px 8px;
+        font-size:12px;
     }
 
     .heroSearch button{
-        padding:9px 12px;
+        padding:8px 12px;
+        font-size:11px;
     }
 }

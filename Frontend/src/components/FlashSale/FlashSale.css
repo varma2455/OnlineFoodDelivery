@@ -1,49 +1,51 @@
 .flashSale{
-
     margin-top:20px;
-    
     background:linear-gradient(135deg,#ff6b35,#ff9800);
-    
-    border-radius:30px;
-    
-    padding:40px;
-    
+    border-radius:24px;
+    padding:36px;
     display:flex;
-    
     justify-content:space-between;
-    
     align-items:center;
-    
     color:white;
-    
     overflow:hidden;
-    
+    box-sizing:border-box;
+    width:100%;
+}
+
+.flashSale img{
+    width:280px;
+    max-width:100%;
+    border-radius:20px;
+    object-fit:cover;
+}
+
+.flashSale button{
+    margin-top:20px;
+    padding:14px 28px;
+    border:none;
+    border-radius:12px;
+    background:white;
+    color:#ff5722;
+    font-weight:700;
+    cursor:pointer;
+    transition:transform 0.2s ease;
+}
+
+.flashSale button:hover{
+    transform:scale(1.04);
+}
+
+@media(max-width: 768px){
+    .flashSale{
+        flex-direction:column;
+        padding:24px 18px;
+        text-align:center;
+        gap:20px;
     }
     
     .flashSale img{
-    
-    width:280px;
-    
-    border-radius:25px;
-    
+        width:100%;
+        max-width:240px;
+        height:auto;
     }
-    
-    .flashSale button{
-    
-    margin-top:20px;
-    
-    padding:15px 30px;
-    
-    border:none;
-    
-    border-radius:15px;
-    
-    background:white;
-    
-    color:#ff5722;
-    
-    font-weight:700;
-    
-    cursor:pointer;
-    
-    }
+}

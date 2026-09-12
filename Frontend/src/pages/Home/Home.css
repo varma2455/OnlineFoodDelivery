@@ -1,750 +1,400 @@
-/* ==========================================
-   HOME PAGE
-========================================== */
+/* ==================================================
+   HOME PAGE STYLES
+================================================== */
 
-.food-section{
-
-    width:90%;
-    max-width:1400px;
-
-    margin:80px auto;
-
+.home-page {
+    min-height: 100vh;
+    background: #fafbfc;
+    padding-bottom: 60px;
 }
 
-.section-title{
-
-    text-align:center;
-
-    margin-bottom:50px;
-
+/* Quick Search Form */
+.home-search-bar-wrap {
+    max-width: 800px;
+    margin: -32px auto 20px;
+    padding: 0 20px;
+    position: relative;
+    z-index: 10;
 }
 
-.section-title h2{
-
-    font-size:42px;
-
-    color:#222;
-
-    margin-bottom:15px;
-
+.home-search-form {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    border-radius: 40px;
+    padding: 8px 8px 8px 24px;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
+    border: 2px solid transparent;
+    transition: all 0.25s;
 }
 
-.section-title p{
-
-    color:#666;
-
-    font-size:18px;
-
+.home-search-form:focus-within {
+    border-color: #ff4757;
+    box-shadow: 0 16px 40px rgba(255, 71, 87, 0.18);
 }
 
-.food-grid{
-
-    display:grid;
-
-    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-
-    gap:35px;
-
+.home-search-form .search-icon {
+    font-size: 18px;
+    color: #ff4757;
+    margin-right: 12px;
 }
 
-/* ==========================================
-   NO FOOD
-========================================== */
-.onSearch{
+.home-search-form input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    color: #2f3542;
+    background: transparent;
+}
+
+.clear-search-btn {
+    background: transparent;
+    border: none;
+    color: #a4b0be;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 4px 8px;
+    margin-right: 4px;
+}
+
+.home-search-submit {
+    background: #ff4757;
+    color: #ffffff;
+    border: none;
+    border-radius: 30px;
+    padding: 12px 24px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 14px rgba(255, 71, 87, 0.3);
+}
+
+.home-search-submit:hover {
+    background: #ee3545;
+    transform: translateY(-1px);
+}
+
+/* Food Section & Headers */
+.food-section {
+    max-width: 1400px;
+    margin: 40px auto;
+    padding: 0 24px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.section-subheading {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 800;
+    color: #ff4757;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.flame-icon,
+.bolt-icon {
+    font-size: 14px;
+}
+
+.section-main-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: #1e272e;
+    margin: 0;
+    letter-spacing: -0.5px;
+}
+
+.view-all-link {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #ff4757;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+    transition: transform 0.2s;
+}
+
+.view-all-link:hover {
+    transform: translateX(4px);
+}
+
+/* Food Grid */
+.food-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+/* Empty State */
+.empty-food-state {
+    text-align: center;
+    padding: 60px 20px;
+    background: #ffffff;
     border-radius: 20px;
-
+    border: 1px solid #f1f2f6;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
-.searchFood{
+.empty-emoji {
+    font-size: 54px;
+    margin-bottom: 12px;
+}
+
+.empty-food-state h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1e272e;
+    margin-bottom: 8px;
+}
+
+.empty-food-state p {
+    font-size: 14px;
+    color: #747d8c;
+    margin-bottom: 20px;
+}
+
+.reset-filters-btn {
+    background: #2f3542;
+    color: #ffffff;
+    border: none;
     border-radius: 20px;
-}
-.no-food{
-
-    width:100%;
-
-    grid-column:1/-1;
-
-    text-align:center;
-
-    padding:80px 20px;
-
+    padding: 10px 22px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
 }
 
-.no-food h2{
-
-    color:#ff5722;
-
-    font-size:36px;
-
-    margin-bottom:15px;
-
+.reset-filters-btn:hover {
+    background: #1e272e;
 }
 
-.no-food p{
-
-    color:#777;
-
-    font-size:18px;
-
+/* Promo Banner */
+.promo-banner {
+    max-width: 1400px;
+    margin: 50px auto;
+    padding: 0 24px;
 }
 
-/* ==========================================
-   PROMOTION
-========================================== */
-
-.promo-section{
-
-    width:90%;
-
-    max-width:1400px;
-
-    margin:90px auto;
-
+.promo-banner-card {
+    background: linear-gradient(135deg, #1e272e, #2f3542);
+    border-radius: 24px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
 }
 
-.promo-content{
-
-    background:linear-gradient(
-        135deg,
-        #ff5722,
-        #ff9800
-    );
-
-    border-radius:25px;
-
-    padding:70px;
-
-    color:white;
-
-    text-align:center;
-
+.promo-text-side {
+    flex: 1;
+    padding: 48px;
+    color: #ffffff;
 }
 
-.promo-content h2{
-
-    font-size:46px;
-
-    margin-bottom:20px;
-
+.promo-badge {
+    display: inline-block;
+    background: rgba(255, 71, 87, 0.2);
+    color: #ff6b81;
+    border: 1px solid rgba(255, 71, 87, 0.4);
+    font-size: 11px;
+    font-weight: 800;
+    padding: 4px 12px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
 }
 
-.promo-content p{
-
-    font-size:20px;
-
-    line-height:34px;
-
-    margin-bottom:35px;
-
+.promo-text-side h2 {
+    font-size: 34px;
+    font-weight: 800;
+    margin-bottom: 14px;
+    line-height: 1.2;
 }
 
-.promo-content strong{
-
-    color:#fff700;
-
+.promo-text-side p {
+    font-size: 16px;
+    color: #d2d7de;
+    line-height: 1.6;
+    margin-bottom: 24px;
+    max-width: 500px;
 }
 
-.promo-content button{
-
-    border:none;
-
-    background:white;
-
-    color:#ff5722;
-
-    padding:16px 40px;
-
-    border-radius:12px;
-
-    font-size:18px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:.3s;
-
+.code-pill {
+    background: #ff4757;
+    color: #ffffff;
+    font-weight: 800;
+    padding: 2px 8px;
+    border-radius: 6px;
+    letter-spacing: 0.5px;
 }
 
-.promo-content button:hover{
-
-    transform:translateY(-5px);
-
-}
-/* ==========================================
-   WHY CHOOSE US
-========================================== */
-
-.why-section{
-
-    width:90%;
-
-    max-width:1400px;
-
-    margin:90px auto;
-
+.promo-actions {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
 }
 
-.why-grid{
-
-    display:grid;
-
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-
-    gap:30px;
-
+.promo-btn {
+    background: #ff4757;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 700;
+    padding: 14px 32px;
+    border-radius: 30px;
+    font-size: 15px;
+    box-shadow: 0 8px 24px rgba(255, 71, 87, 0.35);
+    transition: all 0.2s;
 }
 
-.why-card{
-
-    background:#ffffff;
-
-    padding:40px 30px;
-
-    border-radius:20px;
-
-    text-align:center;
-
-    box-shadow:0 10px 30px rgba(0,0,0,.08);
-
-    transition:.35s;
-
-    cursor:pointer;
-
+.promo-btn:hover {
+    background: #ee3545;
+    transform: translateY(-2px);
 }
 
-.why-card:hover{
-
-    transform:translateY(-10px);
-
-    box-shadow:0 20px 40px rgba(0,0,0,.15);
-
+.promo-subtext {
+    font-size: 13px;
+    color: #a4b0be;
 }
 
-.why-icon{
-
-    width:90px;
-
-    height:90px;
-
-    margin:auto;
-
-    border-radius:50%;
-
-    background:#fff3ef;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    font-size:42px;
-
-    margin-bottom:25px;
-
-    transition:.3s;
-
+.promo-image-side {
+    flex: 0 0 45%;
+    height: 320px;
 }
 
-.why-card:hover .why-icon{
-
-    background:#ff5722;
-
-    color:#ffffff;
-
-    transform:rotate(8deg);
-
+.promo-image-side img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.why-card h3{
-
-    font-size:26px;
-
-    color:#222;
-
-    margin-bottom:15px;
-
+/* Why Choose Us Section */
+.why-us-section {
+    max-width: 1400px;
+    margin: 60px auto 30px;
+    padding: 0 24px;
 }
 
-.why-card p{
-
-    font-size:17px;
-
-    color:#666;
-
-    line-height:30px;
-
+.why-us-header {
+    text-align: center;
+    margin-bottom: 40px;
 }
 
-/* ==========================================
-   SECTION SPACING
-========================================== */
-
-.food-section,
-.promo-section,
-.why-section{
-
-    animation:fadeUp .8s ease;
-
+.why-badge {
+    display: inline-block;
+    background: #e4f9f5;
+    color: #1dd1a1;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 4px 12px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
 }
 
-/* ==========================================
-   ANIMATION
-========================================== */
+.why-us-header h2 {
+    font-size: 30px;
+    font-weight: 800;
+    color: #1e272e;
+    margin-bottom: 8px;
+}
 
-@keyframes fadeUp{
+.why-us-header p {
+    font-size: 15px;
+    color: #747d8c;
+}
 
-    from{
+.why-us-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+}
 
-        opacity:0;
+.why-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 32px 24px;
+    text-align: center;
+    border: 1px solid #f1f2f6;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    transition: all 0.25s;
+}
 
-        transform:translateY(40px);
+.why-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
+}
 
+.why-icon-box {
+    width: 64px;
+    height: 64px;
+    border-radius: 20px;
+    background: #fff0f1;
+    color: #ff4757;
+    font-size: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+
+.why-card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1e272e;
+    margin-bottom: 10px;
+}
+
+.why-card p {
+    font-size: 14px;
+    color: #747d8c;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .promo-banner-card {
+        flex-direction: column;
     }
-
-    to{
-
-        opacity:1;
-
-        transform:translateY(0);
-
+    .promo-image-side {
+        width: 100%;
+        height: 220px;
     }
-
-}
-/* ==========================================
-   STATISTICS SECTION
-========================================== */
-
-.stats-section{
-
-    width:90%;
-
-    max-width:1400px;
-
-    margin:100px auto;
-
+    .promo-text-side {
+        padding: 32px 24px;
+    }
+    .promo-text-side h2 {
+        font-size: 26px;
+    }
 }
 
-.stats-grid{
-
-    display:grid;
-
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-
-    gap:30px;
-
+@media (max-width: 600px) {
+    .home-search-bar-wrap {
+        margin-top: -24px;
+    }
+    .home-search-submit {
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+    .food-section {
+        padding: 0 16px;
+    }
+    .section-main-title {
+        font-size: 22px;
+    }
 }
-
-.stat-card{
-
-    background:#ffffff;
-
-    padding:45px 25px;
-
-    text-align:center;
-
-    border-radius:18px;
-
-    box-shadow:0 10px 30px rgba(0,0,0,.08);
-
-    transition:.35s;
-
-}
-
-.stat-card:hover{
-
-    transform:translateY(-10px);
-
-    background:#ff5722;
-
-    color:#ffffff;
-
-}
-
-.stat-card h2{
-
-    font-size:46px;
-
-    margin-bottom:15px;
-
-    color:#ff5722;
-
-    transition:.3s;
-
-}
-
-.stat-card:hover h2{
-
-    color:#ffffff;
-
-}
-
-.stat-card p{
-
-    font-size:18px;
-
-    color:#666;
-
-    transition:.3s;
-
-}
-
-.stat-card:hover p{
-
-    color:#ffffff;
-
-}
-
-/* ==========================================
-   NEWSLETTER
-========================================== */
-
-.newsletter{
-
-    width:90%;
-
-    max-width:1400px;
-
-    margin:100px auto;
-
-}
-
-.newsletter-content{
-
-    background:linear-gradient(
-        135deg,
-        #222,
-        #111
-    );
-
-    color:#ffffff;
-
-    text-align:center;
-
-    border-radius:25px;
-
-    padding:70px 40px;
-
-}
-
-.newsletter-content h2{
-
-    font-size:42px;
-
-    margin-bottom:20px;
-
-}
-
-.newsletter-content p{
-
-    font-size:18px;
-
-    color:#dddddd;
-
-    max-width:700px;
-
-    margin:auto;
-
-    line-height:32px;
-
-    margin-bottom:35px;
-
-}
-
-.newsletter-box{
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    gap:15px;
-
-    flex-wrap:wrap;
-
-}
-
-.newsletter-box input{
-
-    width:420px;
-
-    max-width:100%;
-
-    padding:18px 22px;
-
-    border:none;
-
-    border-radius:10px;
-
-    outline:none;
-
-    font-size:17px;
-
-}
-
-.newsletter-box button{
-
-    border:none;
-
-    background:#ff5722;
-
-    color:#ffffff;
-
-    padding:18px 35px;
-
-    border-radius:10px;
-
-    font-size:17px;
-
-    font-weight:600;
-
-    cursor:pointer;
-
-    transition:.3s;
-
-}
-
-.newsletter-box button:hover{
-
-    background:#e64a19;
-
-    transform:translateY(-3px);
-
-}
-/* ==========================================
-   RESPONSIVE DESIGN
-========================================== */
-
-@media (max-width: 1200px){
-
-    .food-grid{
-
-        grid-template-columns:repeat(2,1fr);
-
-    }
-
-    .stats-grid{
-
-        grid-template-columns:repeat(2,1fr);
-
-    }
-
-}
-
-@media (max-width:992px){
-
-    .promo-content{
-
-        padding:50px 30px;
-
-    }
-
-    .promo-content h2{
-
-        font-size:36px;
-
-    }
-
-    .section-title h2{
-
-        font-size:34px;
-
-    }
-
-    .newsletter-content{
-
-        padding:50px 25px;
-
-    }
-
-}
-
-@media (max-width:768px){
-
-    .food-grid{
-
-        grid-template-columns:1fr;
-
-    }
-
-    .why-grid{
-
-        grid-template-columns:1fr;
-
-    }
-
-    .stats-grid{
-
-        grid-template-columns:1fr;
-
-    }
-
-    .promo-content{
-
-        padding:40px 25px;
-
-    }
-
-    .promo-content h2{
-
-        font-size:30px;
-
-    }
-
-    .promo-content p{
-
-        font-size:17px;
-
-    }
-
-    .newsletter-content h2{
-
-        font-size:30px;
-
-    }
-
-    .newsletter-content p{
-
-        font-size:16px;
-
-        line-height:28px;
-
-    }
-
-    .newsletter-box{
-
-        flex-direction:column;
-
-    }
-
-    .newsletter-box input{
-
-        width:100%;
-
-    }
-
-    .newsletter-box button{
-
-        width:100%;
-
-    }
-
-}
-
-@media (max-width:480px){
-
-    .section-title h2{
-
-        font-size:28px;
-
-    }
-
-    .section-title p{
-
-        font-size:16px;
-
-    }
-
-    .promo-content{
-
-        padding:30px 20px;
-
-    }
-
-    .promo-content h2{
-
-        font-size:26px;
-
-    }
-
-    .promo-content p{
-
-        font-size:15px;
-
-        line-height:26px;
-
-    }
-
-    .promo-content button{
-
-        width:100%;
-
-        padding:14px;
-
-    }
-
-    .why-card{
-
-        padding:30px 20px;
-
-    }
-
-    .why-icon{
-
-        width:70px;
-
-        height:70px;
-
-        font-size:34px;
-
-    }
-
-    .why-card h3{
-
-        font-size:22px;
-
-    }
-
-    .stat-card{
-
-        padding:35px 20px;
-
-    }
-
-    .stat-card h2{
-
-        font-size:36px;
-
-    }
-
-    .newsletter-content{
-
-        padding:35px 20px;
-
-    }
-
-    .newsletter-content h2{
-
-        font-size:24px;
-
-    }
-
-}
-
-/* ==========================================
-   SMOOTH SCROLL
-========================================== */
-
-html{
-
-    scroll-behavior:smooth;
-
-}
-
-/* ==========================================
-   CUSTOM SELECTION
-========================================== */
-
-::selection{
-
-    background:#ff5722;
-
-    color:#ffffff;
-
-}
-
-/* ==========================================
-   END OF HOME PAGE
-========================================== */

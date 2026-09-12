@@ -11,7 +11,10 @@ import {
     getFeaturedFoods,
     getLatestFoods,
     getPopularFoods,
-    getRelatedFoods
+    getRelatedFoods,
+    getCategories,
+    getFoodReviews,
+    createFoodReview
 } from "../controllers/foodController.js";
 
 import { protect } from "../middleware/authMiddleware.js";
@@ -25,6 +28,9 @@ const router = express.Router();
 Public Routes
 ===========================================
 */
+
+// Get All Categories
+router.get("/categories", getCategories);
 
 // Get All Foods
 router.get("/", getAllFoods);
@@ -43,6 +49,10 @@ router.get("/popular", getPopularFoods);
 
 // Foods By Category
 router.get("/category/:category", getFoodsByCategory);
+
+// Reviews
+router.get("/:id/reviews", getFoodReviews);
+router.post("/:id/reviews", protect, createFoodReview);
 
 // Related Foods
 router.get("/:id/related", getRelatedFoods);

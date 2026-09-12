@@ -1,401 +1,230 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-
-import "./Home.css";
-
+import React, { useContext, useState, useMemo } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { StoreContext } from "../../context/StoreContext";
 import Hero from "../../components/Hero/Hero";
-import SearchBar from "../../components/SearchBar/SearchBar";
 import Category from "../../components/Category/Category";
 import FoodCard from "../../components/FoodCard/FoodCard";
 import Loader from "../../components/Loader/Loader";
+import "./Home.css";
+import {
+    FaSearch,
+    FaBolt,
+    FaFire,
+    FaArrowRight,
+    FaMotorcycle,
+    FaAward,
+    FaShieldAlt,
+    FaClock
+} from "react-icons/fa";
 
 const Home = () => {
-
+    const { foodList, loadingFoods } = useContext(StoreContext);
     const navigate = useNavigate();
 
-    const [foods, setFoods] = useState([]);
-    const [filteredFoods, setFilteredFoods] = useState([]);
-    const [selectedCategory, setSelectedCategory] = useState("");
-    const [loading, setLoading] = useState(true);
+    const [selectedCategory, setSelectedCategory] = useState("All");
+    const [searchKeyword, setSearchKeyword] = useState("");
 
-    useEffect(() => {
+    // Filter foods based on category and local search
+    const filteredFoods = useMemo(() => {
+        return foodList.filter((food) => {
+            const matchesCat =
+                selectedCategory === "All" ||
+                food.category?.toLowerCase() === selectedCategory.toLowerCase();
+            const matchesSearch =
+                !searchKeyword ||
+                food.name.toLowerCase().includes(searchKeyword.toLowerCase()) ||
+                food.description?.toLowerCase().includes(searchKeyword.toLowerCase()) ||
+                food.restaurant?.toLowerCase().includes(searchKeyword.toLowerCase());
+            return matchesCat && matchesSearch;
+        });
+    }, [foodList, selectedCategory, searchKeyword]);
 
-        fetchFoods();
+    const featuredFoods = useMemo(() => {
+        return foodList.filter((f) => f.featured || f.rating >= 4.7).slice(0, 8);
+    }, [foodList]);
 
-    }, []);
-
-    const fetchFoods = async () => {
-
-        try {
-
-            const { data } = await axios.get(
-                "https://onlinefooddelivery-9g60.onrender.com/api/foods"
-            );
-
-            setFoods(data.foods);
-            setFilteredFoods(data.foods);
-
-        } catch (error) {
-
-            console.log(error);
-
-        } finally {
-
-            setLoading(false);
-
+    const handleSearchSubmit = (e) => {
+        e.preventDefault();
+        if (searchKeyword.trim()) {
+            navigate(`/menu?search=${encodeURIComponent(searchKeyword.trim())}`);
         }
-
     };
 
-    const searchFood = (keyword) => {
-
-        if (!keyword) {
-
-            setFilteredFoods(foods);
-            return;
-
-        }
-
-        const result = foods.filter(food =>
-            food.name
-                .toLowerCase()
-                .includes(keyword.toLowerCase())
-        );
-
-        setFilteredFoods(result);
-
-    };
-
-    const filterCategory = (category) => {
-        setSelectedCategory(category);
-    
-        if (category === "All") {
-            setFilteredFoods(foods);
-            return;
-        }
-    
-        const result = foods.filter(
-            food => food.category === category
-        );
-    
-        setFilteredFoods(result);
-    };
-
-    if (loading) {
-
+    if (loadingFoods && foodList.length === 0) {
         return <Loader />;
-
     }
 
     return (
-
-        <>
-
+        <div className="home-page">
+            {/* HERO SECTION */}
             <Hero />
 
-            <SearchBar
-                onSearch={searchFood}
-            />
+            {/* QUICK INLINE SEARCH BAR */}
+            <div className="home-search-bar-wrap">
+                <form className="home-search-form" onSubmit={handleSearchSubmit}>
+                    <FaSearch className="search-icon" />
+                    <input
+                        type="text"
+                        placeholder="Craving something specific? E.g. Margherita, Chicken Biryani, Brownie..."
+                        value={searchKeyword}
+                        onChange={(e) => setSearchKeyword(e.target.value)}
+                    />
+                    {searchKeyword && (
+                        <button
+                            type="button"
+                            className="clear-search-btn"
+                            onClick={() => setSearchKeyword("")}
+                        >
+                            ✕
+                        </button>
+                    )}
+                    <button type="submit" className="home-search-submit">
+                        Find Food
+                    </button>
+                </form>
+            </div>
 
+            {/* CATEGORIES */}
             <Category
                 selectedCategory={selectedCategory}
-                onSelectCategory={filterCategory}
+                onSelectCategory={setSelectedCategory}
             />
 
+            {/* POPULAR FOODS GRID */}
             <section className="food-section">
-
-                <div className="section-title">
-
-                    <h2>
-
-                        Popular Foods
-
-                    </h2>
-
-                    <p>
-
-                        Freshly prepared meals from our best restaurants.
-
-                    </p>
-
+                <div className="section-header">
+                    <div>
+                        <div className="section-subheading">
+                            <FaFire className="flame-icon" /> BEST PICKS FOR YOU
+                        </div>
+                        <h2 className="section-main-title">
+                            {selectedCategory === "All"
+                                ? "Popular Dishes in Your City"
+                                : `${selectedCategory} Specials`}
+                        </h2>
+                    </div>
+                    <Link to="/menu" className="view-all-link">
+                        View Full Menu <FaArrowRight />
+                    </Link>
                 </div>
 
-                <div className="food-grid">                    {
-
-filteredFoods.length > 0 ? (
-
-    filteredFoods.map((food) => (
-
-        <FoodCard
-            key={food._id}
-            food={food}
-        />
-
-    ))
-
-) : (
-
-    <div className="no-food">
-
-        <h2>
-
-            No Food Found
-
-        </h2>
-
-        <p>
-
-            Try another search keyword or choose another category.
-
-        </p>
-
-    </div>
-
-)
-
-}
-
-</div>
-
-</section>
-
-{/* ==========================
-Promotional Banner
-========================== */}
-
-<section className="promo-section">
-
-<div className="promo-content">
-
-<h2>
-
-Get 30% OFF On Your First Order
-
-</h2>
-
-<p>
-
-Use coupon code
-
-<strong> FIRST30 </strong>
-
-and enjoy delicious meals at amazing prices.
-
-</p>
-
-<button onClick={() => navigate("/login")}>
-
-    Order Now
-
-</button>
-
-</div>
-
-</section>
-
-{/* ==========================
-Why Choose Us
-========================== */}
-
-<section className="why-section">
-
-<div className="section-title">
-
-<h2>
-
-Why Choose FoodExpress?
-
-</h2>
-
-</div>
-
-<div className="why-grid">
-
-<div className="why-card">
-
-<div className="why-icon">
-
-    🚚
-
-</div>
-
-<h3>
-
-    Fast Delivery
-
-</h3>
-
-<p>
-
-    Fresh food delivered within
-    30 minutes.
-
-</p>
-
-</div>
-
-<div className="why-card">
-
-<div className="why-icon">
-
-    👨‍🍳
-
-</div>
-
-<h3>
-
-    Top Restaurants
-
-</h3>
-
-<p>
-
-    Order from the best restaurants
-    near you.
-
-</p>
-
-</div>
-
-<div className="why-card">
-
-<div className="why-icon">
-
-    💳
-
-</div>
-
-<h3>
-
-    Secure Payment
-
-</h3>
-
-<p>
-
-    Safe and secure online
-    payment methods.
-
-</p>
-
-</div>
-
-<div className="why-card">
-
-<div className="why-icon">
-
-    ⭐
-
-</div>
-
-<h3>
-
-    Premium Quality
-
-</h3>
-
-<p>
-
-    Fresh ingredients with
-    excellent taste.
-
-</p>
-
-</div>
-
-</div>
-
-</section>
-            {/* ==========================
-                    Statistics
-            ========================== */}
-
-<section className="stats-section">
-
-<div className="stats-grid">
-
-    <div className="stat-card">
-
-        <h2>10K+</h2>
-
-        <p>Happy Customers</p>
-
-    </div>
-
-    <div className="stat-card">
-
-        <h2>500+</h2>
-
-        <p>Restaurants</p>
-
-    </div>
-
-    <div className="stat-card">
-
-        <h2>1000+</h2>
-
-        <p>Food Items</p>
-
-    </div>
-
-    <div className="stat-card">
-
-        <h2>4.9 ★</h2>
-
-        <p>Average Rating</p>
-
-    </div>
-
-</div>
-
-</section>
-
-{/* ==========================
-    Newsletter
-========================== */}
-
-<section className="newsletter">
-
-<div className="newsletter-content">
-
-    <h2>
-
-        Subscribe To Our Newsletter
-
-    </h2>
-
-    <p>
-
-        Get exclusive offers, discounts,
-        and updates delivered directly
-        to your inbox.
-
-    </p>
-
-    <div className="newsletter-box">
-
-        <input
-            type="email"
-            placeholder="Enter your email"
-        />
-
-        <button>
-
-            Subscribe
-
-        </button>
-
-    </div>
-
-</div>
-
-</section>
-
-</>
-
-);
-
+                {filteredFoods.length > 0 ? (
+                    <div className="food-grid">
+                        {filteredFoods.slice(0, 12).map((food) => (
+                            <FoodCard key={food._id} food={food} />
+                        ))}
+                    </div>
+                ) : (
+                    <div className="empty-food-state">
+                        <div className="empty-emoji">🍲</div>
+                        <h3>No dishes match "{searchKeyword || selectedCategory}"</h3>
+                        <p>Try clearing your search keyword or explore other tasty cuisines.</p>
+                        <button
+                            className="reset-filters-btn"
+                            onClick={() => {
+                                setSelectedCategory("All");
+                                setSearchKeyword("");
+                            }}
+                        >
+                            Reset Filters
+                        </button>
+                    </div>
+                )}
+            </section>
+
+            {/* PROMO BANNER */}
+            <section className="promo-banner">
+                <div className="promo-banner-card">
+                    <div className="promo-text-side">
+                        <span className="promo-badge">EXCLUSIVE SAVINGS</span>
+                        <h2>Flat 30% OFF On Your Orders</h2>
+                        <p>
+                            Use promo code <span className="code-pill">FIRST30</span> at checkout to
+                            unlock instant savings up to ₹200 on all top restaurants.
+                        </p>
+                        <div className="promo-actions">
+                            <Link to="/menu" className="promo-btn">
+                                Order Now
+                            </Link>
+                            <span className="promo-subtext">⚡ Fast 30-min doorstep delivery</span>
+                        </div>
+                    </div>
+                    <div className="promo-image-side">
+                        <img
+                            src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800"
+                            alt="Delicious Pizza Special"
+                        />
+                    </div>
+                </div>
+            </section>
+
+            {/* FEATURED CHEF SPECIALS (if any) */}
+            {featuredFoods.length > 0 && selectedCategory === "All" && !searchKeyword && (
+                <section className="food-section">
+                    <div className="section-header">
+                        <div>
+                            <div className="section-subheading">
+                                <FaBolt className="bolt-icon" /> TOP RATED & FEATURED
+                            </div>
+                            <h2 className="section-main-title">Chef's Recommended Highlights</h2>
+                        </div>
+                        <Link to="/menu" className="view-all-link">
+                            Explore All <FaArrowRight />
+                        </Link>
+                    </div>
+
+                    <div className="food-grid">
+                        {featuredFoods.map((food) => (
+                            <FoodCard key={`featured-${food._id}`} food={food} />
+                        ))}
+                    </div>
+                </section>
+            )}
+
+            {/* VALUE PROPOSITIONS / WHY CHOOSE US */}
+            <section className="why-us-section">
+                <div className="why-us-header">
+                    <span className="why-badge">WHY CHOOSE FOODEXPRESS</span>
+                    <h2>Food Delivery Elevated</h2>
+                    <p>Designed for true foodies with taste, hygiene, and lightning speed.</p>
+                </div>
+
+                <div className="why-us-grid">
+                    <div className="why-card">
+                        <div className="why-icon-box">
+                            <FaMotorcycle />
+                        </div>
+                        <h3>30-Min Express Delivery</h3>
+                        <p>Hot, fresh meals brought to your doorstep with real-time tracking.</p>
+                    </div>
+
+                    <div className="why-card">
+                        <div className="why-icon-box">
+                            <FaAward />
+                        </div>
+                        <h3>Top Quality Food</h3>
+                        <p>Carefully curated restaurants following the highest quality standards.</p>
+                    </div>
+
+                    <div className="why-card">
+                        <div className="why-icon-box">
+                            <FaShieldAlt />
+                        </div>
+                        <h3>Safe & Contactless</h3>
+                        <p>Hygiene-checked packaging and safe contactless payment options.</p>
+                    </div>
+
+                    <div className="why-card">
+                        <div className="why-icon-box">
+                            <FaClock />
+                        </div>
+                        <h3>24/7 Live Support</h3>
+                        <p>Friendly support always ready to resolve your queries immediately.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    );
 };
 
 export default Home;

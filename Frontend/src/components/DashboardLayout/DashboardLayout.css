@@ -1,0 +1,114 @@
+/* ===================================================
+   FOODEXPRESS - TWO-COLUMN APPLICATION SHELL
+   Layout: [247px Sidebar] | [Navbar + Main Area]
+   =================================================== */
+
+.app-layout {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    background: #f8fafc;
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* 1. Left Sidebar (247px, independent sticky behavior) */
+.app-layout > .sidebar,
+.app-layout > .dashboard-sidebar {
+    width: 247px;
+    min-width: 247px;
+    max-width: 247px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 1000;
+}
+
+/* 2. Main Area (Occupies remaining width after sidebar) */
+.main-area {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    background: #f8fafc;
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* 3. Main Area Navbar (Starts immediately after sidebar, full remaining width) */
+.main-area .navbar-wrapper {
+    width: 100%;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1050;
+    box-sizing: border-box;
+    border-left: 1px solid #edf0f5;
+    background: #ffffff;
+}
+
+.main-area .navbar-wrapper.is-scrolled,
+.main-area .navbar-wrapper.scrolled {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.main-area .navbar-container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+/* 4. Main Content Shell */
+.main-content-shell {
+    flex: 1;
+    min-width: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Tablet: Slightly reduced sidebar */
+@media (max-width: 1100px) {
+    .app-layout > .sidebar,
+    .app-layout > .dashboard-sidebar {
+        width: 220px;
+        min-width: 220px;
+        max-width: 220px;
+    }
+}
+
+/* Mobile: Drawer overlay */
+@media (max-width: 900px) {
+    .app-layout {
+        display: block;
+    }
+
+    .app-layout > .sidebar,
+    .app-layout > .dashboard-sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100vh;
+        z-index: 2000;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+
+    .app-layout > .sidebar.active,
+    .app-layout > .dashboard-sidebar.active {
+        transform: translateX(0);
+    }
+
+    .main-area {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .main-area .navbar-wrapper {
+        border-left: none;
+    }
+}

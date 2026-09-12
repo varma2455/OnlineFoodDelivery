@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./Login.css";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { StoreContext } from "../../context/StoreContext";
+import { API_BASE_URL } from "../../config/api";
 
 import {
     signInWithEmailAndPassword,
@@ -36,44 +38,39 @@ import burgerImage from "../../assets/images/burger.png";
 const Login = () => {
 
     const navigate = useNavigate();
+    const { setToken, setUser } = useContext(StoreContext) || {};
+    const API_BASE = API_BASE_URL;
 
 
     const handleGoogleLogin = async () => {
 
         try {
+            setLoading(true);
     
-            // Step 1
+            // Step 1: Sign in with Google Popup via Firebase
             const result = await signInWithPopup(
                 auth,
                 googleProvider
             );
     
-            // Step 2
+            // Step 2: Extract Firebase user
             const firebaseUser = result.user;
     
-            // Step 3
+            // Step 3: Get Firebase ID Token
             const firebaseToken = await firebaseUser.getIdToken();
     
-            // Step 4
+            // Step 4: Verify with backend
             const { data } = await axios.post(
-                `https://onlinefooddelivery-9g60.onrender.com/api/auth/login`,
-    
+                `${API_BASE}/api/auth/login`,
                 {},
-    
                 {
-    
                     headers: {
-    
-                        Authorization:
-                        `Bearer ${firebaseToken}`
-    
+                        Authorization: `Bearer ${firebaseToken}`
                     }
-    
                 }
-    
             );
     
-            // Step 5
+            // Step 5: Persist session
             localStorage.setItem(
                 "token",
                 data.token
@@ -83,9 +80,26 @@ const Login = () => {
                 "user",
                 JSON.stringify(data.user)
             );
+
+            if (setToken) setToken(data.token);
+            if (setUser) setUser(data.user);
     
-            // Step 6
-            navigate("/dashboard");
+            // Step 6: Role-based navigation
+            switch (data.user?.role) {
+                case "admin":
+                    navigate("/admin/dashboard");
+                    break;
+                case "restaurant":
+                    navigate("/restaurant");
+                    break;
+                case "delivery":
+                    navigate("/delivery");
+                    break;
+                case "customer":
+                default:
+                    navigate("/dashboard");
+                    break;
+            }
     
         }
     
@@ -95,9 +109,12 @@ const Login = () => {
     
             alert(
                 error.response?.data?.message ||
-                error.message
+                error.message ||
+                "Google Login Failed"
             );
     
+        } finally {
+            setLoading(false);
         }
     
     };
@@ -142,43 +159,61 @@ const Login = () => {
         try {
     
             setLoading(true);
+            let token = null;
+            let loggedUser = null;
     
-            // Step 1: Login with Firebase
-            const userCredential = await signInWithEmailAndPassword(
-                auth,
-                formData.email,
-                formData.password
-            );
-    
-            const firebaseUser = userCredential.user;
-    
-            // Step 2: Get Firebase ID Token
-            const firebaseToken = await firebaseUser.getIdToken();
-    
-            // Step 3: Send token to backend
-            const { data } = await axios.post(
-                `https://onlinefooddelivery-9g60.onrender.com/api/auth/login`,
-                null,
-                {
-                    headers: {
-                        Authorization: `Bearer ${firebaseToken}`
+            try {
+                // Step 1: Login with Firebase
+                const userCredential = await signInWithEmailAndPassword(
+                    auth,
+                    formData.email,
+                    formData.password
+                );
+        
+                const firebaseUser = userCredential.user;
+        
+                // Step 2: Get Firebase ID Token
+                const firebaseToken = await firebaseUser.getIdToken();
+        
+                // Step 3: Send token to backend
+                const { data } = await axios.post(
+                    `${API_BASE}/api/auth/login`,
+                    { email: formData.email, password: formData.password },
+                    {
+                        headers: {
+                            Authorization: `Bearer ${firebaseToken}`
+                        }
                     }
-                }
-            );
+                );
+                token = data.token;
+                loggedUser = data.user;
+            } catch (fbErr) {
+                console.warn("Firebase direct login note:", fbErr.message);
+                // Fallback for pre-seeded database accounts
+                const { data } = await axios.post(
+                    `${API_BASE}/api/auth/login`,
+                    { email: formData.email, password: formData.password }
+                );
+                token = data.token;
+                loggedUser = data.user;
+            }
     
             localStorage.setItem(
                 "token",
-                data.token
+                token
             );
     
             localStorage.setItem(
                 "user",
-                JSON.stringify(data.user)
+                JSON.stringify(loggedUser)
             );
+
+            if (setToken) setToken(token);
+            if (setUser) setUser(loggedUser);
     
             alert("Login Successful");
     
-            switch (data.user.role) {
+            switch (loggedUser?.role) {
 
                 case "admin":
                     navigate("/admin/dashboard");
@@ -193,11 +228,9 @@ const Login = () => {
                     break;
             
                 case "customer":
+                default:
                     navigate("/dashboard");
                     break;
-            
-                default:
-                    navigate("/login");
             
             }
     

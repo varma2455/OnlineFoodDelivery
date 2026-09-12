@@ -1,20 +1,34 @@
 /* ===========================
-   Dashboard Sidebar
+   Dashboard Sidebar - FoodExpress Orange Branding
 =========================== */
 
-.dashboard-sidebar {
-    width:250px;
+:root {
+    --sidebar-bg: #ff5200;
+    --sidebar-bg-end: #e04800;
+}
+
+.dashboard-sidebar,
+.sidebar {
+    --sidebar-bg: #ff5200;
+    --sidebar-bg-end: #e04800;
+    width: 247px;
+    min-width: 247px;
+    max-width: 247px;
+    flex-shrink: 0;
     min-height: 100vh;
-    background: linear-gradient(180deg,#6C63FF 0%,#5A52EA 100%);
+    background: linear-gradient(180deg, var(--sidebar-bg) 0%, var(--sidebar-bg-end) 100%);
     padding: 30px 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     color: #fff;
-    position:fixed;
-    top:0;
-    left:0;
-    height:100vh;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    z-index: 1000;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
 }
 
 /* ===========================
@@ -24,30 +38,35 @@
 .sidebar-logo {
     display: flex;
     align-items: center;
-    margin-bottom: 40px;
+    margin-bottom: 36px;
 }
 
 .logo-circle {
-    width: 60px;
-    height: 60px;
-    background: rgba(255,255,255,.18);
-    border-radius: 18px;
+    width: 54px;
+    height: 54px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
+    border-radius: 16px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 28px;
-    margin-right: 15px;
+    font-size: 26px;
+    margin-right: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
 }
 
 .sidebar-logo h2 {
     font-size: 22px;
-    font-weight: 700;
-    margin-bottom: 4px;
+    font-weight: 800;
+    margin-bottom: 2px;
+    letter-spacing: -0.3px;
 }
 
 .sidebar-logo p {
-    font-size: 13px;
-    opacity: .8;
+    font-size: 12px;
+    opacity: 0.9;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
 }
 
 /* ===========================
@@ -59,43 +78,140 @@
     margin: 0;
     padding: 0;
     flex: 1;
+    overflow-y: auto;
+    border: none;
+    outline: none;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.sidebar-menu::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+    display: none;
 }
 
 .sidebar-menu li {
-    margin-bottom: 10px;
+    margin-bottom: 8px;
+    border: none !important;
+    outline: none !important;
+    list-style: none;
 }
 
-.sidebar-menu a {
+/* Sidebar Navigation Items */
+.sidebar-menu a,
+.sidebar-menu li a,
+.sidebar-item {
     display: flex;
     align-items: center;
-    gap: 15px;
-    text-decoration: none;
-    color: rgba(255,255,255,.85);
-    padding: 14px 18px;
-    border-radius: 15px;
-    transition: .3s;
-    font-size: 15px;
-    font-weight: 500;
-}
-
-.sidebar-menu a svg {
-    font-size: 18px;
-}
-
-.sidebar-menu a:hover {
-    background: rgba(255,255,255,.18);
-    color: white;
-    transform: translateX(5px);
-}
-
-/* Active Link */
-
-.sidebar-menu a.active,
-.sidebar-menu a.active-link {
-    background: white;
-    color: #6C63FF;
+    gap: 14px;
+    text-decoration: none !important;
+    color: rgba(255, 255, 255, 0.9);
+    padding: 12px 16px;
+    border-radius: 12px;
+    transition: all 0.22s ease;
+    font-size: 14px;
     font-weight: 600;
-    box-shadow: 0 8px 20px rgba(0,0,0,.12);
+    border: 1px solid transparent !important;
+    border-color: transparent !important;
+    outline: none !important;
+    box-shadow: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.sidebar-menu a svg,
+.sidebar-menu li a svg,
+.sidebar-item svg {
+    font-size: 17px;
+    border: none;
+    outline: none;
+}
+
+/* Hover State - Remove white lines, borders, outlines completely */
+.sidebar-menu a:hover,
+.sidebar-menu li a:hover,
+.sidebar-item:hover {
+    border: 1px solid transparent !important;
+    border-color: transparent !important;
+    border-top-color: transparent !important;
+    border-bottom-color: transparent !important;
+    border-left-color: transparent !important;
+    border-right-color: transparent !important;
+    outline: none !important;
+    box-shadow: none !important;
+    text-decoration: none !important;
+}
+
+.sidebar-menu a:hover:not(.active):not(.active-link),
+.sidebar-menu li:not(.active) a:hover,
+.sidebar-item:hover:not(.active):not(.active-link) {
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    border: 1px solid transparent !important;
+    border-color: transparent !important;
+    outline: none !important;
+    box-shadow: none !important;
+    text-decoration: none !important;
+    transform: translateX(4px);
+}
+
+/* Focus State - Remove default focus outlines and white lines */
+.sidebar-menu a:focus,
+.sidebar-menu a:focus-visible,
+.sidebar-menu li a:focus,
+.sidebar-menu li a:focus-visible,
+.sidebar-item:focus,
+.sidebar-item:focus-visible {
+    outline: none !important;
+    border-color: transparent !important;
+    border-top-color: transparent !important;
+    border-bottom-color: transparent !important;
+    border-left-color: transparent !important;
+    border-right-color: transparent !important;
+    box-shadow: none !important;
+    text-decoration: none !important;
+}
+
+/* Subtle focus indicator for keyboard accessibility matching sidebar */
+.sidebar-menu a:focus-visible:not(.active):not(.active-link),
+.sidebar-menu li:not(.active) a:focus-visible,
+.sidebar-item:focus-visible:not(.active):not(.active-link) {
+    outline: none !important;
+    box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* Active Item - Keep existing Browse Food active white rounded rectangle exactly as it looks */
+.sidebar-menu a.active,
+.sidebar-menu a.active-link,
+.sidebar-menu li.active a,
+.sidebar-item.active {
+    background: #ffffff !important;
+    color: #ff5200 !important;
+    font-weight: 700;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12) !important;
+    border: 1px solid #ffffff !important;
+    border-color: #ffffff !important;
+    outline: none !important;
+}
+
+.sidebar-menu a.active svg,
+.sidebar-menu a.active-link svg,
+.sidebar-menu li.active a svg,
+.sidebar-item.active svg {
+    color: #ff5200 !important;
+}
+
+.sidebar-menu a.active:hover,
+.sidebar-menu a.active-link:hover,
+.sidebar-menu li.active a:hover,
+.sidebar-item.active:hover {
+    background: #ffffff !important;
+    color: #ff5200 !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12) !important;
+    border: 1px solid #ffffff !important;
+    border-color: #ffffff !important;
+    outline: none !important;
+    transform: none;
 }
 
 /* ===========================
@@ -103,48 +219,50 @@
 =========================== */
 
 .premium-card {
-    background: rgba(255,255,255,.15);
-    backdrop-filter: blur(10px);
-    border-radius: 22px;
-    padding: 22px;
+    background: rgba(255, 255, 255, 0.16);
+    backdrop-filter: blur(8px);
+    border-radius: 18px;
+    padding: 18px 16px;
     text-align: center;
-    margin-top: 25px;
+    margin-top: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .premium-card img {
-    width: 110px;
-    margin: auto;
-    margin-bottom: 15px;
+    width: 80px;
+    margin: 0 auto 10px;
 }
 
 .premium-card h3 {
-    font-size: 18px;
-    margin-bottom: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 6px;
 }
 
 .premium-card p {
-    font-size: 13px;
-    line-height: 22px;
-    opacity: .9;
-    margin-bottom: 18px;
+    font-size: 12px;
+    line-height: 18px;
+    opacity: 0.92;
+    margin-bottom: 14px;
 }
 
 .premium-card button {
     width: 100%;
     border: none;
-    background: white;
-    color: #6C63FF;
-    font-size: 15px;
-    font-weight: 600;
-    padding: 12px;
-    border-radius: 12px;
+    background: #ffffff;
+    color: #ff5200;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 10px;
+    border-radius: 10px;
     cursor: pointer;
-    transition: .3s;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .premium-card button:hover {
-    background: #FFE066;
-    color: #222;
+    background: #fff8f5;
+    transform: translateY(-2px);
 }
 
 /* ===========================
@@ -152,111 +270,83 @@
 =========================== */
 
 .logout-section {
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 .logout-btn {
     width: 100%;
     border: none;
-    background: rgba(255,255,255,.15);
+    background: rgba(255, 255, 255, 0.15);
     color: white;
-    padding: 15px;
-    border-radius: 14px;
+    padding: 12px;
+    border-radius: 12px;
     cursor: pointer;
-    font-size: 15px;
+    font-size: 14px;
+    font-weight: 600;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 12px;
-    transition: .3s;
+    gap: 10px;
+    transition: all 0.2s ease;
+    outline: none;
 }
 
 .logout-btn:hover {
-    background: #ff4d4f;
+    background: #dc2626;
+    color: #ffffff;
+}
+
+.logout-btn:focus,
+.logout-btn:focus-visible {
+    outline: none !important;
+    box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.25) !important;
 }
 
 .logout-btn svg {
-    font-size: 17px;
+    font-size: 16px;
 }
 
-/* ===========================
-   Scrollbar
-=========================== */
-
+/* Scrollbar */
 .dashboard-sidebar::-webkit-scrollbar {
-    width: 5px;
+    width: 4px;
+}
+
+.dashboard-sidebar::-webkit-scrollbar-track {
+    background: transparent;
 }
 
 .dashboard-sidebar::-webkit-scrollbar-thumb {
-    background: rgba(255,255,255,.3);
+    background: rgba(0, 0, 0, 0.15);
     border-radius: 20px;
+    border: none;
 }
 
-/* .dashboard-wrapper{
-    display:grid;
-    grid-template-columns: minmax(0,1fr) 360px;
-    gap:25px;
-    padding:25px;
-    width:100%;
-    align-items:start;
-    box-sizing:border-box;
-} */
-
-/* ===========================
-   Responsive
-=========================== */
-
-@media(max-width:1200px){
-
-.dashboard-sidebar{
-    width:240px;
-}
-
-}
-
-@media(max-width:992px){
-
-.dashboard-sidebar{
-    position:fixed;
-    left:0;
-    top:0;
-    z-index:999;
-    transform:translateX(-100%);
-    transition:.4s;
-}
-
-.dashboard-sidebar.active{
-    transform:translateX(0);
-}
-
-}
-
-@media (max-width:768px){
-
-    .dashboard-sidebar{
-        display:none;
+/* Responsive */
+@media (max-width: 1200px) {
+    .dashboard-sidebar,
+    .sidebar {
+        width: 247px;
+        min-width: 247px;
     }
-    
 }
 
-@media(max-width:576px){
+@media (max-width: 992px) {
+    .dashboard-sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 999;
+        transform: translateX(-100%);
+        transition: 0.35s ease;
+    }
 
-.dashboard-sidebar{
-    width:100%;
-    max-width:300px;
+    .dashboard-sidebar.active {
+        transform: translateX(0);
+    }
 }
 
-.logo-circle{
-    width:55px;
-    height:55px;
-}
-
-.sidebar-logo h2{
-    font-size:18px;
-}
-
-.sidebar-logo p{
-    font-size:12px;
-}
-
+@media (max-width: 768px) {
+    .dashboard-sidebar {
+        display: none;
+    }
 }

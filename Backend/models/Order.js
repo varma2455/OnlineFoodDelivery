@@ -33,6 +33,16 @@ const orderItemSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+
+    foodType: {
+      type: String,
+      default: "",
+    },
+
+    customization: {
+      type: mongoose.Schema.Types.Mixed,
+      default: {},
+    },
   },
   { _id: false }
 );
@@ -100,7 +110,7 @@ const orderSchema = new mongoose.Schema(
 
     paymentMethod: {
       type: String,
-      enum: ["Cash on Delivery", "UPI", "Card", "Net Banking"],
+      enum: ["Cash on Delivery", "UPI", "Card", "Net Banking", "Wallet"],
       default: "Cash on Delivery",
     },
 
@@ -133,9 +143,29 @@ const orderSchema = new mongoose.Schema(
       default: 40,
     },
 
+    tax: {
+      type: Number,
+      default: 0,
+    },
+
     discount: {
       type: Number,
       default: 0,
+    },
+
+    memberDiscount: {
+      type: Number,
+      default: 0,
+    },
+
+    memberPlan: {
+      type: String,
+      default: "",
+    },
+
+    memberDeliveryBenefit: {
+      type: Boolean,
+      default: false,
     },
 
     finalAmount: {

@@ -1,0 +1,1075 @@
+/* ===================================================
+   FOODEXPRESS BROWSE FOOD - COMPACT RIGHT CONTROL CENTER
+   =================================================== */
+
+.browse-sidebar-right,
+.browse-sidebar-left,
+.browse-control-panel,
+.browse-right-sidebar,
+.browse-sidebar-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0; /* Vertical separation between right-side components is handled by margin-bottom: 30px */
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  height: auto;
+  align-self: stretch;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+  box-sizing: border-box;
+  max-height: none;
+  overflow: visible;
+  overflow-y: visible;
+  scrollbar-width: none;
+  position: static;
+}
+
+/* Major Right-Sidebar Component Separation (Scoped Selector) */
+.browse-right-sidebar > *,
+.browse-sidebar-container > *,
+.browse-control-panel > *,
+.browse-sidebar-right > * {
+  border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  height: auto;
+  min-height: 0;
+  box-sizing: border-box;
+}
+
+.browse-right-sidebar > *:first-child,
+.browse-sidebar-container > *:first-child,
+.browse-control-panel > *:first-child,
+.browse-sidebar-right > *:first-child {
+  margin-top: 30px;
+}
+
+/* Maintain 30px bottom spacing for the last component */
+.browse-right-sidebar > *:last-child,
+.browse-sidebar-container > *:last-child,
+.browse-control-panel > *:last-child,
+.browse-sidebar-right > *:last-child {
+  border-bottom: none;
+  margin-bottom: 30px;
+  padding-bottom: 0;
+}
+
+/* Sidebar Card Base - Compact & Unified */
+.sidebar-card {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  max-height: none;
+  overflow: visible;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+/* Card Header */
+.sidebar-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.header-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sidebar-card-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  background: #fff4ed;
+  color: #ff5200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.sidebar-card-icon.orange { background: #fff4ed; color: #ff5200; }
+.sidebar-card-icon.red { background: #fee2e2; color: #ef4444; }
+.sidebar-card-icon.amber { background: #fef3c7; color: #f59e0b; }
+.sidebar-card-icon.pink { background: #fce7f3; color: #ec4899; }
+.sidebar-card-icon.purple { background: #f5f3ff; color: #8b5cf6; }
+
+.header-title-row h3 {
+  font-size: 12px;
+  font-weight: 800;
+  color: #1e293b;
+  letter-spacing: 0.4px;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+/* 15–20% text & icon increase specifically for the five requested components:
+   1. Filter, 2. Quick Actions, 3. Special Offers, 4. FoodExpress Wallet, 5. Rewards */
+.filter-card .header-title-row h3,
+.quick-actions-card .header-title-row h3,
+.offers-card .header-title-row h3,
+.wallet-card .header-title-row h3,
+.rewards-card .header-title-row h3 {
+  font-size: 14px;
+}
+
+.filter-card .sidebar-card-icon,
+.quick-actions-card .sidebar-card-icon,
+.offers-card .sidebar-card-icon,
+.wallet-card .sidebar-card-icon,
+.rewards-card .sidebar-card-icon {
+  font-size: 14px;
+  width: 28px;
+  height: 28px;
+}
+
+.active-filter-badge {
+  background: #ff5200;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 1.5px 6px;
+  border-radius: 999px;
+  line-height: 1.2;
+}
+
+.btn-sidebar-clear {
+  background: none;
+  border: none;
+  color: #ff5200;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 1px 4px;
+  border-radius: 4px;
+  transition: background 0.15s ease;
+}
+
+.btn-sidebar-clear:hover {
+  background: #fff4ed;
+}
+
+.clear-spin {
+  font-size: 11px;
+}
+
+.sidebar-divider {
+  height: 1px;
+  background: #f1f5f9;
+  margin: 10px 0;
+}
+
+/* Filter Blocks */
+.filter-block {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.filter-block-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.filter-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.filter-range-val {
+  font-size: 13px;
+  font-weight: 700;
+  color: #ff5200;
+  background: #fff4ed;
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+/* Checklist Rows */
+.filter-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.checklist-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+  font-size: 14px;
+  color: #334155;
+  font-weight: 500;
+}
+
+.checklist-row input[type="checkbox"] {
+  display: none;
+}
+
+.styled-box {
+  width: 17px;
+  height: 17px;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 3px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  background: #ffffff;
+}
+
+.checklist-row input[type="checkbox"]:checked + .styled-box {
+  background: #ff5200;
+  border-color: #ff5200;
+  box-shadow: 0 1px 4px rgba(255, 82, 0, 0.25);
+}
+
+.checklist-row input[type="checkbox"]:checked + .styled-box::after {
+  content: "✓";
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.checklist-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  line-height: 1.2;
+}
+
+.gold-star {
+  color: #f59e0b;
+  font-size: 14px;
+}
+
+.diet-dot {
+  font-size: 15px;
+  line-height: 1;
+}
+
+.diet-dot.veg { color: #16a34a; }
+.diet-dot.nonveg { color: #dc2626; }
+
+/* Range Slider */
+.range-slider-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sidebar-price-slider {
+  width: 100%;
+  accent-color: #ff5200;
+  cursor: pointer;
+}
+
+.slider-limits {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+/* ===================================================
+   QUICK ACTIONS (Compact 36px rows)
+   =================================================== */
+.quick-actions-rows {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+
+.quick-action-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 6px 8px;
+  min-height: 36px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.quick-action-row:hover {
+  background: #fff4ed;
+  border-color: #ffc4a8;
+  transform: translateY(-1px);
+}
+
+.action-row-icon {
+  font-size: 14px;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.action-row-icon.redo { color: #ff5200; }
+.action-row-icon.heart { color: #ef4444; }
+.action-row-icon.motor { color: #0284c7; }
+.action-row-icon.tag { color: #8b5cf6; }
+.action-row-icon.wallet { color: #f59e0b; }
+.action-row-icon.gift { color: #ec4899; }
+
+.action-row-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ===================================================
+   SPECIAL OFFERS (Compact 95px cards, no overflow)
+   =================================================== */
+.sidebar-offers-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.special-offer-box {
+  background: #fffafa;
+  border: 1.5px dashed #fca5a5;
+  border-radius: 10px;
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.special-offer-box.applied {
+  background: #f0fdf4;
+  border-color: #86efac;
+}
+
+.offer-box-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.offer-gift-badge {
+  font-size: 14px;
+  font-weight: 800;
+  color: #dc2626;
+}
+
+.offer-min-text {
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+.offer-code-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 3px 6px;
+}
+
+.offer-code-tag {
+  font-family: monospace;
+  font-size: 13px;
+  font-weight: 800;
+  color: #1e293b;
+  letter-spacing: 0.5px;
+}
+
+.btn-copy-code {
+  background: none;
+  border: none;
+  color: #64748b;
+  cursor: pointer;
+  padding: 2px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+}
+
+.btn-copy-code:hover {
+  color: #ff5200;
+}
+
+.copied {
+  color: #16a34a;
+}
+
+.offer-subtext {
+  font-size: 12px;
+  color: #64748b;
+  margin: 0;
+}
+
+.btn-apply-offer {
+  width: 100%;
+  background: #ff5200;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 5px 10px;
+  min-height: 32px;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.btn-apply-offer:hover {
+  background: #e04800;
+}
+
+.btn-apply-offer.active {
+  background: #16a34a;
+}
+
+/* ===================================================
+   FOOD EXPRESS WALLET (Compact)
+   =================================================== */
+.wallet-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.wallet-balance-box {
+  background: #fffbeb;
+  border: 1px solid #fef3c7;
+  border-radius: 10px;
+  padding: 8px 10px;
+  text-align: center;
+}
+
+.wallet-amt {
+  display: block;
+  font-size: 24px;
+  font-weight: 900;
+  color: #b45309;
+  letter-spacing: -0.5px;
+}
+
+.wallet-sub {
+  font-size: 12px;
+  font-weight: 700;
+  color: #92400e;
+  text-transform: uppercase;
+}
+
+.btn-add-money-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  background: #ff5200;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 7px 12px;
+  min-height: 34px;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 3px 10px rgba(255, 82, 0, 0.2);
+}
+
+.btn-add-money-cta svg {
+  font-size: 13px;
+}
+
+.btn-add-money-cta:hover {
+  background: #e04800;
+  transform: translateY(-1px);
+}
+
+.wallet-tx-section {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 2px;
+}
+
+.tx-section-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+}
+
+.tx-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tx-item-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 6px;
+  background: #f8fafc;
+  border: 1px solid #f1f5f9;
+  border-radius: 6px;
+}
+
+.tx-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tx-type-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.tx-type-dot.credit { background: #16a34a; }
+.tx-type-dot.debit { background: #ef4444; }
+
+.tx-desc-text {
+  font-size: 12px;
+  font-weight: 600;
+  color: #334155;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 120px;
+}
+
+.tx-amount-badge {
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.tx-amount-badge.credit { color: #16a34a; }
+.tx-amount-badge.debit { color: #ef4444; }
+
+/* ===================================================
+   REWARDS (Compact)
+   =================================================== */
+.rewards-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.rewards-hero-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.gold-star-icon {
+  font-size: 19px;
+}
+
+.rewards-points-val {
+  font-size: 19px;
+  font-weight: 900;
+  color: #0f172a;
+}
+
+.rewards-bar-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.progress-bar-ascii {
+  font-family: monospace;
+  font-size: 13px;
+  line-height: 1;
+  letter-spacing: 1px;
+}
+
+.bar-filled {
+  color: #ff5200;
+}
+
+.bar-empty {
+  color: #cbd5e1;
+}
+
+.rewards-next-hint {
+  font-size: 12px;
+  color: #64748b;
+  margin: 0;
+}
+
+.btn-view-rewards-cta {
+  background: none;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 5px 8px;
+  min-height: 30px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-view-rewards-cta:hover {
+  background: #f8fafc;
+  color: #ff5200;
+  border-color: #ff5200;
+}
+
+/* ===================================================
+   SAVED ADDRESSES (Compact)
+   =================================================== */
+.addresses-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.address-entry {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f8fafc;
+  border: 1px solid #f1f5f9;
+  border-radius: 8px;
+  padding: 6px 8px;
+}
+
+.address-badge-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  flex-shrink: 0;
+}
+
+.address-badge-icon.home { background: #e6faf5; color: #00c896; }
+.address-badge-icon.work { background: #edf3ff; color: #3d7eff; }
+
+.address-details strong {
+  display: block;
+  font-size: 11px;
+  color: #1e293b;
+}
+
+.address-details p {
+  font-size: 10px;
+  color: #64748b;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
+}
+
+.btn-add-address-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background: #ffffff;
+  border: 1px dashed #cbd5e1;
+  border-radius: 6px;
+  padding: 5px 8px;
+  min-height: 30px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #ff5200;
+  cursor: pointer;
+  background: #ffffff;
+  border: 1px dashed #cbd5e1;
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #ff5200;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-add-address-cta:hover {
+  background: #fff4ed;
+  border-color: #ff5200;
+}
+
+/* ===================================================
+   ADD MONEY MODAL
+   =================================================== */
+.wallet-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 16px;
+}
+
+.wallet-modal-window {
+  background: #ffffff;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 440px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  animation: modalPopIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+}
+
+@keyframes modalPopIn {
+  from {
+    transform: scale(0.94) translateY(8px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 22px;
+  border-bottom: 1px solid #f1f5f9;
+  background: #f8fafc;
+}
+
+.modal-title-cluster {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.modal-icon-wrap {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: #fff4ed;
+  color: #ff5200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.modal-title-cluster h3 {
+  font-size: 16px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 2px;
+}
+
+.modal-title-cluster p {
+  font-size: 12px;
+  color: #64748b;
+  margin: 0;
+}
+
+.btn-close-modal {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+}
+
+.btn-close-modal:hover {
+  color: #ef4444;
+}
+
+.modal-content-form {
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-group-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group-field label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #334155;
+  text-transform: uppercase;
+}
+
+.amount-input-box {
+  display: flex;
+  align-items: center;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 10px 14px;
+  background: #ffffff;
+  transition: all 0.2s ease;
+}
+
+.amount-input-box:focus-within {
+  border-color: #ff5200;
+  box-shadow: 0 0 0 3px rgba(255, 82, 0, 0.12);
+}
+
+.currency-prefix {
+  font-size: 20px;
+  font-weight: 800;
+  color: #ff5200;
+  margin-right: 8px;
+}
+
+.amount-input-box input {
+  border: none;
+  outline: none;
+  font-size: 20px;
+  font-weight: 800;
+  color: #0f172a;
+  width: 100%;
+}
+
+.preset-chips-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.preset-amt-chip {
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.preset-amt-chip:hover,
+.preset-amt-chip.active {
+  background: #fff4ed;
+  border-color: #ff5200;
+  color: #ff5200;
+}
+
+.modal-payment-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.modal-pay-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.modal-pay-card.selected {
+  border-color: #ff5200;
+  background: #fffafa;
+}
+
+.modal-pay-card input[type="radio"] {
+  accent-color: #ff5200;
+}
+
+.pay-method-icon {
+  font-size: 21px;
+}
+
+.pay-method-icon.upi { color: #00c896; }
+.pay-method-icon.card { color: #3d7eff; }
+.pay-method-icon.net { color: #f59e0b; }
+
+.pay-method-text strong {
+  display: block;
+  font-size: 15px;
+  color: #0f172a;
+}
+
+.pay-method-text small {
+  font-size: 13px;
+  color: #64748b;
+}
+
+.modal-cta-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.btn-modal-cancel {
+  flex: 1;
+  background: #f1f5f9;
+  border: none;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #475569;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-modal-cancel:hover {
+  background: #e2e8f0;
+}
+
+.btn-modal-submit {
+  flex: 2;
+  background: #ff5200;
+  border: none;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 15px;
+  font-weight: 800;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(255, 82, 0, 0.25);
+}
+
+.btn-modal-submit:hover:not(:disabled) {
+  background: #e04800;
+  transform: translateY(-1px);
+}
+
+.btn-modal-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ===================================================
+   ACTIVE ORDER (Right Sidebar - when present)
+   =================================================== */
+.active-order-sidebar-card .active-order-sidebar-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: #fffafa;
+  border: 1px solid #fed7aa;
+  border-left: 3px solid #ff5200;
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+
+.active-order-sidebar-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.active-order-icon {
+  font-size: 22px;
+}
+
+.active-order-sidebar-dish h4 {
+  font-size: 13px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+}
+
+.active-order-sidebar-dish p {
+  font-size: 11px;
+  color: #64748b;
+  margin: 2px 0 0;
+}
+
+.active-order-sidebar-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
+.active-order-sidebar-footer .eta-text {
+  font-size: 12px;
+  font-weight: 700;
+  color: #ff5200;
+}
+
+.btn-track-order-sidebar {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #ff5200;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-track-order-sidebar:hover {
+  background: #e04800;
+}
+

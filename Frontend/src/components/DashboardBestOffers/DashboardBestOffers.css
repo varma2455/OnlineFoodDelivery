@@ -1,283 +1,272 @@
-/* ==========================================
-   Best Offers
-========================================== */
+/* ========================================================
+   FOODEXPRESS DASHBOARD - BEST OFFERS (SWIGGY-INSPIRED)
+   ======================================================== */
 
-.best-offers{
-    width:100%;
-    background:#fff;
-    border-radius:22px;
-    padding:22px;
-    box-shadow:0 12px 35px rgba(0,0,0,.08);
+.foodexpress-best-offers-section {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 20px 22px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+  border: 1px solid #e5e7eb;
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
+  min-width: 0;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
-/* ==========================================
-   Header
-========================================== */
-
-.offers-header{
-    margin-bottom:18px;
+.foodexpress-best-offers-section:hover {
+  border-color: #d1d5db;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.06);
 }
 
-.offers-header h2{
-    font-size:24px;
-    font-weight:700;
-    color:#222;
-    margin-bottom:5px;
+.offers-header-row {
+  margin-bottom: 14px;
 }
 
-.offers-header p{
-    color:#888;
-    font-size:14px;
+.offers-badge-pill {
+  display: inline-block;
+  background: #fff0e6;
+  color: #ff5200;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 14px;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
 }
 
-/* ==========================================
-   Offers List
-========================================== */
-
-.offers-list{
-    display:flex;
-    flex-direction:column;
-    gap:14px;
+.offers-header-row h2 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 3px 0;
+  letter-spacing: -0.2px;
 }
 
-/* ==========================================
-   Offer Card
-========================================== */
-
-.offer-card{
-    background:#fafafa;
-    border-radius:18px;
-    border:1px solid #ececec;
-    overflow:hidden;
-    transition:.35s;
-    cursor:pointer;
+.offers-header-row p {
+  font-size: 12px;
+  color: #64748b;
+  margin: 0;
 }
 
-.offer-card:hover{
-    box-shadow:0 15px 35px rgba(0,0,0,.12);
-    transform:translateY(-2px);
+/* Voucher Grid: 1 column inside left sidebar */
+.offers-voucher-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-/* ==========================================
-   Preview
-========================================== */
-
-.offer-preview{
-    display:flex;
-    align-items:center;
-    gap:15px;
-    padding:16px 18px;
+/* Voucher Ticket Card */
+.voucher-ticket-card {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 14px 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
 }
 
-/* ==========================================
-   Icon
-========================================== */
-
-.offer-icon{
-
-    width:56px;
-    height:56px;
-
-    border-radius:16px;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    color:white;
-
-    font-size:22px;
-
-    flex-shrink:0;
+.voucher-ticket-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
 }
 
-/* ==========================================
-   Text
-========================================== */
-
-.offer-info{
-    flex:1;
+.voucher-ticket-card.applied-card {
+  border-color: #0f8a65;
+  background: #f0fdf4;
 }
 
-.offer-info h4{
-    font-size:18px;
-    color:#222;
-    margin-bottom:5px;
+/* Voucher Header */
+.voucher-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
 }
 
-.offer-info span{
-    font-size:13px;
-    color:#777;
-    font-weight:600;
+.voucher-icon-box {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
 }
 
-/* ==========================================
-   Apply Button
-========================================== */
-
-.offer-preview button{
-
-    border:none;
-
-    background:#6C63FF;
-
-    color:white;
-
-    padding:10px 16px;
-
-    border-radius:10px;
-
-    display:flex;
-
-    align-items:center;
-
-    gap:8px;
-
-    cursor:pointer;
-
-    font-size:13px;
-
-    font-weight:600;
-
-    transition:.3s;
+.voucher-titles {
+  flex-grow: 1;
+  min-width: 0;
 }
 
-.offer-preview button:hover{
-
-    background:#564cf5;
-
+.voucher-headline-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 2px;
+  flex-wrap: wrap;
 }
 
-.offer-preview button svg{
-
-    transition:.3s;
-
+.voucher-discount-tag {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
 }
 
-.offer-preview button:hover svg{
-
-    transform:translateX(4px);
-
+.voucher-min-pill {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: #64748b;
+  background: #f1f5f9;
+  padding: 2px 7px;
+  border-radius: 8px;
 }
 
-/* ==========================================
-   Expand Details
-========================================== */
-
-.offer-details{
-
-    max-height:0;
-
-    overflow:hidden;
-
-    transition:max-height .45s ease,padding .35s ease;
-
-    padding:0 20px;
-
-    background:#fff;
-
+.voucher-subtitle {
+  font-size: 12px;
+  font-weight: 600;
+  color: #475569;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.offer-card:hover .offer-details{
-
-    max-height:220px;
-
-    padding:0 20px 18px;
-
+/* Voucher Action Strip */
+.voucher-action-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 8px 10px;
+  background: #f8fafc;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #e2e8f0;
+  box-sizing: border-box;
 }
 
-.offer-details h5{
-
-    color:#444;
-
-    font-size:15px;
-
-    margin-bottom:12px;
-
-    margin-top:5px;
-
+.coupon-pill-code {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 6px;
+  transition: background 0.15s ease;
+  min-width: 0;
 }
 
-.offer-details ul{
-
-    padding:0;
-
-    margin:0;
-
+.coupon-pill-code:hover {
+  background: #e2e8f0;
 }
 
-.offer-details li{
-
-    list-style:none;
-
-    font-size:14px;
-
-    color:#666;
-
-    padding:7px 0;
-
-    border-bottom:1px dashed #eee;
-
+.code-text {
+  font-size: 13px;
+  font-weight: 800;
+  color: #1e293b;
+  letter-spacing: 0.8px;
+  font-family: monospace;
 }
 
-.offer-details li:last-child{
-
-    border-bottom:none;
-
+.btn-copy-code {
+  background: transparent;
+  border: none;
+  color: #64748b;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  padding: 0;
 }
 
-/* ==========================================
-   Mobile
-========================================== */
-
-@media(max-width:768px){
-
-    .offer-preview{
-
-        flex-wrap:wrap;
-
-        gap:12px;
-
-    }
-
-    .offer-info{
-
-        width:100%;
-
-    }
-
-    .offer-preview button{
-
-        width:100%;
-
-        justify-content:center;
-
-    }
-
+.copied-check {
+  color: #0f8a65;
 }
 
-@media(max-width:480px){
+.btn-apply-voucher {
+  background: #ff5200;
+  color: #ffffff;
+  border: none;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: 0.4px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
 
-    .best-offers{
+.btn-apply-voucher:hover {
+  background: #e04800;
+  transform: scale(1.03);
+}
 
-        padding:18px;
+.btn-apply-voucher.applied {
+  background: #0f8a65;
+  color: #ffffff;
+}
 
-        border-radius:18px;
+/* Details Drawer */
+.voucher-details-drawer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
 
-    }
+.voucher-details-drawer li {
+  font-size: 11px;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  line-height: 1.3;
+}
 
-    .offer-icon{
+.check-bullet {
+  font-weight: 800;
+  font-size: 11px;
+  flex-shrink: 0;
+}
 
-        width:50px;
-        height:50px;
-        font-size:20px;
+/* Toggle All Vouchers Button */
+.btn-toggle-all-vouchers {
+  width: 100%;
+  margin-top: 12px;
+  padding: 8px 12px;
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: 10px;
+  color: #ff5200;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
 
-    }
-
-    .offer-info h4{
-
-        font-size:16px;
-
-    }
-
+.btn-toggle-all-vouchers:hover {
+  background: #fff4ed;
+  border-color: #ff5200;
 }

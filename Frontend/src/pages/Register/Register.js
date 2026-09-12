@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./Register.css";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { StoreContext } from "../../context/StoreContext";
+import { API_BASE_URL } from "../../config/api";
 
 import {
     createUserWithEmailAndPassword,
@@ -43,6 +45,8 @@ import burgerImage from "../../assets/images/burger.png";
 const Register = () => {
 
     const navigate = useNavigate();
+    const { setToken, setUser } = useContext(StoreContext) || {};
+    const API_BASE = API_BASE_URL;
 
     const [loading,setLoading]=useState(false);
 
@@ -94,17 +98,13 @@ const Register = () => {
     
             // Register/Login in backend
             const { data } = await axios.post(
-    
-                `${process.env.REACT_APP_API}/api/auth/login`,
-    
+                `${API_BASE}/api/auth/login`,
                 {},
-    
                 {
                     headers: {
                         Authorization: `Bearer ${firebaseToken}`
                     }
                 }
-    
             );
     
             localStorage.setItem(
@@ -116,8 +116,11 @@ const Register = () => {
                 "user",
                 JSON.stringify(data.user)
             );
+
+            if (setToken) setToken(data.token);
+            if (setUser) setUser(data.user);
     
-            navigate("/customer");
+            navigate("/dashboard");
     
         } catch (error) {
     
@@ -141,17 +144,6 @@ const Register = () => {
 
         e.preventDefault();
 
-        // if (!phoneVerified) {
-
-        //     alert("Please verify your mobile number.");
-        
-        //     return;
-        
-        // }
-
-        
-
-    
         if(formData.password !== formData.confirmPassword){
     
             alert("Passwords do not match");
@@ -163,53 +155,86 @@ const Register = () => {
         try{
     
             setLoading(true);
-    
-            // Step 1: Create user in Firebase Authentication
-            const userCredential = await createUserWithEmailAndPassword(
-                auth,
-                formData.email,
-                formData.password
-            );
-            
-            await sendEmailVerification(userCredential.user);    
-            const firebaseUser = userCredential.user;
-    
-            // Step 2: Save display name in Firebase
-            await updateProfile(firebaseUser,{
-                displayName: formData.name
-            });
-    
-            
-    
-            // Step 4: Get Firebase ID Token
-            const firebaseToken = await firebaseUser.getIdToken();
-    
-            // Step 5: Send user details to backend
-            const { data } = await axios.post(
-                `https://onlinefooddelivery-9g60.onrender.com/api/auth/register`,
-                {
-                    fullName: formData.name,
-                    phone: formData.phone,
-                    address: formData.address,
-                    city: formData.city
+            let token = null;
+            let registeredUser = null;
 
-                },
-                {
-                    headers: {
-                        Authorization: `Bearer ${firebaseToken}`
-                    }
+            try {
+                // Step 1: Create user in Firebase Authentication
+                const userCredential = await createUserWithEmailAndPassword(
+                    auth,
+                    formData.email,
+                    formData.password
+                );
+                
+                try {
+                    await sendEmailVerification(userCredential.user);    
+                } catch (vErr) {
+                    console.warn("Email verification send note:", vErr.message);
                 }
-            );
+                const firebaseUser = userCredential.user;
+        
+                // Step 2: Save display name in Firebase
+                try {
+                    await updateProfile(firebaseUser,{
+                        displayName: formData.name
+                    });
+                } catch (pErr) {
+                    console.warn("Profile update note:", pErr.message);
+                }
+        
+                // Step 3: Get Firebase ID Token
+                const firebaseToken = await firebaseUser.getIdToken();
+        
+                // Step 4: Send user details to backend
+                const { data } = await axios.post(
+                    `${API_BASE}/api/auth/register`,
+                    {
+                        fullName: formData.name,
+                        email: formData.email,
+                        password: formData.password,
+                        phone: formData.phone,
+                        address: formData.address,
+                        city: formData.city
+                    },
+                    {
+                        headers: {
+                            Authorization: `Bearer ${firebaseToken}`
+                        }
+                    }
+                );
+
+                token = data.token;
+                registeredUser = data.user;
+            } catch (fbErr) {
+                console.warn("Firebase registration fallback note:", fbErr.message);
+                // Fallback direct backend registration
+                const { data } = await axios.post(
+                    `${API_BASE}/api/auth/register`,
+                    {
+                        fullName: formData.name,
+                        email: formData.email,
+                        password: formData.password,
+                        phone: formData.phone,
+                        address: formData.address,
+                        city: formData.city
+                    }
+                );
+                token = data.token;
+                registeredUser = data.user;
+            }
     
             localStorage.setItem(
                 "token",
-                data.token
+                token
             );
             
             localStorage.setItem(
                 "user",
-                JSON.stringify(data.user)
+                JSON.stringify(registeredUser)
             );
+
+            if (setToken) setToken(token);
+            if (setUser) setUser(registeredUser);
             
             alert("Registration Successful");
             

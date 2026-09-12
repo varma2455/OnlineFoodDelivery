@@ -19,17 +19,15 @@ const cartSchema = new mongoose.Schema(
         // Food category
         foodType: {
             type: String,
+            default: "Other",
+        },
+
+        // Quantity
+        quantity: {
+            type: Number,
             required: true,
-            enum: [
-                "Pizza",
-                "Burger",
-                "Biryani",
-                "Noodles",
-                "Salad",
-                "Fast Food",
-                "Drink",
-                "Dessert",
-            ],
+            default: 1,
+            min: 1,
         },
 
         // Customized options

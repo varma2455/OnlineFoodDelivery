@@ -1,126 +1,1409 @@
-/* =================================
-   BROWSE FOOD LAYOUT
-================================= */
+/* ===================================================
+   FOODEXPRESS - BROWSE FOOD PAGE STYLING
+   New Generation Food Discovery & Control Center Layout
+   =================================================== */
 
-.browseLayout{
-    display:flex;
-    width:100%;
-    height:100vh;
-    overflow:hidden;
-    box-sizing:border-box;
-
-    /* Reserve space for fixed sidebar */
-    padding-left:250px;
+html,
+body {
+  overflow-x: clip;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: #f8fafc;
 }
 
-
-/* =================================
-   MAIN CONTENT
-================================= */
-
-.browseMain{
-    flex:1;
-    min-width:0;
-    height:100vh;
-    overflow-y:auto;
-    padding:14px;
-    box-sizing:border-box;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-
-/* =================================
-   CONTENT SECTIONS
-================================= */
-
-.mainContent{
-    margin-top:-15px;
-    width:100%;
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-    box-sizing:border-box;
+/* Page Root Wrapper */
+.browse-food-page {
+  min-height: 100vh;
+  width: 100%;
+  background-color: #f8fafc;
+  display: flex;
+  box-sizing: border-box;
+  overflow-x: clip;
+  position: relative;
+  font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
-
-/* =================================
-   RIGHT CART
-================================= */
-
-.browseCart{
-    width:260px;
-    min-width:260px;
-    height:100vh;
-    background:#f5f5f5;
-    padding:10px;
-    box-sizing:border-box;
+/* Main Content Wrapper */
+.browse-main-wrapper {
+  margin-left: 0;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow-x: clip;
+  background-color: #f8fafc;
 }
 
-
-/* =================================
-   CART CARD
-================================= */
-
-.cartCard{
-    background:white;
-    border-radius:16px;
-    padding:15px;
-    box-shadow:0 5px 20px rgba(0,0,0,.06);
+/* 2-Column Responsive Workspace: Main Food Discovery + Compact Right Sidebar */
+.browse-food-layout,
+.browse-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 24px;
+  max-width: 1680px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px 24px 80px;
+  align-items: stretch;
+  box-sizing: border-box;
 }
 
-.cartCard h2{
-    margin:0 0 7px;
-    font-size:18px;
+/* ===================================================
+   LEFT / CENTER MAIN CONTENT AREA (~72–75%)
+   =================================================== */
+.browse-main,
+.browse-main-content,
+.browse-main-container {
+  min-width: 0;
+  max-width: 100%;
+  width: 100%;
+  height: 100%;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 16px 20px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+  box-sizing: border-box;
+  margin: 0;
+  overflow: visible;
 }
 
-.cartCard p{
-    margin:0;
-    font-size:13px;
-    color:#777;
+/* Section Headings */
+.section-head-simple {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
 }
 
-
-/* =================================
-   REMOVE OLD PAGE OFFSET
-================================= */
-
-.browsePage{
-    margin-left:0;
-    width:100%;
+.section-head-simple h2 {
+  font-size: 17px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+  letter-spacing: -0.3px;
 }
 
-
-/* =================================
-   RESPONSIVE
-================================= */
-
-@media(max-width:1200px){
-
-    .browseLayout{
-        padding-left:240px;
-    }
-
-    .browseCart{
-        width:220px;
-        min-width:220px;
-    }
-
-    .browseMain{
-        padding:12px;
-    }
+.reorder-sub-hint {
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 500;
 }
 
+/* 1. Header Row: Title & Subtitle + Sort Dropdown */
+.browse-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 0;
+}
 
-@media(max-width:992px){
+.browse-title-cluster {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
 
-    .browseLayout{
-        padding-left:0;
-    }
+.browse-main-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
 
-    .browseCart{
-        display:none;
-    }
+.browse-main-subtitle {
+  font-size: 13px;
+  color: #64748b;
+  margin: 0;
+  font-weight: 400;
+  line-height: 1.3;
+}
 
-    .browseMain{
-        width:100%;
-    }
+.browse-sort-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.items-count-indicator {
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.sort-input-cluster {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 8px 14px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+  transition: all 0.2s ease;
+}
+
+.sort-input-cluster:hover,
+.sort-input-cluster:focus-within {
+  border-color: #ff5200;
+  box-shadow: 0 2px 10px rgba(255, 82, 0, 0.1);
+}
+
+.sort-icon {
+  color: #ff5200;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.browse-sort-dropdown {
+  border: none;
+  background: transparent;
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+  cursor: pointer;
+  outline: none;
+  font-family: inherit;
+}
+
+.btn-mobile-filter-trigger {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #ff5200;
+  cursor: pointer;
+}
+
+/* 2. Large Modern Search Bar with Focus Suggestions Dropdown */
+.browse-search-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  position: relative;
+}
+
+.search-focus-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
+  padding: 16px 18px;
+  z-index: 60;
+}
+
+.dropdown-search-row {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.dropdown-search-col {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.dropdown-search-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dropdown-tags-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.search-drop-chip {
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 999px;
+  padding: 5px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.search-drop-chip:hover {
+  background: #fff5ed;
+  color: #ff5200;
+  border-color: #ffb899;
+}
+
+.search-drop-chip.trending {
+  background: #fff7ed;
+  color: #ea580c;
+  border-color: #fed7aa;
+}
+
+.browse-search-large {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 10px 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  transition: all 0.2s ease;
+}
+
+.browse-search-large:focus-within {
+  border-color: #ff5200;
+  box-shadow: 0 0 0 3px rgba(255, 82, 0, 0.12);
+}
+
+.search-icon-lg {
+  color: #94a3b8;
+  font-size: 17px;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.browse-search-large input {
+  border: none;
+  outline: none;
+  font-size: 14.5px;
+  font-weight: 500;
+  width: 100%;
+  color: #1e293b;
+  background: transparent;
+  font-family: inherit;
+}
+
+.browse-search-large input::placeholder {
+  color: #94a3b8;
+}
+
+.btn-search-clear {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  transition: all 0.2s ease;
+}
+
+.btn-search-clear:hover {
+  color: #ef4444;
+  background: #fee2e2;
+}
+
+.search-chips-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding-left: 2px;
+}
+
+.chips-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #64748b;
+}
+
+.search-chip {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 999px;
+  padding: 3px 11px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.search-chip:hover,
+.search-chip.active {
+  background: #fff4ed;
+  border-color: #ffc4a8;
+  color: #ff5200;
+}
+
+/* 3. ACTIVE ORDER TRACKING (Compact Card) */
+.active-order-card {
+  background: #ffffff;
+  border: 1px solid #fed7aa;
+  border-left: 4px solid #ff5200;
+  border-radius: 14px;
+  padding: 12px 16px;
+  box-shadow: 0 3px 10px rgba(255, 82, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.order-status-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.order-pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ff5200;
+  animation: pulseOrder 1.5s infinite;
+}
+
+@keyframes pulseOrder {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 82, 0, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(255, 82, 0, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 82, 0, 0); }
+}
+
+.order-card-tag {
+  font-size: 11px;
+  font-weight: 800;
+  color: #9a3412;
+  letter-spacing: 0.5px;
+}
+
+.order-status-pill {
+  margin-left: auto;
+  background: #fff4ed;
+  color: #ff5200;
+  font-size: 11.5px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid #ffe3d3;
+}
+
+.order-card-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.order-dish-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dish-icon {
+  font-size: 26px;
+}
+
+.order-dish-meta h4 {
+  font-size: 14px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+}
+
+.order-dish-meta p {
+  font-size: 12px;
+  color: #64748b;
+  margin: 2px 0 0;
+}
+
+.order-eta-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.eta-sub {
+  font-size: 11px;
+  color: #64748b;
+}
+
+.eta-time {
+  font-size: 13px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.btn-track-order-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #ff5200;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-track-order-action:hover {
+  background: #e04800;
+}
+
+/* 4. Horizontal Category Discovery Section (Compact Strip) */
+.categories-discovery-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.categories-strip-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0px;
+}
+
+.categories-label {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.cat-nav-arrows {
+  display: flex;
+  gap: 6px;
+}
+
+.btn-cat-scroll {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-cat-scroll:hover {
+  border-color: #ff5200;
+  color: #ff5200;
+  background: #fff7ed;
+}
+
+.categories-horizontal-strip {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: 2px 2px 4px;
+}
+
+.categories-horizontal-strip::-webkit-scrollbar {
+  display: none;
+}
+
+.category-discovery-card {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 999px;
+  padding: 6px 14px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  font-weight: 600;
+  font-size: 12.5px;
+  color: #334155;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  flex-shrink: 0;
+  font-family: inherit;
+}
+
+.category-discovery-card:hover {
+  border-color: #ff5200;
+  color: #ff5200;
+  background: #fff7ed;
+}
+
+.category-discovery-card.active {
+  background: #ff5200;
+  color: #ffffff;
+  border-color: #ff5200;
+  box-shadow: 0 4px 12px rgba(255, 82, 0, 0.25);
+}
+
+.cat-chip-emoji {
+  font-size: 14px;
+}
+
+.cat-chip-title {
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+/* COMPACT QUICK FILTERS ROW (Requirement #13) */
+.browse-quick-filters-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 0;
+}
+
+.quick-filter-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 999px;
+  padding: 5px 12px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+
+.quick-filter-pill:hover {
+  border-color: #cbd5e1;
+  background: #f8fafc;
+}
+
+.quick-filter-pill.active {
+  background: #fff7ed;
+  border-color: #ff5200;
+  color: #ff5200;
+  font-weight: 700;
+}
+
+.quick-filter-pill.active-filter-highlight {
+  background: #0f172a;
+  color: #ffffff;
+  border-color: #0f172a;
+}
+
+.quick-dot-veg {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+}
+
+.star-gold {
+  color: #f59e0b;
+}
+
+.heart-filled {
+  color: #ef4444;
+}
+
+.pill-badge {
+  background: #ff5200;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 800;
+  border-radius: 999px;
+  padding: 1px 6px;
+  margin-left: 2px;
+}
+
+.btn-quick-clear-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  color: #ff5200;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+
+/* 5. Content Tabs ([All] [Restaurants] [Dishes]) */
+.content-switch-tabs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 0px;
+  margin-bottom: -4px;
+}
+
+.content-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: -3px;
+  font-family: inherit;
+}
+
+.content-tab-btn:hover {
+  color: #ff5200;
+}
+
+.content-tab-btn.active {
+  color: #ff5200;
+  border-bottom-color: #ff5200;
+}
+
+/* 6. Order Again (Reorder Section) */
+.reorder-discovery-section {
+  width: 100%;
+}
+
+.reorder-cards-row {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding: 2px 2px 8px;
+  scrollbar-width: thin;
+}
+
+.reorder-mini-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 10px 14px;
+  min-width: 250px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+  flex-shrink: 0;
+}
+
+.reorder-thumb {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.reorder-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.reorder-info h5 {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.reorder-price {
+  font-size: 12px;
+  font-weight: 800;
+  color: #ff5200;
+}
+
+.btn-add-again {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #fff4ed;
+  color: #ff5200;
+  border: 1px solid #ffd0b8;
+  border-radius: 8px;
+  padding: 6px 11px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.btn-add-again:hover {
+  background: #ff5200;
+  color: #ffffff;
+}
+
+/* ==================================================
+   INSTAMART-STYLE MULTI-SECTION DISCOVERY & DENSE GRIDS
+   ================================================== */
+.instamart-sections-stream {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+}
+
+.browse-discovery-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.section-title-cluster-sub {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-title-cluster-sub h2 {
+  font-size: 17px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+  letter-spacing: -0.3px;
+}
+
+.section-badge-pill {
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: #fff7ed;
+  color: #ff5200;
+  letter-spacing: 0.3px;
+}
+
+.btn-view-all-link {
+  background: none;
+  border: none;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #ff5200;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.btn-view-all-link:hover {
+  text-decoration: underline;
+}
+
+/* Instamart Product Grids - 4 cards on desktop, 3 on laptop, 2 on tablet/mobile */
+.food-catalog-grid,
+.recommended-grid,
+.discovery-cards-grid,
+.food-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  row-gap: 16px;
+  column-gap: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Skeleton Shimmer Loading (Requirement #25) */
+.food-skeleton-card {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.skeleton-media {
+  width: 100%;
+  aspect-ratio: 1 / 0.78;
+  background: #f1f5f9;
+}
+
+.skeleton-body {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.skeleton-line {
+  height: 12px;
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+.skeleton-line.short { width: 60%; }
+.skeleton-line.tiny { width: 35%; }
+
+.skeleton-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 6px;
+}
+
+.skeleton-btn {
+  width: 65px;
+  height: 26px;
+  border-radius: 8px;
+  background: #f1f5f9;
+}
+
+.shimmer {
+  background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+  background-size: 200% 100%;
+  animation: shimmerWave 1.5s infinite;
+}
+
+@keyframes shimmerWave {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Load More Pagination Cluster (Requirement #18) */
+.load-more-cluster {
+  display: flex;
+  justify-content: center;
+  margin: 16px 0 6px;
+}
+
+.btn-load-more-dishes {
+  background: #ffffff;
+  border: 1.5px solid #ff5200;
+  color: #ff5200;
+  border-radius: 999px;
+  padding: 9px 26px;
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(255, 82, 0, 0.08);
+  transition: all 0.2s ease;
+  letter-spacing: 0.3px;
+}
+
+.btn-load-more-dishes:hover {
+  background: #ff5200;
+  color: #ffffff;
+  box-shadow: 0 6px 20px rgba(255, 82, 0, 0.25);
+  transform: translateY(-2px);
+}
+
+/* 8. Main Food Discovery Grid */
+.browse-food-grid-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.grid-meta-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.grid-section-title {
+  font-size: 19px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+  letter-spacing: -0.3px;
+}
+
+.grid-count-badge {
+  background: #f1f5f9;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px solid #e2e8f0;
+}
+
+/* Empty Catalog State */
+.empty-catalog-state {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  padding: 44px 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.empty-glyph {
+  font-size: 40px;
+}
+
+.empty-catalog-state h3 {
+  font-size: 17px;
+  font-weight: 800;
+  color: #1e293b;
+  margin: 0;
+}
+
+.empty-catalog-state p {
+  font-size: 13px;
+  color: #64748b;
+  margin: 0;
+  max-width: 360px;
+}
+
+.btn-clear-filters-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #ff5200;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 9px 18px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 6px;
+}
+
+.btn-clear-filters-cta:hover {
+  background: #e04800;
+}
+
+/* 9. Top Restaurants Section */
+.restaurants-discovery-section {
+  width: 100%;
+}
+
+/* ===================================================
+   COMPACT DENSE RIGHT SIDEBAR (NO INTERNAL SCROLLBAR)
+   The right sidebar expands naturally with page content.
+   Overall vertical scrolling is handled solely by the browser window.
+   =================================================== */
+.browse-right-sidebar,
+.browse-sidebar-container,
+.browse-control-panel,
+.browse-sidebar-left,
+.browse-sidebar-right {
+  position: static;
+  align-self: stretch;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  height: auto;
+  max-height: none;
+  overflow: visible;
+  overflow-y: visible;
+  overflow-x: visible;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 0; /* Vertical separation between right-side components is handled by margin-bottom: 30px */
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+  box-sizing: border-box;
+  margin: 0;
+  scrollbar-width: none;
+  z-index: 1;
+}
+
+/* Major Right-Sidebar Component Separation (Scoped Selector) */
+.browse-right-sidebar > *,
+.browse-sidebar-container > *,
+.browse-control-panel > *,
+.browse-sidebar-right > * {
+  border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  height: auto;
+  min-height: 0;
+  box-sizing: border-box;
+}
+
+.browse-right-sidebar > *:first-child,
+.browse-sidebar-container > *:first-child,
+.browse-control-panel > *:first-child,
+.browse-sidebar-right > *:first-child {
+  margin-top: 30px;
+}
+
+/* Maintain 30px bottom spacing for the last component */
+.browse-right-sidebar > *:last-child,
+.browse-sidebar-container > *:last-child,
+.browse-control-panel > *:last-child,
+.browse-sidebar-right > *:last-child {
+  border-bottom: none;
+  margin-bottom: 30px;
+  padding-bottom: 0;
+}
+
+.browse-right-sidebar::-webkit-scrollbar,
+.browse-sidebar-container::-webkit-scrollbar,
+.browse-control-panel::-webkit-scrollbar,
+.browse-sidebar-left::-webkit-scrollbar,
+.browse-sidebar-right::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.sidebar-card {
+  height: auto;
+  max-height: none;
+  overflow: visible;
+  box-sizing: border-box;
+}
+
+/* ===================================================
+   MOBILE DRAWER BACKDROP & PANEL
+   =================================================== */
+.mobile-drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 9999;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.mobile-drawer-window {
+  background: #f8fafc;
+  width: 85%;
+  max-width: 360px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -6px 0 24px rgba(0, 0, 0, 0.2);
+  animation: slideInDrawer 0.25s ease-out;
+}
+
+@keyframes slideInDrawer {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+.mobile-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.mobile-drawer-header h3 {
+  font-size: 15px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+}
+
+.btn-drawer-close {
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: #64748b;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.mobile-drawer-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+}
+
+.mobile-drawer-body .browse-control-panel,
+.mobile-drawer-body .browse-sidebar-left,
+.mobile-drawer-body .browse-sidebar-right,
+.mobile-drawer-body .browse-right-sidebar,
+.mobile-drawer-body .browse-sidebar-container {
+  display: flex !important;
+  flex-direction: column;
+  gap: 16px;
+  position: static;
+  max-height: none;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  align-self: auto;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  overflow-y: visible;
+}
+
+/* ===================================================
+   RESPONSIVE BREAKPOINTS (INSTAMART DENSITY)
+   1440px+: 4 cards per row
+   1200px: 3-4 cards per row
+   1024px: 3 cards per row
+   Tablet: 2 cards per row
+   Mobile: 2 compact cards per row
+   =================================================== */
+
+/* Large Desktop (1440px+) */
+@media (min-width: 1320px) {
+  .food-catalog-grid,
+  .recommended-grid,
+  .discovery-cards-grid,
+  .food-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 16px;
+  }
+}
+
+/* Laptop / Medium Desktop (1040px - 1319px) */
+@media (max-width: 1319px) and (min-width: 1025px) {
+  .browse-food-layout,
+  .browse-workspace {
+    grid-template-columns: minmax(0, 1fr) 290px;
+    gap: 20px;
+    padding: 18px 20px 70px;
+    align-items: stretch;
+  }
+
+  .browse-control-panel,
+  .browse-sidebar-left,
+  .browse-sidebar-right,
+  .browse-right-sidebar,
+  .browse-sidebar-container {
+    max-width: 100%;
+    height: auto;
+    align-self: stretch;
+    gap: 0;
+  }
+
+  .food-catalog-grid,
+  .recommended-grid,
+  .discovery-cards-grid,
+  .food-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 14px;
+  }
+}
+
+/* Tablet Landscape (1024px) */
+@media (max-width: 1024px) {
+  .browse-food-page .dashboard-sidebar {
+    display: none;
+  }
+
+  .browse-main-wrapper {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .browse-food-layout,
+  .browse-workspace {
+    grid-template-columns: minmax(0, 1fr) 280px;
+    gap: 16px;
+    padding: 16px 16px 70px;
+    align-items: stretch;
+  }
+
+  .browse-control-panel,
+  .browse-sidebar-left,
+  .browse-sidebar-right,
+  .browse-right-sidebar,
+  .browse-sidebar-container {
+    max-width: 100%;
+    height: auto;
+    align-self: stretch;
+    gap: 0;
+  }
+
+  .browse-main-title {
+    font-size: 26px;
+  }
+
+  .food-catalog-grid,
+  .recommended-grid,
+  .discovery-cards-grid,
+  .food-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 14px;
+  }
+}
+
+/* Tablet Portrait / Small Tablet (900px) */
+@media (max-width: 900px) {
+  .browse-food-page .dashboard-sidebar {
+    display: none;
+  }
+
+  .browse-main-wrapper {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .browse-food-layout,
+  .browse-workspace {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 16px 16px 80px;
+    align-items: stretch;
+  }
+
+  .browse-main,
+  .browse-main-content,
+  .browse-main-container {
+    height: auto;
+    align-self: auto;
+  }
+
+  .browse-workspace > .browse-control-panel,
+  .browse-workspace > .browse-sidebar-left,
+  .browse-workspace > .browse-sidebar-right,
+  .browse-workspace > .browse-right-sidebar,
+  .browse-workspace > .browse-sidebar-container {
+    display: flex !important;
+    height: auto;
+    align-self: auto;
+    gap: 20px;
+  }
+
+  .btn-mobile-filter-trigger {
+    display: inline-flex;
+  }
+
+  .food-catalog-grid,
+  .recommended-grid,
+  .discovery-cards-grid,
+  .food-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 14px;
+  }
+}
+
+/* Mobile Screens (<640px, 430px, 390px, 375px, 320px) */
+@media (max-width: 640px) {
+  .browse-food-layout,
+  .browse-workspace {
+    padding: 10px 12px 90px;
+    gap: 14px;
+  }
+
+  .browse-main,
+  .browse-main-content,
+  .browse-main-container {
+    padding: 14px 12px;
+  }
+
+  .browse-sidebar-container,
+  .browse-right-sidebar,
+  .browse-control-panel {
+    padding: 12px 10px;
+    gap: 16px;
+  }
+
+  .browse-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .browse-sort-wrap {
+    width: 100%;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .items-count-indicator {
+    font-size: 12px;
+  }
+
+  .sort-input-cluster {
+    flex: 1;
+    padding: 6px 10px;
+  }
+
+  .browse-sort-dropdown {
+    width: 100%;
+    font-size: 12px;
+  }
+
+  .btn-mobile-filter-trigger {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .browse-main-title {
+    font-size: 22px;
+  }
+
+  .browse-main-subtitle {
+    font-size: 12px;
+  }
+
+  .content-switch-tabs {
+    overflow-x: auto;
+    width: 100%;
+    white-space: nowrap;
+    gap: 8px;
+  }
+
+  .content-tab-btn {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
+  /* Exactly 2 compact cards per row on mobile (Requirement #4 & #27) */
+  .food-catalog-grid,
+  .recommended-grid,
+  .discovery-cards-grid,
+  .food-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px;
+  }
 }

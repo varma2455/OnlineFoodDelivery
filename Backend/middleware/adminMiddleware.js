@@ -13,6 +13,13 @@ export const isAdmin = (req, res, next) => {
             });
         }
 
+        if (req.user.isBlocked) {
+            return res.status(403).json({
+                success: false,
+                message: "Your account has been blocked by an administrator."
+            });
+        }
+
         if (req.user.role !== "admin") {
             return res.status(403).json({
                 success: false,

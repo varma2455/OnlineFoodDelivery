@@ -34,11 +34,15 @@ import OrderManagement from "./pages/Admin/OrderManagement";
 import UserManagement from "./pages/Admin/UserManagement";
 import RestaurantManagement from "./pages/Admin/Restaurants/RestaurantManagement";
 import RestaurantDetails from "./pages/Admin/Restaurants/RestaurantDetails";
+import RestaurantPartners from "./pages/Admin/RestaurantPartners/RestaurantPartners";
+import RestaurantPartnerDetails from "./pages/Admin/RestaurantPartners/RestaurantPartnerDetails";
 
 // Restaurant Partner Suite
 import RestaurantLayout from "./components/RestaurantLayout/RestaurantLayout";
 import RestaurantRegister from "./pages/Restaurant/Register/RestaurantRegister";
 import RestaurantLogin from "./pages/Restaurant/Login/RestaurantLogin";
+import RestaurantPartnerRequest from "./pages/Restaurant/PartnerRequest/RestaurantPartnerRequest";
+import RestaurantActivate from "./pages/Restaurant/Activate/RestaurantActivate";
 import ApplicationStatus from "./pages/Restaurant/ApplicationStatus/ApplicationStatus";
 import RestaurantDashboard from "./pages/Restaurant/Dashboard/RestaurantDashboard";
 import RestaurantOrders from "./pages/Restaurant/Orders/RestaurantOrders";
@@ -169,6 +173,22 @@ function App() {
                 }
             />
             <Route
+                path="/admin/restaurant-partners"
+                element={
+                    <ProtectedRoute role="admin">
+                        <RestaurantPartners />
+                    </ProtectedRoute>
+                }
+            />
+            <Route
+                path="/admin/restaurant-partners/:id"
+                element={
+                    <ProtectedRoute role="admin">
+                        <RestaurantPartnerDetails />
+                    </ProtectedRoute>
+                }
+            />
+            <Route
                 path="/admin/foods"
                 element={
                     <ProtectedRoute role="admin">
@@ -194,16 +214,11 @@ function App() {
             />
 
             {/* Restaurant Partner Onboarding & Authentication */}
-            <Route path="/restaurant/register" element={<RestaurantRegister />} />
+            <Route path="/restaurant/register" element={<Navigate to="/restaurant/partner-request" replace />} />
+            <Route path="/restaurant/partner-request" element={<RestaurantPartnerRequest />} />
             <Route path="/restaurant/login" element={<RestaurantLogin />} />
-            <Route
-                path="/restaurant/application-status"
-                element={
-                    <ProtectedRoute allowedRoles={["restaurant", "admin"]}>
-                        <ApplicationStatus />
-                    </ProtectedRoute>
-                }
-            />
+            <Route path="/restaurant/application-status" element={<ApplicationStatus />} />
+            <Route path="/restaurant/activate/:token" element={<RestaurantActivate />} />
 
             {/* Restaurant Partner Dashboard Suite (Protected & Dedicated Kitchen Layout) */}
             <Route

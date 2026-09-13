@@ -15,7 +15,8 @@ import {
     FaLock,
     FaEye,
     FaEyeSlash,
-    FaGoogle
+    FaGoogle,
+    FaArrowRight
 } from "react-icons/fa";
 
 const RestaurantLogin = () => {
@@ -35,23 +36,33 @@ const RestaurantLogin = () => {
             const { hasRestaurant, restaurant } = res.data;
 
             if (!hasRestaurant || !restaurant) {
-                showToast("No restaurant registered under this account yet. Please register your restaurant.", "info");
-                navigate("/restaurant/register");
+                showToast(
+                    "Restaurant partner account has not been activated. Please check your application status.",
+                    "info"
+                );
+                navigate("/restaurant/application-status");
                 return;
             }
 
             const status = restaurant.status;
 
             if (status === "approved") {
-                showToast(`Welcome to ${restaurant.name} dashboard! 🍳`, "success");
+                showToast(`Welcome back, ${restaurant.name}! 🍳`, "success");
                 navigate("/restaurant/dashboard");
+            } else if (status === "pending") {
+                showToast("Your restaurant application is still under review.", "info");
+                navigate("/restaurant/application-status");
+            } else if (status === "rejected" || status === "changes_requested") {
+                showToast("Your restaurant application requires attention.", "warning");
+                navigate("/restaurant/application-status");
+            } else if (status === "suspended") {
+                showToast("This restaurant account has been suspended.", "error");
+                navigate("/restaurant/application-status");
             } else {
-                // Pending, rejected, suspended, or closed
                 navigate("/restaurant/application-status");
             }
         } catch (err) {
             console.warn("Could not check restaurant status:", err.message);
-            // Default safe redirection
             navigate("/restaurant/application-status");
         }
     };
@@ -86,6 +97,15 @@ const RestaurantLogin = () => {
             }
 
             if (token && loggedUser) {
+                // If user role is customer, they shouldn't access restaurant portal
+                if (loggedUser.role !== "restaurant" && loggedUser.role !== "admin") {
+                    showToast(
+                        "This account is registered as a customer. Please activate a Restaurant Partner account or submit a request.",
+                        "error"
+                    );
+                    return;
+                }
+
                 login(token, loggedUser);
                 await handlePostLoginRouting(token, loggedUser);
             }
@@ -108,6 +128,14 @@ const RestaurantLogin = () => {
             const { data } = await authAPI.firebaseLogin(idToken);
 
             if (data.token && data.user) {
+                if (data.user.role !== "restaurant" && data.user.role !== "admin") {
+                    showToast(
+                        "This Google account is registered as a customer. Please request a partnership or activate your partner invitation.",
+                        "error"
+                    );
+                    return;
+                }
+
                 login(data.token, data.user);
                 await handlePostLoginRouting(data.token, data.user);
             }
@@ -122,38 +150,29 @@ const RestaurantLogin = () => {
     return (
         <div className="rest-login-page">
             <div className="rest-login-card">
-                {/* Header */}
+                {/* Brand Logo & Header */}
                 <div className="rest-login-header">
+                    <Link to="/" className="rest-login-logo">
+                        <span className="rest-logo-icon">🍔</span>
+                        <span className="rest-logo-text">FoodExpress</span>
+                    </Link>
+
                     <div className="rest-login-badge">
-                        <FaStore /> FOOD EXPRESS PARTNER
+                        <FaStore /> RESTAURANT PARTNER PORTAL
                     </div>
+
                     <h1 className="rest-login-title">Restaurant Partner Login</h1>
                     <p className="rest-login-subtitle">
-                        Access your kitchen orders, menu management, and sales analytics.
+                        Login to manage your restaurant, menu and orders.
                     </p>
-                </div>
-
-                {/* Google Sign-in */}
-                <button
-                    type="button"
-                    className="btn-google-login"
-                    onClick={handleGoogleLogin}
-                    disabled={loading}
-                >
-                    <FaGoogle color="#ea4335" /> Sign in with Google
-                </button>
-
-                <div className="rest-divider">
-                    <span>OR LOGIN WITH EMAIL</span>
                 </div>
 
                 {/* Email/Password Form */}
                 <form className="rest-login-form" onSubmit={handleEmailLogin}>
-                    <div>
-                        <label style={{ display: "block", fontSize: "13px", fontWeight: "600", marginBottom: "6px" }}>
-                            Registered Email Address
-                        </label>
-                        <div style={{ position: "relative" }}>
+                    <div className="form-group">
+                        <label>Email</label>
+                        <div className="input-with-icon">
+                            <FaEnvelope className="field-icon" />
                             <input
                                 type="email"
                                 className="rest-input"
@@ -165,14 +184,13 @@ const RestaurantLogin = () => {
                         </div>
                     </div>
 
-                    <div>
-                        <label style={{ display: "block", fontSize: "13px", fontWeight: "600", marginBottom: "6px" }}>
-                            Password
-                        </label>
+                    <div className="form-group">
+                        <label>Password</label>
                         <div className="rest-password-wrapper">
+                            <FaLock className="field-icon" />
                             <input
                                 type={showPassword ? "text" : "password"}
-                                className="rest-input"
+                                className="rest-input has-icon"
                                 placeholder="Enter password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
@@ -182,6 +200,7 @@ const RestaurantLogin = () => {
                                 type="button"
                                 className="rest-password-toggle"
                                 onClick={() => setShowPassword(!showPassword)}
+                                tabIndex="-1"
                             >
                                 {showPassword ? <FaEyeSlash /> : <FaEye />}
                             </button>
@@ -189,8 +208,8 @@ const RestaurantLogin = () => {
                     </div>
 
                     <div className="rest-login-options">
-                        <label style={{ display: "flex", alignItems: "center", gap: "6px", cursor: "pointer" }}>
-                            <input type="checkbox" defaultChecked style={{ accentColor: "#ff5200" }} />
+                        <label className="remember-label">
+                            <input type="checkbox" defaultChecked />
                             <span>Remember me</span>
                         </label>
                         <Link to="/forgot-password" className="rest-forgot-link">
@@ -199,17 +218,37 @@ const RestaurantLogin = () => {
                     </div>
 
                     <button type="submit" className="btn-rest-submit" disabled={loading}>
-                        {loading ? "Signing in..." : "Log In to Restaurant Portal"}
+                        {loading ? "Logging in..." : "Login"}
                     </button>
                 </form>
 
-                {/* New Partner Callout */}
+                {/* Google Sign-in */}
+                <button
+                    type="button"
+                    className="btn-google-login"
+                    onClick={handleGoogleLogin}
+                    disabled={loading}
+                >
+                    <FaGoogle color="#ea4335" /> Sign in with Google
+                </button>
+
+                {/* Divider */}
+                <div className="rest-divider">
+                    <span>OR</span>
+                </div>
+
+                {/* Not a Partner Section */}
                 <div className="rest-register-banner">
-                    Don't have a restaurant on FoodExpress yet?
-                    <br />
-                    <Link to="/restaurant/register">
-                        Become a Restaurant Partner 🚀
+                    <p className="not-partner-text">Not a FoodExpress Partner yet?</p>
+                    <Link to="/restaurant/partner-request" className="btn-request-partnership">
+                        Request Restaurant Partnership <FaArrowRight />
                     </Link>
+
+                    <div className="status-tracker-link-wrap">
+                        <Link to="/restaurant/application-status" className="link-check-app">
+                            Already applied? Track Application Status
+                        </Link>
+                    </div>
                 </div>
             </div>
         </div>

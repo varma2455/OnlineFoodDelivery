@@ -10,7 +10,8 @@ import {
     FaClipboardList,
     FaUsers,
     FaSignOutAlt,
-    FaStore
+    FaStore,
+    FaHandshake
 } from "react-icons/fa";
 
 const AdminNav = () => {
@@ -49,6 +50,12 @@ const AdminNav = () => {
                         className={({ isActive }) => (isActive ? "admin-link active" : "admin-link")}
                     >
                         <FaStore /> Restaurants
+                    </NavLink>
+                    <NavLink
+                        to="/admin/restaurant-partners"
+                        className={({ isActive }) => (isActive ? "admin-link active" : "admin-link")}
+                    >
+                        <FaHandshake /> Restaurant Partners
                     </NavLink>
                     <NavLink
                         to="/admin/users"

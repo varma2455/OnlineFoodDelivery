@@ -773,19 +773,18 @@
    SIDEBAR
 ========================================= */
 
-.pizzaPageLayout .browseSidebar{
-    position:fixed;
-    left:0;
-    top:0;
-
-    width:250px;
-    height:100vh;
-
-    flex-shrink:0;
-
-    overflow-y:auto;
-
-    z-index:1000;
+.pizzaPageLayout .browseSidebar,
+.pizzaPageLayout .dashboard-sidebar,
+.pizzaPageLayout .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 247px;
+    height: 100vh;
+    flex-shrink: 0;
+    overflow-y: auto;
+    z-index: 1000;
 }
 
 

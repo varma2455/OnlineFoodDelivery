@@ -1,0 +1,408 @@
+/* =========================================================================
+   FoodExpress Restaurant Partner Request Styling
+   ========================================================================= */
+
+.partner-request-page {
+    min-height: 100vh;
+    background-color: #f8fafc;
+    color: #1e293b;
+    font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    padding-bottom: 60px;
+}
+
+/* Header */
+.partner-header {
+    background: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.partner-header-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.partner-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+}
+
+.partner-brand .brand-logo-icon {
+    font-size: 26px;
+    line-height: 1;
+}
+
+.partner-brand .brand-name {
+    font-size: 22px;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.5px;
+}
+
+.partner-badge-pill {
+    background: #fff7ed;
+    color: #ff5200;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 9999px;
+    border: 1px solid #ffedd5;
+    letter-spacing: 0.5px;
+}
+
+.partner-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.partner-link-status {
+    color: #64748b;
+    font-size: 13.5px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+
+.partner-link-status:hover {
+    color: #ff5200;
+}
+
+.partner-btn-login {
+    background: #ffffff;
+    border: 1.5px solid #ff5200;
+    color: #ff5200;
+    padding: 7px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.partner-btn-login:hover {
+    background: #ff5200;
+    color: #ffffff;
+}
+
+/* Hero */
+.partner-hero {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    color: #ffffff;
+    padding: 48px 24px;
+    text-align: center;
+}
+
+.partner-hero-content {
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.hero-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 82, 0, 0.2);
+    color: #ff7836;
+    border: 1px solid rgba(255, 82, 0, 0.4);
+    padding: 4px 12px;
+    border-radius: 9999px;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    margin-bottom: 14px;
+}
+
+.hero-title {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+.hero-desc {
+    font-size: 14.5px;
+    color: #94a3b8;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.hero-perks {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    font-size: 13px;
+    color: #cbd5e1;
+    font-weight: 500;
+}
+
+.hero-perks span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Form Container */
+.partner-form-container {
+    max-width: 860px;
+    margin: -24px auto 0;
+    padding: 0 20px;
+}
+
+.partner-request-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Form Cards */
+.form-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 28px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.form-card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 22px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.form-section-number {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    background: #fff7ed;
+    color: #ff5200;
+    font-weight: 700;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 1px solid #ffedd5;
+}
+
+.form-card-header h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 2px;
+}
+
+.form-card-header p {
+    font-size: 12.5px;
+    color: #64748b;
+    margin: 0;
+}
+
+/* Grid & Inputs */
+.form-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #334155;
+}
+
+.form-group label .req {
+    color: #ef4444;
+}
+
+.input-help {
+    font-size: 11.5px;
+    color: #64748b;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper .input-icon {
+    position: absolute;
+    left: 14px;
+    color: #94a3b8;
+    font-size: 14px;
+    pointer-events: none;
+}
+
+.input-wrapper input {
+    padding-left: 40px !important;
+}
+
+.partner-request-form input,
+.partner-request-form textarea {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 13.5px;
+    font-family: inherit;
+    color: #0f172a;
+    background: #ffffff;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    box-sizing: border-box;
+}
+
+.partner-request-form input:focus,
+.partner-request-form textarea:focus {
+    outline: none;
+    border-color: #ff5200;
+    box-shadow: 0 0 0 3px rgba(255, 82, 0, 0.12);
+}
+
+/* Dietary Selector */
+.dietary-selector {
+    display: flex;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.dietary-btn {
+    flex: 1;
+    padding: 10px 12px;
+    border: 1.5px solid #e2e8f0;
+    background: #f8fafc;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    color: #475569;
+}
+
+.dietary-btn:hover {
+    border-color: #cbd5e1;
+    background: #ffffff;
+}
+
+.dietary-btn.active {
+    border-color: #ff5200;
+    background: #fff7ed;
+    color: #ff5200;
+}
+
+/* Cuisine Chips */
+.cuisine-chips-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.cuisine-chip {
+    padding: 6px 14px;
+    border: 1.5px solid #e2e8f0;
+    background: #f8fafc;
+    border-radius: 9999px;
+    font-size: 12.5px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    color: #475569;
+}
+
+.cuisine-chip:hover {
+    border-color: #cbd5e1;
+}
+
+.cuisine-chip.selected {
+    background: #ff5200;
+    border-color: #ff5200;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+/* Submit Card */
+.partner-submit-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 24px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.terms-note {
+    font-size: 12px;
+    color: #64748b;
+    line-height: 1.5;
+    max-width: 520px;
+}
+
+.btn-submit-partner {
+    background: linear-gradient(135deg, #ff5200 0%, #ea580c 100%);
+    color: #ffffff;
+    border: none;
+    padding: 13px 28px;
+    border-radius: 10px;
+    font-size: 14.5px;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 14px rgba(255, 82, 0, 0.35);
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.btn-submit-partner:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(255, 82, 0, 0.45);
+}
+
+.btn-submit-partner:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+    .form-grid-2 {
+        grid-template-columns: 1fr;
+    }
+
+    .partner-submit-card {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .btn-submit-partner {
+        justify-content: center;
+    }
+}

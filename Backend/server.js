@@ -23,6 +23,7 @@ import rewardRoutes from "./routes/rewardRoutes.js";
 import supportRoutes from "./routes/supportRoutes.js";
 import settingsRoutes from "./routes/settingsRoutes.js";
 import membershipRoutes from "./routes/membershipRoutes.js";
+import restaurantPartnerRoutes from "./routes/restaurantPartnerRoutes.js";
 
 import errorMiddleware from "./middleware/errorMiddleware.js";
 import { provisionAllAdmins } from "./seed/adminSeeder.js";
@@ -103,6 +104,7 @@ app.use(["/api/rewards", "/api/reward"], rewardRoutes);
 app.use(["/api/support", "/api/supports"], supportRoutes);
 app.use(["/api/settings", "/api/setting"], settingsRoutes);
 app.use(["/api/membership", "/api/memberships"], membershipRoutes);
+app.use(["/api/restaurant-partner", "/api/restaurant-partners"], restaurantPartnerRoutes);
 
 // ==============================
 // Health Check Route

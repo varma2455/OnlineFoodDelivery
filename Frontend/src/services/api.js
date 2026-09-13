@@ -119,7 +119,27 @@ export const adminAPI = {
     approveRestaurant: (id) => api.put(`/api/admin/restaurants/${id}/approve`),
     rejectRestaurant: (id, reason) => api.put(`/api/admin/restaurants/${id}/reject`, { reason }),
     suspendRestaurant: (id, reason) => api.put(`/api/admin/restaurants/${id}/suspend`, { reason }),
-    activateRestaurant: (id) => api.put(`/api/admin/restaurants/${id}/activate`)
+    activateRestaurant: (id) => api.put(`/api/admin/restaurants/${id}/activate`),
+
+    // Restaurant Partners Applications & Invitations for Admin
+    getRestaurantPartners: (params = {}) => api.get("/api/admin/restaurant-partners", { params }),
+    getRestaurantPartnerById: (id) => api.get(`/api/admin/restaurant-partners/${id}`),
+    createRestaurantPartner: (data) => api.post("/api/admin/restaurant-partners", data),
+    approveRestaurantPartner: (id) => api.put(`/api/admin/restaurant-partners/${id}/approve`),
+    rejectRestaurantPartner: (id, reason) => api.put(`/api/admin/restaurant-partners/${id}/reject`, { reason }),
+    requestChangesRestaurantPartner: (id, reason) => api.put(`/api/admin/restaurant-partners/${id}/request-changes`, { reason }),
+    resendPartnerInvitation: (id) => api.post(`/api/admin/restaurant-partners/${id}/resend-invitation`),
+    revokePartnerInvitation: (id) => api.post(`/api/admin/restaurant-partners/${id}/revoke-invitation`)
+};
+
+// ==============================
+// RESTAURANT PARTNER APPLICANT API
+// ==============================
+export const restaurantPartnerAPI = {
+    apply: (data) => api.post("/api/restaurant-partner/apply", data),
+    getApplicationStatus: (params = {}) => api.get("/api/restaurant-partner/application-status", { params }),
+    getInvitation: (token) => api.get(`/api/restaurant-partner/invitation/${token}`),
+    activate: (data) => api.post("/api/restaurant-partner/activate", data)
 };
 
 // ==============================

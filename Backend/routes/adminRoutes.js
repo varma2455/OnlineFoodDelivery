@@ -17,6 +17,16 @@ import {
     suspendRestaurant,
     activateRestaurant
 } from "../controllers/adminController.js";
+import {
+    getAdminPartnerApplications,
+    getAdminPartnerApplicationById,
+    adminCreatePartnerApplication,
+    adminApprovePartnerApplication,
+    adminRejectPartnerApplication,
+    adminRequestChangesPartnerApplication,
+    adminResendPartnerInvitation,
+    adminRevokePartnerInvitation
+} from "../controllers/restaurantPartnerController.js";
 import { addFood, updateFood, deleteFood } from "../controllers/foodController.js";
 import { protect } from "../middleware/authMiddleware.js";
 import { isAdmin } from "../middleware/adminMiddleware.js";
@@ -37,6 +47,17 @@ router.put("/restaurants/:id/approve", approveRestaurant);
 router.put("/restaurants/:id/reject", rejectRestaurant);
 router.put("/restaurants/:id/suspend", suspendRestaurant);
 router.put("/restaurants/:id/activate", activateRestaurant);
+
+// Restaurant Partner Partnership Applications & Invitations
+router.get("/restaurant-partners", getAdminPartnerApplications);
+router.get("/restaurant-partners/:id", getAdminPartnerApplicationById);
+router.post("/restaurant-partners", adminCreatePartnerApplication);
+router.put("/restaurant-partners/:id/approve", adminApprovePartnerApplication);
+router.put("/restaurant-partners/:id/reject", adminRejectPartnerApplication);
+router.put("/restaurant-partners/:id/request-changes", adminRequestChangesPartnerApplication);
+router.post("/restaurant-partners/:id/invitation", adminResendPartnerInvitation);
+router.post("/restaurant-partners/:id/resend-invitation", adminResendPartnerInvitation);
+router.post("/restaurant-partners/:id/revoke-invitation", adminRevokePartnerInvitation);
 
 // Foods
 router.get("/foods", getAdminFoods);

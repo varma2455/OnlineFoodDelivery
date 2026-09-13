@@ -23,18 +23,17 @@
    SIDEBAR
 ========================================================= */
 
-.noodlesOrderPageLayout .browseSidebar{
-    position:fixed;
-
-    left:0;
-    top:0;
-
-    width:250px;
-    height:100vh;
-
-    z-index:1000;
-
-    overflow-y:auto;
+.noodlesOrderPageLayout .browseSidebar,
+.noodlesOrderPageLayout .dashboard-sidebar,
+.noodlesOrderPageLayout .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 247px;
+    height: 100vh;
+    z-index: 1000;
+    overflow-y: auto;
 }
 
 

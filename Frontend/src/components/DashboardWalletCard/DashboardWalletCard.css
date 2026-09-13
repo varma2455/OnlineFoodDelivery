@@ -417,3 +417,31 @@
   background: #e04800;
   transform: translateY(-2px);
 }
+
+/* ===================================================
+   Responsive Breakpoints
+   =================================================== */
+@media (max-width: 640px) {
+  .foodexpress-wallet-widget {
+    padding: 16px 14px;
+    border-radius: 16px;
+  }
+
+  .wallet-gradient-card {
+    padding: 18px 16px;
+    border-radius: 14px;
+  }
+
+  .wallet-amount {
+    font-size: 26px;
+  }
+
+  .topup-modal-card {
+    padding: 20px 16px;
+    border-radius: 16px;
+  }
+
+  .quick-amount-buttons {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

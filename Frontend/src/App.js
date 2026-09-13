@@ -32,9 +32,24 @@ import AdminDashboard from "./pages/Admin/Dashboard";
 import FoodManagement from "./pages/Admin/FoodManagement";
 import OrderManagement from "./pages/Admin/OrderManagement";
 import UserManagement from "./pages/Admin/UserManagement";
+import RestaurantManagement from "./pages/Admin/Restaurants/RestaurantManagement";
+import RestaurantDetails from "./pages/Admin/Restaurants/RestaurantDetails";
 
-// Restaurant & Delivery
-import RestaurantDashboard from "./pages/Restaurant/Dashboard";
+// Restaurant Partner Suite
+import RestaurantLayout from "./components/RestaurantLayout/RestaurantLayout";
+import RestaurantRegister from "./pages/Restaurant/Register/RestaurantRegister";
+import RestaurantLogin from "./pages/Restaurant/Login/RestaurantLogin";
+import ApplicationStatus from "./pages/Restaurant/ApplicationStatus/ApplicationStatus";
+import RestaurantDashboard from "./pages/Restaurant/Dashboard/RestaurantDashboard";
+import RestaurantOrders from "./pages/Restaurant/Orders/RestaurantOrders";
+import RestaurantMenu from "./pages/Restaurant/Menu/RestaurantMenu";
+import RestaurantInventory from "./pages/Restaurant/Inventory/RestaurantInventory";
+import RestaurantProfile from "./pages/Restaurant/Profile/RestaurantProfile";
+import RestaurantAnalytics from "./pages/Restaurant/Analytics/RestaurantAnalytics";
+import RestaurantReviews from "./pages/Restaurant/Reviews/RestaurantReviews";
+import RestaurantSettings from "./pages/Restaurant/Settings/RestaurantSettings";
+
+// Delivery Dashboard
 import DeliveryDashboard from "./pages/Delivery/Dashboard";
 
 // Category Pages
@@ -138,6 +153,22 @@ function App() {
                 }
             />
             <Route
+                path="/admin/restaurants"
+                element={
+                    <ProtectedRoute role="admin">
+                        <RestaurantManagement />
+                    </ProtectedRoute>
+                }
+            />
+            <Route
+                path="/admin/restaurants/:id"
+                element={
+                    <ProtectedRoute role="admin">
+                        <RestaurantDetails />
+                    </ProtectedRoute>
+                }
+            />
+            <Route
                 path="/admin/foods"
                 element={
                     <ProtectedRoute role="admin">
@@ -162,15 +193,36 @@ function App() {
                 }
             />
 
-            {/* Restaurant & Delivery Dashboards */}
+            {/* Restaurant Partner Onboarding & Authentication */}
+            <Route path="/restaurant/register" element={<RestaurantRegister />} />
+            <Route path="/restaurant/login" element={<RestaurantLogin />} />
             <Route
-                path="/restaurant"
+                path="/restaurant/application-status"
                 element={
-                    <ProtectedRoute role="restaurant">
-                        <RestaurantDashboard />
+                    <ProtectedRoute allowedRoles={["restaurant", "admin"]}>
+                        <ApplicationStatus />
                     </ProtectedRoute>
                 }
             />
+
+            {/* Restaurant Partner Dashboard Suite (Protected & Dedicated Kitchen Layout) */}
+            <Route
+                element={
+                    <ProtectedRoute allowedRoles={["restaurant", "admin"]}>
+                        <RestaurantLayout />
+                    </ProtectedRoute>
+                }
+            >
+                <Route path="/restaurant" element={<Navigate to="/restaurant/dashboard" replace />} />
+                <Route path="/restaurant/dashboard" element={<RestaurantDashboard />} />
+                <Route path="/restaurant/orders" element={<RestaurantOrders />} />
+                <Route path="/restaurant/menu" element={<RestaurantMenu />} />
+                <Route path="/restaurant/inventory" element={<RestaurantInventory />} />
+                <Route path="/restaurant/profile" element={<RestaurantProfile />} />
+                <Route path="/restaurant/analytics" element={<RestaurantAnalytics />} />
+                <Route path="/restaurant/reviews" element={<RestaurantReviews />} />
+                <Route path="/restaurant/settings" element={<RestaurantSettings />} />
+            </Route>
             <Route
                 path="/delivery"
                 element={

@@ -213,6 +213,11 @@ const DashboardPopularFoods = ({
       result.sort((a, b) => (b.rating || 4.5) - (a.rating || 4.5));
     }
 
+    // Food Stock Rule #37: Customer-facing food cards: stock > 0 visible; stock <= 0 hidden
+    result = result.filter(
+      (item) => item && (item.stock === undefined || item.stock === null || Number(item.stock) > 0)
+    );
+
     return result;
   }, [foods, activeFilter, sortBy, selectedCategories, maxPrice, minRating, dietaryFilter]);
 
@@ -221,7 +226,7 @@ const DashboardPopularFoods = ({
   };
 
   const handleItemClick = (foodId) => {
-    navigate(`/customization/${foodId}`);
+    navigate(`/food/${foodId}/customize`);
   };
 
   return (

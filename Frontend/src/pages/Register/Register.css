@@ -1293,4 +1293,11 @@ font-size:17px;
 
 }
 
+@media (max-width: 480px) {
+    .password-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
 

@@ -85,3 +85,25 @@
     margin-top:15px;
     line-height:28px;
 }
+
+@media (max-width: 768px) {
+    .whyHeader h2 {
+        font-size: clamp(24px, 6vw, 36px);
+    }
+
+    .statsContainer {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    .featureGrid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .statsContainer {
+        grid-template-columns: 1fr;
+    }
+}

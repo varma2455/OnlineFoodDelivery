@@ -782,8 +782,27 @@
 /* THE FOOD GRID */
 .category-food-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 20px;
+}
+
+@media (min-width: 1536px) {
+    .category-food-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 1280px) and (max-width: 1535px) {
+    .category-food-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .category-food-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+    }
 }
 
 /* ==========================================
@@ -1173,6 +1192,14 @@
     }
 
     .category-food-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .category-food-grid {
         grid-template-columns: 1fr;
+        gap: 14px;
     }
 }

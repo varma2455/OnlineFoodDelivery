@@ -809,153 +809,148 @@
 /* BIRYANI CONTENT */
 
 .biryaniMarketplace{
-    margin-left:250px;
-
-    width:calc(100% - 250px);
-
+    margin-left:247px;
+    width:calc(100% - 247px);
+    max-width:calc(100% - 247px);
+    min-width:0;
     min-height:100vh;
-
     background:#f7f8fc;
-
     color:#1e293b;
-
-    padding:0 38px 50px;
+    padding:0 32px 50px;
+    box-sizing:border-box;
 }
-
 
 /* =========================================
    RESPONSIVE
 ========================================= */
 
-@media(max-width:850px){
-
-    .biryaniPageLayout{
-        display:block;
+/* 2XL & XL (1280px+) */
+@media (min-width: 1280px) {
+    .modernBiryaniGrid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
     }
-
-    .biryaniPageLayout .browseSidebar{
-        position:relative;
-
-        width:100%;
-        height:auto;
-
-        min-height:auto;
-    }
-
-    .biryaniMarketplace{
-        margin-left:0;
-
-        width:100%;
-
-        padding:0 20px 40px;
+    .biryaniRestaurantScroller {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 }
 
-
-/* =========================================
-   RESPONSIVE
-========================================= */
-
-@media(max-width:1100px){
-
-    .modernBiryaniGrid{
-        grid-template-columns:
-            repeat(3,minmax(0,1fr));
+/* LG (1024px - 1279px) */
+@media (min-width: 1024px) and (max-width: 1279px) {
+    .biryaniMarketplace {
+        margin-left: 247px;
+        width: calc(100% - 247px);
+        max-width: calc(100% - 247px);
+        padding: 0 24px 45px;
     }
-
-    .biryaniRestaurantScroller{
-        grid-template-columns:
-            repeat(2,minmax(0,1fr));
+    .modernBiryaniGrid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
     }
-
+    .biryaniRestaurantScroller {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
 }
 
-
-@media(max-width:850px){
-
-    .biryaniMarketplace{
-        padding:0 20px 40px;
+/* MD: Tablets / iPads (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .biryaniMarketplace {
+        margin-left: 210px !important;
+        width: calc(100% - 210px) !important;
+        max-width: calc(100% - 210px) !important;
+        padding: 0 20px 40px;
     }
-
-    .biryaniHero{
-        grid-template-columns:1fr;
+    .biryaniHero {
+        grid-template-columns: 1fr;
     }
-
-    .biryaniHeroImage{
-        display:none;
+    .biryaniHeroImage {
+        display: none;
     }
-
-    .modernBiryaniGrid{
-        grid-template-columns:
-            repeat(2,minmax(0,1fr));
+    .modernBiryaniGrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
     }
-
+    .biryaniRestaurantScroller {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 }
 
-
-@media(max-width:600px){
-
-    .biryaniMarketplace{
-        padding:0 14px 30px;
+/* SM & XS: Mobile Devices (<768px) */
+@media (max-width: 767px) {
+    .biryaniMarketplace {
+        margin-left: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 16px 30px;
     }
-
-    .biryaniTopHeader{
-        height:68px;
+    .biryaniTopHeader {
+        height: 64px;
+        gap: 10px;
     }
-
-    .biryaniHeaderText h1{
-        font-size:20px;
+    .biryaniHeaderRight,
+    .biryaniLocation {
+        display: none;
     }
-
-    .biryaniLocation{
-        display:none;
+    .biryaniHero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        margin-top: 15px;
     }
-
-    .biryaniCart{
-        padding:0 12px;
+    .biryaniHeroImage {
+        display: none;
     }
-
-    .biryaniHeroContent{
-        padding:30px 25px;
+    .biryaniHeroContent {
+        padding: 24px 18px;
     }
-
-    .biryaniHero h2{
-        font-size:30px;
+    .biryaniHero h2 {
+        font-size: clamp(22px, 5vw, 30px);
+        margin: 12px 0 8px;
     }
-
-    .biryaniFiltersSection{
-        align-items:flex-start;
-        gap:12px;
-        flex-direction:column;
+    .biryaniFiltersSection {
+        align-items: flex-start;
+        gap: 12px;
+        flex-direction: column;
+        padding: 15px 0;
+        margin: 10px 0;
     }
-
-    .biryaniFilterLeft{
-        width:100%;
+    .biryaniFilterLeft {
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 6px;
+        -webkit-overflow-scrolling: touch;
     }
-
-    .biryaniSortButton{
-        align-self:flex-end;
+    .biryaniFilter {
+        flex-shrink: 0;
     }
-
-    .biryaniRestaurantScroller{
-        grid-template-columns:1fr;
+    .biryaniRestaurantScroller {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
     }
-
-    .modernBiryaniGrid{
-        grid-template-columns:1fr;
-        gap:16px;
+    .modernBiryaniGrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
     }
-
-    .modernBiryaniImage{
-        height:210px;
+    .biryaniSectionHeading h2 {
+        font-size: 20px;
     }
-
-    .biryaniDeliveryBanner{
-        flex-wrap:wrap;
+    .biryaniDeliveryBanner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 16px;
     }
-
-    .biryaniDeliveryTime{
-        margin-left:0;
+    .biryaniDeliveryTime {
+        margin-left: 0;
     }
+}
 
+/* XS small phones (<480px) */
+@media (max-width: 480px) {
+    .modernBiryaniGrid {
+        grid-template-columns: 1fr;
+    }
+    .biryaniRestaurantScroller {
+        grid-template-columns: 1fr;
+    }
+    .biryaniHero h2 {
+        font-size: 24px;
+    }
 }

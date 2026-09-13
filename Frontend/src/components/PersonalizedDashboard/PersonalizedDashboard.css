@@ -209,3 +209,10 @@
     cursor:pointer;
     
     }
+
+@media (max-width: 768px) {
+    .recentGrid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}

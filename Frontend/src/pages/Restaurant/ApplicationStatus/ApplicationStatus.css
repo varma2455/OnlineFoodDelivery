@@ -1,0 +1,193 @@
+.app-status-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #fff7ed 0%, #f8fafc 50%, #eff6ff 100%);
+    font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: #1e293b;
+    padding: clamp(20px, 4vw, 48px) clamp(14px, 3vw, 24px);
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.app-status-card {
+    width: 100%;
+    max-width: 680px;
+    background: #ffffff;
+    border-radius: 24px;
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.07), 0 2px 6px rgba(0, 0, 0, 0.04);
+    border: 1px solid #f1f5f9;
+    padding: clamp(24px, 5vw, 44px);
+    box-sizing: border-box;
+}
+
+.app-status-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.app-badge-id {
+    font-size: 13px;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.app-badge-id code {
+    background: #f1f5f9;
+    padding: 3px 8px;
+    border-radius: 6px;
+    color: #0f172a;
+    font-weight: 700;
+}
+
+.app-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    border-radius: 9999px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.app-status-badge.pending {
+    background: #fef9c3;
+    color: #854d0e;
+    border: 1px solid #fef08a;
+}
+
+.app-status-badge.approved {
+    background: #dcfce7;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+}
+
+.app-status-badge.rejected {
+    background: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+}
+
+.app-status-badge.suspended {
+    background: #ffedd5;
+    color: #9a3412;
+    border: 1px solid #fed7aa;
+}
+
+/* Timeline */
+.app-timeline {
+    margin: 28px 0;
+    position: relative;
+    padding-left: 28px;
+}
+
+.app-timeline::before {
+    content: "";
+    position: absolute;
+    top: 6px;
+    bottom: 6px;
+    left: 9px;
+    width: 2px;
+    background: #e2e8f0;
+}
+
+.app-timeline-item {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.app-timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.app-timeline-dot {
+    position: absolute;
+    left: -28px;
+    top: 2px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    background: #ffffff;
+    border: 2px solid #cbd5e1;
+    color: #64748b;
+}
+
+.app-timeline-item.completed .app-timeline-dot {
+    background: #10b981;
+    border-color: #10b981;
+    color: #ffffff;
+}
+
+.app-timeline-item.current .app-timeline-dot {
+    background: #ff5200;
+    border-color: #ff5200;
+    color: #ffffff;
+    box-shadow: 0 0 0 4px rgba(255, 82, 0, 0.2);
+}
+
+.app-timeline-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #334155;
+}
+
+.app-timeline-item.current .app-timeline-title {
+    color: #ff5200;
+    font-weight: 700;
+}
+
+/* Alert boxes */
+.app-notice-box {
+    padding: 16px 20px;
+    border-radius: 12px;
+    margin: 20px 0;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.app-notice-box.pending {
+    background: #fefce8;
+    border: 1px solid #fef08a;
+    color: #713f12;
+}
+
+.app-notice-box.approved {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    color: #14532d;
+}
+
+.app-notice-box.rejected {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #7f1d1d;
+}
+
+.app-notice-box.suspended {
+    background: #fff7ed;
+    border: 1px solid #fed7aa;
+    color: #7c2d12;
+}
+
+.app-actions-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid #f1f5f9;
+}

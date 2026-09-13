@@ -9,7 +9,13 @@ import {
     toggleBlockUser,
     changeUserRole,
     deleteUser,
-    getFirebaseUsers
+    getFirebaseUsers,
+    getAdminRestaurants,
+    getAdminRestaurantById,
+    approveRestaurant,
+    rejectRestaurant,
+    suspendRestaurant,
+    activateRestaurant
 } from "../controllers/adminController.js";
 import { addFood, updateFood, deleteFood } from "../controllers/foodController.js";
 import { protect } from "../middleware/authMiddleware.js";
@@ -23,6 +29,14 @@ router.use(protect, isAdmin);
 
 // Dashboard & Stats
 router.get(["/dashboard", "/stats"], getAdminDashboard);
+
+// Restaurants Management
+router.get("/restaurants", getAdminRestaurants);
+router.get("/restaurants/:id", getAdminRestaurantById);
+router.put("/restaurants/:id/approve", approveRestaurant);
+router.put("/restaurants/:id/reject", rejectRestaurant);
+router.put("/restaurants/:id/suspend", suspendRestaurant);
+router.put("/restaurants/:id/activate", activateRestaurant);
 
 // Foods
 router.get("/foods", getAdminFoods);

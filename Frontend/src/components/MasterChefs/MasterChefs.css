@@ -114,3 +114,18 @@
     cursor:pointer;
     font-size:16px;
     }
+
+@media (max-width: 768px) {
+    .chefHeader h2 {
+        font-size: clamp(24px, 6vw, 36px);
+    }
+
+    .chefGrid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .chefInfo {
+        padding: 20px;
+    }
+}

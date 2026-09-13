@@ -1,0 +1,185 @@
+.rest-login-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #fff7ed 0%, #f8fafc 50%, #eff6ff 100%);
+    font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: #1e293b;
+    padding: clamp(16px, 4vw, 40px) clamp(12px, 3vw, 24px);
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rest-login-card {
+    width: 100%;
+    max-width: 480px;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
+    border: 1px solid #f1f5f9;
+    padding: clamp(24px, 5vw, 44px);
+    box-sizing: border-box;
+}
+
+.rest-login-header {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.rest-login-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff7ed;
+    color: #ff5200;
+    font-weight: 800;
+    font-size: 14px;
+    padding: 7px 16px;
+    border-radius: 9999px;
+    margin-bottom: 12px;
+    border: 1px solid #fed7aa;
+}
+
+.rest-login-title {
+    font-size: clamp(22px, 4vw, 28px);
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 8px;
+}
+
+.rest-login-subtitle {
+    color: #64748b;
+    font-size: 14px;
+    margin: 0;
+}
+
+.rest-login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.btn-google-login {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1.5px solid #cbd5e1;
+    background: #ffffff;
+    color: #0f172a;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.2s ease;
+}
+
+.btn-google-login:hover:not(:disabled) {
+    background: #f8fafc;
+    border-color: #94a3b8;
+}
+
+.rest-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #94a3b8;
+    font-size: 12px;
+    font-weight: 600;
+    margin: 6px 0;
+}
+
+.rest-divider::before,
+.rest-divider::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.rest-divider span {
+    padding: 0 10px;
+}
+
+.rest-password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.rest-password-toggle {
+    position: absolute;
+    right: 12px;
+    background: none;
+    border: none;
+    color: #64748b;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+}
+
+.rest-login-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+}
+
+.rest-forgot-link {
+    color: #ff5200;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.rest-forgot-link:hover {
+    text-decoration: underline;
+}
+
+.btn-rest-submit {
+    width: 100%;
+    padding: 13px;
+    border-radius: 10px;
+    border: none;
+    background: linear-gradient(135deg, #ff5200 0%, #ea580c 100%);
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(255, 82, 0, 0.3);
+    transition: all 0.2s ease;
+}
+
+.btn-rest-submit:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(255, 82, 0, 0.4);
+}
+
+.btn-rest-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.rest-register-banner {
+    margin-top: 24px;
+    padding: 16px;
+    background: #fff7ed;
+    border: 1px solid #fed7aa;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 14px;
+    color: #9a3412;
+}
+
+.rest-register-banner a {
+    display: inline-block;
+    margin-top: 6px;
+    color: #ff5200;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.rest-register-banner a:hover {
+    text-decoration: underline;
+}

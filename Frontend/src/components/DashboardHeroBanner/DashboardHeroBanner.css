@@ -400,3 +400,66 @@
 .category-circle-card:hover .category-label {
   color: #ff5200;
 }
+
+/* ===================================================
+   Responsive Breakpoints
+   =================================================== */
+@media (max-width: 768px) {
+  .foodexpress-mind-hero-section {
+    padding: 18px 16px;
+    border-radius: 16px;
+  }
+
+  .search-input-wrapper {
+    padding: 4px 6px 4px 12px;
+  }
+
+  .hero-search-input {
+    font-size: 14px;
+  }
+
+  .btn-hero-search-submit {
+    padding: 8px 16px;
+    font-size: 13px;
+    min-height: 44px;
+  }
+
+  .circle-image-wrap {
+    width: 72px;
+    height: 72px;
+  }
+
+  .category-label {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .foodexpress-mind-hero-section {
+    padding: 14px 12px;
+  }
+
+  .mind-section-header h2 {
+    font-size: 17px;
+  }
+
+  .circle-image-wrap {
+    width: 62px;
+    height: 62px;
+  }
+
+  .category-scroll-track {
+    gap: 14px;
+  }
+
+  .btn-hero-search-submit {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .search-lead-icon {
+    font-size: 16px;
+    margin-right: 8px;
+  }
+}
+

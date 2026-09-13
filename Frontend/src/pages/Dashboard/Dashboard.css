@@ -67,51 +67,40 @@
   scroll-margin-top: 96px;
 }
 
-/* Responsive Breakpoints */
+/* ===================================================
+   Responsive Breakpoints Across All Form Factors
+   =================================================== */
 
-/* Large Desktop (<= 1440px) */
-@media (max-width: 1440px) {
+/* 2XL: Large monitors / 4K (1536px+) */
+@media (min-width: 1536px) {
   .dashboard-main-feed {
-    padding: 22px 24px 85px;
-    gap: 24px;
+    max-width: 1560px;
+    padding: 28px 32px 90px;
+    gap: 30px;
   }
 }
 
-/* Laptop / Medium Desktop (<= 1200px) */
-@media (max-width: 1200px) {
-  .dashboard-sidebar {
-    width: 230px;
-  }
-
-  .dashboard-content-area {
-    margin-left: 0;
-    width: 100%;
-  }
-
+/* XL: Standard desktops (1280px - 1535px) */
+@media (min-width: 1280px) and (max-width: 1535px) {
   .dashboard-main-feed {
-    padding: 20px 20px 85px;
-    gap: 22px;
+    max-width: 1360px;
+    padding: 24px 26px 85px;
+    gap: 26px;
   }
+}
 
-  .dashboard-utility-grid {
-    grid-template-columns: 1fr;
+/* LG: Small laptops / desktops (1024px - 1279px) */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .dashboard-main-feed {
+    padding: 20px 22px 85px;
     gap: 22px;
   }
 }
 
-/* Tablets (<= 1024px) */
-@media (max-width: 1024px) {
-  .dashboard-page-container .dashboard-sidebar {
-    display: none;
-  }
-
-  .dashboard-content-area {
-    margin-left: 0;
-    width: 100%;
-  }
-
+/* MD: Tablets / iPads (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
   .dashboard-main-feed {
-    padding: 16px 18px 90px;
+    padding: 18px 18px 85px;
     gap: 20px;
   }
 
@@ -121,14 +110,28 @@
   }
 }
 
-/* Mobile Screens (<= 640px) */
-@media (max-width: 640px) {
+/* SM: Landscape phones / small tablets (640px - 767px) */
+@media (min-width: 640px) and (max-width: 767px) {
   .dashboard-main-feed {
-    padding: 12px 14px 95px;
-    gap: 16px;
+    padding: 16px 16px 90px;
+    gap: 18px;
   }
 
   .dashboard-utility-grid {
-    gap: 16px;
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}
+
+/* XS: Mobile phones (0px - 639px) */
+@media (max-width: 639px) {
+  .dashboard-main-feed {
+    padding: 12px 12px 95px;
+    gap: 14px;
+  }
+
+  .dashboard-utility-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
   }
 }

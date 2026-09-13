@@ -43,16 +43,13 @@
 ========================================================= */
 
 .noodlesOrderPage{
-    margin-left:250px;
-
-    width:calc(100% - 250px);
-
+    margin-left:247px;
+    width:calc(100% - 247px);
+    max-width:calc(100% - 247px);
+    min-width:0;
     min-height:100vh;
-
     background:#f7f8fc;
-
     padding:10px 20px;
-
     box-sizing:border-box;
 }
 
@@ -994,111 +991,61 @@
 
 
 /* =========================================================
-   TABLET
+   RESPONSIVE
 ========================================================= */
 
-@media(max-width:850px){
-
-    .noodlesOrderPage{
-        margin-left:0;
-
-        width:100%;
+@media (min-width: 768px) and (max-width: 1023px) {
+    .noodlesOrderPage {
+        margin-left: 210px !important;
+        width: calc(100% - 210px) !important;
+        max-width: calc(100% - 210px) !important;
+        padding: 20px 16px;
     }
-
-
-    .noodlesOrderPageLayout .browseSidebar{
-        position:relative;
-
-        width:100%;
-
-        height:auto;
-
-        min-height:auto;
+    .noodlesOrderContainer {
+        grid-template-columns: 1fr;
+        max-width: 600px;
     }
-
-
-    .noodlesOrderContainer{
-        grid-template-columns:1fr;
-
-        max-width:550px;
-    }
-
-
-    .noodlesImageCard{
-        height:380px;
-    }
-
 }
 
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media(max-width:600px){
-
-    .noodlesOrderPage{
-        padding:10px 12px;
+@media (max-width: 767px) {
+    .noodlesOrderPage {
+        margin-left: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 10px 12px;
     }
-
-
-    .noodlesOrderContainer{
-        gap:18px;
+    .noodlesOrderContainer {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 0;
     }
-
-
-    .noodlesOrderRight{
-        padding:20px 16px;
+    .noodlesOrderRight {
+        padding: 18px 14px;
     }
-
-
-    .noodlesHeader{
-        padding:0 4px;
+    .noodlesHeader {
+        padding: 0 4px;
     }
-
-
     .noodlesProteinGrid,
-    .noodlesAddonsGrid{
-        grid-template-columns:1fr;
+    .noodlesAddonsGrid {
+        grid-template-columns: 1fr;
     }
-
-
-    .noodlesPortionGrid{
-        grid-template-columns:
-            1fr 1fr 1fr;
+    .noodlesPortionGrid {
+        grid-template-columns: repeat(3, 1fr);
     }
-
-
-    .noodlesImageCard{
-        height:300px;
+    .noodlesImageCard {
+        height: 270px;
     }
-
+    .noodlesAddCart {
+        width: 100%;
+        justify-content: center;
+    }
 }
 
-
-/* =========================================================
-   SMALL MOBILE
-========================================================= */
-
-@media(max-width:400px){
-
-    .noodlesOrderPage{
-        padding:8px 10px;
+@media (max-width: 480px) {
+    .noodlesPortionGrid {
+        grid-template-columns: 1fr;
     }
-
-
-    .noodlesOrderRight{
-        padding:17px 14px;
+    .noodlesOrderRight h1 {
+        font-size: 22px;
     }
-
-
-    .noodlesOrderRight h1{
-        font-size:23px;
-    }
-
-
-    .noodlesImageCard{
-        height:250px;
-    }
-
 }

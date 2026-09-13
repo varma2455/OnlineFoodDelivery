@@ -184,9 +184,10 @@ const Dashboard = () => {
         },
         {
             title: "Restaurants",
-            value: "235",
+            value: dashStats?.totalRestaurants !== undefined ? dashStats.totalRestaurants.toLocaleString() : (dashStats?.restaurants !== undefined ? dashStats.restaurants.toLocaleString() : "0"),
             icon: <FaStore />,
-            change: "+8%"
+            change: `${dashStats?.pendingRestaurants || 0} Pending`,
+            link: "/admin/restaurants"
         },
         {
             title: "Delivery Partners",
@@ -333,6 +334,10 @@ const Dashboard = () => {
                         <div
                             className="stat-card"
                             key={index}
+                            onClick={() => {
+                                if (item.link) navigate(item.link);
+                            }}
+                            style={{ cursor: item.link ? "pointer" : "default" }}
                         >
 
                             <div className="card-top">

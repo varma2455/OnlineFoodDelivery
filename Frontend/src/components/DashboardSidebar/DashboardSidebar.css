@@ -321,32 +321,125 @@
     border: none;
 }
 
-/* Responsive */
-@media (max-width: 1200px) {
+/* ===========================
+   Backdrop & Mobile Close Button
+=========================== */
+.sidebar-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    z-index: 1999;
+    animation: sidebarFadeIn 0.25s ease;
+}
+
+@keyframes sidebarFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.sidebar-close-btn {
+    display: none;
+    position: absolute;
+    top: 20px;
+    right: 18px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    font-size: 16px;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+    z-index: 10;
+}
+
+.sidebar-close-btn:hover {
+    background: rgba(255, 255, 255, 0.35);
+}
+
+/* ===========================
+   Standard Breakpoints (Rule #1, #4, #36)
+=========================== */
+
+/* MD — Medium (768px – 1023px): Tablets / iPads */
+@media (min-width: 768px) and (max-width: 1023px) {
     .dashboard-sidebar,
     .sidebar {
-        width: 247px;
-        min-width: 247px;
+        width: 210px;
+        min-width: 210px;
+        max-width: 210px;
+        padding: 24px 14px;
+    }
+
+    .sidebar-logo {
+        margin-bottom: 24px;
+    }
+
+    .sidebar-logo h2 {
+        font-size: 19px;
+    }
+
+    .logo-circle {
+        width: 44px;
+        height: 44px;
+        font-size: 20px;
+        margin-right: 10px;
+    }
+
+    .sidebar-menu a,
+    .sidebar-menu li a,
+    .sidebar-item {
+        padding: 10px 12px;
+        font-size: 13px;
+        gap: 10px;
+    }
+
+    .premium-card {
+        padding: 14px 12px;
     }
 }
 
-@media (max-width: 992px) {
-    .dashboard-sidebar {
-        position: fixed;
-        left: 0;
-        top: 0;
-        z-index: 999;
-        transform: translateX(-100%);
-        transition: 0.35s ease;
+/* SM & XS (0px – 767px): Mobile Drawer */
+@media (max-width: 767px) {
+    .dashboard-sidebar,
+    .sidebar {
+        position: fixed !important;
+        left: 0 !important;
+        top: 0 !important;
+        bottom: 0 !important;
+        width: 280px !important;
+        min-width: 0 !important;
+        max-width: 85vw !important;
+        height: 100vh !important;
+        height: 100dvh !important;
+        z-index: 2000 !important;
+        transform: translateX(-100%) !important;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        box-shadow: none;
+        padding: 24px 18px !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch;
     }
 
-    .dashboard-sidebar.active {
-        transform: translateX(0);
+    .dashboard-sidebar.active,
+    .sidebar.active {
+        transform: translateX(0) !important;
+        box-shadow: 10px 0 35px rgba(0, 0, 0, 0.35) !important;
+    }
+
+    .sidebar-close-btn {
+        display: flex !important;
+    }
+
+    .sidebar-item,
+    .sidebar-menu a,
+    .sidebar-menu li a {
+        min-height: 44px;
     }
 }
 
-@media (max-width: 768px) {
-    .dashboard-sidebar {
-        display: none;
-    }
-}

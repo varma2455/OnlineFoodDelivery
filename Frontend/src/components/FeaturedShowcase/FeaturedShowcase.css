@@ -185,3 +185,23 @@
     margin:auto;
     
     }
+
+@media (max-width: 768px) {
+    .featuredTitle h1 {
+        font-size: clamp(28px, 6vw, 42px);
+    }
+
+    .featuredCards {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .featureCard {
+        padding: 24px 18px;
+    }
+
+    .featureCard img {
+        width: 180px;
+        height: 180px;
+    }
+}

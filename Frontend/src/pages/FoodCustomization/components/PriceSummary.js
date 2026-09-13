@@ -11,7 +11,8 @@ export default function PriceSummary({
     validationError = null,
     addedSuccess = false,
     onViewCart,
-    onContinueShopping
+    onContinueShopping,
+    isOutOfStock = false
 }) {
     return (
         <div className="customization-bottom-bar">
@@ -64,15 +65,17 @@ export default function PriceSummary({
 
                 <button
                     type="button"
-                    className="btn-add-to-cart-action"
+                    className={`btn-add-to-cart-action ${isOutOfStock ? "btn-disabled" : ""}`}
                     onClick={onAddToCart}
-                    disabled={isSubmitting}
+                    disabled={isSubmitting || isOutOfStock}
                 >
                     {isSubmitting ? (
                         <>
                             <FaSpinner className="spin-icon" />
                             <span>Adding to Cart...</span>
                         </>
+                    ) : isOutOfStock ? (
+                        <span>Out of Stock</span>
                     ) : (
                         <>
                             <FaShoppingCart />

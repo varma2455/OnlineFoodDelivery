@@ -96,3 +96,24 @@
 .customer span{
     color:#94A3B8;
 }
+
+@media (max-width: 768px) {
+    .testimonialHeader {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .testimonialHeader h2 {
+        font-size: clamp(24px, 6vw, 36px);
+    }
+
+    .testimonialGrid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .testimonialCard {
+        padding: 22px 18px;
+    }
+}

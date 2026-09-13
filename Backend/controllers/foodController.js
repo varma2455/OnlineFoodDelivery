@@ -184,6 +184,7 @@ export const getAllFoods = async (req, res, next) => {
 
         const totalFoods = await Food.countDocuments(query);
         const foods = await Food.find(query)
+            .populate("restaurantId", "name rating address cuisineTypes deliveryFee minimumOrderAmount status")
             .sort(sortOption)
             .skip(skip)
             .limit(limit);
@@ -207,7 +208,8 @@ export const getAllFoods = async (req, res, next) => {
  */
 export const getFoodById = async (req, res, next) => {
     try {
-        const food = await Food.findById(req.params.id);
+        const food = await Food.findById(req.params.id)
+            .populate("restaurantId", "name rating address cuisineTypes deliveryFee minimumOrderAmount status");
 
         if (!food) {
             return res.status(404).json({
@@ -379,6 +381,7 @@ export const getFeaturedFoods = async (req, res, next) => {
             featured: true,
             isAvailable: true
         })
+            .populate("restaurantId", "name rating address cuisineTypes")
             .sort({ rating: -1 })
             .limit(8);
 
@@ -398,6 +401,7 @@ export const getFeaturedFoods = async (req, res, next) => {
 export const getLatestFoods = async (req, res, next) => {
     try {
         const foods = await Food.find({ isAvailable: true })
+            .populate("restaurantId", "name rating address cuisineTypes")
             .sort({ createdAt: -1 })
             .limit(10);
 
@@ -417,6 +421,7 @@ export const getLatestFoods = async (req, res, next) => {
 export const getPopularFoods = async (req, res, next) => {
     try {
         const foods = await Food.find({ isAvailable: true })
+            .populate("restaurantId", "name rating address cuisineTypes")
             .sort({ rating: -1, totalReviews: -1 })
             .limit(12);
 

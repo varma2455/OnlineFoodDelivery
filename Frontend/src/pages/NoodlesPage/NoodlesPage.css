@@ -36,12 +36,15 @@
 ========================================= */
 
 .noodlesMarketplace{
-    margin-left:250px;
-    width:calc(100% - 250px);
+    margin-left:247px;
+    width:calc(100% - 247px);
+    max-width:calc(100% - 247px);
+    min-width:0;
     min-height:100vh;
     background:#f7f8fc;
     color:#1e293b;
-    padding:0 38px 50px;
+    padding:0 32px 50px;
+    box-sizing:border-box;
 }
 
 
@@ -789,118 +792,136 @@
    RESPONSIVE
 ========================================= */
 
-@media(max-width:1200px){
-
-    .noodlesProductGrid{
-        grid-template-columns:
-            repeat(3,minmax(0,1fr));
-    }
-
-    .noodlesRestaurantGrid{
-        grid-template-columns:
-            repeat(2,minmax(0,1fr));
-    }
-
-}
-
-
-@media(max-width:900px){
-
-    .noodlesMarketplace{
-        padding:0 20px 40px;
-    }
-
-    .noodlesHero{
-        grid-template-columns:1fr;
-    }
-
-    .noodlesHeroImage{
-        display:none;
-    }
-
-    .noodlesFilterHeader{
-        align-items:flex-start;
-        gap:15px;
-        flex-direction:column;
-    }
-
-    .noodlesProductGrid{
-        grid-template-columns:
-            repeat(2,minmax(0,1fr));
-    }
-
-}
-
-
-@media(max-width:650px){
-
-    .noodlesMarketplace{
-        padding:0 14px 30px;
-    }
-
-    .noodlesHeaderLocation{
-        display:none;
-    }
-
-    .noodlesHeroContent{
-        padding:30px 25px;
-    }
-
-    .noodlesHero h2{
-        font-size:30px;
-    }
-
-    .noodlesFilters{
-        width:100%;
-        overflow-x:auto;
-        padding-bottom:5px;
-    }
-
-    .noodlesFilters button{
-        flex-shrink:0;
-    }
-
-    .noodlesRestaurantGrid{
-        grid-template-columns:1fr;
-    }
-
-    .noodlesProductGrid{
-        grid-template-columns:1fr;
-    }
-
-    .noodlesDeliveryBanner{
-        align-items:flex-start;
-    }
-
-}
-
-
 /* =========================================
-   SMALL SCREEN
+   RESPONSIVE
 ========================================= */
 
-@media(max-width:450px){
-
-    .noodlesMarketplace{
-        padding:0 10px 25px;
+/* 2XL & XL (1280px+) */
+@media (min-width: 1280px) {
+    .noodlesProductGrid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
     }
-
-    .noodlesHeroContent{
-        padding:25px 20px;
+    .noodlesRestaurantGrid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
     }
+}
 
-    .noodlesHero h2{
-        font-size:27px;
+/* LG (1024px - 1279px) */
+@media (min-width: 1024px) and (max-width: 1279px) {
+    .noodlesMarketplace {
+        margin-left: 247px;
+        width: calc(100% - 247px);
+        max-width: calc(100% - 247px);
+        padding: 0 24px 45px;
     }
-
-    .noodlesSearchBox{
-        height:45px;
+    .noodlesProductGrid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
     }
-
-    .noodlesHeroStats{
-        flex-wrap:wrap;
+    .noodlesRestaurantGrid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
     }
+}
 
+/* MD: Tablets / iPads (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .noodlesMarketplace {
+        margin-left: 210px !important;
+        width: calc(100% - 210px) !important;
+        max-width: calc(100% - 210px) !important;
+        padding: 0 20px 40px;
+    }
+    .noodlesHero {
+        grid-template-columns: 1fr;
+    }
+    .noodlesHeroImage {
+        display: none;
+    }
+    .noodlesProductGrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+    }
+    .noodlesRestaurantGrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* SM & XS: Mobile Devices (<768px) */
+@media (max-width: 767px) {
+    .noodlesMarketplace {
+        margin-left: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 16px 30px;
+    }
+    .noodlesTopHeader {
+        height: 64px;
+        gap: 10px;
+    }
+    .noodlesHeaderRight,
+    .noodlesHeaderLocation {
+        display: none;
+    }
+    .noodlesHero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        margin-top: 15px;
+    }
+    .noodlesHeroImage {
+        display: none;
+    }
+    .noodlesHeroContent {
+        padding: 24px 18px;
+    }
+    .noodlesHero h2 {
+        font-size: clamp(22px, 5vw, 30px);
+        margin: 12px 0 8px;
+    }
+    .noodlesFilterHeader {
+        align-items: flex-start;
+        gap: 12px;
+        flex-direction: column;
+        padding: 15px 0;
+        margin: 10px 0;
+    }
+    .noodlesFilters {
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 6px;
+        -webkit-overflow-scrolling: touch;
+    }
+    .noodlesFilters button {
+        flex-shrink: 0;
+    }
+    .noodlesRestaurantGrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+    .noodlesProductGrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+    }
+    .noodlesDeliveryBanner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 16px;
+    }
+    .noodlesHeroStats {
+        flex-wrap: wrap;
+    }
+}
+
+/* XS small phones (<480px) */
+@media (max-width: 480px) {
+    .noodlesProductGrid {
+        grid-template-columns: 1fr;
+    }
+    .noodlesRestaurantGrid {
+        grid-template-columns: 1fr;
+    }
+    .noodlesHero h2 {
+        font-size: 24px;
+    }
 }
 
 .noodlesDescription{

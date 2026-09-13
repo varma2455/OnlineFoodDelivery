@@ -47,6 +47,12 @@ const AdminNav = () => {
                         <FaClipboardList /> Orders
                     </NavLink>
                     <NavLink
+                        to="/admin/restaurants"
+                        className={({ isActive }) => (isActive ? "admin-link active" : "admin-link")}
+                    >
+                        <FaStore /> Restaurants
+                    </NavLink>
+                    <NavLink
                         to="/admin/users"
                         className={({ isActive }) => (isActive ? "admin-link active" : "admin-link")}
                     >

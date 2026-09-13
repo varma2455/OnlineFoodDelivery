@@ -89,6 +89,13 @@ const foodSchema = new mongoose.Schema(
       default: true,
     },
 
+    restaurantId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Restaurant",
+      index: true,
+      default: null,
+    },
+
     restaurant: {
       type: String,
       default: "FoodExpress Kitchen",
@@ -114,6 +121,10 @@ const foodSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+
+foodSchema.index({ restaurantId: 1, isAvailable: 1 });
+foodSchema.index({ category: 1, isAvailable: 1 });
+foodSchema.index({ stock: 1 });
 
 const Food = mongoose.model("Food", foodSchema);
 

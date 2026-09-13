@@ -2567,6 +2567,7 @@ input:checked + .toggle-slider:before {
     .hero-left-cluster {
         flex-direction: column;
         text-align: center;
+        min-width: 0;
     }
     .identity-title-row,
     .identity-contact-row,
@@ -2589,3 +2590,22 @@ input:checked + .toggle-slider:before {
         grid-column: span 1;
     }
 }
+
+@media (max-width: 480px) {
+    .profile-page-shell {
+        padding: 12px 12px 48px;
+    }
+    .profile-hero-card {
+        padding: 16px 14px;
+        border-radius: 16px;
+    }
+    .workspace-panel {
+        padding: 16px 12px;
+        border-radius: 16px;
+    }
+    .ws-tab-btn {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+}
+

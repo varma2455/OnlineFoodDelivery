@@ -1625,11 +1625,21 @@
 /* ==================================================
    19. RESPONSIVE DESIGN (MOBILE & TABLET)
 ================================================== */
-@media (max-width: 992px) {
+@media (min-width: 768px) and (max-width: 1023px) {
+    .membership-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+@media (max-width: 767px) {
     .membership-cards-grid {
         grid-template-columns: 1fr;
-        gap: 22px;
+        gap: 20px;
     }
+}
+
+@media (max-width: 992px) {
 
     .pricing-card.tier-gold.featured-popular {
         transform: none;

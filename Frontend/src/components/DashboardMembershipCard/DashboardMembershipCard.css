@@ -152,3 +152,26 @@
   box-shadow: 0 6px 20px rgba(255, 82, 0, 0.5);
   background: linear-gradient(135deg, #ff6a1a, #f97316);
 }
+
+/* ===================================================
+   Responsive Breakpoints
+   =================================================== */
+@media (max-width: 640px) {
+  .membership-vip-card {
+    padding: 18px 16px;
+    border-radius: 16px;
+  }
+
+  .membership-footer-cta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .btn-membership-action {
+    width: 100%;
+    justify-content: center;
+    min-height: 44px;
+  }
+}
+

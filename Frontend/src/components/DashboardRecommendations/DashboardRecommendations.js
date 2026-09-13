@@ -92,10 +92,9 @@ const DashboardRecommendations = () => {
     fetchData();
   }, [foodList]);
 
-  const activeRecs =
-    recommendedFoods.length > 0
-      ? recommendedFoods
-      : foodList.slice(0, 4);
+  const activeRecs = (recommendedFoods.length > 0 ? recommendedFoods : foodList)
+    .filter((f) => f && (f.stock === undefined || f.stock === null || Number(f.stock) > 0))
+    .slice(0, 4);
 
   return (
     <div className="recommendations-container">

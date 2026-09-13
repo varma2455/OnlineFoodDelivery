@@ -20,6 +20,11 @@ export default function FoodCard({ food, compact = false }) {
 
     if (!food) return null;
 
+    // Rule #37: Customer-facing food cards must obey: stock > 0 visible, stock <= 0 hidden
+    if (food.stock !== undefined && food.stock !== null && Number(food.stock) <= 0) {
+        return null;
+    }
+
     const quantity = cartItems[food._id] || 0;
     const isFavorite = wishlist?.includes(food._id);
 

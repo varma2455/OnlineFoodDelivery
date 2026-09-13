@@ -439,24 +439,60 @@
   font-size: 12px;
 }
 
-@media (max-width: 1200px) {
-  .recommended-cards-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+/* ===================================================
+   Responsive Breakpoints
+   =================================================== */
+
+/* 2XL / XL: Large screens (1280px+) */
+@media (min-width: 1280px) {
+  .recommended-cards-grid,
   .order-again-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
-@media (max-width: 768px) {
-  .recommended-for-you-section,
-  .order-again-section {
-    padding: 18px 20px;
-  }
-  .recommended-cards-grid {
-    grid-template-columns: 1fr;
-  }
+/* LG: Laptops (1024px - 1279px) */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .recommended-cards-grid,
   .order-again-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
+
+/* MD: Tablets / iPads (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .recommended-cards-grid,
+  .order-again-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* SM: Landscape phones / small tablets (640px - 767px) */
+@media (min-width: 640px) and (max-width: 767px) {
+  .recommended-for-you-section,
+  .order-again-section {
+    padding: 18px 16px;
+  }
+  .recommended-cards-grid,
+  .order-again-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* XS: Mobile phones (0px - 639px) */
+@media (max-width: 639px) {
+  .recommended-for-you-section,
+  .order-again-section {
+    padding: 16px 14px;
+    border-radius: 16px;
+  }
+  .section-head-bar h3 {
+    font-size: 17px;
+  }
+  .recommended-cards-grid,
+  .order-again-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+

@@ -112,17 +112,44 @@ export const adminAPI = {
     getFirebaseUsers: () => api.get("/api/admin/firebase/users"),
     toggleBlockUser: (id) => api.put(`/api/admin/users/${id}/block`),
     changeUserRole: (id, role) => api.put(`/api/admin/users/${id}/role`, { role }),
-    deleteUser: (id) => api.delete(`/api/admin/users/${id}`)
+    deleteUser: (id) => api.delete(`/api/admin/users/${id}`),
+    // Restaurant Management for Admin
+    getRestaurants: (params = {}) => api.get("/api/admin/restaurants", { params }),
+    getRestaurantById: (id) => api.get(`/api/admin/restaurants/${id}`),
+    approveRestaurant: (id) => api.put(`/api/admin/restaurants/${id}/approve`),
+    rejectRestaurant: (id, reason) => api.put(`/api/admin/restaurants/${id}/reject`, { reason }),
+    suspendRestaurant: (id, reason) => api.put(`/api/admin/restaurants/${id}/suspend`, { reason }),
+    activateRestaurant: (id) => api.put(`/api/admin/restaurants/${id}/activate`)
 };
 
 // ==============================
-// RESTAURANT API
+// RESTAURANT PARTNER API
 // ==============================
 export const restaurantAPI = {
-    getOrders: () => api.get("/api/restaurant/orders"),
+    register: (data) => api.post("/api/restaurant/register", data),
+    getMyRestaurant: () => api.get("/api/restaurant/me"),
+    updateMyRestaurant: (data) => api.put("/api/restaurant/me", data),
+    getDashboard: () => api.get("/api/restaurant/dashboard"),
+    getOrders: (params = {}) => api.get("/api/restaurant/orders", { params }),
+    getOrderById: (id) => api.get(`/api/restaurant/orders/${id}`),
     updateOrderStatus: (id, orderStatus) => api.put(`/api/restaurant/orders/${id}/status`, { orderStatus }),
-    getFoods: () => api.get("/api/restaurant/foods"),
-    toggleAvailability: (id) => api.put(`/api/restaurant/foods/${id}/availability`)
+    acceptOrder: (id) => api.put(`/api/restaurant/orders/${id}/accept`),
+    rejectOrder: (id) => api.put(`/api/restaurant/orders/${id}/reject`),
+    prepareOrder: (id) => api.put(`/api/restaurant/orders/${id}/preparing`),
+    readyOrder: (id) => api.put(`/api/restaurant/orders/${id}/ready`),
+    getFoods: () => api.get("/api/restaurant/menu"),
+    getMenu: () => api.get("/api/restaurant/menu"),
+    addFood: (formData) => api.post("/api/restaurant/menu", formData, {
+        headers: { "Content-Type": "multipart/form-data" }
+    }),
+    updateFood: (id, formData) => api.put(`/api/restaurant/menu/${id}`, formData, {
+        headers: { "Content-Type": "multipart/form-data" }
+    }),
+    deleteFood: (id) => api.delete(`/api/restaurant/menu/${id}`),
+    updateFoodStock: (id, stockData) => api.put(`/api/restaurant/menu/${id}/stock`, stockData),
+    toggleAvailability: (id) => api.put(`/api/restaurant/foods/${id}/availability`),
+    getAnalytics: () => api.get("/api/restaurant/analytics"),
+    getReviews: () => api.get("/api/restaurant/reviews")
 };
 
 // ==============================

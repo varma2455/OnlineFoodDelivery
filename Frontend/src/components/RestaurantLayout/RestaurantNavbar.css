@@ -1,0 +1,138 @@
+.rest-navbar {
+    height: 70px;
+    background: #ffffff;
+    border-bottom: 1px solid #f1f5f9;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 clamp(16px, 3vw, 32px);
+    position: sticky;
+    top: 0;
+    z-index: 900;
+    box-sizing: border-box;
+}
+
+.rest-navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.btn-rest-hamburger {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #475569;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 8px;
+}
+
+.btn-rest-hamburger:hover {
+    background: #f1f5f9;
+}
+
+.rest-store-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.rest-store-name {
+    font-size: clamp(15px, 2.5vw, 18px);
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+}
+
+.rest-live-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 9999px;
+    font-size: 11px;
+    font-weight: 700;
+    background: #dcfce7;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+}
+
+.rest-navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.btn-view-customer-store {
+    padding: 8px 14px;
+    border-radius: 8px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    color: #475569;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+}
+
+.btn-view-customer-store:hover {
+    background: #f1f5f9;
+    color: #0f172a;
+}
+
+.rest-owner-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.rest-owner-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #fff7ed;
+    color: #ea580c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 15px;
+    border: 1px solid #fed7aa;
+}
+
+.rest-owner-meta {
+    display: flex;
+    flex-direction: column;
+}
+
+.rest-owner-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1e293b;
+    line-height: 1.2;
+}
+
+.rest-owner-role {
+    font-size: 11px;
+    color: #64748b;
+}
+
+@media (max-width: 1023px) {
+    .btn-rest-hamburger {
+        display: flex;
+    }
+}
+
+@media (max-width: 640px) {
+    .rest-owner-meta {
+        display: none;
+    }
+    .btn-view-customer-store span {
+        display: none;
+    }
+}

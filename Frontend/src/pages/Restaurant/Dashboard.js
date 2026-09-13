@@ -71,15 +71,17 @@ const RestaurantDashboard = () => {
     const readyOrders = orders.filter((o) => o.orderStatus === "Out for Delivery");
 
     return (
-        <div style={{ minHeight: "100vh", background: "#f8fafc", padding: "24px 32px", fontFamily: "inherit" }}>
+        <div style={{ minHeight: "100vh", background: "#f8fafc", padding: "clamp(14px, 3vw, 32px)", fontFamily: "inherit", boxSizing: "border-box", width: "100%" }}>
             {/* TOP HEADER */}
             <div
                 style={{
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
+                    flexWrap: "wrap",
+                    gap: "16px",
                     background: "#fff",
-                    padding: "20px 28px",
+                    padding: "16px 20px",
                     borderRadius: "16px",
                     boxShadow: "0 2px 8px rgba(0,0,0,0.04)",
                     marginBottom: "24px"
@@ -185,7 +187,7 @@ const RestaurantDashboard = () => {
             </div>
 
             {/* TAB SELECTOR */}
-            <div style={{ display: "flex", gap: "12px", marginBottom: "20px" }}>
+            <div style={{ display: "flex", gap: "12px", marginBottom: "20px", flexWrap: "wrap" }}>
                 <button
                     type="button"
                     onClick={() => setActiveTab("orders")}
@@ -229,14 +231,14 @@ const RestaurantDashboard = () => {
             {loading ? (
                 <Loader />
             ) : activeTab === "orders" ? (
-                <div style={{ background: "#fff", borderRadius: "16px", padding: "24px", boxShadow: "0 2px 8px rgba(0,0,0,0.04)" }}>
+                <div style={{ background: "#fff", borderRadius: "16px", padding: "clamp(16px, 3vw, 24px)", boxShadow: "0 2px 8px rgba(0,0,0,0.04)" }}>
                     <h2 style={{ fontSize: "18px", margin: "0 0 16px", color: "#0f172a" }}>Active Orders Queue</h2>
 
                     {orders.length === 0 ? (
                         <p style={{ color: "#64748b" }}>No restaurant orders at the moment.</p>
                     ) : (
-                        <div style={{ overflowX: "auto" }}>
-                            <table style={{ width: "100%", borderCollapse: "collapse", textAlign: "left" }}>
+                        <div style={{ overflowX: "auto", WebkitOverflowScrolling: "touch" }}>
+                            <table style={{ width: "100%", minWidth: "620px", borderCollapse: "collapse", textAlign: "left" }}>
                                 <thead>
                                     <tr style={{ borderBottom: "2px solid #f1f5f9", color: "#64748b", fontSize: "13px" }}>
                                         <th style={{ padding: "12px" }}>Order ID</th>

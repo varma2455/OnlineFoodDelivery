@@ -166,10 +166,19 @@
     
     @media(max-width:768px){
     
+    .pizza-section {
+        padding: 40px 16px;
+    }
+
     .pizza-header h2{
     
-    font-size:32px;
+    font-size: clamp(24px, 6vw, 32px);
     
+    }
+
+    .pizza-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
     }
     
     }

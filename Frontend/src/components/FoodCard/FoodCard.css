@@ -495,3 +495,34 @@
     min-width: 14px;
     color: #ffffff;
 }
+
+/* ==================================================
+   RESPONSIVE ADJUSTMENTS (Rule #6 & #7)
+================================================== */
+@media (max-width: 639px) {
+    .food-card {
+        border-radius: 14px;
+    }
+    .food-card-body {
+        padding: 12px 14px 14px;
+    }
+    .food-title {
+        font-size: 15px;
+    }
+    .current-price {
+        font-size: 16px;
+    }
+    .add-to-cart-btn {
+        padding: 6px 12px;
+        font-size: 12.5px;
+        min-height: 36px;
+    }
+    .qty-selector {
+        padding: 4px 8px;
+        min-height: 36px;
+    }
+    .qty-btn {
+        min-width: 26px;
+        min-height: 26px;
+    }
+}

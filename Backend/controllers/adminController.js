@@ -1,6 +1,7 @@
 import User from "../models/User.js";
 import Food from "../models/Food.js";
 import Order from "../models/Order.js";
+import Restaurant from "../models/Restaurant.js";
 import {
     listFirebaseUsers,
     updateFirebaseUser,
@@ -15,7 +16,18 @@ import {
  */
 export const getAdminDashboard = async (req, res, next) => {
     try {
-        const [usersCount, foodsCount, ordersCount, revenueData, recentOrders] = await Promise.all([
+        const [
+            usersCount,
+            foodsCount,
+            ordersCount,
+            revenueData,
+            recentOrders,
+            totalRestaurants,
+            pendingRestaurants,
+            approvedRestaurants,
+            suspendedRestaurants,
+            newRestaurants
+        ] = await Promise.all([
             User.countDocuments(),
             Food.countDocuments(),
             Order.countDocuments(),
@@ -38,7 +50,14 @@ export const getAdminDashboard = async (req, res, next) => {
             Order.find()
                 .populate("user", "fullName email phone")
                 .sort({ createdAt: -1 })
-                .limit(10)
+                .limit(10),
+            Restaurant.countDocuments(),
+            Restaurant.countDocuments({ status: "pending" }),
+            Restaurant.countDocuments({ status: "approved" }),
+            Restaurant.countDocuments({ status: "suspended" }),
+            Restaurant.countDocuments({
+                createdAt: { $gte: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) }
+            })
         ]);
 
         const revenue = revenueData.length > 0 ? revenueData[0].totalRevenue : 0;
@@ -59,7 +78,13 @@ export const getAdminDashboard = async (req, res, next) => {
                 orders: ordersCount,
                 revenue,
                 pendingOrders,
-                completedOrders
+                completedOrders,
+                restaurants: totalRestaurants,
+                totalRestaurants,
+                pendingRestaurants,
+                approvedRestaurants,
+                suspendedRestaurants,
+                newRestaurants
             },
             recentOrders: recentOrders.map(o => ({
                 _id: o._id,
@@ -382,3 +407,221 @@ export const getFirebaseUsers = async (req, res, next) => {
         next(error);
     }
 };
+
+/**
+ * Get All Restaurants for Admin
+ * GET /api/admin/restaurants
+ */
+export const getAdminRestaurants = async (req, res, next) => {
+    try {
+        const { status, search } = req.query;
+        const query = {};
+
+        if (status && status !== "All") {
+            query.status = status.toLowerCase();
+        }
+
+        if (search) {
+            query.$or = [
+                { name: { $regex: search, $options: "i" } },
+                { email: { $regex: search, $options: "i" } },
+                { "address.city": { $regex: search, $options: "i" } },
+                { cuisineTypes: { $regex: search, $options: "i" } }
+            ];
+        }
+
+        const restaurants = await Restaurant.find(query)
+            .populate("ownerId", "fullName email phone role")
+            .sort({ createdAt: -1 });
+
+        return res.status(200).json({
+            success: true,
+            totalRestaurants: restaurants.length,
+            restaurants
+        });
+    } catch (error) {
+        next(error);
+    }
+};
+
+/**
+ * Get Restaurant Details for Admin
+ * GET /api/admin/restaurants/:id
+ */
+export const getAdminRestaurantById = async (req, res, next) => {
+    try {
+        const restaurant = await Restaurant.findById(req.params.id)
+            .populate("ownerId", "fullName email phone role createdAt");
+
+        if (!restaurant) {
+            return res.status(404).json({
+                success: false,
+                message: "Restaurant not found."
+            });
+        }
+
+        // Aggregate statistics for this restaurant
+        const [foodsCount, ordersCount, foodsList, recentOrders] = await Promise.all([
+            Food.countDocuments({ restaurantId: restaurant._id }),
+            Order.countDocuments({ "items.restaurantId": restaurant._id }),
+            Food.find({ restaurantId: restaurant._id }).sort({ createdAt: -1 }).limit(10),
+            Order.find({ "items.restaurantId": restaurant._id })
+                .populate("user", "fullName phone email")
+                .sort({ createdAt: -1 })
+                .limit(5)
+        ]);
+
+        return res.status(200).json({
+            success: true,
+            restaurant,
+            metrics: {
+                totalFoods: foodsCount,
+                totalOrders: ordersCount
+            },
+            foods: foodsList,
+            recentOrders: recentOrders.map((o) => ({
+                _id: o._id,
+                user: o.user,
+                items: o.items.filter(
+                    (i) => i.restaurantId && i.restaurantId.toString() === restaurant._id.toString()
+                ),
+                orderStatus: o.orderStatus,
+                totalAmount: o.finalAmount || o.totalAmount,
+                createdAt: o.createdAt
+            }))
+        });
+    } catch (error) {
+        next(error);
+    }
+};
+
+/**
+ * Approve Restaurant
+ * PUT /api/admin/restaurants/:id/approve
+ */
+export const approveRestaurant = async (req, res, next) => {
+    try {
+        const restaurant = await Restaurant.findById(req.params.id);
+
+        if (!restaurant) {
+            return res.status(404).json({
+                success: false,
+                message: "Restaurant not found."
+            });
+        }
+
+        restaurant.status = "approved";
+        restaurant.isActive = true;
+        restaurant.rejectionReason = "";
+        await restaurant.save();
+
+        console.log(`[ADMIN AUDIT] Admin ${req.user.email} APPROVED restaurant: ${restaurant.name} (${restaurant._id})`);
+
+        return res.status(200).json({
+            success: true,
+            message: `Restaurant "${restaurant.name}" has been approved successfully! 🎉`,
+            restaurant
+        });
+    } catch (error) {
+        next(error);
+    }
+};
+
+/**
+ * Reject Restaurant
+ * PUT /api/admin/restaurants/:id/reject
+ */
+export const rejectRestaurant = async (req, res, next) => {
+    try {
+        const { reason } = req.body;
+        const restaurant = await Restaurant.findById(req.params.id);
+
+        if (!restaurant) {
+            return res.status(404).json({
+                success: false,
+                message: "Restaurant not found."
+            });
+        }
+
+        restaurant.status = "rejected";
+        restaurant.isActive = false;
+        restaurant.rejectionReason = reason || "Application does not meet our partnership criteria.";
+        await restaurant.save();
+
+        console.log(`[ADMIN AUDIT] Admin ${req.user.email} REJECTED restaurant: ${restaurant.name} (${restaurant._id}) - Reason: ${restaurant.rejectionReason}`);
+
+        return res.status(200).json({
+            success: true,
+            message: `Restaurant "${restaurant.name}" has been rejected.`,
+            restaurant
+        });
+    } catch (error) {
+        next(error);
+    }
+};
+
+/**
+ * Suspend Restaurant
+ * PUT /api/admin/restaurants/:id/suspend
+ */
+export const suspendRestaurant = async (req, res, next) => {
+    try {
+        const { reason } = req.body;
+        const restaurant = await Restaurant.findById(req.params.id);
+
+        if (!restaurant) {
+            return res.status(404).json({
+                success: false,
+                message: "Restaurant not found."
+            });
+        }
+
+        restaurant.status = "suspended";
+        restaurant.isActive = false;
+        restaurant.suspensionReason = reason || "Suspended by administrator due to policy compliance.";
+        await restaurant.save();
+
+        console.log(`[ADMIN AUDIT] Admin ${req.user.email} SUSPENDED restaurant: ${restaurant.name} (${restaurant._id}) - Reason: ${restaurant.suspensionReason}`);
+
+        return res.status(200).json({
+            success: true,
+            message: `Restaurant "${restaurant.name}" has been suspended.`,
+            restaurant
+        });
+    } catch (error) {
+        next(error);
+    }
+};
+
+/**
+ * Activate Restaurant (from suspended or closed)
+ * PUT /api/admin/restaurants/:id/activate
+ */
+export const activateRestaurant = async (req, res, next) => {
+    try {
+        const restaurant = await Restaurant.findById(req.params.id);
+
+        if (!restaurant) {
+            return res.status(404).json({
+                success: false,
+                message: "Restaurant not found."
+            });
+        }
+
+        restaurant.status = "approved";
+        restaurant.isActive = true;
+        restaurant.suspensionReason = "";
+        await restaurant.save();
+
+        console.log(`[ADMIN AUDIT] Admin ${req.user.email} ACTIVATED restaurant: ${restaurant.name} (${restaurant._id})`);
+
+        return res.status(200).json({
+            success: true,
+            message: `Restaurant "${restaurant.name}" is now active.`,
+            restaurant
+        });
+    } catch (error) {
+        next(error);
+    }
+};
+

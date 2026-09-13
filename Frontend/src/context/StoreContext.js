@@ -88,6 +88,15 @@ const StoreContextProvider = ({ children }) => {
         localStorage.setItem("foodexpress_area", area);
     }, []);
 
+    // Responsive Mobile Sidebar Drawer State
+    const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
+    const toggleMobileSidebar = useCallback(() => {
+        setMobileSidebarOpen((prev) => !prev);
+    }, []);
+    const closeMobileSidebar = useCallback(() => {
+        setMobileSidebarOpen(false);
+    }, []);
+
     // Toast Notifications
     const [toasts, setToasts] = useState([]);
 
@@ -723,6 +732,10 @@ const StoreContextProvider = ({ children }) => {
         selectedArea,
         setSelectedArea,
         availableAreas,
+        mobileSidebarOpen,
+        setMobileSidebarOpen,
+        toggleMobileSidebar,
+        closeMobileSidebar,
         showToast
     };
 

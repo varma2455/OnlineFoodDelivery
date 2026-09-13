@@ -52,15 +52,17 @@ const DeliveryDashboard = () => {
     const completedToday = orders.filter((o) => o.orderStatus === "Delivered");
 
     return (
-        <div style={{ minHeight: "100vh", background: "#f8fafc", padding: "24px 32px", fontFamily: "inherit" }}>
+        <div style={{ minHeight: "100vh", background: "#f8fafc", padding: "clamp(14px, 3vw, 32px)", fontFamily: "inherit", boxSizing: "border-box", width: "100%" }}>
             {/* TOP HEADER */}
             <div
                 style={{
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
+                    flexWrap: "wrap",
+                    gap: "16px",
                     background: "#fff",
-                    padding: "20px 28px",
+                    padding: "16px 20px",
                     borderRadius: "16px",
                     boxShadow: "0 2px 8px rgba(0,0,0,0.04)",
                     marginBottom: "24px"
@@ -186,7 +188,7 @@ const DeliveryDashboard = () => {
                                         background: o.orderStatus === "Delivered" ? "#f8fafc" : "#fff"
                                     }}
                                 >
-                                    <div style={{ flex: "1 1 300px" }}>
+                                    <div style={{ flex: "1 1 240px", minWidth: 0 }}>
                                         <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "6px" }}>
                                             <code style={{ fontSize: "12px", background: "#f1f5f9", padding: "2px 8px", borderRadius: "4px" }}>
                                                 #{o._id.substring(o._id.length - 6).toUpperCase()}

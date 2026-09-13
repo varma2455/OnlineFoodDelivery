@@ -5,14 +5,17 @@ export default function QuantitySelector({
     quantity = 1,
     onChange,
     min = 1,
-    max = 20
+    max = 20,
+    disabled = false
 }) {
     const handleDecrease = () => {
+        if (disabled) return;
         const next = Math.max(min, Number(quantity) - 1);
         onChange(next);
     };
 
     const handleIncrease = () => {
+        if (disabled) return;
         const next = Math.min(max, Number(quantity) + 1);
         onChange(next);
     };
@@ -29,7 +32,7 @@ export default function QuantitySelector({
                     type="button"
                     className="stepper-btn minus"
                     onClick={handleDecrease}
-                    disabled={quantity <= min}
+                    disabled={disabled || quantity <= min}
                     aria-label="Decrease quantity"
                 >
                     <FaMinus />
@@ -41,7 +44,7 @@ export default function QuantitySelector({
                     type="button"
                     className="stepper-btn plus"
                     onClick={handleIncrease}
-                    disabled={quantity >= max}
+                    disabled={disabled || quantity >= max}
                     aria-label="Increase quantity"
                 >
                     <FaPlus />

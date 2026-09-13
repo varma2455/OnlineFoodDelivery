@@ -37,16 +37,14 @@
 ========================================= */
 
 .fastFoodOrderPage {
-
-    margin-left: 250px;
-
-    width: calc(100% - 250px);
-
+    margin-left: 247px;
+    width: calc(100% - 247px);
+    max-width: calc(100% - 247px);
+    min-width: 0;
     min-height: 100vh;
-
     background: #f7f8fc;
-
     color: #1e293b;
+    box-sizing: border-box;
 }
 
 
@@ -871,148 +869,53 @@
 
 
 /* =========================================
-   SIDEBAR / MOBILE
+   RESPONSIVE
 ========================================= */
 
-@media(max-width:850px) {
-
-    .fastFoodOrderPageLayout {
-
-        display: block;
-    }
-
-
-    .fastFoodOrderPageLayout .browseSidebar {
-
-        position: relative;
-
-        width: 100%;
-
-        height: auto;
-
-        min-height: auto;
-
-        z-index: 100;
-    }
-
-
+@media (min-width: 768px) and (max-width: 1023px) {
     .fastFoodOrderPage {
-
-        margin-left: 0;
-
-        width: 100%;
+        margin-left: 210px !important;
+        width: calc(100% - 210px) !important;
+        max-width: calc(100% - 210px) !important;
     }
-
-
     .fastFoodOrderContainer {
-
         grid-template-columns: 1fr;
-
-        max-width: 600px;
-
+        max-width: 650px;
         padding: 25px 20px 45px;
     }
-
-
-    .fastFoodOrderLeft {
-
-        position: relative;
-
-        top: auto;
-    }
-
 }
 
-
-/* =========================================
-   MOBILE
-========================================= */
-
-@media(max-width:600px) {
-
+@media (max-width: 767px) {
+    .fastFoodOrderPage {
+        margin-left: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
     .fastFoodOrderHeader {
-
-        height: 68px;
-
-        padding: 0 15px;
-
+        height: 64px;
+        padding: 0 14px;
         gap: 10px;
     }
-
-
-    .fastFoodOrderHeader h2 {
-
-        font-size: 18px;
+    .fastFoodOrderLocation {
+        display: none;
     }
-
-
-    .fastFoodOrderHeader p {
-
-        font-size: 9px;
-    }
-
-
     .fastFoodOrderContainer {
-
-        padding: 18px 12px 35px;
-
-        gap: 18px;
+        grid-template-columns: 1fr;
+        padding: 16px 12px 35px;
+        gap: 16px;
     }
-
-
     .fastFoodOrderRight {
-
-        padding: 20px 16px;
-
-        border-radius: 18px;
+        padding: 18px 14px;
     }
-
-
     .fastFoodOrderImageCard {
-
-        height: 330px;
-
-        border-radius: 18px;
+        height: 260px;
     }
-
-
-    .fastFoodOrderDelivery {
-
-        grid-template-columns: 1fr;
-
-        gap: 10px;
-    }
-
-
-    .fastFoodOptionGrid {
-
-        grid-template-columns: 1fr;
-    }
-
-
+    .fastFoodOptionGrid,
     .fastFoodExtraGrid {
-
         grid-template-columns: 1fr;
     }
-
-
-    .fastFoodOrderRestaurant h1 {
-
-        font-size: 24px;
-    }
-
-
-    .fastFoodOrderBottom {
-
-        align-items: stretch;
-
-        flex-direction: column;
-    }
-
-
     .fastFoodAddCart {
-
         width: 100%;
+        justify-content: center;
     }
-
 }

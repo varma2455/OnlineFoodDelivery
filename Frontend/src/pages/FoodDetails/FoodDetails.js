@@ -98,12 +98,15 @@ const FoodDetails = () => {
     const currentCartQty = cartItems[food._id] || 0;
     const hasDiscount = food.discountPrice && food.discountPrice > 0 && food.discountPrice < food.price;
     const effectivePrice = hasDiscount ? food.discountPrice : food.price;
+    const isOutOfStock = food.stock !== undefined && food.stock !== null && Number(food.stock) <= 0;
 
     const handleAddToCart = () => {
+        if (isOutOfStock) return;
         navigate(`/food/${food._id}/customize`, { state: { food } });
     };
 
     const handleBuyNow = () => {
+        if (isOutOfStock) return;
         if (currentCartQty === 0) {
             addToCart(food._id, quantity);
         }
@@ -179,11 +182,12 @@ const FoodDetails = () => {
                     <div className="food-showcase-info">
                         <div className="food-tags-row">
                             <span className={`veg-tag ${food.isVeg ? "veg" : "non-veg"}`}>
-                                {food.isVeg ? <FaLeaf /> : <FaDrumstickBite />}{" "}
-                                {food.isVeg ? "Pure Veg" : "Non-Veg"}
+                                 {food.isVeg ? <FaLeaf /> : <FaDrumstickBite />}{" "}
+                                 {food.isVeg ? "Pure Veg" : "Non-Veg"}
                             </span>
                             <span className="category-tag">{food.category}</span>
                             {food.featured && <span className="featured-tag">★ Featured</span>}
+                            {isOutOfStock && <span className="out-of-stock-tag">Out of Stock</span>}
                         </div>
 
                         <h1 className="food-details-name">{food.name}</h1>
@@ -216,12 +220,20 @@ const FoodDetails = () => {
                             )}
                         </div>
 
+                        {/* Out of Stock Notice */}
+                        {isOutOfStock && (
+                            <div className="out-of-stock-notice-banner">
+                                ⚠️ <strong>Currently Out of Stock</strong> — This item is unavailable for ordering right now.
+                            </div>
+                        )}
+
                         {/* Quantity Selector & Action Buttons */}
                         <div className="order-actions-box">
                             <div className="detail-qty-control">
                                 <button
                                     className="btn-qty"
                                     onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+                                    disabled={isOutOfStock}
                                 >
                                     <FaMinus />
                                 </button>
@@ -229,16 +241,25 @@ const FoodDetails = () => {
                                 <button
                                     className="btn-qty"
                                     onClick={() => setQuantity((q) => q + 1)}
+                                    disabled={isOutOfStock}
                                 >
                                     <FaPlus />
                                 </button>
                             </div>
 
-                            <button className="btn-add-cart" onClick={handleAddToCart}>
-                                <FaShoppingBag /> Add to Cart (₹{effectivePrice * quantity})
+                            <button
+                                className={`btn-add-cart ${isOutOfStock ? "btn-disabled" : ""}`}
+                                onClick={handleAddToCart}
+                                disabled={isOutOfStock}
+                            >
+                                <FaShoppingBag /> {isOutOfStock ? "Out of Stock" : `Add to Cart (₹${effectivePrice * quantity})`}
                             </button>
 
-                            <button className="btn-buy-now" onClick={handleBuyNow}>
+                            <button
+                                className={`btn-buy-now ${isOutOfStock ? "btn-disabled" : ""}`}
+                                onClick={handleBuyNow}
+                                disabled={isOutOfStock}
+                            >
                                 Buy Now
                             </button>
                         </div>

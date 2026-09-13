@@ -159,3 +159,18 @@
     font-size:17px;
     
     }
+
+@media (max-width: 768px) {
+    .fineHeader h1 {
+        font-size: clamp(28px, 6vw, 42px);
+    }
+
+    .diningGrid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .diningContent {
+        padding: 20px;
+    }
+}

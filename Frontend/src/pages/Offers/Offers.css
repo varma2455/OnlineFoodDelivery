@@ -1222,3 +1222,31 @@
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
+@media (max-width: 480px) {
+    .offers-page-shell {
+        padding: 12px 12px 48px;
+    }
+
+    .search-input-wrapper {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .modal-details-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-code-cluster {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+    }
+
+    .btn-mcc-copy {
+        width: 100%;
+        justify-content: center;
+        min-height: 44px;
+    }
+}
+

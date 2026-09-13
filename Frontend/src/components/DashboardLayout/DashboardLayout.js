@@ -16,7 +16,7 @@ const DashboardLayout = ({ children }) => {
             <DashboardSidebar />
 
             <div className="main-area">
-                <Navbar />
+                <Navbar isDashboardLayout={true} />
                 <main className="main-content-shell">
                     {children || <Outlet />}
                 </main>

@@ -1,3 +1,5 @@
+import Restaurant from "../models/Restaurant.js";
+
 /**
  * Role-Based Access Control Middleware
  * Requires that the authenticated user has one of the specified roles.
@@ -27,6 +29,91 @@ export const requireRole = (...roles) => {
         }
 
         next();
+    };
+};
+
+export const requireAdmin = requireRole("admin");
+
+/**
+ * Restaurant Owner Verification Middleware
+ * Sourced strictly from authenticated MongoDB user -> Restaurant.ownerId.
+ * Never trusts req.body.restaurantId or URL params for ownership.
+ */
+export const requireRestaurantOwner = (options = { requireApproved: true }) => {
+    return async (req, res, next) => {
+        try {
+            if (!req.user) {
+                return res.status(401).json({
+                    success: false,
+                    message: "Authentication required."
+                });
+            }
+
+            if (req.user.isBlocked) {
+                return res.status(403).json({
+                    success: false,
+                    message: "Your account has been blocked by an administrator."
+                });
+            }
+
+            // Admins can bypass for administrative viewing, otherwise strictly restaurant role
+            if (req.user.role !== "restaurant" && req.user.role !== "admin") {
+                return res.status(403).json({
+                    success: false,
+                    message: "Access denied. Restaurant Partner account required."
+                });
+            }
+
+            const restaurant = await Restaurant.findOne({ ownerId: req.user._id });
+
+            if (!restaurant) {
+                return res.status(404).json({
+                    success: false,
+                    requiresRegistration: true,
+                    message: "Restaurant account not found. Please register your restaurant first."
+                });
+            }
+
+            // Enforce approval status for operations that require an active store
+            if (options.requireApproved && req.user.role !== "admin") {
+                if (restaurant.status === "pending") {
+                    return res.status(403).json({
+                        success: false,
+                        status: "pending",
+                        message: "Restaurant application is still under review."
+                    });
+                }
+                if (restaurant.status === "rejected") {
+                    return res.status(403).json({
+                        success: false,
+                        status: "rejected",
+                        rejectionReason: restaurant.rejectionReason,
+                        message: "Your restaurant application requires changes."
+                    });
+                }
+                if (restaurant.status === "suspended") {
+                    return res.status(403).json({
+                        success: false,
+                        status: "suspended",
+                        suspensionReason: restaurant.suspensionReason,
+                        message: "Your restaurant has been suspended."
+                    });
+                }
+                if (restaurant.status === "closed") {
+                    return res.status(403).json({
+                        success: false,
+                        status: "closed",
+                        message: "Your restaurant is currently closed."
+                    });
+                }
+            }
+
+            // Attach authoritative restaurant document
+            req.restaurant = restaurant;
+            next();
+        } catch (error) {
+            next(error);
+        }
     };
 };
 

@@ -1192,8 +1192,41 @@ body {
    Mobile: 2 compact cards per row
    =================================================== */
 
-/* Large Desktop (1440px+) */
-@media (min-width: 1320px) {
+/* ===================================================
+   RESPONSIVE BREAKPOINT SYSTEM (Rule #1, #7, #8, #36)
+   XS: 0px – 639px
+   SM: 640px – 767px
+   MD: 768px – 1023px
+   LG: 1024px – 1279px
+   XL: 1280px – 1535px
+   2XL: 1536px and above
+=================================================== */
+
+/* 2XL — Ultra Large (1536px and above) */
+@media (min-width: 1536px) {
+  .browse-workspace {
+    max-width: 1600px;
+    margin: 0 auto;
+    grid-template-columns: minmax(0, 1fr) 320px;
+    gap: 24px;
+  }
+
+  .food-catalog-grid,
+  .recommended-grid,
+  .discovery-cards-grid,
+  .food-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 18px;
+  }
+}
+
+/* XL — Extra Large (1280px – 1535px) */
+@media (min-width: 1280px) and (max-width: 1535px) {
+  .browse-workspace {
+    grid-template-columns: minmax(0, 1fr) 290px;
+    gap: 20px;
+  }
+
   .food-catalog-grid,
   .recommended-grid,
   .discovery-cards-grid,
@@ -1203,53 +1236,12 @@ body {
   }
 }
 
-/* Laptop / Medium Desktop (1040px - 1319px) */
-@media (max-width: 1319px) and (min-width: 1025px) {
-  .browse-food-layout,
+/* LG — Large (1024px – 1279px) */
+@media (min-width: 1024px) and (max-width: 1279px) {
   .browse-workspace {
-    grid-template-columns: minmax(0, 1fr) 290px;
-    gap: 20px;
-    padding: 18px 20px 70px;
-    align-items: stretch;
-  }
-
-  .browse-control-panel,
-  .browse-sidebar-left,
-  .browse-sidebar-right,
-  .browse-right-sidebar,
-  .browse-sidebar-container {
-    max-width: 100%;
-    height: auto;
-    align-self: stretch;
-    gap: 0;
-  }
-
-  .food-catalog-grid,
-  .recommended-grid,
-  .discovery-cards-grid,
-  .food-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-    gap: 14px;
-  }
-}
-
-/* Tablet Landscape (1024px) */
-@media (max-width: 1024px) {
-  .browse-food-page .dashboard-sidebar {
-    display: none;
-  }
-
-  .browse-main-wrapper {
-    margin-left: 0;
-    width: 100%;
-  }
-
-  .browse-food-layout,
-  .browse-workspace {
-    grid-template-columns: minmax(0, 1fr) 280px;
+    grid-template-columns: minmax(0, 1fr) 270px;
     gap: 16px;
     padding: 16px 16px 70px;
-    align-items: stretch;
   }
 
   .browse-control-panel,
@@ -1259,12 +1251,6 @@ body {
   .browse-sidebar-container {
     max-width: 100%;
     height: auto;
-    align-self: stretch;
-    gap: 0;
-  }
-
-  .browse-main-title {
-    font-size: 26px;
   }
 
   .food-catalog-grid,
@@ -1276,12 +1262,8 @@ body {
   }
 }
 
-/* Tablet Portrait / Small Tablet (900px) */
-@media (max-width: 900px) {
-  .browse-food-page .dashboard-sidebar {
-    display: none;
-  }
-
+/* MD — Medium (768px – 1023px): Tablets / iPads */
+@media (min-width: 768px) and (max-width: 1023px) {
   .browse-main-wrapper {
     margin-left: 0;
     width: 100%;
@@ -1292,14 +1274,6 @@ body {
     grid-template-columns: 1fr;
     gap: 20px;
     padding: 16px 16px 80px;
-    align-items: stretch;
-  }
-
-  .browse-main,
-  .browse-main-content,
-  .browse-main-container {
-    height: auto;
-    align-self: auto;
   }
 
   .browse-workspace > .browse-control-panel,
@@ -1307,10 +1281,42 @@ body {
   .browse-workspace > .browse-sidebar-right,
   .browse-workspace > .browse-right-sidebar,
   .browse-workspace > .browse-sidebar-container {
-    display: flex !important;
-    height: auto;
-    align-self: auto;
-    gap: 20px;
+    display: none !important;
+  }
+
+  .btn-mobile-filter-trigger {
+    display: inline-flex;
+  }
+
+  .food-catalog-grid,
+  .recommended-grid,
+  .discovery-cards-grid,
+  .food-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 14px;
+  }
+}
+
+/* SM — Small (640px – 767px): Landscape phones / small tablets */
+@media (min-width: 640px) and (max-width: 767px) {
+  .browse-main-wrapper {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .browse-food-layout,
+  .browse-workspace {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 14px 14px 85px;
+  }
+
+  .browse-workspace > .browse-control-panel,
+  .browse-workspace > .browse-sidebar-left,
+  .browse-workspace > .browse-sidebar-right,
+  .browse-workspace > .browse-right-sidebar,
+  .browse-workspace > .browse-sidebar-container {
+    display: none !important;
   }
 
   .btn-mobile-filter-trigger {
@@ -1322,14 +1328,20 @@ body {
   .discovery-cards-grid,
   .food-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 14px;
+    gap: 12px;
   }
 }
 
-/* Mobile Screens (<640px, 430px, 390px, 375px, 320px) */
-@media (max-width: 640px) {
+/* XS — Extra Small (0px – 639px): Portrait mobile phones */
+@media (max-width: 639px) {
+  .browse-main-wrapper {
+    margin-left: 0;
+    width: 100%;
+  }
+
   .browse-food-layout,
   .browse-workspace {
+    grid-template-columns: 1fr;
     padding: 10px 12px 90px;
     gap: 14px;
   }
@@ -1340,11 +1352,12 @@ body {
     padding: 14px 12px;
   }
 
-  .browse-sidebar-container,
-  .browse-right-sidebar,
-  .browse-control-panel {
-    padding: 12px 10px;
-    gap: 16px;
+  .browse-workspace > .browse-control-panel,
+  .browse-workspace > .browse-sidebar-left,
+  .browse-workspace > .browse-sidebar-right,
+  .browse-workspace > .browse-right-sidebar,
+  .browse-workspace > .browse-sidebar-container {
+    display: none !important;
   }
 
   .browse-header-row {
@@ -1357,6 +1370,7 @@ body {
     width: 100%;
     justify-content: space-between;
     gap: 8px;
+    flex-wrap: wrap;
   }
 
   .items-count-indicator {
@@ -1365,6 +1379,7 @@ body {
 
   .sort-input-cluster {
     flex: 1;
+    min-width: 130px;
     padding: 6px 10px;
   }
 
@@ -1374,6 +1389,7 @@ body {
   }
 
   .btn-mobile-filter-trigger {
+    display: inline-flex;
     padding: 6px 12px;
     font-size: 12px;
   }
@@ -1398,12 +1414,22 @@ body {
     font-size: 12px;
   }
 
-  /* Exactly 2 compact cards per row on mobile (Requirement #4 & #27) */
+  /* 2 compact cards on standard mobile, 1 card on extra narrow (< 480px) */
   .food-catalog-grid,
   .recommended-grid,
   .discovery-cards-grid,
   .food-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     gap: 10px;
+  }
+}
+
+@media (max-width: 479px) {
+  .food-catalog-grid,
+  .recommended-grid,
+  .discovery-cards-grid,
+  .food-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px;
   }
 }

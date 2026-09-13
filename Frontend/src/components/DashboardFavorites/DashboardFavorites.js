@@ -24,8 +24,10 @@ export default function DashboardFavorites() {
     showToast
   } = useContext(StoreContext);
 
-  // Find food items in wishlist
-  const favoriteFoods = foodList.filter((f) => wishlist.includes(f._id));
+  // Find food items in wishlist (Food Stock Rule #37: customer food cards stock > 0 visible)
+  const favoriteFoods = foodList.filter(
+    (f) => wishlist.includes(f._id) && (f.stock === undefined || f.stock === null || Number(f.stock) > 0)
+  );
 
   const handleRemove = (foodId, foodName, e) => {
     e.stopPropagation();

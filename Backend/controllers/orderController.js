@@ -45,6 +45,7 @@ export const placeOrder = async (req, res, next) => {
 
                 items.push({
                     food: cart.food._id,
+                    restaurantId: cart.food.restaurantId || null,
                     name: cart.food.name,
                     image: cart.food.image || "margherita.jpg",
                     price: itemPrice,
@@ -72,6 +73,7 @@ export const placeOrder = async (req, res, next) => {
 
                 items.push({
                     food: foodDoc ? foodDoc._id : rawItem.food,
+                    restaurantId: foodDoc ? foodDoc.restaurantId : (rawItem.restaurantId || null),
                     name: rawItem.name || (foodDoc ? foodDoc.name : "Food Item"),
                     image: rawItem.image || (foodDoc ? foodDoc.image : "margherita.jpg"),
                     price: unitPrice,

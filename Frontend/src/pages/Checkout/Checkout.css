@@ -577,29 +577,47 @@
 
 @media (max-width:480px){
 
+    .checkout-page{
+        width: 100%;
+        padding: 0 14px;
+        margin: 20px auto 60px;
+        box-sizing: border-box;
+    }
+
+    .checkout-form{
+        padding: 20px 14px;
+        border-radius: 16px;
+    }
+
+    .checkout-summary{
+        padding: 20px 14px;
+        border-radius: 16px;
+    }
+
     .checkout-header h1{
 
-        font-size:30px;
+        font-size: clamp(24px, 6vw, 30px);
 
     }
 
     .checkout-header p{
 
-        font-size:16px;
+        font-size:15px;
 
     }
 
     .checkout-form h2{
 
-        font-size:24px;
+        font-size:22px;
 
     }
 
     .checkout-summary h2{
 
-        font-size:24px;
+        font-size:22px;
 
     }
+
 
     .summary-row{
 

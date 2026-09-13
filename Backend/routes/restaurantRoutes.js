@@ -1,91 +1,77 @@
 import express from "express";
-import Order from "../models/Order.js";
-import Food from "../models/Food.js";
-import { protect } from "../middleware/authMiddleware.js";
-import authorize from "../middleware/roleMiddleware.js";
+import {
+    registerRestaurant,
+    getMyRestaurant,
+    updateMyRestaurant,
+    getRestaurantDashboard,
+    getRestaurantOrders,
+    updateRestaurantOrderStatus,
+    getRestaurantMenu,
+    addRestaurantFood,
+    updateRestaurantFood,
+    deleteRestaurantFood,
+    updateFoodStock,
+    getRestaurantAnalytics,
+    getRestaurantReviews
+} from "../controllers/restaurantController.js";
+import { protect, optionalAuth } from "../middleware/authMiddleware.js";
+import { requireRestaurantOwner } from "../middleware/roleMiddleware.js";
+import upload from "../middleware/uploadMiddleware.js";
 
 const router = express.Router();
 
-router.use(protect, authorize("restaurant", "admin"));
+// ==========================================
+// Public / Semi-Public Registration Route
+// ==========================================
+// Can be called with Firebase token or optional auth
+router.post("/register", optionalAuth, registerRestaurant);
 
-// Get restaurant orders
-router.get("/orders", async (req, res, next) => {
-    try {
-        const orders = await Order.find()
-            .populate("user", "fullName phone address")
-            .populate("items.food")
-            .sort({ createdAt: -1 });
+// ==========================================
+// Profile & Status Routes (Any Status Allowed)
+// ==========================================
+router.get("/me", protect, getMyRestaurant);
+router.put("/me", protect, requireRestaurantOwner({ requireApproved: false }), updateMyRestaurant);
 
-        return res.status(200).json({
-            success: true,
-            total: orders.length,
-            orders
-        });
-    } catch (error) {
-        next(error);
-    }
+// ==========================================
+// Dashboard & Analytics (Approved Only)
+// ==========================================
+router.get("/dashboard", protect, requireRestaurantOwner({ requireApproved: true }), getRestaurantDashboard);
+router.get("/analytics", protect, requireRestaurantOwner({ requireApproved: true }), getRestaurantAnalytics);
+router.get("/reviews", protect, requireRestaurantOwner({ requireApproved: true }), getRestaurantReviews);
+
+// ==========================================
+// Orders Management (Approved Only)
+// ==========================================
+router.get("/orders", protect, requireRestaurantOwner({ requireApproved: true }), getRestaurantOrders);
+router.put("/orders/:id/status", protect, requireRestaurantOwner({ requireApproved: true }), updateRestaurantOrderStatus);
+
+// Direct action shortcuts for order workflow
+router.put("/orders/:id/accept", protect, requireRestaurantOwner({ requireApproved: true }), (req, res, next) => {
+    req.body.action = "accept";
+    updateRestaurantOrderStatus(req, res, next);
+});
+router.put("/orders/:id/reject", protect, requireRestaurantOwner({ requireApproved: true }), (req, res, next) => {
+    req.body.action = "reject";
+    updateRestaurantOrderStatus(req, res, next);
+});
+router.put("/orders/:id/preparing", protect, requireRestaurantOwner({ requireApproved: true }), (req, res, next) => {
+    req.body.action = "preparing";
+    updateRestaurantOrderStatus(req, res, next);
+});
+router.put("/orders/:id/ready", protect, requireRestaurantOwner({ requireApproved: true }), (req, res, next) => {
+    req.body.action = "ready";
+    updateRestaurantOrderStatus(req, res, next);
 });
 
-// Update order preparation status
-router.put("/orders/:id/status", async (req, res, next) => {
-    try {
-        const { orderStatus } = req.body;
-        const validStatuses = ["Confirmed", "Preparing", "Out for Delivery", "Cancelled"];
-
-        if (!validStatuses.includes(orderStatus)) {
-            return res.status(400).json({
-                success: false,
-                message: `Status must be one of: ${validStatuses.join(", ")}`
-            });
-        }
-
-        const order = await Order.findByIdAndUpdate(
-            req.params.id,
-            { orderStatus },
-            { new: true }
-        );
-
-        return res.status(200).json({
-            success: true,
-            message: `Order status updated to ${orderStatus}.`,
-            order
-        });
-    } catch (error) {
-        next(error);
-    }
-});
-
-// Get foods for restaurant
-router.get("/foods", async (req, res, next) => {
-    try {
-        const foods = await Food.find().sort({ name: 1 });
-        return res.status(200).json({
-            success: true,
-            foods
-        });
-    } catch (error) {
-        next(error);
-    }
-});
-
-// Toggle food availability
-router.put("/foods/:id/availability", async (req, res, next) => {
-    try {
-        const food = await Food.findById(req.params.id);
-        if (!food) {
-            return res.status(404).json({ success: false, message: "Food not found." });
-        }
-        food.isAvailable = !food.isAvailable;
-        await food.save();
-
-        return res.status(200).json({
-            success: true,
-            message: `Food is now ${food.isAvailable ? "Available" : "Out of Stock"}.`,
-            food
-        });
-    } catch (error) {
-        next(error);
-    }
-});
+// ==========================================
+// Menu & Stock Management (Approved Only)
+// ==========================================
+router.get("/menu", protect, requireRestaurantOwner({ requireApproved: true }), getRestaurantMenu);
+router.get("/foods", protect, requireRestaurantOwner({ requireApproved: true }), getRestaurantMenu); // Alias
+router.post("/menu", protect, requireRestaurantOwner({ requireApproved: true }), upload.single("image"), addRestaurantFood);
+router.put("/menu/:id", protect, requireRestaurantOwner({ requireApproved: true }), upload.single("image"), updateRestaurantFood);
+router.delete("/menu/:id", protect, requireRestaurantOwner({ requireApproved: true }), deleteRestaurantFood);
+router.put("/menu/:id/stock", protect, requireRestaurantOwner({ requireApproved: true }), updateFoodStock);
+router.put("/foods/:id/availability", protect, requireRestaurantOwner({ requireApproved: true }), updateFoodStock); // Alias
 
 export default router;

@@ -89,3 +89,14 @@
     margin-top:20px;
     color:#64748B;
 }
+
+@media (max-width: 768px) {
+    .kitchenHeader h2 {
+        font-size: clamp(24px, 6vw, 36px);
+    }
+
+    .videoGrid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}

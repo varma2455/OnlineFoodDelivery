@@ -470,15 +470,57 @@
   margin: 0;
 }
 
-/* Responsive */
-@media (max-width: 1100px) {
+/* ===================================================
+   Responsive Breakpoints
+   =================================================== */
+
+/* 2XL: Large Monitors (1536px+) */
+@media (min-width: 1536px) {
+  .popular-food-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+  }
+}
+
+/* XL: Desktops (1280px - 1535px) */
+@media (min-width: 1280px) and (max-width: 1535px) {
+  .popular-food-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+}
+
+/* LG: Laptops (1024px - 1279px) */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .popular-food-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+}
+
+/* MD: Tablets / iPads (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
   .popular-food-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 16px;
   }
 }
 
-@media (max-width: 600px) {
+/* SM: Landscape phones / small tablets (640px - 767px) */
+@media (min-width: 640px) and (max-width: 767px) {
+  .popular-food-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .popular-header-wrapper {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+/* XS: Mobile phones (0px - 639px) */
+@media (max-width: 639px) {
   .popular-food-grid {
     grid-template-columns: 1fr;
     gap: 14px;
@@ -487,20 +529,34 @@
   .popular-header-wrapper {
     flex-direction: column;
     align-items: flex-start;
+    gap: 12px;
   }
   
   .btn-popular-view-all {
     width: 100%;
     text-align: center;
     justify-content: center;
+    min-height: 44px;
   }
 
   .popular-controls-bar {
     flex-direction: column;
     align-items: stretch;
+    gap: 12px;
+  }
+
+  .filter-pills-row {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
   
   .sort-dropdown-group {
     justify-content: space-between;
+    width: 100%;
+  }
+
+  .sort-select {
+    width: 100%;
   }
 }

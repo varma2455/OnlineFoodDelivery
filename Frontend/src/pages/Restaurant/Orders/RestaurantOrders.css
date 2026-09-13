@@ -1,0 +1,130 @@
+.ro-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.ro-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.ro-title {
+    font-size: clamp(20px, 3.5vw, 24px);
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ro-tabs {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 6px;
+    scrollbar-width: thin;
+}
+
+.ro-tab-btn {
+    padding: 8px 16px;
+    border-radius: 9999px;
+    border: 1.5px solid #cbd5e1;
+    background: #ffffff;
+    color: #64748b;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+.ro-tab-btn.active {
+    background: #ff5200;
+    border-color: #ff5200;
+    color: #ffffff;
+    box-shadow: 0 4px 10px rgba(255, 82, 0, 0.25);
+}
+
+.ro-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 18px;
+}
+
+.ro-card {
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ro-card:hover {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+.ro-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid #f8fafc;
+    padding-bottom: 12px;
+}
+
+.ro-card-order-id {
+    font-weight: 800;
+    color: #0f172a;
+    font-size: 15px;
+}
+
+.ro-card-time {
+    font-size: 11px;
+    color: #94a3b8;
+    margin-top: 2px;
+}
+
+.ro-customer-box {
+    background: #f8fafc;
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 13px;
+}
+
+.ro-items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.ro-item-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+}
+
+.ro-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 12px;
+    border-top: 1px solid #f1f5f9;
+    margin-top: auto;
+    gap: 10px;
+}
+
+.ro-total-amount {
+    font-size: 16px;
+    font-weight: 800;
+    color: #0f172a;
+}

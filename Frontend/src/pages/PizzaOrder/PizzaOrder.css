@@ -41,16 +41,14 @@
 ========================================= */
 
 .pizzaPage{
-
-    margin-left:250px;
-
-    width:calc(100% - 250px);
-
+    margin-left:247px;
+    width:calc(100% - 247px);
+    max-width:calc(100% - 247px);
+    min-width:0;
     min-height:100vh;
-
     background:#f7f7fb;
-
     color:#1e293b;
+    box-sizing:border-box;
 }
 
 
@@ -557,46 +555,52 @@
    RESPONSIVE
 ========================================= */
 
-@media(max-width:1000px){
-
-    .pizzaContainer{
-        grid-template-columns:1fr;
+@media (min-width: 768px) and (max-width: 1023px) {
+    .pizzaPage {
+        margin-left: 210px !important;
+        width: calc(100% - 210px) !important;
+        max-width: calc(100% - 210px) !important;
     }
-
+    .pizzaContainer {
+        grid-template-columns: 1fr;
+        padding: 20px;
+    }
 }
 
-
-@media(max-width:600px){
-
-    .pizzaContainer{
-        padding:15px;
+@media (max-width: 767px) {
+    .pizzaPage {
+        margin-left: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
     }
-
-
-    .pizzaDetails{
-        padding:20px;
+    .pizzaContainer {
+        grid-template-columns: 1fr;
+        padding: 14px;
+        gap: 16px;
     }
-
-
-    .pizzaMainImage{
-        height:320px;
+    .pizzaDetails {
+        padding: 18px 14px;
     }
-
-
+    .pizzaMainImage {
+        height: 260px;
+    }
     .sizeOptions,
     .crustOptions,
-    .toppingGrid{
-        grid-template-columns:1fr;
+    .toppingGrid,
+    .deliveryInfo {
+        grid-template-columns: 1fr;
     }
-
-
-    .deliveryInfo{
-        grid-template-columns:1fr;
+    .pizzaDetails h1 {
+        font-size: 22px;
     }
-
-
-    .pizzaDetails h1{
-        font-size:27px;
+    .pizzaBottomBar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
     }
-
+    .addPizzaButton {
+        width: 100%;
+        justify-content: center;
+        padding: 14px 20px;
+    }
 }

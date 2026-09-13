@@ -18,7 +18,7 @@ import {
     FaCog
 } from "react-icons/fa";
 
-const Navbar = () => {
+const Navbar = ({ isDashboardLayout = false }) => {
     const {
         user,
         logout,
@@ -26,11 +26,14 @@ const Navbar = () => {
         wishlist,
         selectedArea,
         setSelectedArea,
-        availableAreas
+        availableAreas,
+        mobileSidebarOpen,
+        toggleMobileSidebar
     } = useContext(StoreContext);
     const [searchTerm, setSearchTerm] = useState("");
     const selectedCity = selectedArea || "Hyderabad";
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
     const [userDropdownOpen, setUserDropdownOpen] = useState(false);
     const [locationModalOpen, setLocationModalOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
@@ -246,6 +249,17 @@ const Navbar = () => {
 
                 {/* 9-11. ACTION BUTTONS (Wishlist, Cart, User Profile) */}
                 <div className="navbar-actions">
+                    {/* Mobile Search Toggle Icon */}
+                    <button
+                        type="button"
+                        className="mobile-search-toggle"
+                        onClick={() => setMobileSearchOpen(!mobileSearchOpen)}
+                        aria-label="Toggle mobile search"
+                        title="Search dishes"
+                    >
+                        <FaSearch />
+                    </button>
+
                     {/* 9. Wishlist Link */}
                     <Link to="/menu?filter=wishlist" className="action-icon-btn" title="Wishlist" aria-label="Wishlist">
                         <FaHeart />
@@ -338,13 +352,50 @@ const Navbar = () => {
                     <button
                         type="button"
                         className="mobile-toggle-btn"
-                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                        onClick={() => {
+                            if (isDashboardLayout && toggleMobileSidebar) {
+                                toggleMobileSidebar();
+                            } else {
+                                setMobileMenuOpen(!mobileMenuOpen);
+                            }
+                        }}
                         aria-label="Toggle navigation menu"
                     >
-                        {mobileMenuOpen ? <FaTimes /> : <FaBars />}
+                        {(isDashboardLayout ? mobileSidebarOpen : mobileMenuOpen) ? <FaTimes /> : <FaBars />}
                     </button>
                 </div>
             </nav>
+
+            {/* EXPANDABLE FULL-WIDTH MOBILE SEARCH BAR */}
+            {mobileSearchOpen && (
+                <div className="mobile-search-expandable">
+                    <form className="mobile-search-expandable-form" onSubmit={(e) => {
+                        handleSearchSubmit(e);
+                        setMobileSearchOpen(false);
+                    }}>
+                        <FaSearch className="mobile-search-icon" />
+                        <input
+                            type="text"
+                            placeholder="Search food or restaurant..."
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            autoFocus
+                        />
+                        {searchTerm && (
+                            <button
+                                type="button"
+                                className="mobile-search-clear-btn"
+                                onClick={() => setSearchTerm("")}
+                            >
+                                <FaTimes />
+                            </button>
+                        )}
+                        <button type="submit" className="mobile-search-go-btn">
+                            Go
+                        </button>
+                    </form>
+                </div>
+            )}
 
             {/* MOBILE NAVIGATION DRAWER */}
             {mobileMenuOpen && (
@@ -371,6 +422,26 @@ const Navbar = () => {
                             </Link>
                         </li>
                         <li>
+                            <Link to="/browse-food" onClick={() => setMobileMenuOpen(false)}>
+                                🍔 Browse Food
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/offers" onClick={() => setMobileMenuOpen(false)}>
+                                🏷️ Offers & Deals
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/rewards" onClick={() => setMobileMenuOpen(false)}>
+                                🎁 Rewards Program
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/membership" onClick={() => setMobileMenuOpen(false)}>
+                                ⭐ Premium Membership
+                            </Link>
+                        </li>
+                        <li>
                             <Link to="/my-orders" onClick={() => setMobileMenuOpen(false)}>
                                 📦 My Orders
                             </Link>
@@ -393,6 +464,11 @@ const Navbar = () => {
                                     </Link>
                                 </li>
                                 <li>
+                                    <Link to="/support" onClick={() => setMobileMenuOpen(false)}>
+                                        🎧 Help & Support
+                                    </Link>
+                                </li>
+                                <li>
                                     <Link to="/settings" onClick={() => setMobileMenuOpen(false)}>
                                         ⚙️ Settings
                                     </Link>
@@ -408,6 +484,11 @@ const Navbar = () => {
                                 <li>
                                     <Link to="/profile" onClick={() => setMobileMenuOpen(false)}>
                                         👤 Profile
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to="/support" onClick={() => setMobileMenuOpen(false)}>
+                                        🎧 Help & Support
                                     </Link>
                                 </li>
                                 <li className="mobile-auth-row">

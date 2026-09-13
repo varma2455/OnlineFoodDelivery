@@ -387,6 +387,26 @@
     font-weight: 500;
 }
 
+.customization-out-of-stock-alert {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #991b1b;
+    padding: 14px 18px;
+    border-radius: 14px;
+    font-size: 14px;
+    margin-top: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-disabled {
+    opacity: 0.5 !important;
+    cursor: not-allowed !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
 /* ===================================================
    CUSTOMIZATION SECTIONS
    =================================================== */
@@ -996,12 +1016,15 @@
    RESPONSIVE LAYOUT
    =================================================== */
 
-@media (max-width: 1024px) {
+@media (min-width: 768px) and (max-width: 1023px) {
     .customization-main-viewport {
-        margin-left: 0;
-        width: 100%;
+        margin-left: 210px !important;
+        width: calc(100% - 210px) !important;
+        max-width: calc(100% - 210px) !important;
     }
+}
 
+@media (max-width: 1023px) {
     .customization-grid-container {
         grid-template-columns: 1fr;
         padding: 20px 16px 80px;
@@ -1037,6 +1060,14 @@
 
     .checkbox-options-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 767px) {
+    .customization-main-viewport {
+        margin-left: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
     }
 }
 

@@ -76,6 +76,9 @@
 @media(max-width:768px){
 
     .footer-container{
+        width: 100%;
+        padding: 40px 20px;
+        box-sizing: border-box;
         grid-template-columns:1fr;
         text-align:center;
     }

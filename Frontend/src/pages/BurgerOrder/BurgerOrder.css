@@ -41,16 +41,14 @@
 ===================================== */
 
 .burgerOrderPage {
-
-    margin-left: 250px;
-
-    width: calc(100% - 250px);
-
+    margin-left: 247px;
+    width: calc(100% - 247px);
+    max-width: calc(100% - 247px);
+    min-width: 0;
     min-height: 100vh;
-
     background: #f7f8fc;
-
     padding: 10px 20px;
+    box-sizing: border-box;
 }
 
 /* =====================================
@@ -865,43 +863,43 @@
    RESPONSIVE
 ===================================== */
 
-@media (max-width: 850px) {
-
+@media (min-width: 768px) and (max-width: 1023px) {
+    .burgerOrderPage {
+        margin-left: 210px !important;
+        width: calc(100% - 210px) !important;
+        max-width: calc(100% - 210px) !important;
+        padding: 20px 16px;
+    }
     .burgerOrderContainer {
-
         grid-template-columns: 1fr;
-
-        max-width: 550px;
-
+        max-width: 600px;
     }
-
-    .burgerImageCard {
-
-        height: 380px;
-
-    }
-
 }
 
-@media (max-width: 500px) {
-
+@media (max-width: 767px) {
     .burgerOrderPage {
-
-        padding: 15px 10px;
-
+        margin-left: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 12px 10px;
     }
-
+    .burgerOrderContainer {
+        grid-template-columns: 1fr;
+        padding: 0;
+        gap: 16px;
+    }
     .burgerOrderRight {
-
-        padding: 20px 16px;
-
+        padding: 18px 14px;
     }
-
+    .burgerImageCard {
+        height: 280px;
+    }
     .burgerBunGrid,
     .burgerExtrasGrid {
-
         grid-template-columns: 1fr;
-
     }
-
+    .burgerAddCart {
+        width: 100%;
+        justify-content: center;
+    }
 }

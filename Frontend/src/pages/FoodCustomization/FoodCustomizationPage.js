@@ -274,9 +274,16 @@ export default function FoodCustomizationPage() {
         return null;
     };
 
+    const isOutOfStock = food && food.stock !== undefined && food.stock !== null && Number(food.stock) <= 0;
+
     // Add Customized Item to Cart
     const handleAddToCart = async () => {
         setValidationError(null);
+
+        if (isOutOfStock) {
+            if (showToast) showToast("This item is currently out of stock.", "error");
+            return;
+        }
 
         // 1. Validation check
         const errorMsg = validateSelections();
@@ -457,6 +464,12 @@ export default function FoodCustomizationPage() {
                                         <span className="original-price-strike">₹{food.price}</span>
                                     )}
                                 </div>
+
+                                {isOutOfStock && (
+                                    <div className="customization-out-of-stock-alert">
+                                        ⚠️ <strong>Currently Out of Stock</strong> — This item is unavailable for ordering right now.
+                                    </div>
+                                )}
                             </div>
 
                             {/* DYNAMIC CUSTOMIZATION SECTIONS */}
@@ -531,6 +544,7 @@ export default function FoodCustomizationPage() {
                                 <QuantitySelector
                                     quantity={customization.quantity}
                                     onChange={handleQuantityChange}
+                                    disabled={isOutOfStock}
                                 />
                             </div>
 
@@ -546,6 +560,7 @@ export default function FoodCustomizationPage() {
                                 addedSuccess={addedSuccess}
                                 onViewCart={() => navigate("/cart")}
                                 onContinueShopping={() => navigate("/browse-food")}
+                                isOutOfStock={isOutOfStock}
                             />
                         </div>
                     </div>

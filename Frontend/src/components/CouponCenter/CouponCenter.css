@@ -165,3 +165,24 @@
     gap:10px;
     
     }
+
+@media (max-width: 768px) {
+    .couponHeader {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .couponHeader h2 {
+        font-size: clamp(24px, 6vw, 36px);
+    }
+
+    .couponGrid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .couponCard {
+        padding: 20px;
+    }
+}

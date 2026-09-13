@@ -35,12 +35,15 @@
 ========================================= */
 
 .fastFoodMarketplace{
-    margin-left:250px;
-    width:calc(100% - 250px);
+    margin-left:247px;
+    width:calc(100% - 247px);
+    max-width:calc(100% - 247px);
+    min-width:0;
     min-height:100vh;
     background:#f7f8fc;
     color:#1e293b;
-    padding:0 38px 50px;
+    padding:0 32px 50px;
+    box-sizing:border-box;
 }
 
 
@@ -1076,119 +1079,132 @@
 
 /* =========================================
    RESPONSIVE
-   Same breakpoints as PizzaPage.css
 ========================================= */
 
-@media(max-width:1200px){
-
-    .fastFoodProductGrid{
-        grid-template-columns:
-            repeat(3,minmax(0,1fr));
+/* 2XL & XL (1280px+) */
+@media (min-width: 1280px) {
+    .fastFoodProductGrid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
     }
-
-    .fastFoodRestaurantGrid{
-        grid-template-columns:
-            repeat(2,minmax(0,1fr));
+    .fastFoodRestaurantGrid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
     }
-
 }
 
-
-@media(max-width:900px){
-
-    .fastFoodMarketplace{
-        padding:0 20px 40px;
+/* LG (1024px - 1279px) */
+@media (min-width: 1024px) and (max-width: 1279px) {
+    .fastFoodMarketplace {
+        margin-left: 247px;
+        width: calc(100% - 247px);
+        max-width: calc(100% - 247px);
+        padding: 0 24px 45px;
     }
-
-    .fastFoodHero{
-        grid-template-columns:1fr;
+    .fastFoodProductGrid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
     }
-
-    .fastFoodHeroImage{
-        display:none;
+    .fastFoodRestaurantGrid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
     }
-
-    .fastFoodFilterHeader{
-        align-items:flex-start;
-
-        gap:15px;
-
-        flex-direction:column;
-    }
-
-    .fastFoodProductGrid{
-        grid-template-columns:
-            repeat(2,minmax(0,1fr));
-    }
-
 }
 
-
-@media(max-width:650px){
-
-    .fastFoodMarketplace{
-        padding:0 14px 30px;
+/* MD: Tablets / iPads (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .fastFoodMarketplace {
+        margin-left: 210px !important;
+        width: calc(100% - 210px) !important;
+        max-width: calc(100% - 210px) !important;
+        padding: 0 20px 40px;
     }
-
-    .fastFoodHeaderLocation{
-        display:none;
+    .fastFoodHero {
+        grid-template-columns: 1fr;
     }
-
-    .fastFoodHeroContent{
-        padding:30px 25px;
+    .fastFoodHeroImage {
+        display: none;
     }
-
-    .fastFoodHero h1{
-        font-size:30px;
+    .fastFoodProductGrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
     }
-
-    .fastFoodFilters{
-        width:100%;
-
-        overflow-x:auto;
-
-        padding-bottom:5px;
+    .fastFoodRestaurantGrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
-
-    .fastFoodFilters button{
-        flex-shrink:0;
-    }
-
-    .fastFoodRestaurantGrid{
-        grid-template-columns:1fr;
-    }
-
-    .fastFoodProductGrid{
-        grid-template-columns:1fr;
-    }
-
-    .fastFoodCardImage{
-        height:220px;
-    }
-
-    .fastFoodDeliveryBanner{
-        align-items:flex-start;
-    }
-
 }
 
-
-@media(max-width:400px){
-
-    .fastFoodMarketplace{
-        padding:0 10px 25px;
+/* SM & XS: Mobile Devices (<768px) */
+@media (max-width: 767px) {
+    .fastFoodMarketplace {
+        margin-left: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 16px 30px;
     }
-
-    .fastFoodHeroContent{
-        padding:25px 20px;
+    .fastFoodTopHeader {
+        height: 64px;
+        gap: 10px;
     }
-
-    .fastFoodHero h1{
-        font-size:27px;
+    .fastFoodHeaderRight,
+    .fastFoodHeaderLocation {
+        display: none;
     }
-
-    .fastFoodHeroStats{
-        flex-wrap:wrap;
+    .fastFoodHero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        margin-top: 15px;
     }
+    .fastFoodHeroImage {
+        display: none;
+    }
+    .fastFoodHeroContent {
+        padding: 24px 18px;
+    }
+    .fastFoodHero h1 {
+        font-size: clamp(22px, 5vw, 30px);
+        margin: 12px 0 8px;
+    }
+    .fastFoodFilterHeader {
+        align-items: flex-start;
+        gap: 12px;
+        flex-direction: column;
+        padding: 15px 0;
+        margin: 10px 0;
+    }
+    .fastFoodFilters {
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 6px;
+        -webkit-overflow-scrolling: touch;
+    }
+    .fastFoodFilters button {
+        flex-shrink: 0;
+    }
+    .fastFoodRestaurantGrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+    .fastFoodProductGrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+    }
+    .fastFoodDeliveryBanner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 16px;
+    }
+    .fastFoodHeroStats {
+        flex-wrap: wrap;
+    }
+}
 
+/* XS small phones (<480px) */
+@media (max-width: 480px) {
+    .fastFoodProductGrid {
+        grid-template-columns: 1fr;
+    }
+    .fastFoodRestaurantGrid {
+        grid-template-columns: 1fr;
+    }
+    .fastFoodHero h1 {
+        font-size: 24px;
+    }
 }

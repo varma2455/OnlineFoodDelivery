@@ -190,10 +190,13 @@
 
 .table-responsive {
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
 }
 
 .admin-data-table {
     width: 100%;
+    min-width: 650px;
     border-collapse: collapse;
     text-align: left;
 }

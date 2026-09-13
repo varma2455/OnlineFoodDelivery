@@ -330,3 +330,59 @@
 .btn-modal-submit:hover {
     background: #ee3545;
 }
+
+/* ===================================================
+   Responsive Breakpoints
+   =================================================== */
+@media (max-width: 768px) {
+    .admin-toolbar-card {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .admin-search-input {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .admin-filter-select select {
+        width: 100%;
+    }
+
+    .modal-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-form-grid .full-width,
+    .checkbox-row {
+        grid-column: span 1;
+    }
+}
+
+@media (max-width: 480px) {
+    .btn-add-food-primary {
+        width: 100%;
+        justify-content: center;
+        min-height: 44px;
+    }
+
+    .admin-modal-card {
+        padding: 16px 12px;
+        border-radius: 16px;
+    }
+
+    .admin-modal-form {
+        padding: 16px 0 0;
+    }
+
+    .admin-modal-footer {
+        flex-direction: column;
+    }
+
+    .btn-modal-cancel,
+    .btn-modal-submit {
+        width: 100%;
+        min-height: 44px;
+    }
+}

@@ -247,6 +247,31 @@ async function runTests() {
         restaurantStatus: publicFoods[0].restaurantId?.status
     });
 
+    // 15b. Verify getRestaurantDashboard controller logic
+    const { getRestaurantDashboard } = await import("../controllers/restaurantController.js");
+    let dashboardResult = null;
+    const mockReq = { restaurant: restA, user: ownerA };
+    const mockRes = {
+        status(code) { this.statusCode = code; return this; },
+        json(data) { dashboardResult = data; return this; }
+    };
+    await getRestaurantDashboard(mockReq, mockRes, (err) => { throw err; });
+
+    console.log("✓ Restaurant Dashboard Telemetry verified:", {
+        restaurantName: dashboardResult.restaurant?.name,
+        status: dashboardResult.restaurant?.status,
+        cuisine: dashboardResult.restaurant?.cuisineTypes,
+        todayOrders: dashboardResult.stats?.todayOrders,
+        todayRevenue: dashboardResult.stats?.todayRevenue,
+        recentOrdersCount: dashboardResult.recentOrders?.length,
+        topFoodsCount: dashboardResult.topFoods?.length,
+        days7Breakdown: dashboardResult.performance?.days7?.length
+    });
+
+    if (!dashboardResult.success || !dashboardResult.stats || !dashboardResult.performance?.days7) {
+        throw new Error("Dashboard telemetry payload structure invalid!");
+    }
+
     // Cleanup test artifacts
     await Order.findByIdAndDelete(multiRestOrder._id);
     await Food.deleteMany({ _id: { $in: [foodA._id, foodB._id] } });

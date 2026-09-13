@@ -141,7 +141,7 @@
     align-items: center;
 }
 
-.search-icon {
+.search-input-wrapper .search-icon {
     position: absolute;
     left: 16px;
     color: #94a3b8;

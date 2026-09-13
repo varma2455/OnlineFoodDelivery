@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
 import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
 import { StoreContext } from "../../context/StoreContext";
+import FoodExpressLogo from "../FoodExpressLogo";
 import "./Navbar.css";
 import {
     FaSearch,
@@ -152,12 +153,7 @@ const Navbar = ({ isDashboardLayout = false }) => {
             <nav className="navbar-container">
                 {/* 1. BRAND LOGO */}
                 <div className="navbar-brand">
-                    <Link to="/" className="brand-logo" title="FoodExpress">
-                        <span className="brand-icon">🍔</span>
-                        <span className="brand-text">
-                            Food<span className="brand-highlight">Express</span>
-                        </span>
-                    </Link>
+                    <FoodExpressLogo variant="navbar" to="/" />
                 </div>
 
                 {/* 2. LOCATION SELECTOR */}
@@ -197,16 +193,16 @@ const Navbar = ({ isDashboardLayout = false }) => {
 
                 {/* 3. SEARCH BAR + SEARCH BUTTON */}
                 <form className="navbar-search" onSubmit={handleSearchSubmit}>
-                    <FaSearch className="search-icon" />
                     <input
                         type="text"
-                        placeholder="Search food or restaurant..."
+                        placeholder="Search food, restaurants..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                         aria-label="Search food or restaurant"
                     />
-                    <button type="submit" className="search-btn">
-                        Search
+                    <button type="submit" className="search-btn" title="Search food, restaurants" aria-label="Search">
+                        <FaSearch className="nav-search-btn-icon" />
+                        <span className="search-btn-text">Search</span>
                     </button>
                 </form>
 

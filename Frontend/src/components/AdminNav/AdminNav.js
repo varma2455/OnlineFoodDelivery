@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { StoreContext } from "../../context/StoreContext";
+import FoodExpressLogo from "../FoodExpressLogo";
 import "./AdminNav.css";
 import {
     FaShieldAlt,
@@ -20,10 +21,7 @@ const AdminNav = () => {
         <header className="admin-nav-bar">
             <div className="admin-nav-container">
                 <div className="admin-brand">
-                    <Link to="/admin/dashboard" className="admin-logo">
-                        <FaShieldAlt className="shield-icon" />
-                        <span>FoodExpress <small>ADMIN</small></span>
-                    </Link>
+                    <FoodExpressLogo variant="navbar" subtitle="ADMIN" to="/admin/dashboard" />
                 </div>
 
                 <nav className="admin-links">

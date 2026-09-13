@@ -1,136 +1,217 @@
+/* ===================================================
+   FOODEXPRESS - RESTAURANT SIDEBAR (ORANGE BRANDING)
+   Desktop: 247px sticky sidebar
+   Active item: White rounded rectangle style
+   =================================================== */
+
 .rest-sidebar {
-    width: 250px;
-    background: #ffffff;
-    border-right: 1px solid #f1f5f9;
+    width: 247px;
+    min-width: 247px;
+    max-width: 247px;
+    height: 100vh;
+    min-height: 100vh;
+    background: linear-gradient(180deg, #ff5200 0%, #e04800 100%);
+    padding: 26px 18px;
     display: flex;
     flex-direction: column;
-    height: 100vh;
-    position: fixed;
+    justify-content: space-between;
+    color: #ffffff;
+    position: sticky;
     top: 0;
-    left: 0;
     z-index: 1000;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     box-sizing: border-box;
+    border: none;
+    outline: none;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
-.rest-sidebar-brand {
-    padding: 24px 20px 18px;
-    border-bottom: 1px solid #f8fafc;
+/* Hide scrollbar */
+.rest-sidebar::-webkit-scrollbar {
+    display: none;
+    width: 0;
+}
+.rest-sidebar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Sidebar Top Brand Header */
+.rest-sidebar-header {
     display: flex;
     align-items: center;
-    gap: 12px;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    width: 100%;
 }
 
-.rest-brand-icon {
-    width: 40px;
-    height: 40px;
-    background: linear-gradient(135deg, #ff5200 0%, #ea580c 100%);
-    border-radius: 10px;
+.rest-sidebar-header .fx-logo-root {
+    width: 100%;
+}
+
+.btn-rest-sidebar-close {
+    display: none;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
     color: #ffffff;
-    display: flex;
+    width: 32px;
+    height: 32px;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
-    box-shadow: 0 4px 10px rgba(255, 82, 0, 0.25);
+    font-size: 15px;
+    cursor: pointer;
+    flex-shrink: 0;
+    margin-left: 8px;
+}
+
+/* Navigation Menu */
+.rest-sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Navigation Items */
+.rest-sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none !important;
+    color: rgba(255, 255, 255, 0.9);
+    padding: 12px 16px;
+    border-radius: 12px;
+    transition: all 0.22s ease;
+    font-size: 14px;
+    font-weight: 600;
+    border: 1px solid transparent !important;
+    outline: none !important;
+    box-shadow: none;
+    user-select: none;
+    white-space: nowrap;
+}
+
+.rest-sidebar-item .rest-item-icon {
+    font-size: 17px;
     flex-shrink: 0;
 }
 
-.rest-brand-text {
-    font-size: 17px;
-    font-weight: 800;
-    color: #0f172a;
-    line-height: 1.2;
+.rest-sidebar-item .rest-item-label {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.rest-brand-sub {
-    font-size: 11px;
-    color: #ff5200;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    display: block;
-}
-
-.rest-nav-menu {
-    padding: 16px 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    flex: 1;
-    overflow-y: auto;
-}
-
-.rest-nav-link {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 11px 16px;
-    border-radius: 12px;
-    color: #64748b;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 600;
-    transition: all 0.2s ease;
-}
-
-.rest-nav-link:hover {
-    background: #fff7ed;
-    color: #ea580c;
-}
-
-.rest-nav-link.active {
-    background: linear-gradient(135deg, #ff5200 0%, #ea580c 100%);
+/* Hover state (inactive items): subtle background, NO borders or lines */
+.rest-sidebar-item:hover:not(.active) {
+    background: rgba(255, 255, 255, 0.15);
     color: #ffffff;
-    box-shadow: 0 4px 12px rgba(255, 82, 0, 0.25);
+    border: 1px solid transparent !important;
+    outline: none !important;
+    box-shadow: none !important;
+    transform: translateX(4px);
 }
 
+/* Active item: White rounded rectangle style exactly matching screenshot */
+.rest-sidebar-item.active {
+    background: #ffffff !important;
+    color: #ff5200 !important;
+    font-weight: 700;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12) !important;
+    border: 1px solid #ffffff !important;
+    outline: none !important;
+    transform: none;
+}
+
+.rest-sidebar-item.active .rest-item-icon {
+    color: #ff5200 !important;
+}
+
+.rest-sidebar-item.active:hover {
+    background: #ffffff !important;
+    color: #ff5200 !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12) !important;
+    border: 1px solid #ffffff !important;
+    transform: none;
+}
+
+/* Sidebar Footer */
 .rest-sidebar-footer {
-    padding: 16px 14px;
-    border-top: 1px solid #f1f5f9;
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.16);
 }
 
 .btn-rest-sidebar-logout {
     width: 100%;
-    padding: 10px 14px;
-    border-radius: 10px;
-    border: 1px solid #fee2e2;
-    background: #fff5f5;
-    color: #ef4444;
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.14);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 12px;
+    padding: 11px 16px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
     transition: all 0.2s ease;
+    font-family: inherit;
+    outline: none;
 }
 
 .btn-rest-sidebar-logout:hover {
-    background: #fee2e2;
-    color: #b91c1c;
+    background: rgba(255, 255, 255, 0.24);
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-1px);
 }
 
-/* Mobile drawer backdrop */
+/* ===================================================
+   MOBILE & TABLET DRAWER BEHAVIOR (< 1024px)
+   =================================================== */
 .rest-sidebar-backdrop {
     display: none;
 }
 
 @media (max-width: 1023px) {
+    .rest-sidebar-backdrop {
+        display: block;
+        position: fixed;
+        inset: 0;
+        background: rgba(15, 23, 42, 0.6);
+        backdrop-filter: blur(4px);
+        z-index: 1100;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+
+    .rest-sidebar-backdrop.mobile-open {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
     .rest-sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
         transform: translateX(-100%);
-        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1200;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     }
 
     .rest-sidebar.mobile-open {
         transform: translateX(0);
     }
 
-    .rest-sidebar-backdrop.mobile-open {
-        display: block;
-        position: fixed;
-        inset: 0;
-        background: rgba(15, 23, 42, 0.5);
-        backdrop-filter: blur(2px);
-        z-index: 999;
+    .btn-rest-sidebar-close {
+        display: flex;
     }
 }

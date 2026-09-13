@@ -69,19 +69,19 @@ const RestaurantLayout = () => {
     }
 
     return (
-        <div className="rest-layout-container">
+        <div className="app-layout rest-app-layout">
             <RestaurantSidebar
                 mobileOpen={mobileSidebarOpen}
                 closeMobileSidebar={closeMobileSidebar}
             />
 
-            <div className="rest-main-wrapper">
+            <div className="main-area rest-main-area">
                 <RestaurantNavbar
                     restaurant={restaurant}
                     toggleMobileSidebar={toggleMobileSidebar}
                 />
 
-                <main className="rest-content-area">
+                <main className="main-content-shell rest-content-area">
                     <Outlet context={{ restaurant, refreshRestaurant: fetchRestaurant }} />
                 </main>
             </div>

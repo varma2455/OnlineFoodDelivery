@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { API_BASE_URL } from "../../config/api";
 import { StoreContext } from "../../context/StoreContext";
+import FoodExpressLogo from "../FoodExpressLogo";
 import "./DashboardNavbar.css";
 
 import {
@@ -222,12 +223,7 @@ const DashboardNavbar = ({ onSearchQuery, onLocationChange }) => {
       <header className="dashboard-navbar-advanced">
         {/* Left Side: Brand & Location */}
         <div className="nav-left-cluster">
-          <Link to="/dashboard" className="nav-brand-logo">
-            <span className="brand-icon">🍔</span>
-            <span className="brand-title">
-              Food<span>Express</span>
-            </span>
-          </Link>
+          <FoodExpressLogo variant="navbar" to="/dashboard" />
 
           {/* Location Selector */}
           <div className="location-trigger-wrapper" ref={locationRef}>

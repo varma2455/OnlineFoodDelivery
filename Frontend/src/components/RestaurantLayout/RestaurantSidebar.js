@@ -1,29 +1,29 @@
 import React, { useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { StoreContext } from "../../context/StoreContext";
+import FoodExpressLogo from "../FoodExpressLogo";
 import "./RestaurantSidebar.css";
 import {
-    FaStore,
-    FaTachometerAlt,
+    FaHome,
     FaClipboardList,
     FaUtensils,
     FaBoxes,
     FaChartBar,
     FaStar,
-    FaUserCircle,
+    FaStore,
     FaCog,
     FaSignOutAlt,
     FaTimes
 } from "react-icons/fa";
 
 const navItems = [
-    { name: "Dashboard", path: "/restaurant/dashboard", icon: FaTachometerAlt },
+    { name: "Dashboard", path: "/restaurant/dashboard", icon: FaHome },
     { name: "Orders", path: "/restaurant/orders", icon: FaClipboardList },
     { name: "Menu", path: "/restaurant/menu", icon: FaUtensils },
     { name: "Inventory", path: "/restaurant/inventory", icon: FaBoxes },
     { name: "Analytics", path: "/restaurant/analytics", icon: FaChartBar },
     { name: "Reviews", path: "/restaurant/reviews", icon: FaStar },
-    { name: "Restaurant Profile", path: "/restaurant/profile", icon: FaUserCircle },
+    { name: "Restaurant Profile", path: "/restaurant/profile", icon: FaStore },
     { name: "Settings", path: "/restaurant/settings", icon: FaCog }
 ];
 
@@ -38,33 +38,24 @@ const RestaurantSidebar = ({ mobileOpen, closeMobileSidebar }) => {
 
     return (
         <>
+            {/* Mobile backdrop drawer overlay */}
             <div
                 className={`rest-sidebar-backdrop ${mobileOpen ? "mobile-open" : ""}`}
                 onClick={closeMobileSidebar}
+                aria-hidden="true"
             />
 
-            <aside className={`rest-sidebar ${mobileOpen ? "mobile-open" : ""}`}>
-                {/* Brand Header */}
-                <div className="rest-sidebar-brand">
-                    <div className="rest-brand-icon">
-                        <FaStore />
-                    </div>
-                    <div style={{ flex: 1 }}>
-                        <span className="rest-brand-text">FoodExpress</span>
-                        <span className="rest-brand-sub">KITCHEN PARTNER</span>
-                    </div>
+            <aside className={`sidebar rest-sidebar ${mobileOpen ? "mobile-open" : ""}`}>
+                {/* Top Logo Area with FoodExpress Orange Branding */}
+                <div className="rest-sidebar-header">
+                    <FoodExpressLogo variant="sidebar" to="/restaurant/dashboard" />
+
                     {mobileOpen && (
                         <button
                             type="button"
+                            className="btn-rest-sidebar-close"
                             onClick={closeMobileSidebar}
-                            style={{
-                                background: "none",
-                                border: "none",
-                                fontSize: "18px",
-                                color: "#64748b",
-                                cursor: "pointer",
-                                padding: "4px"
-                            }}
+                            aria-label="Close navigation drawer"
                         >
                             <FaTimes />
                         </button>
@@ -72,7 +63,7 @@ const RestaurantSidebar = ({ mobileOpen, closeMobileSidebar }) => {
                 </div>
 
                 {/* Navigation Items */}
-                <nav className="rest-nav-menu">
+                <nav className="rest-sidebar-menu">
                     {navItems.map((item) => {
                         const IconComponent = item.icon;
                         return (
@@ -81,14 +72,14 @@ const RestaurantSidebar = ({ mobileOpen, closeMobileSidebar }) => {
                                 to={item.path}
                                 end={item.path === "/restaurant/dashboard"}
                                 className={({ isActive }) =>
-                                    `rest-nav-link ${isActive ? "active" : ""}`
+                                    `rest-sidebar-item ${isActive ? "active" : ""}`
                                 }
                                 onClick={() => {
-                                    if (mobileOpen) closeMobileSidebar();
+                                    if (mobileOpen && closeMobileSidebar) closeMobileSidebar();
                                 }}
                             >
-                                <IconComponent size={16} />
-                                <span>{item.name}</span>
+                                <IconComponent className="rest-item-icon" />
+                                <span className="rest-item-label">{item.name}</span>
                             </NavLink>
                         );
                     })}
@@ -101,7 +92,8 @@ const RestaurantSidebar = ({ mobileOpen, closeMobileSidebar }) => {
                         className="btn-rest-sidebar-logout"
                         onClick={handleLogout}
                     >
-                        <FaSignOutAlt /> Sign Out
+                        <FaSignOutAlt />
+                        <span>Logout</span>
                     </button>
                 </div>
             </aside>

@@ -1,0 +1,202 @@
+/* ==========================================================================
+   FoodExpress Reusable Brand Logo Component Styles
+   Supports variants: sidebar, navbar, mobile
+   Guarantees: white-space: nowrap; and seamless alignment across all screen sizes
+   ========================================================================== */
+
+.foodexpress-logo,
+.fx-logo-root {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none !important;
+    white-space: nowrap;
+    user-select: none;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    flex-shrink: 0;
+    max-width: 100%;
+    position: relative;
+}
+
+.foodexpress-logo::before,
+.foodexpress-logo::after,
+.fx-logo-root::before,
+.fx-logo-root::after {
+    display: none !important;
+    content: none !important;
+}
+
+.foodexpress-logo:hover,
+.fx-logo-root:hover {
+    opacity: 0.95;
+    text-decoration: none !important;
+}
+
+/* Icon Box */
+.fx-logo-icon-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    flex-shrink: 0;
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.fx-logo-root:hover .fx-logo-icon-box {
+    transform: rotate(6deg) scale(1.06);
+}
+
+.fx-logo-emoji {
+    display: inline-block;
+    line-height: 1;
+}
+
+/* Text Column */
+.fx-logo-text-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    white-space: nowrap;
+    min-width: 0;
+}
+
+.fx-logo-title {
+    font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-weight: 800;
+    line-height: 1.15;
+    white-space: nowrap;
+    letter-spacing: -0.4px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.fx-logo-title-accent {
+    color: #ff5200;
+    white-space: nowrap;
+}
+
+.fx-logo-subtitle {
+    font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+/* ----------------------------------------------------
+   VARIANT: SIDEBAR (FoodExpress Orange Background)
+   ---------------------------------------------------- */
+.fx-logo-root.fx-variant-sidebar {
+    width: 100%;
+    margin-bottom: 28px;
+    gap: 12px;
+}
+
+.fx-logo-root.fx-variant-sidebar .fx-logo-icon-box {
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 14px;
+    font-size: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.fx-logo-root.fx-variant-sidebar .fx-logo-title {
+    font-size: 20px;
+    color: #ffffff;
+}
+
+.fx-logo-root.fx-variant-sidebar .fx-logo-title-accent {
+    color: #ffffff;
+}
+
+.fx-logo-root.fx-variant-sidebar .fx-logo-subtitle {
+    font-size: 10.5px;
+    color: rgba(255, 255, 255, 0.88);
+    margin-top: 3px;
+}
+
+/* ----------------------------------------------------
+   VARIANT: NAVBAR (Light/White Header)
+   ---------------------------------------------------- */
+.fx-logo-root.fx-variant-navbar {
+    gap: 10px;
+}
+
+.fx-logo-root.fx-variant-navbar .fx-logo-icon-box {
+    width: 36px;
+    height: 36px;
+    background: rgba(255, 82, 0, 0.08);
+    border: 1px solid rgba(255, 82, 0, 0.16);
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+.fx-logo-root.fx-variant-navbar .fx-logo-title {
+    font-size: 19px;
+    color: #1a1a1a;
+}
+
+.fx-logo-root.fx-variant-navbar .fx-logo-title-accent {
+    color: #ff5200;
+}
+
+.fx-logo-root.fx-variant-navbar .fx-logo-subtitle {
+    font-size: 9px;
+    color: #64748b;
+    margin-top: 2px;
+}
+
+/* ----------------------------------------------------
+   VARIANT: MOBILE (Compact Header)
+   ---------------------------------------------------- */
+.fx-logo-root.fx-variant-mobile {
+    gap: 8px;
+}
+
+.fx-logo-root.fx-variant-mobile .fx-logo-icon-box {
+    width: 32px;
+    height: 32px;
+    background: rgba(255, 82, 0, 0.08);
+    border: 1px solid rgba(255, 82, 0, 0.14);
+    border-radius: 8px;
+    font-size: 18px;
+}
+
+.fx-logo-root.fx-variant-mobile .fx-logo-title {
+    font-size: 17px;
+    color: #1a1a1a;
+}
+
+.fx-logo-root.fx-variant-mobile .fx-logo-title-accent {
+    color: #ff5200;
+}
+
+.fx-logo-root.fx-variant-mobile .fx-logo-subtitle {
+    font-size: 8.5px;
+    color: #64748b;
+    margin-top: 1px;
+}
+
+/* ----------------------------------------------------
+   EXPLICIT THEME OVERRIDES
+   ---------------------------------------------------- */
+.fx-theme-orange .fx-logo-title,
+.fx-theme-orange .fx-logo-title-accent {
+    color: #ffffff !important;
+}
+
+.fx-theme-orange .fx-logo-subtitle {
+    color: rgba(255, 255, 255, 0.88) !important;
+}
+
+.fx-theme-light .fx-logo-title {
+    color: #1a1a1a !important;
+}
+
+.fx-theme-light .fx-logo-title-accent {
+    color: #ff5200 !important;
+}

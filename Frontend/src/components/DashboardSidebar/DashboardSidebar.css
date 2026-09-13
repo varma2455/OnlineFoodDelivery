@@ -38,35 +38,45 @@
 .sidebar-logo {
     display: flex;
     align-items: center;
-    margin-bottom: 36px;
+    margin-bottom: 28px;
+    width: 100%;
+    white-space: nowrap;
+}
+
+.sidebar-logo .fx-logo-root {
+    width: 100%;
+    white-space: nowrap;
 }
 
 .logo-circle {
-    width: 54px;
-    height: 54px;
+    width: 44px;
+    height: 44px;
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(4px);
-    border-radius: 16px;
+    border-radius: 14px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 26px;
-    margin-right: 14px;
+    font-size: 24px;
+    margin-right: 12px;
     border: 1px solid rgba(255, 255, 255, 0.25);
+    flex-shrink: 0;
 }
 
 .sidebar-logo h2 {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 800;
     margin-bottom: 2px;
     letter-spacing: -0.3px;
+    white-space: nowrap;
 }
 
 .sidebar-logo p {
-    font-size: 12px;
+    font-size: 11px;
     opacity: 0.9;
     letter-spacing: 0.5px;
     text-transform: uppercase;
+    white-space: nowrap;
 }
 
 /* ===========================

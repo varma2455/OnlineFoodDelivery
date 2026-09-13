@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { StoreContext } from "../../context/StoreContext";
+import FoodExpressLogo from "../FoodExpressLogo";
 import "./DashboardSidebar.css";
 
 import {
@@ -75,14 +76,7 @@ const DashboardSidebar = () => {
 
                 {/* Logo */}
                 <div className="sidebar-logo">
-                    <div className="logo-circle">
-                        🍔
-                    </div>
-
-                    <div>
-                        <h2>FoodExpress</h2>
-                        <p>FOOD DELIVERY</p>
-                    </div>
+                    <FoodExpressLogo variant="sidebar" to="/dashboard" />
                 </div>
 
                 {/* Menu */}

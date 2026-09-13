@@ -48,6 +48,18 @@
     flex-shrink: 0;
     display: flex;
     align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.navbar-brand::before,
+.navbar-brand::after,
+.foodexpress-logo::before,
+.foodexpress-logo::after,
+.brand-logo::before,
+.brand-logo::after {
+    display: none !important;
+    content: none !important;
 }
 
 .brand-logo {
@@ -190,6 +202,7 @@
    3. SEARCH BAR
 ================================================== */
 .navbar-search {
+    position: relative;
     flex: 1 1 200px;
     min-width: 180px;
     max-width: 380px;
@@ -199,22 +212,15 @@
     background: #f7f8fa;
     border: 1.5px solid #edf0f5;
     border-radius: 22px;
-    padding: 0 4px 0 14px;
+    padding: 0 4px 0 16px;
     box-sizing: border-box;
     transition: all 0.2s ease;
 }
 
 .navbar-search:focus-within {
     background: #ffffff;
-    border-color: #ff4757;
-    box-shadow: 0 0 0 3px rgba(255, 71, 87, 0.12);
-}
-
-.search-icon {
-    color: #a4b0be;
-    font-size: 14px;
-    margin-right: 8px;
-    flex-shrink: 0;
+    border-color: #ff5200;
+    box-shadow: 0 0 0 3px rgba(255, 82, 0, 0.12);
 }
 
 .navbar-search input {
@@ -225,6 +231,7 @@
     font-size: 13.5px;
     color: #2f3542;
     outline: none;
+    padding: 0;
 }
 
 .navbar-search input::placeholder {
@@ -232,7 +239,7 @@
 }
 
 .search-btn {
-    background: #ff4757;
+    background: #ff5200;
     color: #ffffff;
     border: none;
     border-radius: 18px;
@@ -241,16 +248,22 @@
     font-size: 13px;
     font-weight: 600;
     cursor: pointer;
-    transition: background 0.2s ease;
+    transition: background 0.2s ease, transform 0.15s ease;
     white-space: nowrap;
     flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 6px;
 }
 
 .search-btn:hover {
-    background: #ee3545;
+    background: #e04800;
+}
+
+.nav-search-btn-icon {
+    font-size: 12px;
+    line-height: 1;
 }
 
 /* ==================================================

@@ -228,7 +228,7 @@
     box-shadow: 0 0 0 3px rgba(255, 82, 0, 0.15);
 }
 
-.search-icon {
+.settings-search-box .search-icon {
     color: #94a3b8;
     margin-right: 10px;
     font-size: 15px;

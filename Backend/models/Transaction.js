@@ -15,7 +15,17 @@ const transactionSchema = new mongoose.Schema(
     },
     category: {
       type: String,
-      enum: ["wallet_topup", "order_payment", "refund", "cashback", "membership_fee"],
+      enum: [
+        "wallet_topup",
+        "order_payment",
+        "refund",
+        "cashback",
+        "membership_fee",
+        "delivery_earning",
+        "tip",
+        "bonus",
+        "withdrawal"
+      ],
       required: true
     },
     amount: {

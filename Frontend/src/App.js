@@ -36,6 +36,8 @@ import RestaurantManagement from "./pages/Admin/Restaurants/RestaurantManagement
 import RestaurantDetails from "./pages/Admin/Restaurants/RestaurantDetails";
 import RestaurantPartners from "./pages/Admin/RestaurantPartners/RestaurantPartners";
 import RestaurantPartnerDetails from "./pages/Admin/RestaurantPartners/RestaurantPartnerDetails";
+import DeliveryPartners from "./pages/Admin/DeliveryPartners/DeliveryPartners";
+import DeliveryPartnerDetails from "./pages/Admin/DeliveryPartners/DeliveryPartnerDetails";
 
 // Restaurant Partner Suite
 import RestaurantLayout from "./components/RestaurantLayout/RestaurantLayout";
@@ -53,8 +55,18 @@ import RestaurantAnalytics from "./pages/Restaurant/Analytics/RestaurantAnalytic
 import RestaurantReviews from "./pages/Restaurant/Reviews/RestaurantReviews";
 import RestaurantSettings from "./pages/Restaurant/Settings/RestaurantSettings";
 
-// Delivery Dashboard
-import DeliveryDashboard from "./pages/Delivery/Dashboard";
+// Delivery Partner Suite
+import DeliveryLayout from "./components/DeliveryLayout/DeliveryLayout";
+import DeliveryPartnerApplication from "./pages/Delivery/PartnerApplication/DeliveryPartnerApplication";
+import DeliveryApplicationStatus from "./pages/Delivery/ApplicationStatus/DeliveryApplicationStatus";
+import DeliveryActivate from "./pages/Delivery/Activate/DeliveryActivate";
+import DeliveryLogin from "./pages/Delivery/Login/DeliveryLogin";
+import DeliveryDashboard from "./pages/Delivery/Dashboard/DeliveryDashboard";
+import DeliveryOrders from "./pages/Delivery/Orders/DeliveryOrders";
+import MyDeliveries from "./pages/Delivery/MyDeliveries/MyDeliveries";
+import DeliveryEarnings from "./pages/Delivery/Earnings/DeliveryEarnings";
+import DeliveryWallet from "./pages/Delivery/Wallet/DeliveryWallet";
+import DeliveryProfile from "./pages/Delivery/Profile/DeliveryProfile";
 
 // Category Pages
 import CategoryPage from "./pages/CategoryPage/CategoryPage";
@@ -189,6 +201,22 @@ function App() {
                 }
             />
             <Route
+                path="/admin/delivery-partners"
+                element={
+                    <ProtectedRoute role="admin">
+                        <DeliveryPartners />
+                    </ProtectedRoute>
+                }
+            />
+            <Route
+                path="/admin/delivery-partners/:id"
+                element={
+                    <ProtectedRoute role="admin">
+                        <DeliveryPartnerDetails />
+                    </ProtectedRoute>
+                }
+            />
+            <Route
                 path="/admin/foods"
                 element={
                     <ProtectedRoute role="admin">
@@ -238,14 +266,28 @@ function App() {
                 <Route path="/restaurant/reviews" element={<RestaurantReviews />} />
                 <Route path="/restaurant/settings" element={<RestaurantSettings />} />
             </Route>
+            {/* Delivery Partner Onboarding & Authentication */}
+            <Route path="/delivery/partner-application" element={<DeliveryPartnerApplication />} />
+            <Route path="/delivery/application-status" element={<DeliveryApplicationStatus />} />
+            <Route path="/delivery/activate/:token" element={<DeliveryActivate />} />
+            <Route path="/delivery/login" element={<DeliveryLogin />} />
+
+            {/* Delivery Partner Dashboard Suite (Protected & Dedicated Rider Layout) */}
             <Route
-                path="/delivery"
                 element={
-                    <ProtectedRoute role="delivery">
-                        <DeliveryDashboard />
+                    <ProtectedRoute allowedRoles={["delivery", "admin"]}>
+                        <DeliveryLayout />
                     </ProtectedRoute>
                 }
-            />
+            >
+                <Route path="/delivery" element={<Navigate to="/delivery/dashboard" replace />} />
+                <Route path="/delivery/dashboard" element={<DeliveryDashboard />} />
+                <Route path="/delivery/orders" element={<DeliveryOrders />} />
+                <Route path="/delivery/my-deliveries" element={<MyDeliveries />} />
+                <Route path="/delivery/earnings" element={<DeliveryEarnings />} />
+                <Route path="/delivery/wallet" element={<DeliveryWallet />} />
+                <Route path="/delivery/profile" element={<DeliveryProfile />} />
+            </Route>
 
             {/* Order Route Aliases */}
             <Route path="/orders" element={<Navigate to="/my-orders" replace />} />

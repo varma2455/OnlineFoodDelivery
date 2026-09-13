@@ -11,7 +11,8 @@ import {
     FaUsers,
     FaSignOutAlt,
     FaStore,
-    FaHandshake
+    FaHandshake,
+    FaMotorcycle
 } from "react-icons/fa";
 
 const AdminNav = () => {
@@ -56,6 +57,12 @@ const AdminNav = () => {
                         className={({ isActive }) => (isActive ? "admin-link active" : "admin-link")}
                     >
                         <FaHandshake /> Restaurant Partners
+                    </NavLink>
+                    <NavLink
+                        to="/admin/delivery-partners"
+                        className={({ isActive }) => (isActive ? "admin-link active" : "admin-link")}
+                    >
+                        <FaMotorcycle /> Delivery Partners
                     </NavLink>
                     <NavLink
                         to="/admin/users"

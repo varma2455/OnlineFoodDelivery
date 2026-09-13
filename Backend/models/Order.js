@@ -187,6 +187,43 @@ const orderSchema = new mongoose.Schema(
     deliveredAt: {
       type: Date,
     },
+
+    deliveryPartner: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "DeliveryPartner",
+      default: null,
+      index: true,
+    },
+
+    deliveryStatus: {
+      type: String,
+      enum: [
+        "Available",
+        "Accepted",
+        "Going to Restaurant",
+        "Arrived at Restaurant",
+        "Order Picked Up",
+        "Going to Customer",
+        "Arrived at Customer",
+        "Delivered",
+        "Cancelled",
+      ],
+      default: "Available",
+      index: true,
+    },
+
+    deliveryEarnings: {
+      type: Number,
+      default: 50,
+    },
+
+    deliveryAssignedAt: {
+      type: Date,
+    },
+
+    deliveryPickedUpAt: {
+      type: Date,
+    },
   },
   {
     timestamps: true,

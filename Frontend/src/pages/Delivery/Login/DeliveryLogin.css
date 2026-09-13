@@ -1,0 +1,310 @@
+/* =========================================================================
+   FoodExpress Delivery Partner Login Styling
+   ========================================================================= */
+
+.dp-login-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #eff6ff 0%, #f8fafc 50%, #fff7ed 100%);
+    font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: #1e293b;
+    padding: clamp(20px, 4vw, 48px) clamp(14px, 3vw, 24px);
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dp-login-card {
+    width: 100%;
+    max-width: 480px;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
+    border: 1px solid #f1f5f9;
+    padding: clamp(28px, 5vw, 44px);
+    box-sizing: border-box;
+}
+
+/* Header */
+.dp-login-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.dp-login-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    margin-bottom: 14px;
+}
+
+.dp-logo-icon {
+    font-size: 30px;
+    line-height: 1;
+}
+
+.dp-logo-text {
+    font-size: 24px;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.5px;
+}
+
+.dp-login-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #eff6ff;
+    color: #2563eb;
+    font-weight: 700;
+    font-size: 11.5px;
+    padding: 5px 14px;
+    border-radius: 9999px;
+    margin-bottom: 12px;
+    border: 1px solid #dbeafe;
+    letter-spacing: 0.5px;
+}
+
+.dp-login-title {
+    font-size: clamp(22px, 4vw, 26px);
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0 0 6px;
+}
+
+.dp-login-subtitle {
+    color: #64748b;
+    font-size: 13.5px;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Form */
+.dp-login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 14px;
+}
+
+.dp-login-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.dp-login-form label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #334155;
+}
+
+.input-with-icon,
+.dp-password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.field-icon {
+    position: absolute;
+    left: 14px;
+    color: #94a3b8;
+    font-size: 14px;
+    pointer-events: none;
+}
+
+.dp-input {
+    width: 100%;
+    padding: 11px 14px 11px 40px;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 10px;
+    font-size: 14px;
+    font-family: inherit;
+    color: #0f172a;
+    transition: border-color 0.15s ease;
+    box-sizing: border-box;
+}
+
+.dp-input:focus {
+    outline: none;
+    border-color: #ff5200;
+}
+
+.dp-password-wrapper input {
+    padding-right: 42px;
+}
+
+.dp-password-toggle {
+    position: absolute;
+    right: 12px;
+    background: none;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+}
+
+.dp-password-toggle:hover {
+    color: #475569;
+}
+
+.dp-login-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+}
+
+.remember-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    color: #475569;
+}
+
+.remember-label input {
+    accent-color: #ff5200;
+}
+
+.dp-forgot-link {
+    color: #ff5200;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.dp-forgot-link:hover {
+    text-decoration: underline;
+}
+
+.btn-dp-submit {
+    width: 100%;
+    padding: 13px;
+    border-radius: 10px;
+    border: none;
+    background: linear-gradient(135deg, #ff5200 0%, #ea580c 100%);
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(255, 82, 0, 0.3);
+    transition: all 0.2s ease;
+}
+
+.btn-dp-submit:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(255, 82, 0, 0.4);
+}
+
+.btn-dp-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Google Login */
+.btn-google-login {
+    width: 100%;
+    padding: 11px;
+    border-radius: 10px;
+    border: 1.5px solid #cbd5e1;
+    background: #ffffff;
+    color: #0f172a;
+    font-weight: 600;
+    font-size: 13.5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.2s ease;
+}
+
+.btn-google-login:hover:not(:disabled) {
+    background: #f8fafc;
+    border-color: #94a3b8;
+}
+
+/* Divider */
+.dp-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #94a3b8;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin: 18px 0;
+}
+
+.dp-divider::before,
+.dp-divider::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.dp-divider span {
+    padding: 0 12px;
+}
+
+/* Not a Partner Banner */
+.dp-register-banner {
+    margin-top: 14px;
+    padding: 18px;
+    background: #eff6ff;
+    border: 1.5px solid #dbeafe;
+    border-radius: 14px;
+    text-align: center;
+}
+
+.not-partner-text {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #1e3a8a;
+    margin: 0 0 10px;
+}
+
+.btn-apply-now {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 16px;
+    background: #2563eb;
+    color: #ffffff;
+    font-size: 13.5px;
+    font-weight: 700;
+    border-radius: 8px;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
+    transition: all 0.15s ease;
+}
+
+.btn-apply-now:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+.status-tracker-link-wrap {
+    margin-top: 12px;
+}
+
+.link-check-app {
+    font-size: 12.5px;
+    color: #64748b;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.15s ease;
+}
+
+.link-check-app:hover {
+    color: #ff5200;
+    text-decoration: underline;
+}

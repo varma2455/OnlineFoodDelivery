@@ -129,7 +129,18 @@ export const adminAPI = {
     rejectRestaurantPartner: (id, reason) => api.put(`/api/admin/restaurant-partners/${id}/reject`, { reason }),
     requestChangesRestaurantPartner: (id, reason) => api.put(`/api/admin/restaurant-partners/${id}/request-changes`, { reason }),
     resendPartnerInvitation: (id) => api.post(`/api/admin/restaurant-partners/${id}/resend-invitation`),
-    revokePartnerInvitation: (id) => api.post(`/api/admin/restaurant-partners/${id}/revoke-invitation`)
+    revokePartnerInvitation: (id) => api.post(`/api/admin/restaurant-partners/${id}/revoke-invitation`),
+
+    // Delivery Partners Applications & Management for Admin
+    getDeliveryPartners: (params = {}) => api.get("/api/admin/delivery-partners", { params }),
+    getDeliveryPartnerById: (id) => api.get(`/api/admin/delivery-partners/${id}`),
+    approveDeliveryPartner: (id) => api.put(`/api/admin/delivery-partners/${id}/approve`),
+    rejectDeliveryPartner: (id, reason) => api.put(`/api/admin/delivery-partners/${id}/reject`, { reason }),
+    requestChangesDeliveryPartner: (id, reason) => api.put(`/api/admin/delivery-partners/${id}/request-changes`, { reason }),
+    resendDeliveryInvitation: (id) => api.post(`/api/admin/delivery-partners/${id}/resend-invitation`),
+    revokeDeliveryInvitation: (id) => api.post(`/api/admin/delivery-partners/${id}/revoke-invitation`),
+    suspendDeliveryPartner: (id) => api.put(`/api/admin/delivery-partners/${id}/suspend`),
+    reactivateDeliveryPartner: (id) => api.put(`/api/admin/delivery-partners/${id}/reactivate`)
 };
 
 // ==============================
@@ -173,11 +184,36 @@ export const restaurantAPI = {
 };
 
 // ==============================
-// DELIVERY API
+// DELIVERY PARTNER APPLICANT & PORTAL API
 // ==============================
+export const deliveryPartnerAPI = {
+    // Public Applicant & Invitation
+    apply: (data) => api.post("/api/delivery-partner/apply", data),
+    getApplicationStatus: (params = {}) => api.get("/api/delivery-partner/application-status", { params }),
+    getInvitation: (token) => api.get(`/api/delivery-partner/invitation/${token}`),
+    activate: (data) => api.post("/api/delivery-partner/activate", data),
+
+    // Authenticated Delivery Partner Portal
+    getMe: () => api.get("/api/delivery-partner/me"),
+    getDashboard: () => api.get("/api/delivery-partner/dashboard"),
+    getProfile: () => api.get("/api/delivery-partner/profile"),
+    updateProfile: (data) => api.put("/api/delivery-partner/profile", data),
+    updateAvailability: (availabilityStatus) => api.put("/api/delivery-partner/availability", { availabilityStatus }),
+    updateLocation: (coords) => api.put("/api/delivery-partner/location", coords),
+    getAvailableOrders: () => api.get("/api/delivery-partner/orders"),
+    getOrderDetails: (id) => api.get(`/api/delivery-partner/orders/${id}`),
+    acceptOrder: (id) => api.post(`/api/delivery-partner/orders/${id}/accept`),
+    updateOrderStatus: (id, deliveryStatus) => api.put(`/api/delivery-partner/orders/${id}/status`, { deliveryStatus }),
+    getMyDeliveries: (params = {}) => api.get("/api/delivery-partner/my-deliveries", { params }),
+    getEarnings: () => api.get("/api/delivery-partner/earnings"),
+    getWallet: () => api.get("/api/delivery-partner/wallet")
+};
+
+// Backward-compatible alias
 export const deliveryAPI = {
-    getOrders: () => api.get("/api/delivery/orders"),
-    updateDeliveryStatus: (id, orderStatus) => api.put(`/api/delivery/orders/${id}/status`, { orderStatus })
+    ...deliveryPartnerAPI,
+    getOrders: () => api.get("/api/delivery-partner/orders"),
+    updateDeliveryStatus: (id, orderStatus) => api.put(`/api/delivery-partner/orders/${id}/status`, { deliveryStatus: orderStatus })
 };
 
 export const walletAPI = {

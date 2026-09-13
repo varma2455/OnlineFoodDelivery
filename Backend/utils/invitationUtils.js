@@ -19,7 +19,7 @@ export function hashToken(rawToken) {
 }
 
 /**
- * Build the front-end activation URL
+ * Build the front-end activation URL for restaurants
  */
 export function getInvitationUrl(rawToken) {
     const clientBase = (process.env.CLIENT_URL || "http://localhost:3000").replace(/\/$/, "");
@@ -27,9 +27,25 @@ export function getInvitationUrl(rawToken) {
 }
 
 /**
- * Generate a formatted Application ID like RP-1024 or RP-749182
+ * Build the front-end activation URL for delivery partners
+ */
+export function getDeliveryInvitationUrl(rawToken) {
+    const clientBase = (process.env.CLIENT_URL || "http://localhost:3000").replace(/\/$/, "");
+    return `${clientBase}/delivery/activate/${rawToken}`;
+}
+
+/**
+ * Generate a formatted Application ID like RP-1024
  */
 export function generateApplicationId() {
     const randomNum = Math.floor(1000 + Math.random() * 9000);
     return `RP-${randomNum}`;
+}
+
+/**
+ * Generate a formatted Delivery Partner Application ID like DP-1024
+ */
+export function generateDeliveryApplicationId() {
+    const randomNum = Math.floor(1000 + Math.random() * 9000);
+    return `DP-${randomNum}`;
 }

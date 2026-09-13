@@ -1,0 +1,443 @@
+/* DeliveryDashboard.css - FoodExpress Delivery Partner Dashboard */
+
+.dp-dashboard-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.dp-dash-loading {
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Welcome Header */
+.dp-welcome-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.dp-greeting-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 0.25rem 0;
+}
+
+.dp-greeting-sub {
+    font-size: 0.875rem;
+    color: #64748b;
+    margin: 0;
+}
+
+.btn-dash-refresh {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    color: #334155;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-dash-refresh:hover {
+    background: #e2e8f0;
+    color: #0f172a;
+}
+
+/* Offline Banner */
+.dp-offline-banner {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #991b1b;
+    padding: 0.85rem 1.25rem;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.dp-offline-banner .dot.gray {
+    color: #ef4444;
+    font-size: 1.1rem;
+}
+
+/* KPI Grid */
+.dp-kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.dp-kpi-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 1.25rem;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dp-kpi-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.kpi-icon-wrap {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+    flex-shrink: 0;
+}
+
+.kpi-icon-wrap.blue {
+    background: #eff6ff;
+    color: #2563eb;
+}
+
+.kpi-icon-wrap.green {
+    background: #ecfdf5;
+    color: #059669;
+}
+
+.kpi-icon-wrap.orange {
+    background: #fff7ed;
+    color: #ea580c;
+}
+
+.kpi-icon-wrap.amber {
+    background: #fef3c7;
+    color: #d97706;
+}
+
+.kpi-icon-wrap.purple {
+    background: #f5f3ff;
+    color: #7c3aed;
+}
+
+.kpi-label {
+    font-size: 0.8rem;
+    color: #64748b;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.kpi-value {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-top: 0.15rem;
+}
+
+/* Active Order Card */
+.dp-active-order-card {
+    background: #ffffff;
+    border: 2px solid #3b82f6;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 14px rgba(59, 130, 246, 0.12);
+}
+
+.active-order-header {
+    background: #eff6ff;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #dbeafe;
+}
+
+.order-tag {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #1e40af;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.live-pulse {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background: #10b981;
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+    animation: livePulse 1.6s infinite cubic-bezier(0.66, 0, 0, 1);
+}
+
+@keyframes livePulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+.order-earnings-pill {
+    background: #10b981;
+    color: #ffffff;
+    padding: 0.35rem 0.85rem;
+    border-radius: 9999px;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.active-order-body {
+    padding: 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .active-order-body {
+        grid-template-columns: 1fr;
+    }
+}
+
+.location-box {
+    background: #f8fafc;
+    border-radius: 10px;
+    padding: 1.25rem;
+    border: 1px solid #e2e8f0;
+}
+
+.location-box.pickup {
+    border-left: 4px solid #f59e0b;
+}
+
+.location-box.drop {
+    border-left: 4px solid #10b981;
+}
+
+.loc-badge {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #d97706;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+}
+
+.loc-badge.customer {
+    color: #059669;
+}
+
+.loc-name {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 0.35rem;
+}
+
+.loc-addr {
+    font-size: 0.85rem;
+    color: #475569;
+    line-height: 1.4;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.35rem;
+    margin-bottom: 0.6rem;
+}
+
+.loc-phone {
+    font-size: 0.85rem;
+    color: #334155;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.loc-phone a {
+    color: #2563eb;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.loc-phone a:hover {
+    text-decoration: underline;
+}
+
+.active-order-actions {
+    background: #f8fafc;
+    padding: 1.25rem 1.5rem;
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.current-status-note {
+    font-size: 0.9rem;
+    color: #475569;
+}
+
+.current-status-note strong {
+    color: #0f172a;
+}
+
+.action-buttons-wrap {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.btn-step-action {
+    background: #2563eb;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 0.7rem 1.4rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+.btn-step-action:hover:not(:disabled) {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+.btn-step-action.deliver {
+    background: #059669;
+}
+
+.btn-step-action.deliver:hover:not(:disabled) {
+    background: #047857;
+}
+
+.btn-step-action:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+/* No Active Delivery */
+.dp-no-active-order {
+    background: #ffffff;
+    border: 1px dashed #cbd5e1;
+    border-radius: 14px;
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dp-no-active-order .idle-icon {
+    font-size: 3rem;
+    margin-bottom: 0.75rem;
+}
+
+.dp-no-active-order h3 {
+    margin: 0 0 0.4rem 0;
+    color: #0f172a;
+    font-size: 1.2rem;
+}
+
+.dp-no-active-order p {
+    color: #64748b;
+    font-size: 0.9rem;
+    max-width: 460px;
+    margin: 0 0 1.25rem 0;
+}
+
+.btn-find-orders {
+    background: #ff5722;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.92rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background 0.2s ease;
+}
+
+.btn-find-orders:hover {
+    background: #e64a19;
+}
+
+/* Quick Nav Cards */
+.dp-quick-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.quick-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 1.25rem;
+    border: 1px solid #e2e8f0;
+    text-decoration: none;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    transition: all 0.2s ease;
+}
+
+.quick-card:hover {
+    border-color: #cbd5e1;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    transform: translateY(-2px);
+}
+
+.qc-icon {
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    background: #f8fafc;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.qc-info h4 {
+    margin: 0 0 0.25rem 0;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.qc-info p {
+    margin: 0;
+    font-size: 0.8rem;
+    color: #64748b;
+    line-height: 1.35;
+}

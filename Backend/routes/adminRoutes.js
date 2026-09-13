@@ -27,6 +27,17 @@ import {
     adminResendPartnerInvitation,
     adminRevokePartnerInvitation
 } from "../controllers/restaurantPartnerController.js";
+import {
+    getAdminDeliveryPartners,
+    getAdminDeliveryPartnerById,
+    adminApproveDeliveryPartner,
+    adminRejectDeliveryPartner,
+    adminRequestChangesDeliveryPartner,
+    adminResendDeliveryInvitation,
+    adminRevokeDeliveryInvitation,
+    adminSuspendDeliveryPartner,
+    adminReactivateDeliveryPartner
+} from "../controllers/deliveryPartnerController.js";
 import { addFood, updateFood, deleteFood } from "../controllers/foodController.js";
 import { protect } from "../middleware/authMiddleware.js";
 import { isAdmin } from "../middleware/adminMiddleware.js";
@@ -58,6 +69,17 @@ router.put("/restaurant-partners/:id/request-changes", adminRequestChangesPartne
 router.post("/restaurant-partners/:id/invitation", adminResendPartnerInvitation);
 router.post("/restaurant-partners/:id/resend-invitation", adminResendPartnerInvitation);
 router.post("/restaurant-partners/:id/revoke-invitation", adminRevokePartnerInvitation);
+
+// Delivery Partners Management & Invitations
+router.get("/delivery-partners", getAdminDeliveryPartners);
+router.get("/delivery-partners/:id", getAdminDeliveryPartnerById);
+router.put("/delivery-partners/:id/approve", adminApproveDeliveryPartner);
+router.put("/delivery-partners/:id/reject", adminRejectDeliveryPartner);
+router.put("/delivery-partners/:id/request-changes", adminRequestChangesDeliveryPartner);
+router.post("/delivery-partners/:id/resend-invitation", adminResendDeliveryInvitation);
+router.post("/delivery-partners/:id/revoke-invitation", adminRevokeDeliveryInvitation);
+router.put("/delivery-partners/:id/suspend", adminSuspendDeliveryPartner);
+router.put("/delivery-partners/:id/reactivate", adminReactivateDeliveryPartner);
 
 // Foods
 router.get("/foods", getAdminFoods);

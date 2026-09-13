@@ -314,14 +314,30 @@ GET /api/dashboard/active-order
 export const getActiveOrder = async (req, res, next) => {
     try {
         const userId = req.user?._id || req.user?.id;
-        const order = userId ? await Order.findOne({
+        const orderDoc = userId ? await Order.findOne({
             user: userId,
             orderStatus: { $in: ["Placed", "Confirmed", "Preparing", "Out for Delivery"] }
-        }).sort({ createdAt: -1 }) : null;
+        })
+            .populate("items.food")
+            .populate("deliveryPartner", "name phone profilePhoto rating vehicleType vehicleNumber availabilityStatus status")
+            .sort({ createdAt: -1 }) : null;
+
+        if (!orderDoc) {
+            return res.status(200).json({
+                success: true,
+                activeOrder: null
+            });
+        }
+
+        const order = orderDoc.toObject ? orderDoc.toObject() : { ...orderDoc };
+        order.delivery = {
+            status: order.deliveryStatus || "Available",
+            deliveryPartner: order.deliveryPartner || null
+        };
 
         return res.status(200).json({
             success: true,
-            activeOrder: order || null
+            activeOrder: order
         });
     } catch (error) {
         next(error);

@@ -12,7 +12,11 @@ import {
     FaTimes,
     FaMapMarkerAlt,
     FaCreditCard,
-    FaShoppingBag
+    FaShoppingBag,
+    FaMotorcycle,
+    FaPhoneAlt,
+    FaBolt,
+    FaCheckCircle
 } from "react-icons/fa";
 
 const ORDER_STATUS_OPTIONS = [
@@ -33,6 +37,13 @@ const OrderManagement = () => {
     const [statusFilter, setStatusFilter] = useState("All");
     const [selectedOrder, setSelectedOrder] = useState(null);
 
+    // Delivery Partner Assignment State
+    const [eligibleDrivers, setEligibleDrivers] = useState([]);
+    const [assignModalOpen, setAssignModalOpen] = useState(false);
+    const [assignTargetOrder, setAssignTargetOrder] = useState(null);
+    const [selectedDriverId, setSelectedDriverId] = useState("");
+    const [assigning, setAssigning] = useState(false);
+
     const fetchOrders = async (isSilent = false) => {
         try {
             if (!isSilent) setLoading(true);
@@ -46,8 +57,18 @@ const OrderManagement = () => {
         }
     };
 
+    const fetchEligibleDrivers = async () => {
+        try {
+            const { data } = await adminAPI.getEligibleDrivers();
+            setEligibleDrivers(data.drivers || []);
+        } catch (err) {
+            console.warn("Could not fetch eligible drivers:", err.message);
+        }
+    };
+
     useEffect(() => {
         fetchOrders();
+        fetchEligibleDrivers();
     }, []);
 
     const handleStatusChange = async (orderId, newStatus) => {
@@ -82,11 +103,100 @@ const OrderManagement = () => {
         }
     };
 
+    // Open Assign Driver Modal
+    const openAssignModal = (order) => {
+        setAssignTargetOrder(order);
+        setSelectedDriverId(order.deliveryPartner?._id || "");
+        setAssignModalOpen(true);
+        fetchEligibleDrivers();
+    };
+
+    // Assign / Reassign Driver to specific order
+    const handleAssignDriver = async (orderId, driverId) => {
+        try {
+            setAssigning(true);
+            const { data } = await adminAPI.assignDeliveryPartner(orderId, driverId);
+            showToast(data.message || "Delivery partner assigned successfully! 🛵", "success");
+
+            // Update only THIS specific order in state
+            setOrders((prev) =>
+                prev.map((o) =>
+                    o._id === orderId
+                        ? {
+                              ...o,
+                              deliveryPartner: data.order?.deliveryPartner || null,
+                              deliveryStatus: data.order?.deliveryStatus || (driverId ? "Accepted" : "Available"),
+                              orderStatus: data.order?.orderStatus || o.orderStatus
+                          }
+                        : o
+                )
+            );
+
+            if (selectedOrder && selectedOrder._id === orderId) {
+                setSelectedOrder((prev) => ({
+                    ...prev,
+                    deliveryPartner: data.order?.deliveryPartner || null,
+                    deliveryStatus: data.order?.deliveryStatus || (driverId ? "Accepted" : "Available"),
+                    orderStatus: data.order?.orderStatus || prev.orderStatus
+                }));
+            }
+
+            setAssignModalOpen(false);
+            setAssignTargetOrder(null);
+            fetchEligibleDrivers();
+        } catch (err) {
+            showToast(err.message || "Failed to assign delivery partner", "error");
+        } finally {
+            setAssigning(false);
+        }
+    };
+
+    // Intelligent Auto-Assign Driver (Least-Loaded Online Driver)
+    const handleAutoAssign = async (orderId) => {
+        try {
+            setAssigning(true);
+            const { data } = await adminAPI.autoAssignDeliveryPartner(orderId);
+            showToast(data.message || "Order auto-assigned! 🛵", "success");
+
+            // Update only THIS specific order in state
+            setOrders((prev) =>
+                prev.map((o) =>
+                    o._id === orderId
+                        ? {
+                              ...o,
+                              deliveryPartner: data.order?.deliveryPartner || null,
+                              deliveryStatus: data.order?.deliveryStatus || "Accepted",
+                              orderStatus: data.order?.orderStatus || o.orderStatus
+                          }
+                        : o
+                )
+            );
+
+            if (selectedOrder && selectedOrder._id === orderId) {
+                setSelectedOrder((prev) => ({
+                    ...prev,
+                    deliveryPartner: data.order?.deliveryPartner || null,
+                    deliveryStatus: data.order?.deliveryStatus || "Accepted",
+                    orderStatus: data.order?.orderStatus || prev.orderStatus
+                }));
+            }
+
+            setAssignModalOpen(false);
+            setAssignTargetOrder(null);
+            fetchEligibleDrivers();
+        } catch (err) {
+            showToast(err.message || "Auto-assign failed", "error");
+        } finally {
+            setAssigning(false);
+        }
+    };
+
     const filteredOrders = orders.filter((order) => {
         const matchesSearch =
             order.user?.name?.toLowerCase().includes(search.toLowerCase()) ||
             order.user?.email?.toLowerCase().includes(search.toLowerCase()) ||
-            order._id?.toLowerCase().includes(search.toLowerCase());
+            order._id?.toLowerCase().includes(search.toLowerCase()) ||
+            order.deliveryPartner?.name?.toLowerCase().includes(search.toLowerCase());
 
         const matchesStatus =
             statusFilter === "All" ||
@@ -104,10 +214,10 @@ const OrderManagement = () => {
                 <div className="admin-page-header">
                     <div>
                         <h1>Live Order Management 📦</h1>
-                        <p>Real-time order pipeline. Update status and inspect customer delivery details.</p>
+                        <p>Real-time order pipeline. Assign delivery partners, update status, and inspect customer delivery details.</p>
                     </div>
 
-                    <button className="btn-admin-refresh" onClick={() => fetchOrders()}>
+                    <button className="btn-admin-refresh" onClick={() => { fetchOrders(); fetchEligibleDrivers(); }}>
                         <FaSyncAlt /> Refresh Orders
                     </button>
                 </div>
@@ -118,7 +228,7 @@ const OrderManagement = () => {
                         <FaSearch />
                         <input
                             type="text"
-                            placeholder="Search by customer name, email, or order ID..."
+                            placeholder="Search by customer name, driver name, email, or order ID..."
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
                         />
@@ -158,6 +268,7 @@ const OrderManagement = () => {
                                             <th>Amount</th>
                                             <th>Payment</th>
                                             <th>Status (Update)</th>
+                                            <th>Delivery Partner</th>
                                             <th>Date</th>
                                             <th>Actions</th>
                                         </tr>
@@ -199,8 +310,42 @@ const OrderManagement = () => {
                                                                 <option key={st} value={st}>
                                                                     {st}
                                                                 </option>
-                            ))}
+                                                            ))}
                                                         </select>
+                                                    </td>
+                                                    <td>
+                                                        <div className="table-driver-cell">
+                                                            {order.deliveryPartner ? (
+                                                                <>
+                                                                    <span className="table-driver-name">
+                                                                        <FaMotorcycle /> {order.deliveryPartner.name}
+                                                                    </span>
+                                                                    <span className="table-driver-status">
+                                                                        {order.deliveryStatus || "Accepted"}
+                                                                    </span>
+                                                                    <button
+                                                                        type="button"
+                                                                        className="btn-assign-driver-tag"
+                                                                        onClick={() => openAssignModal(order)}
+                                                                    >
+                                                                        Change Driver
+                                                                    </button>
+                                                                </>
+                                                            ) : (
+                                                                <>
+                                                                    <span className="table-driver-name unassigned">
+                                                                        Not Assigned
+                                                                    </span>
+                                                                    <button
+                                                                        type="button"
+                                                                        className="btn-assign-driver-tag"
+                                                                        onClick={() => openAssignModal(order)}
+                                                                    >
+                                                                        + Assign Driver
+                                                                    </button>
+                                                                </>
+                                                            )}
+                                                        </div>
                                                     </td>
                                                     <td>
                                                         {order.createdAt
@@ -272,6 +417,55 @@ const OrderManagement = () => {
                                 </p>
                             </div>
 
+                            {/* Delivery Partner Section in Modal */}
+                            <div className="modal-section">
+                                <h4 style={{ display: "flex", alignItems: "center", gap: "8px", color: "#ff4757", margin: "0 0 8px" }}>
+                                    <FaMotorcycle /> Assigned Delivery Partner
+                                </h4>
+                                {selectedOrder.deliveryPartner ? (
+                                    <div style={{ background: "#f8fafc", padding: "12px", borderRadius: "8px", border: "1px solid #e2e8f0" }}>
+                                        <p style={{ margin: 0, fontSize: "14px", color: "#2f3542", lineHeight: 1.6 }}>
+                                            <strong>Driver Name:</strong> {selectedOrder.deliveryPartner.name}<br />
+                                            <strong>Phone:</strong> {selectedOrder.deliveryPartner.phone || "N/A"}<br />
+                                            <strong>Vehicle:</strong> {selectedOrder.deliveryPartner.vehicleType || "Bike"} ({selectedOrder.deliveryPartner.vehicleNumber || "Verified"})<br />
+                                            <strong>Rating:</strong> ⭐ {selectedOrder.deliveryPartner.rating ? Number(selectedOrder.deliveryPartner.rating).toFixed(1) : "5.0"}<br />
+                                            <strong>Delivery Status:</strong> <span style={{ color: "#2ed573", fontWeight: 700 }}>{selectedOrder.deliveryStatus || "Accepted"}</span>
+                                        </p>
+                                        <button
+                                            type="button"
+                                            className="btn-assign-driver-tag"
+                                            style={{ marginTop: "10px" }}
+                                            onClick={() => openAssignModal(selectedOrder)}
+                                        >
+                                            Change Assigned Driver
+                                        </button>
+                                    </div>
+                                ) : (
+                                    <div style={{ background: "#fff8f5", padding: "12px", borderRadius: "8px", border: "1px dashed #ffb8b8" }}>
+                                        <p style={{ margin: "0 0 10px", fontSize: "13.5px", color: "#747d8c" }}>
+                                            No delivery partner has been assigned to this order yet.
+                                        </p>
+                                        <div style={{ display: "flex", gap: "8px" }}>
+                                            <button
+                                                type="button"
+                                                className="btn-assign-driver-tag"
+                                                onClick={() => openAssignModal(selectedOrder)}
+                                            >
+                                                + Assign Driver
+                                            </button>
+                                            <button
+                                                type="button"
+                                                className="btn-assign-driver-tag"
+                                                style={{ background: "#e8f4fd", color: "#0984e3", borderColor: "#74b9ff" }}
+                                                onClick={() => handleAutoAssign(selectedOrder._id)}
+                                            >
+                                                <FaBolt /> Auto-Dispatch Driver
+                                            </button>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+
                             {/* Payment */}
                             <div className="modal-section">
                                 <h4 style={{ display: "flex", alignItems: "center", gap: "8px", color: "#ff4757", margin: "0 0 8px" }}>
@@ -321,6 +515,90 @@ const OrderManagement = () => {
                         <div className="admin-modal-footer">
                             <button className="btn-modal-cancel" onClick={() => setSelectedOrder(null)}>
                                 Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* DEDICATED ASSIGN DRIVER MODAL */}
+            {assignModalOpen && assignTargetOrder && (
+                <div className="admin-modal-backdrop" onClick={() => { if (!assigning) setAssignModalOpen(false); }}>
+                    <div className="admin-modal-card" style={{ maxWidth: "520px" }} onClick={(e) => e.stopPropagation()}>
+                        <div className="admin-modal-header">
+                            <h2>Assign Delivery Partner 🛵</h2>
+                            <button
+                                className="modal-close-btn"
+                                onClick={() => setAssignModalOpen(false)}
+                                disabled={assigning}
+                            >
+                                <FaTimes />
+                            </button>
+                        </div>
+
+                        <div className="admin-modal-form" style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+                            <div style={{ background: "#f8fafc", padding: "12px", borderRadius: "8px", fontSize: "13.5px" }}>
+                                <div>Order: <strong>#{assignTargetOrder._id.slice(-6).toUpperCase()}</strong></div>
+                                <div>Customer: <strong>{assignTargetOrder.user?.name || "Customer"}</strong> ({assignTargetOrder.deliveryAddress?.city || "Hyderabad"})</div>
+                                <div>
+                                    Current Driver:{" "}
+                                    <strong>{assignTargetOrder.deliveryPartner?.name || "None (Unassigned)"}</strong>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label style={{ display: "block", fontSize: "13px", fontWeight: 700, marginBottom: "8px" }}>
+                                    Select Verified Delivery Partner:
+                                </label>
+                                <select
+                                    style={{ width: "100%", padding: "11px", borderRadius: "8px", border: "1.5px solid #edf0f5", fontSize: "14px" }}
+                                    value={selectedDriverId}
+                                    onChange={(e) => setSelectedDriverId(e.target.value)}
+                                    disabled={assigning}
+                                >
+                                    <option value="">-- Choose a Driver --</option>
+                                    {eligibleDrivers.map((driver) => (
+                                        <option key={driver._id} value={driver._id}>
+                                            {driver.name} — {driver.availabilityStatus?.toUpperCase()} ({driver.activeOrdersCount || 0} active orders) — ⭐ {driver.rating || "5.0"} ({driver.vehicleType || "Bike"})
+                                        </option>
+                                    ))}
+                                    {assignTargetOrder.deliveryPartner && (
+                                        <option value="unassign">-- Unassign Delivery Partner --</option>
+                                    )}
+                                </select>
+                            </div>
+
+                            <div style={{ display: "flex", gap: "10px", marginTop: "10px" }}>
+                                <button
+                                    type="button"
+                                    className="btn-admin-refresh"
+                                    style={{ flex: 1, justifyContent: "center", background: "#ff4757", color: "#fff", border: "none" }}
+                                    disabled={assigning}
+                                    onClick={() => handleAssignDriver(assignTargetOrder._id, selectedDriverId)}
+                                >
+                                    {assigning ? "Assigning..." : "Confirm Driver Assignment"}
+                                </button>
+
+                                <button
+                                    type="button"
+                                    className="btn-admin-refresh"
+                                    style={{ justifyContent: "center", background: "#e8f4fd", color: "#0984e3", borderColor: "#74b9ff" }}
+                                    disabled={assigning}
+                                    onClick={() => handleAutoAssign(assignTargetOrder._id)}
+                                    title="Dispatches to online driver with lowest active delivery workload"
+                                >
+                                    <FaBolt /> Auto-Dispatch
+                                </button>
+                            </div>
+                        </div>
+
+                        <div className="admin-modal-footer">
+                            <button
+                                className="btn-modal-cancel"
+                                onClick={() => setAssignModalOpen(false)}
+                                disabled={assigning}
+                            >
+                                Cancel
                             </button>
                         </div>
                     </div>

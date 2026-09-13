@@ -130,6 +130,8 @@ const DashboardActiveOrder = ({ onExploreClick }) => {
   const firstItemName = activeOrder.items?.[0]?.name || "Delicious Food";
   const moreCount = (activeOrder.items?.length || 1) - 1;
 
+  const rider = activeOrder.deliveryPartner || activeOrder.delivery?.deliveryPartner;
+
   return (
     <section className="live-active-order-container animate-fade-in">
       {/* Card Header */}
@@ -149,34 +151,28 @@ const DashboardActiveOrder = ({ onExploreClick }) => {
               </h3>
               <span className="live-pill">LIVE TRACKING</span>
             </div>
-            <p className="order-meta-text">
-              Order <strong>#FE{orderNumber}</strong> • {activeOrder.items?.length || 1} items • ₹
-              {activeOrder.finalAmount || activeOrder.totalAmount}
+            <p className="order-time-stamp">
+              Order #{orderNumber} • Arriving in ~{activeOrder.estimatedDeliveryTime || 30} mins
             </p>
           </div>
         </div>
 
-        <div className="active-eta-pill">
-          <FaClock className="eta-clock" />
-          <div>
-            <span className="eta-caption">Estimated Delivery</span>
-            <strong className="eta-time">
-              {activeOrder.estimatedDeliveryTime || 25} - {Number(activeOrder.estimatedDeliveryTime || 25) + 5} Mins
-            </strong>
-          </div>
+        <div className="action-top-badges">
+          <span className="order-pill-status">{activeOrder.orderStatus || "Confirmed"}</span>
         </div>
       </div>
 
-      {/* 5-Step Visual Progress Timeline */}
-      <div className="visual-timeline-track">
+      {/* Progress Track */}
+      <div className="timeline-stages-track">
+        <div
+          className="timeline-progress-bar-fill"
+          style={{ width: `${(currentStage / (timelineStages.length - 1)) * 100}%` }}
+        ></div>
         {timelineStages.map((stage, idx) => {
           const isDone = idx < currentStage;
           const isCurrent = idx === currentStage;
           return (
-            <div
-              key={stage.key}
-              className={`timeline-step ${isDone ? "done" : ""} ${isCurrent ? "current" : ""}`}
-            >
+            <div key={stage.key} className={`timeline-stage-point ${isDone ? "done" : ""} ${isCurrent ? "current" : ""}`}>
               <div className="step-node">
                 {isDone ? <FaCheckCircle className="check-done" /> : isCurrent ? <span className="current-ping">●</span> : <span className="pending-circle">○</span>}
               </div>
@@ -205,7 +201,15 @@ const DashboardActiveOrder = ({ onExploreClick }) => {
           <div className="chip rider">
             <span className="rider-avatar">🛵</span>
             <span>
-              Rider: <strong>Ravi Kumar</strong> (4.9 ★)
+              {rider && rider.name ? (
+                <>
+                  Rider: <strong>{rider.name}</strong> ({rider.rating ? Number(rider.rating).toFixed(1) : "5.0"} ★)
+                </>
+              ) : (
+                <>
+                  Rider: <em>Finding a delivery partner...</em>
+                </>
+              )}
             </span>
           </div>
         </div>
@@ -214,9 +218,15 @@ const DashboardActiveOrder = ({ onExploreClick }) => {
           <button className="btn-track-full" onClick={() => navigate("/my-orders")}>
             <FaCompass /> Track Live Order
           </button>
-          <a href="tel:+919876543210" className="btn-call-partner">
-            <FaPhoneAlt /> Call Rider
-          </a>
+          {rider && rider.phone ? (
+            <a href={`tel:${rider.phone}`} className="btn-call-partner">
+              <FaPhoneAlt /> Call Rider
+            </a>
+          ) : (
+            <button className="btn-call-partner" disabled style={{ opacity: 0.6, cursor: "not-allowed" }}>
+              <FaPhoneAlt /> Finding Rider
+            </button>
+          )}
         </div>
       </div>
     </section>

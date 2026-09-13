@@ -2,6 +2,7 @@ import User from "../models/User.js";
 import Food from "../models/Food.js";
 import Order from "../models/Order.js";
 import Restaurant from "../models/Restaurant.js";
+import DeliveryPartner from "../models/DeliveryPartner.js";
 import {
     listFirebaseUsers,
     updateFirebaseUser,
@@ -130,6 +131,7 @@ export const getAdminOrders = async (req, res, next) => {
         const orders = await Order.find()
             .populate("user", "fullName email phone")
             .populate("items.food")
+            .populate("deliveryPartner", "name phone profilePhoto rating vehicleType vehicleNumber availabilityStatus status")
             .sort({ createdAt: -1 });
 
         return res.status(200).json({
@@ -150,8 +152,227 @@ export const getAdminOrders = async (req, res, next) => {
                 deliveryAddress: o.deliveryAddress,
                 paymentMethod: o.paymentMethod,
                 paymentStatus: o.paymentStatus,
+                deliveryPartner: o.deliveryPartner,
+                deliveryStatus: o.deliveryStatus || "Available",
+                deliveryAssignedAt: o.deliveryAssignedAt,
                 createdAt: o.createdAt
             }))
+        });
+    } catch (error) {
+        next(error);
+    }
+};
+
+/**
+ * Assign or Reassign Delivery Partner to Order
+ * PUT /api/admin/orders/:id/assign-delivery
+ */
+export const assignDeliveryPartnerToOrder = async (req, res, next) => {
+    try {
+        const orderId = req.params.orderId || req.params.id;
+        const deliveryPartnerId = req.body.deliveryPartnerId || req.body.driverId;
+
+        const order = await Order.findById(orderId);
+        if (!order) {
+            return res.status(404).json({
+                success: false,
+                message: "Order not found."
+            });
+        }
+
+        // Check if unassigning
+        if (!deliveryPartnerId || deliveryPartnerId === "unassign" || deliveryPartnerId === "none") {
+            order.deliveryPartner = null;
+            order.deliveryStatus = "Available";
+            order.deliveryAssignedAt = null;
+            await order.save();
+
+            return res.status(200).json({
+                success: true,
+                message: "Delivery partner unassigned. Order is now Available for dispatch.",
+                order
+            });
+        }
+
+        const partner = await DeliveryPartner.findById(deliveryPartnerId);
+        if (!partner) {
+            return res.status(404).json({
+                success: false,
+                message: "Delivery partner not found."
+            });
+        }
+
+        if (partner.status !== "approved") {
+            return res.status(400).json({
+                success: false,
+                message: `Delivery partner "${partner.name}" is ${partner.status}. Only approved delivery partners can be assigned.`
+            });
+        }
+
+        // Assign to THIS specific order only
+        order.deliveryPartner = partner._id;
+        order.deliveryAssignedAt = new Date();
+        if (order.deliveryStatus === "Available" || !order.deliveryStatus) {
+            order.deliveryStatus = "Accepted";
+        }
+        if (["Placed", "Confirmed"].includes(order.orderStatus)) {
+            order.orderStatus = "Out for Delivery";
+        }
+
+        await order.save();
+
+        const populatedOrder = await Order.findById(order._id)
+            .populate("user", "fullName email phone")
+            .populate("items.food")
+            .populate("deliveryPartner", "name phone profilePhoto rating vehicleType vehicleNumber availabilityStatus status");
+
+        return res.status(200).json({
+            success: true,
+            message: `Order assigned to delivery partner "${partner.name}" successfully!`,
+            order: populatedOrder
+        });
+    } catch (error) {
+        next(error);
+    }
+};
+
+/**
+ * Intelligent Auto-Assign Delivery Partner (Least-Loaded Online Driver)
+ * POST /api/admin/orders/:id/auto-assign
+ */
+export const autoAssignDeliveryPartner = async (req, res, next) => {
+    try {
+        const orderId = req.params.orderId || req.params.id;
+        const order = await Order.findById(orderId);
+
+        if (!order) {
+            return res.status(404).json({
+                success: false,
+                message: "Order not found."
+            });
+        }
+
+        // 1. Find eligible delivery partners: approved and online
+        let candidates = await DeliveryPartner.find({
+            status: "approved",
+            availabilityStatus: "online"
+        });
+
+        // Fallback: if no online riders, search all approved riders not suspended
+        if (candidates.length === 0) {
+            candidates = await DeliveryPartner.find({
+                status: "approved",
+                availabilityStatus: { $ne: "busy" }
+            });
+        }
+
+        if (candidates.length === 0) {
+            candidates = await DeliveryPartner.find({ status: "approved" });
+        }
+
+        if (candidates.length === 0) {
+            return res.status(400).json({
+                success: false,
+                message: "No eligible delivery partners found in the system to auto-assign."
+            });
+        }
+
+        // 2. Calculate current active delivery workload for each candidate
+        const candidatesWithWorkload = await Promise.all(
+            candidates.map(async (partner) => {
+                const activeOrdersCount = await Order.countDocuments({
+                    deliveryPartner: partner._id,
+                    deliveryStatus: {
+                        $in: [
+                            "Accepted",
+                            "Going to Restaurant",
+                            "Arrived at Restaurant",
+                            "Order Picked Up",
+                            "Going to Customer",
+                            "Arrived at Customer"
+                        ]
+                    }
+                });
+                return { partner, activeOrdersCount };
+            })
+        );
+
+        // 3. Dispatch selection: Sort by lowest active order count, then highest rating
+        candidatesWithWorkload.sort((a, b) => {
+            if (a.activeOrdersCount !== b.activeOrdersCount) {
+                return a.activeOrdersCount - b.activeOrdersCount;
+            }
+            return (b.partner.rating || 5.0) - (a.partner.rating || 5.0);
+        });
+
+        const selectedPartner = candidatesWithWorkload[0].partner;
+
+        // 4. Assign to THIS specific order only
+        order.deliveryPartner = selectedPartner._id;
+        order.deliveryAssignedAt = new Date();
+        if (order.deliveryStatus === "Available" || !order.deliveryStatus) {
+            order.deliveryStatus = "Accepted";
+        }
+        if (["Placed", "Confirmed"].includes(order.orderStatus)) {
+            order.orderStatus = "Out for Delivery";
+        }
+
+        await order.save();
+
+        const populatedOrder = await Order.findById(order._id)
+            .populate("user", "fullName email phone")
+            .populate("items.food")
+            .populate("deliveryPartner", "name phone profilePhoto rating vehicleType vehicleNumber availabilityStatus status");
+
+        return res.status(200).json({
+            success: true,
+            message: `Order intelligently auto-assigned to ${selectedPartner.name} (Active load: ${candidatesWithWorkload[0].activeOrdersCount} deliveries).`,
+            order: populatedOrder
+        });
+    } catch (error) {
+        next(error);
+    }
+};
+
+/**
+ * Get Eligible Delivery Drivers for Assignment UI
+ * GET /api/admin/orders/eligible-drivers
+ */
+export const getEligibleDeliveryDrivers = async (req, res, next) => {
+    try {
+        const partners = await DeliveryPartner.find({ status: "approved" }).sort({ availabilityStatus: 1, name: 1 });
+
+        const driversWithLoad = await Promise.all(
+            partners.map(async (p) => {
+                const activeOrdersCount = await Order.countDocuments({
+                    deliveryPartner: p._id,
+                    deliveryStatus: {
+                        $in: [
+                            "Accepted",
+                            "Going to Restaurant",
+                            "Arrived at Restaurant",
+                            "Order Picked Up",
+                            "Going to Customer",
+                            "Arrived at Customer"
+                        ]
+                    }
+                });
+                return {
+                    _id: p._id,
+                    name: p.name,
+                    phone: p.phone,
+                    vehicleType: p.vehicleType,
+                    vehicleNumber: p.vehicleNumber,
+                    rating: p.rating || 5.0,
+                    availabilityStatus: p.availabilityStatus,
+                    activeOrdersCount
+                };
+            })
+        );
+
+        return res.status(200).json({
+            success: true,
+            drivers: driversWithLoad
         });
     } catch (error) {
         next(error);
@@ -176,6 +397,7 @@ export const updateAdminOrderStatus = async (req, res, next) => {
         if (newStatus === "Delivered") {
             order.paymentStatus = "Paid";
             order.deliveredAt = new Date();
+            order.deliveryStatus = "Delivered";
         }
         await order.save();
 

@@ -89,7 +89,10 @@ export const orderAPI = {
     placeOrder: (orderData) => api.post("/api/orders", orderData),
     getMyOrders: () => api.get("/api/orders/my-orders"),
     getOrderById: (id) => api.get(`/api/orders/${id}`),
-    cancelOrder: (id) => api.put(`/api/orders/${id}/cancel`)
+    cancelOrder: (id) => api.put(`/api/orders/${id}/cancel`),
+    assignDeliveryPartner: (orderId, deliveryPartnerId) => api.put(`/api/admin/orders/${orderId}/assign-delivery`, { deliveryPartnerId }),
+    autoAssignDeliveryPartner: (orderId) => api.post(`/api/admin/orders/${orderId}/auto-assign`),
+    getEligibleDrivers: () => api.get("/api/admin/orders/eligible-drivers")
 };
 
 // ==============================
@@ -107,6 +110,9 @@ export const adminAPI = {
     deleteFood: (id) => api.delete(`/api/foods/${id}`),
     getOrders: () => api.get("/api/admin/orders"),
     updateOrderStatus: (id, orderStatus) => api.put(`/api/admin/orders/${id}/status`, { orderStatus }),
+    assignDeliveryPartner: (orderId, deliveryPartnerId) => api.put(`/api/admin/orders/${orderId}/assign-delivery`, { deliveryPartnerId }),
+    autoAssignDeliveryPartner: (orderId) => api.post(`/api/admin/orders/${orderId}/auto-assign`),
+    getEligibleDrivers: () => api.get("/api/admin/orders/eligible-drivers"),
     deleteOrder: (id) => api.delete(`/api/admin/orders/${id}`),
     getUsers: () => api.get("/api/admin/users"),
     getFirebaseUsers: () => api.get("/api/admin/firebase/users"),

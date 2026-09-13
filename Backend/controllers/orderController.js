@@ -6,6 +6,7 @@ import Transaction from "../models/Transaction.js";
 import Offer from "../models/Offer.js";
 import RewardTransaction from "../models/RewardTransaction.js";
 import RewardVoucher from "../models/RewardVoucher.js";
+import DeliveryPartner from "../models/DeliveryPartner.js";
 
 /**
  * Place Order
@@ -332,11 +333,21 @@ export const placeOrder = async (req, res, next) => {
  */
 export const getMyOrders = async (req, res, next) => {
     try {
-        const orders = await Order.find({
+        const rawOrders = await Order.find({
             user: req.user._id
         })
             .populate("items.food")
+            .populate("deliveryPartner", "name phone profilePhoto rating vehicleType vehicleNumber availabilityStatus status")
             .sort({ createdAt: -1 });
+
+        const orders = rawOrders.map(o => {
+            const obj = o.toObject ? o.toObject() : { ...o };
+            obj.delivery = {
+                status: obj.deliveryStatus || "Available",
+                deliveryPartner: obj.deliveryPartner || null
+            };
+            return obj;
+        });
 
         return res.status(200).json({
             success: true,
@@ -355,11 +366,12 @@ export const getMyOrders = async (req, res, next) => {
  */
 export const getOrderById = async (req, res, next) => {
     try {
-        const order = await Order.findById(req.params.id)
+        const orderDoc = await Order.findById(req.params.id)
             .populate("user", "fullName email phone")
-            .populate("items.food");
+            .populate("items.food")
+            .populate("deliveryPartner", "name phone profilePhoto rating vehicleType vehicleNumber availabilityStatus status");
 
-        if (!order) {
+        if (!orderDoc) {
             return res.status(404).json({
                 success: false,
                 message: "Order not found."
@@ -367,7 +379,7 @@ export const getOrderById = async (req, res, next) => {
         }
 
         // Customer can view their own, admin/restaurant/delivery can view all
-        const isOwner = order.user && order.user._id.toString() === req.user._id.toString();
+        const isOwner = orderDoc.user && orderDoc.user._id.toString() === req.user._id.toString();
         const isStaff = ["admin", "restaurant", "delivery"].includes(req.user.role);
 
         if (!isOwner && !isStaff) {
@@ -376,6 +388,12 @@ export const getOrderById = async (req, res, next) => {
                 message: "Access denied."
             });
         }
+
+        const order = orderDoc.toObject ? orderDoc.toObject() : { ...orderDoc };
+        order.delivery = {
+            status: order.deliveryStatus || "Available",
+            deliveryPartner: order.deliveryPartner || null
+        };
 
         return res.status(200).json({
             success: true,
@@ -453,10 +471,20 @@ export const getAllOrders = async (req, res, next) => {
             query.orderStatus = statusFilter;
         }
 
-        const orders = await Order.find(query)
+        const rawOrders = await Order.find(query)
             .populate("user", "fullName email phone")
             .populate("items.food")
+            .populate("deliveryPartner", "name phone profilePhoto rating vehicleType vehicleNumber availabilityStatus status")
             .sort({ createdAt: -1 });
+
+        const orders = rawOrders.map(o => {
+            const obj = o.toObject ? o.toObject() : { ...o };
+            obj.delivery = {
+                status: obj.deliveryStatus || "Available",
+                deliveryPartner: obj.deliveryPartner || null
+            };
+            return obj;
+        });
 
         return res.status(200).json({
             success: true,

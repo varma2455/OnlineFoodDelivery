@@ -4,6 +4,9 @@ import {
     getAdminFoods,
     getAdminOrders,
     updateAdminOrderStatus,
+    assignDeliveryPartnerToOrder,
+    autoAssignDeliveryPartner,
+    getEligibleDeliveryDrivers,
     deleteAdminOrder,
     getAdminUsers,
     toggleBlockUser,
@@ -96,7 +99,12 @@ router.delete("/foods/:id", deleteFood);
 
 // Orders
 router.get("/orders", getAdminOrders);
+router.get("/orders/eligible-drivers", getEligibleDeliveryDrivers);
+router.get("/delivery-partners/eligible-for-assignment", getEligibleDeliveryDrivers);
 router.put("/orders/:id/status", updateAdminOrderStatus);
+router.put("/orders/:id/assign-delivery", assignDeliveryPartnerToOrder);
+router.post("/orders/:id/assign-delivery", assignDeliveryPartnerToOrder);
+router.post("/orders/:id/auto-assign", autoAssignDeliveryPartner);
 router.delete("/orders/:id", deleteAdminOrder);
 
 // Users (MongoDB & Roles)

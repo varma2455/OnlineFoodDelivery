@@ -613,6 +613,36 @@ const Orders = () => {
                                             </div>
                                         )}
 
+                                        {/* Delivery Partner Strip */}
+                                        {(() => {
+                                            const partner = order.deliveryPartner || order.delivery?.deliveryPartner;
+                                            if (partner && partner.name) {
+                                                return (
+                                                    <div className={`order-rider-strip ${isDelivered ? "delivered" : ""}`}>
+                                                        <FaMotorcycle className="rider-strip-icon" />
+                                                        <span>
+                                                            Delivery Partner: <strong>{partner.name}</strong>
+                                                            {partner.vehicleType ? ` (${partner.vehicleType})` : ""}
+                                                        </span>
+                                                        {partner.phone && !isDelivered && !isCancelled && (
+                                                            <a href={`tel:${partner.phone}`} className="rider-strip-call">
+                                                                <FaPhoneAlt /> Call Rider
+                                                            </a>
+                                                        )}
+                                                    </div>
+                                                );
+                                            }
+                                            if (isActive && !isCancelled) {
+                                                return (
+                                                    <div className="order-rider-strip pending">
+                                                        <FaMotorcycle className="rider-strip-icon" />
+                                                        <span>Delivery Partner: <em>Finding a delivery partner...</em></span>
+                                                    </div>
+                                                );
+                                            }
+                                            return null;
+                                        })()}
+
                                         {/* Food Items Preview */}
                                         <div className="card-items-section">
                                             {visibleItems?.map((item, idx) => (
@@ -969,6 +999,45 @@ const Orders = () => {
                                 </div>
                             </div>
 
+                            {/* Assigned Delivery Partner Card */}
+                            <div className="modal-detail-card">
+                                <h3>
+                                    <FaMotorcycle /> Assigned Delivery Partner
+                                </h3>
+                                {(() => {
+                                    const modalPartner = selectedOrder.deliveryPartner || selectedOrder.delivery?.deliveryPartner;
+                                    if (modalPartner && modalPartner.name) {
+                                        return (
+                                            <div className="modal-rider-card">
+                                                <div className="modal-rider-avatar">🛵</div>
+                                                <div className="modal-rider-details">
+                                                    <strong>{modalPartner.name}</strong>
+                                                    <p style={{ margin: "3px 0", fontSize: "13px", color: "#64748b" }}>
+                                                        {modalPartner.vehicleType || "Bike"}
+                                                        {modalPartner.vehicleNumber ? ` • ${modalPartner.vehicleNumber}` : ""}
+                                                        {" • "}⭐ {modalPartner.rating ? Number(modalPartner.rating).toFixed(1) : "5.0"}
+                                                    </p>
+                                                    {modalPartner.phone && (
+                                                        <a href={`tel:${modalPartner.phone}`} className="modal-rider-call-link">
+                                                            <FaPhoneAlt /> Call Partner ({modalPartner.phone})
+                                                        </a>
+                                                    )}
+                                                </div>
+                                            </div>
+                                        );
+                                    }
+                                    return (
+                                        <div className="modal-rider-pending">
+                                            <p style={{ margin: 0, color: "#64748b", fontSize: "13.5px" }}>
+                                                {["Delivered", "Cancelled"].includes(selectedOrder.orderStatus)
+                                                    ? "No delivery partner recorded for this order."
+                                                    : "Finding a delivery partner... Our smart dispatch system will assign an available verified rider shortly."}
+                                            </p>
+                                        </div>
+                                    );
+                                })()}
+                            </div>
+
                             {/* Payment & Bill Breakdown */}
                             <div className="modal-detail-card">
                                 <h3>
@@ -1115,16 +1184,42 @@ const Orders = () => {
                                 })}
                             </div>
 
-                            <div className="rider-contact-banner">
-                                <div className="rider-avatar-small">🛵</div>
-                                <div className="rider-info">
-                                    <strong>FoodExpress Delivery Partner</strong>
-                                    <small>Contact support or rider</small>
-                                </div>
-                                <a href="tel:+919876543210" className="btn-call-rider">
-                                    <FaPhoneAlt /> Call Rider
-                                </a>
-                            </div>
+                            {(() => {
+                                const trackingPartner = trackingModalOrder.deliveryPartner || trackingModalOrder.delivery?.deliveryPartner;
+                                if (trackingPartner && trackingPartner.name) {
+                                    return (
+                                        <div className="rider-contact-banner">
+                                            <div className="rider-avatar-small">🛵</div>
+                                            <div className="rider-info">
+                                                <strong>{trackingPartner.name}</strong>
+                                                <small>
+                                                    {trackingPartner.vehicleType || "Verified Rider"}
+                                                    {trackingPartner.vehicleNumber ? ` • ${trackingPartner.vehicleNumber}` : ""}
+                                                    {" • "}⭐ {trackingPartner.rating ? Number(trackingPartner.rating).toFixed(1) : "5.0"}
+                                                </small>
+                                            </div>
+                                            {trackingPartner.phone ? (
+                                                <a href={`tel:${trackingPartner.phone}`} className="btn-call-rider">
+                                                    <FaPhoneAlt /> Call Rider
+                                                </a>
+                                            ) : (
+                                                <span className="btn-call-rider" style={{ opacity: 0.8, cursor: "default" }}>
+                                                    <FaMotorcycle /> Dispatched
+                                                </span>
+                                            )}
+                                        </div>
+                                    );
+                                }
+                                return (
+                                    <div className="rider-contact-banner" style={{ background: "#f8fafc", border: "1px dashed #cbd5e1" }}>
+                                        <div className="rider-avatar-small">🛵</div>
+                                        <div className="rider-info">
+                                            <strong style={{ color: "#64748b" }}>Finding a delivery partner...</strong>
+                                            <small>Dispatching the nearest verified delivery partner</small>
+                                        </div>
+                                    </div>
+                                );
+                            })()}
                         </div>
 
                         <div className="orders-modal-footer">

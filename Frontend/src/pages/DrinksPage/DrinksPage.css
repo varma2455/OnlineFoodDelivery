@@ -955,20 +955,18 @@
    SIDEBAR
 ========================================= */
 
-.drinksPageLayout .browseSidebar{
-    position:fixed;
-
-    left:0;
-    top:0;
-
-    width:250px;
-    height:100vh;
-
-    flex-shrink:0;
-
-    overflow-y:auto;
-
-    z-index:1000;
+.drinksPageLayout .browseSidebar,
+.drinksPageLayout .dashboard-sidebar,
+.drinksPageLayout .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 247px;
+    height: 100vh;
+    flex-shrink: 0;
+    overflow-y: auto;
+    z-index: 1000;
 }
 
 

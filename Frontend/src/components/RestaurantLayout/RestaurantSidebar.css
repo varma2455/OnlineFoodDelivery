@@ -1,6 +1,6 @@
 /* ===================================================
    FOODEXPRESS - RESTAURANT SIDEBAR (ORANGE BRANDING)
-   Desktop: 247px sticky sidebar
+   Desktop: 247px permanently fixed stationary sidebar
    Active item: White rounded rectangle style
    =================================================== */
 
@@ -16,8 +16,10 @@
     flex-direction: column;
     justify-content: space-between;
     color: #ffffff;
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    bottom: 0;
     z-index: 1000;
     box-sizing: border-box;
     border: none;

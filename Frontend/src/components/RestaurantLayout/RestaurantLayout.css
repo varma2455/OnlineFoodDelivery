@@ -14,30 +14,35 @@
     color: #1e293b;
 }
 
-/* 1. Left Sidebar (247px fixed desktop width, orange gradient) */
+/* 1. Left Sidebar (247px permanently fixed desktop width, orange gradient) */
 .rest-app-layout > .rest-sidebar {
     width: 247px;
     min-width: 247px;
     max-width: 247px;
     flex-shrink: 0;
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    bottom: 0;
     height: 100vh;
     overflow-y: auto;
     overflow-x: hidden;
     z-index: 1000;
 }
 
-/* 2. Main Area (Starts immediately AFTER sidebar, fills remaining width) */
+/* 2. Main Area (Starts immediately AFTER fixed sidebar, fills remaining width) */
 .rest-main-area {
-    flex: 1;
+    margin-left: 247px;
+    width: calc(100% - 247px);
+    max-width: calc(100% - 247px);
     min-width: 0;
+    min-height: 100vh;
+    flex: 1;
     display: flex;
     flex-direction: column;
     background: #f8fafc;
     position: relative;
     box-sizing: border-box;
-    width: calc(100% - 247px);
 }
 
 /* 3. Main Content Area */
@@ -56,6 +61,8 @@
     }
 
     .rest-main-area {
+        margin-left: 0;
         width: 100%;
+        max-width: 100%;
     }
 }

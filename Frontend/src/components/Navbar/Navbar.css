@@ -1060,7 +1060,7 @@
     }
     .navbar-search {
         min-width: 150px;
-        padding: 0 10px;
+        padding: 0 4px 0 12px;
     }
     .location-pill {
         padding: 6px 10px;

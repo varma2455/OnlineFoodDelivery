@@ -15,19 +15,16 @@
    SIDEBAR
 ========================================= */
 
-.fastFoodOrderPageLayout .browseSidebar {
-
+.fastFoodOrderPageLayout .browseSidebar,
+.fastFoodOrderPageLayout .dashboard-sidebar,
+.fastFoodOrderPageLayout .sidebar {
     position: fixed;
-
     left: 0;
     top: 0;
-
-    width: 250px;
-
+    bottom: 0;
+    width: 247px;
     height: 100vh;
-
     z-index: 1000;
-
     overflow-y: auto;
 }
 

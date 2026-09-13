@@ -95,6 +95,7 @@ const deliveryPartnerApplicationSchema = new mongoose.Schema(
                 "changes_requested",
                 "approved",
                 "rejected",
+                "suspended",
                 "cancelled"
             ],
             default: "pending",

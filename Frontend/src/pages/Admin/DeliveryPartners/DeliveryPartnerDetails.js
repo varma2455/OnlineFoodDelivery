@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback, useContext } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import AdminNav from "../../../components/AdminNav/AdminNav";
 import { StoreContext } from "../../../context/StoreContext";
-import { deliveryPartnerAPI } from "../../../services/api";
+import { adminAPI, deliveryPartnerAPI, ui } from "../../../services/api";
 import Loader from "../../../components/Loader/Loader";
 import "./DeliveryPartnerDetails.css";
 import {
@@ -59,9 +59,11 @@ const DeliveryPartnerDetails = () => {
     const fetchDetails = useCallback(async () => {
         try {
             setLoading(true);
-            const { data } = await deliveryPartnerAPI.getAdminDeliveryPartnerById(id);
+            const apiService = adminAPI || deliveryPartnerAPI || ui;
+            const fetchFn = (apiService.getAdminDeliveryPartnerById || apiService.getAdminDeliveryPartner || deliveryPartnerAPI.getAdminDeliveryPartnerById).bind(apiService);
+            const { data } = await fetchFn(id);
             if (data.success) {
-                setApplication(data.application);
+                setApplication(data.application || data.data);
                 setInvitation(data.invitation);
                 setDeliveryPartner(data.deliveryPartner);
             }
@@ -78,15 +80,18 @@ const DeliveryPartnerDetails = () => {
     }, [fetchDetails]);
 
     const handleApprove = async () => {
-        if (!window.confirm(`Are you sure you want to approve rider "${application.fullName}"? A 72-hour secure invitation link will be generated.`)) {
+        const riderDisplayName = application?.ownerName || application?.fullName || "Delivery Partner";
+        if (!window.confirm(`Are you sure you want to approve rider "${riderDisplayName}"? A 72-hour secure invitation link will be generated.`)) {
             return;
         }
 
         try {
             setActionLoading(true);
-            const { data } = await deliveryPartnerAPI.adminApproveDeliveryPartner(id);
+            const apiService = adminAPI || deliveryPartnerAPI || ui;
+            const approveFn = (apiService.approveAdminDeliveryPartner || apiService.adminApproveDeliveryPartner || deliveryPartnerAPI.adminApproveDeliveryPartner).bind(apiService);
+            const { data } = await approveFn(id);
             if (data.success) {
-                showToast(`Rider "${application.fullName}" has been approved! 🎉`, "success");
+                showToast(`Rider "${riderDisplayName}" has been approved! 🎉`, "success");
                 if (data.invitationLink) {
                     setGeneratedLink(data.invitationLink);
                 }

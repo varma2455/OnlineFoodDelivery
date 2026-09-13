@@ -132,15 +132,30 @@ export const adminAPI = {
     revokePartnerInvitation: (id) => api.post(`/api/admin/restaurant-partners/${id}/revoke-invitation`),
 
     // Delivery Partners Applications & Management for Admin
+    getAdminDeliveryPartners: (params = {}) => api.get("/api/admin/delivery-partners", { params }),
     getDeliveryPartners: (params = {}) => api.get("/api/admin/delivery-partners", { params }),
+    getAdminDeliveryPartner: (id) => api.get(`/api/admin/delivery-partners/${id}`),
+    getAdminDeliveryPartnerById: (id) => api.get(`/api/admin/delivery-partners/${id}`),
     getDeliveryPartnerById: (id) => api.get(`/api/admin/delivery-partners/${id}`),
+    approveAdminDeliveryPartner: (id) => api.put(`/api/admin/delivery-partners/${id}/approve`),
+    adminApproveDeliveryPartner: (id) => api.put(`/api/admin/delivery-partners/${id}/approve`),
     approveDeliveryPartner: (id) => api.put(`/api/admin/delivery-partners/${id}/approve`),
+    rejectAdminDeliveryPartner: (id, reason) => api.put(`/api/admin/delivery-partners/${id}/reject`, { reason }),
+    adminRejectDeliveryPartner: (id, reason) => api.put(`/api/admin/delivery-partners/${id}/reject`, { reason }),
     rejectDeliveryPartner: (id, reason) => api.put(`/api/admin/delivery-partners/${id}/reject`, { reason }),
+    requestChangesAdminDeliveryPartner: (id, reason) => api.put(`/api/admin/delivery-partners/${id}/request-changes`, { reason }),
+    adminRequestChangesDeliveryPartner: (id, reason) => api.put(`/api/admin/delivery-partners/${id}/request-changes`, { reason }),
     requestChangesDeliveryPartner: (id, reason) => api.put(`/api/admin/delivery-partners/${id}/request-changes`, { reason }),
+    resendDeliveryPartnerInvitation: (id) => api.post(`/api/admin/delivery-partners/${id}/resend-invitation`),
+    adminResendDeliveryInvitation: (id) => api.post(`/api/admin/delivery-partners/${id}/resend-invitation`),
     resendDeliveryInvitation: (id) => api.post(`/api/admin/delivery-partners/${id}/resend-invitation`),
+    revokeDeliveryPartnerInvitation: (id) => api.post(`/api/admin/delivery-partners/${id}/revoke-invitation`),
+    adminRevokeDeliveryInvitation: (id) => api.post(`/api/admin/delivery-partners/${id}/revoke-invitation`),
     revokeDeliveryInvitation: (id) => api.post(`/api/admin/delivery-partners/${id}/revoke-invitation`),
-    suspendDeliveryPartner: (id) => api.put(`/api/admin/delivery-partners/${id}/suspend`),
-    reactivateDeliveryPartner: (id) => api.put(`/api/admin/delivery-partners/${id}/reactivate`)
+    suspendDeliveryPartner: (id, reason) => api.put(`/api/admin/delivery-partners/${id}/suspend`, { reason }),
+    adminSuspendDeliveryPartner: (id, reason) => api.put(`/api/admin/delivery-partners/${id}/suspend`, { reason }),
+    reactivateDeliveryPartner: (id) => api.put(`/api/admin/delivery-partners/${id}/reactivate`),
+    adminReactivateDeliveryPartner: (id) => api.put(`/api/admin/delivery-partners/${id}/reactivate`)
 };
 
 // ==============================
@@ -206,7 +221,39 @@ export const deliveryPartnerAPI = {
     updateOrderStatus: (id, deliveryStatus) => api.put(`/api/delivery-partner/orders/${id}/status`, { deliveryStatus }),
     getMyDeliveries: (params = {}) => api.get("/api/delivery-partner/my-deliveries", { params }),
     getEarnings: () => api.get("/api/delivery-partner/earnings"),
-    getWallet: () => api.get("/api/delivery-partner/wallet")
+    getWallet: () => api.get("/api/delivery-partner/wallet"),
+
+    // Admin Delivery Partner API methods
+    getAdminDeliveryPartners: (params = {}) => api.get("/api/admin/delivery-partners", { params }),
+    getDeliveryPartners: (params = {}) => api.get("/api/admin/delivery-partners", { params }),
+    getAdminDeliveryPartner: (id) => api.get(`/api/admin/delivery-partners/${id}`),
+    getAdminDeliveryPartnerById: (id) => api.get(`/api/admin/delivery-partners/${id}`),
+    getDeliveryPartnerById: (id) => api.get(`/api/admin/delivery-partners/${id}`),
+    approveAdminDeliveryPartner: (id) => api.put(`/api/admin/delivery-partners/${id}/approve`),
+    adminApproveDeliveryPartner: (id) => api.put(`/api/admin/delivery-partners/${id}/approve`),
+    approveDeliveryPartner: (id) => api.put(`/api/admin/delivery-partners/${id}/approve`),
+    rejectAdminDeliveryPartner: (id, reason) => api.put(`/api/admin/delivery-partners/${id}/reject`, { reason }),
+    adminRejectDeliveryPartner: (id, reason) => api.put(`/api/admin/delivery-partners/${id}/reject`, { reason }),
+    rejectDeliveryPartner: (id, reason) => api.put(`/api/admin/delivery-partners/${id}/reject`, { reason }),
+    requestChangesAdminDeliveryPartner: (id, reason) => api.put(`/api/admin/delivery-partners/${id}/request-changes`, { reason }),
+    adminRequestChangesDeliveryPartner: (id, reason) => api.put(`/api/admin/delivery-partners/${id}/request-changes`, { reason }),
+    requestChangesDeliveryPartner: (id, reason) => api.put(`/api/admin/delivery-partners/${id}/request-changes`, { reason }),
+    resendDeliveryPartnerInvitation: (id) => api.post(`/api/admin/delivery-partners/${id}/resend-invitation`),
+    adminResendDeliveryInvitation: (id) => api.post(`/api/admin/delivery-partners/${id}/resend-invitation`),
+    resendDeliveryInvitation: (id) => api.post(`/api/admin/delivery-partners/${id}/resend-invitation`),
+    revokeDeliveryPartnerInvitation: (id) => api.post(`/api/admin/delivery-partners/${id}/revoke-invitation`),
+    adminRevokeDeliveryInvitation: (id) => api.post(`/api/admin/delivery-partners/${id}/revoke-invitation`),
+    revokeDeliveryInvitation: (id) => api.post(`/api/admin/delivery-partners/${id}/revoke-invitation`),
+    suspendDeliveryPartner: (id, reason) => api.put(`/api/admin/delivery-partners/${id}/suspend`, { reason }),
+    adminSuspendDeliveryPartner: (id, reason) => api.put(`/api/admin/delivery-partners/${id}/suspend`, { reason }),
+    reactivateDeliveryPartner: (id) => api.put(`/api/admin/delivery-partners/${id}/reactivate`),
+    adminReactivateDeliveryPartner: (id) => api.put(`/api/admin/delivery-partners/${id}/reactivate`)
+};
+
+// UI Service alias mapping to admin & delivery APIs
+export const ui = {
+    ...adminAPI,
+    ...deliveryPartnerAPI
 };
 
 // Backward-compatible alias

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AdminNav from "../../../components/AdminNav/AdminNav";
 import { StoreContext } from "../../../context/StoreContext";
-import { deliveryPartnerAPI } from "../../../services/api";
+import { adminAPI, deliveryPartnerAPI, ui } from "../../../services/api";
 import Loader from "../../../components/Loader/Loader";
 import "./DeliveryPartners.css";
 import {
@@ -49,14 +49,17 @@ const DeliveryPartners = () => {
     const fetchApplications = useCallback(async () => {
         try {
             setLoading(true);
-            const { data } = await deliveryPartnerAPI.getAdminDeliveryPartners({
+            const apiService = adminAPI || deliveryPartnerAPI || ui;
+            const fetchFn = (apiService.getAdminDeliveryPartners || deliveryPartnerAPI.getAdminDeliveryPartners || adminAPI.getDeliveryPartners).bind(apiService);
+            const { data } = await fetchFn({
                 status: activeTab === "All" ? undefined : activeTab,
                 search: searchTerm.trim() || undefined,
                 city: cityFilter === "All" ? undefined : cityFilter
             });
 
-            if (data.success) {
-                setApplications(data.applications || []);
+            if (data?.success) {
+                const partnerList = data.applications || data.data || [];
+                setApplications(partnerList);
                 if (data.stats) {
                     setStats(data.stats);
                 }
@@ -107,7 +110,7 @@ const DeliveryPartners = () => {
                         </div>
                         <div className="stat-metric-info">
                             <span>Total Applicants</span>
-                            <h2>{stats.totalRequests}</h2>
+                            <h2>{stats.totalApplications ?? stats.totalRequests ?? 0}</h2>
                         </div>
                     </div>
 
@@ -117,7 +120,7 @@ const DeliveryPartners = () => {
                         </div>
                         <div className="stat-metric-info">
                             <span>Pending Review</span>
-                            <h2>{stats.pending}</h2>
+                            <h2>{stats.pendingReview ?? stats.pending ?? 0}</h2>
                         </div>
                     </div>
 
@@ -127,7 +130,7 @@ const DeliveryPartners = () => {
                         </div>
                         <div className="stat-metric-info">
                             <span>Approved</span>
-                            <h2>{stats.approved}</h2>
+                            <h2>{stats.approved ?? 0}</h2>
                         </div>
                     </div>
 
@@ -137,7 +140,7 @@ const DeliveryPartners = () => {
                         </div>
                         <div className="stat-metric-info">
                             <span>Changes Req.</span>
-                            <h2>{stats.changesRequested}</h2>
+                            <h2>{stats.changesRequested ?? 0}</h2>
                         </div>
                     </div>
 
@@ -147,7 +150,7 @@ const DeliveryPartners = () => {
                         </div>
                         <div className="stat-metric-info">
                             <span>Rejected</span>
-                            <h2>{stats.rejected}</h2>
+                            <h2>{stats.rejected ?? 0}</h2>
                         </div>
                     </div>
 
@@ -157,7 +160,7 @@ const DeliveryPartners = () => {
                         </div>
                         <div className="stat-metric-info">
                             <span>Active Riders</span>
-                            <h2>{stats.activePartners}</h2>
+                            <h2>{stats.activePartners ?? 0}</h2>
                         </div>
                     </div>
                 </div>
@@ -199,7 +202,7 @@ const DeliveryPartners = () => {
                     ) : applications.length === 0 ? (
                         <div className="table-empty-state">
                             <FaMotorcycle className="empty-icon" />
-                            <h3>No Delivery Partner Applications Found</h3>
+                            <h3>No delivery partner applications found.</h3>
                             <p>No rider registrations match the selected filter criteria.</p>
                         </div>
                     ) : (

@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import DeliveryPartnerApplication from "../models/DeliveryPartnerApplication.js";
 import DeliveryInvitation from "../models/DeliveryInvitation.js";
 import DeliveryPartner from "../models/DeliveryPartner.js";
@@ -1116,6 +1117,7 @@ export const getAdminDeliveryPartners = async (req, res, next) => {
             totalApplications,
             pendingReview,
             underReview,
+            changesRequested,
             approved,
             rejected,
             activePartners,
@@ -1124,6 +1126,7 @@ export const getAdminDeliveryPartners = async (req, res, next) => {
             DeliveryPartnerApplication.countDocuments(),
             DeliveryPartnerApplication.countDocuments({ status: "pending" }),
             DeliveryPartnerApplication.countDocuments({ status: "under_review" }),
+            DeliveryPartnerApplication.countDocuments({ status: "changes_requested" }),
             DeliveryPartnerApplication.countDocuments({ status: "approved" }),
             DeliveryPartnerApplication.countDocuments({ status: "rejected" }),
             DeliveryPartner.countDocuments({ status: "approved" }),
@@ -1133,15 +1136,20 @@ export const getAdminDeliveryPartners = async (req, res, next) => {
         return res.status(200).json({
             success: true,
             applications,
+            data: applications,
             pagination: {
                 total: totalCount,
                 page: Number(page),
+                limit: Number(limit),
                 pages: Math.ceil(totalCount / Number(limit))
             },
             stats: {
                 totalApplications,
+                totalRequests: totalApplications,
+                pending: pendingReview + underReview,
                 pendingReview,
                 underReview,
+                changesRequested,
                 approved,
                 rejected,
                 activePartners,
@@ -1467,23 +1475,39 @@ export const adminRevokeDeliveryInvitation = async (req, res, next) => {
 export const adminSuspendDeliveryPartner = async (req, res, next) => {
     try {
         const { id } = req.params;
-        const partner = await DeliveryPartner.findById(id);
+        let partner = await DeliveryPartner.findById(id);
+        let application = null;
 
         if (!partner) {
+            partner = await DeliveryPartner.findOne({ applicationId: id });
+            application = await DeliveryPartnerApplication.findById(id);
+        } else {
+            application = await DeliveryPartnerApplication.findById(partner.applicationId);
+        }
+
+        if (!partner && !application) {
             return res.status(404).json({
                 success: false,
                 message: "Delivery partner not found."
             });
         }
 
-        partner.status = "suspended";
-        partner.availabilityStatus = "offline";
-        await partner.save();
+        if (partner) {
+            partner.status = "suspended";
+            partner.availabilityStatus = "offline";
+            await partner.save();
+        }
+
+        if (application) {
+            application.status = "suspended";
+            await application.save();
+        }
 
         return res.status(200).json({
             success: true,
-            message: `Delivery partner "${partner.name}" has been suspended.`,
-            deliveryPartner: partner
+            message: `Delivery partner "${partner?.name || application?.ownerName || "Partner"}" has been suspended.`,
+            deliveryPartner: partner,
+            application
         });
     } catch (error) {
         next(error);
@@ -1497,22 +1521,38 @@ export const adminSuspendDeliveryPartner = async (req, res, next) => {
 export const adminReactivateDeliveryPartner = async (req, res, next) => {
     try {
         const { id } = req.params;
-        const partner = await DeliveryPartner.findById(id);
+        let partner = await DeliveryPartner.findById(id);
+        let application = null;
 
         if (!partner) {
+            partner = await DeliveryPartner.findOne({ applicationId: id });
+            application = await DeliveryPartnerApplication.findById(id);
+        } else {
+            application = await DeliveryPartnerApplication.findById(partner.applicationId);
+        }
+
+        if (!partner && !application) {
             return res.status(404).json({
                 success: false,
                 message: "Delivery partner not found."
             });
         }
 
-        partner.status = "approved";
-        await partner.save();
+        if (partner) {
+            partner.status = "approved";
+            await partner.save();
+        }
+
+        if (application) {
+            application.status = "approved";
+            await application.save();
+        }
 
         return res.status(200).json({
             success: true,
-            message: `Delivery partner "${partner.name}" has been reactivated.`,
-            deliveryPartner: partner
+            message: `Delivery partner "${partner?.name || application?.ownerName || "Partner"}" has been reactivated.`,
+            deliveryPartner: partner,
+            application
         });
     } catch (error) {
         next(error);

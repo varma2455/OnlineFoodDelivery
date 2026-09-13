@@ -74,12 +74,19 @@ router.post("/restaurant-partners/:id/revoke-invitation", adminRevokePartnerInvi
 router.get("/delivery-partners", getAdminDeliveryPartners);
 router.get("/delivery-partners/:id", getAdminDeliveryPartnerById);
 router.put("/delivery-partners/:id/approve", adminApproveDeliveryPartner);
+router.post("/delivery-partners/:id/approve", adminApproveDeliveryPartner);
 router.put("/delivery-partners/:id/reject", adminRejectDeliveryPartner);
+router.post("/delivery-partners/:id/reject", adminRejectDeliveryPartner);
 router.put("/delivery-partners/:id/request-changes", adminRequestChangesDeliveryPartner);
+router.post("/delivery-partners/:id/request-changes", adminRequestChangesDeliveryPartner);
 router.post("/delivery-partners/:id/resend-invitation", adminResendDeliveryInvitation);
+router.put("/delivery-partners/:id/resend-invitation", adminResendDeliveryInvitation);
 router.post("/delivery-partners/:id/revoke-invitation", adminRevokeDeliveryInvitation);
+router.put("/delivery-partners/:id/revoke-invitation", adminRevokeDeliveryInvitation);
 router.put("/delivery-partners/:id/suspend", adminSuspendDeliveryPartner);
+router.post("/delivery-partners/:id/suspend", adminSuspendDeliveryPartner);
 router.put("/delivery-partners/:id/reactivate", adminReactivateDeliveryPartner);
+router.post("/delivery-partners/:id/reactivate", adminReactivateDeliveryPartner);
 
 // Foods
 router.get("/foods", getAdminFoods);

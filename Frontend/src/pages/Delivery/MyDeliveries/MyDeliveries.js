@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback, useContext } from "react";
 import { StoreContext } from "../../../context/StoreContext";
 import { deliveryPartnerAPI } from "../../../services/api";
 import Loader from "../../../components/Loader/Loader";
+import DeliveryOtpInput from "../../../components/DeliveryOtpInput/DeliveryOtpInput";
 import "./MyDeliveries.css";
 import {
     FaClipboardList,
@@ -13,7 +14,9 @@ import {
     FaArrowRight,
     FaClock,
     FaCalendarAlt,
-    FaSyncAlt
+    FaSyncAlt,
+    FaLock,
+    FaTimes
 } from "react-icons/fa";
 
 const MyDeliveries = () => {
@@ -22,6 +25,7 @@ const MyDeliveries = () => {
     const [filter, setFilter] = useState("all"); // "all", "active", "completed"
     const [loading, setLoading] = useState(true);
     const [actionLoading, setActionLoading] = useState(false);
+    const [otpModalOrder, setOtpModalOrder] = useState(null);
 
     const fetchDeliveries = useCallback(async () => {
         try {
@@ -66,7 +70,7 @@ const MyDeliveries = () => {
             case "Going to Customer":
                 return { next: "Arrived at Customer", label: "Arrived at Customer" };
             case "Arrived at Customer":
-                return { next: "Delivered", label: "Mark as Delivered 🎉", isFinal: true };
+                return { next: "verify-otp", label: "Verify Delivery OTP 🔐", requiresOtp: true, isFinal: true };
             default:
                 return null;
         }
@@ -220,7 +224,13 @@ const MyDeliveries = () => {
                                         </div>
                                         <button
                                             className={`btn-advance-status ${nextAction.isFinal ? "finish" : ""}`}
-                                            onClick={() => handleUpdateStatus(delivery._id, nextAction.next)}
+                                            onClick={() => {
+                                                if (nextAction.requiresOtp) {
+                                                    setOtpModalOrder(delivery);
+                                                } else {
+                                                    handleUpdateStatus(delivery._id, nextAction.next);
+                                                }
+                                            }}
                                             disabled={actionLoading}
                                         >
                                             {actionLoading ? "Updating..." : (
@@ -240,6 +250,50 @@ const MyDeliveries = () => {
                             </div>
                         );
                     })}
+                </div>
+            )}
+
+            {/* OTP Verification Modal */}
+            {otpModalOrder && (
+                <div
+                    className="dp-otp-modal-backdrop"
+                    onClick={() => setOtpModalOrder(null)}
+                    style={{
+                        position: "fixed",
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        background: "rgba(15, 23, 42, 0.7)",
+                        backdropFilter: "blur(4px)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        zIndex: 9999,
+                        padding: "16px"
+                    }}
+                >
+                    <div
+                        className="dp-otp-modal-dialog"
+                        onClick={(e) => e.stopPropagation()}
+                        style={{
+                            maxWidth: "480px",
+                            width: "100%",
+                            position: "relative"
+                        }}
+                    >
+                        <DeliveryOtpInput
+                            orderId={otpModalOrder._id}
+                            orderNumber={`#FE${otpModalOrder._id.slice(-6).toUpperCase()}`}
+                            customerName={otpModalOrder.deliveryAddress?.fullName || otpModalOrder.user?.fullName || "Customer"}
+                            onCancel={() => setOtpModalOrder(null)}
+                            onSuccess={() => {
+                                showToast("Delivery verified successfully! 🎉", "success");
+                                setOtpModalOrder(null);
+                                fetchDeliveries();
+                            }}
+                        />
+                    </div>
                 </div>
             )}
         </div>

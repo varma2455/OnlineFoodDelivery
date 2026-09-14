@@ -316,9 +316,10 @@ export const getActiveOrder = async (req, res, next) => {
         const userId = req.user?._id || req.user?.id;
         const orderDoc = userId ? await Order.findOne({
             user: userId,
-            orderStatus: { $in: ["Placed", "Confirmed", "Preparing", "Out for Delivery"] }
+            orderStatus: { $in: ["Placed", "Confirmed", "Preparing", "Ready for Pickup", "Out for Delivery"] }
         })
             .populate("items.food")
+            .populate("items.restaurantId", "name address phone")
             .populate("deliveryPartner", "name phone profilePhoto rating vehicleType vehicleNumber availabilityStatus status")
             .sort({ createdAt: -1 }) : null;
 
@@ -330,9 +331,15 @@ export const getActiveOrder = async (req, res, next) => {
         }
 
         const order = orderDoc.toObject ? orderDoc.toObject() : { ...orderDoc };
+        order.deliveryPartner = order.deliveryPartner || null;
+        order.deliveryPartnerId = order.deliveryPartner?._id || order.deliveryPartner || null;
         order.delivery = {
-            status: order.deliveryStatus || "Available",
-            deliveryPartner: order.deliveryPartner || null
+            status: order.deliveryStatus || "unassigned",
+            deliveryPartner: order.deliveryPartner || null,
+            assignedAt: order.deliveryAssignedAt || null,
+            acceptedAt: order.deliveryAcceptedAt || null,
+            pickedUpAt: order.deliveryPickedUpAt || null,
+            deliveredAt: order.deliveredAt || null
         };
 
         return res.status(200).json({

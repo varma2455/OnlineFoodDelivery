@@ -3,6 +3,7 @@ import { Link, useOutletContext } from "react-router-dom";
 import { StoreContext } from "../../../context/StoreContext";
 import { deliveryPartnerAPI } from "../../../services/api";
 import Loader from "../../../components/Loader/Loader";
+import DeliveryOtpInput from "../../../components/DeliveryOtpInput/DeliveryOtpInput";
 import "./DeliveryDashboard.css";
 import {
     FaMotorcycle,
@@ -174,7 +175,7 @@ const DeliveryDashboard = () => {
                 <div className="dp-active-order-card">
                     <div className="active-order-header">
                         <div className="order-tag">
-                            <span className="live-pulse"></span> ACTIVE ORDER #
+                            <span className="live-pulse"></span> {currentStatus === "Assigned" ? "NEW DELIVERY #" : "ACTIVE ORDER #"}
                             {activeDelivery._id.slice(-6).toUpperCase()}
                         </div>
                         <div className="order-earnings-pill">
@@ -228,10 +229,21 @@ const DeliveryDashboard = () => {
                     {/* Step Action Buttons based on valid transition */}
                     <div className="active-order-actions">
                         <div className="current-status-note">
-                            Current Status: <strong>{currentStatus}</strong>
+                            Current Status: <strong>{currentStatus === "Assigned" ? "Assigned (Waiting for Acceptance)" : currentStatus}</strong>
                         </div>
 
                         <div className="action-buttons-wrap">
+                            {currentStatus === "Assigned" && (
+                                <button
+                                    className="btn-step-action"
+                                    style={{ background: "#10b981", color: "#ffffff", borderColor: "#059669" }}
+                                    onClick={() => handleUpdateDeliveryStatus(activeDelivery._id, "Accepted")}
+                                    disabled={actionLoading}
+                                >
+                                    <FaCheckCircle /> Accept Delivery Order
+                                </button>
+                            )}
+
                             {currentStatus === "Accepted" && (
                                 <button
                                     className="btn-step-action"
@@ -283,13 +295,17 @@ const DeliveryDashboard = () => {
                             )}
 
                             {currentStatus === "Arrived at Customer" && (
-                                <button
-                                    className="btn-step-action deliver"
-                                    onClick={() => handleUpdateDeliveryStatus(activeDelivery._id, "Delivered")}
-                                    disabled={actionLoading}
-                                >
-                                    Mark as Delivered 🎉
-                                </button>
+                                <div style={{ width: "100%", marginTop: "12px" }}>
+                                    <DeliveryOtpInput
+                                        orderId={activeDelivery._id}
+                                        orderNumber={`#FE${activeDelivery._id.slice(-6).toUpperCase()}`}
+                                        customerName={activeDelivery.deliveryAddress?.fullName || activeDelivery.user?.fullName || "Customer"}
+                                        onSuccess={(data) => {
+                                            showToast(data.message || "Delivery verified successfully! 🎉", "success");
+                                            fetchDashboard();
+                                        }}
+                                    />
+                                </div>
                             )}
                         </div>
                     </div>

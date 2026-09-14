@@ -27,16 +27,53 @@ import {
     FaWallet,
     FaGift,
     FaPhoneAlt,
-    FaExclamationTriangle
+    FaExclamationTriangle,
+    FaShieldAlt,
+    FaKey
 } from "react-icons/fa";
+import CustomerDeliveryOtpCard from "../../components/CustomerDeliveryOtpCard/CustomerDeliveryOtpCard";
 
-const TRACKING_STEPS = [
-    { key: "Placed", label: "Order Placed", desc: "Order received & logged", icon: <FaBox /> },
-    { key: "Confirmed", label: "Confirmed", desc: "Restaurant accepted", icon: <FaCheckCircle /> },
-    { key: "Preparing", label: "Preparing", desc: "Food being prepared", icon: <FaUtensils /> },
-    { key: "Out for Delivery", label: "Out for Delivery", desc: "Rider is on the way", icon: <FaMotorcycle /> },
-    { key: "Delivered", label: "Delivered", desc: "Enjoy your food!", icon: <FaCheckCircle /> }
+const DETAILED_TRACKING_STEPS = [
+    { key: "placed_confirmed", label: "Placed", detailedLabel: "Order Placed & Confirmed", desc: "Restaurant accepted your order", icon: <FaCheckCircle /> },
+    { key: "preparing", label: "Preparing", detailedLabel: "Food Being Prepared", desc: "Kitchen is preparing fresh dishes", icon: <FaUtensils /> },
+    { key: "ready", label: "Ready", detailedLabel: "Ready for Pickup", desc: "Food packed & waiting for pickup", icon: <FaBox /> },
+    { key: "assigned", label: "Assigned", detailedLabel: "Driver Assigned", desc: "Delivery partner assigned to order", icon: <FaMotorcycle /> },
+    { key: "heading_restaurant", label: "Accepted", detailedLabel: "Driver Accepted & On The Way", desc: "Heading towards restaurant for pickup", icon: <FaMotorcycle /> },
+    { key: "out_for_delivery", label: "Out for Delivery", detailedLabel: "Picked Up & Out for Delivery", desc: "Rider is en route to your location", icon: <FaMotorcycle /> },
+    { key: "arrived_customer", label: "Arrived", detailedLabel: "Driver Arrived at Your Location", desc: "Rider waiting outside with your order", icon: <FaMapMarkerAlt /> },
+    { key: "otp_verification", label: "🔐 OTP Handover", detailedLabel: "🔐 Delivery OTP Handover", desc: "Provide 6-digit OTP to complete delivery", icon: <FaShieldAlt /> },
+    { key: "delivered", label: "Delivered", detailedLabel: "Delivered Successfully", desc: "Handover verified. Enjoy your meal!", icon: <FaCheckCircle /> }
 ];
+
+const getDeliveryStageIndex = (order) => {
+    if (!order) return 0;
+    const orderStatus = (order.orderStatus || "").toLowerCase();
+    const deliveryStatus = (order.deliveryStatus || order.delivery?.status || "").toLowerCase();
+    const hasPartner = Boolean(order.deliveryPartner || order.delivery?.deliveryPartner);
+
+    if (orderStatus === "delivered" || deliveryStatus === "delivered") {
+        return 8; // Stage 9: Delivered Successfully
+    }
+    if (deliveryStatus === "arrived at customer") {
+        return 7; // Stage 8: 🔐 Delivery OTP Handover / Verification
+    }
+    if (deliveryStatus === "going to customer" || deliveryStatus === "order picked up" || orderStatus === "out for delivery") {
+        return 5; // Stage 6: Food Picked Up / Out for Delivery
+    }
+    if (deliveryStatus === "going to restaurant" || deliveryStatus === "arrived at restaurant" || deliveryStatus === "accepted") {
+        return 4; // Stage 5: Driver Accepted & Heading to Restaurant
+    }
+    if (hasPartner) {
+        return 3; // Stage 4: Driver Assigned
+    }
+    if (orderStatus === "ready for pickup") {
+        return 2; // Stage 3: Ready for Pickup
+    }
+    if (orderStatus === "preparing") {
+        return 1; // Stage 2: Food Being Prepared
+    }
+    return 0; // Stage 1: Order Placed / Confirmed
+};
 
 const formatOrderId = (id) => {
     if (!id) return "#FE0000";
@@ -161,7 +198,7 @@ const Orders = () => {
     useEffect(() => {
         const hasActive = orders.some((o) => {
             const st = (o.orderStatus || "").toLowerCase();
-            return ["placed", "confirmed", "preparing", "out for delivery"].includes(st);
+            return ["placed", "confirmed", "preparing", "ready for pickup", "out for delivery"].includes(st);
         });
 
         if (!hasActive) return;
@@ -178,10 +215,17 @@ const Orders = () => {
         setCurrentPage(1);
     }, [activeFilter, searchQuery, sortBy]);
 
-    // Helper: Step index
-    const getStatusIndex = (status) => {
-        const s = (status || "").toLowerCase();
-        return TRACKING_STEPS.findIndex((step) => step.key.toLowerCase() === s);
+    // Handle OTP update / regeneration from CustomerDeliveryOtpCard
+    const handleOtpUpdated = (newOtp, updatedOrder) => {
+        setOrders((prev) =>
+            prev.map((o) => (o._id === updatedOrder._id ? { ...o, deliveryOtp: newOtp } : o))
+        );
+        if (selectedOrder && selectedOrder._id === updatedOrder._id) {
+            setSelectedOrder((prev) => ({ ...prev, deliveryOtp: newOtp }));
+        }
+        if (trackingModalOrder && trackingModalOrder._id === updatedOrder._id) {
+            setTrackingModalOrder((prev) => ({ ...prev, deliveryOtp: newOtp }));
+        }
     };
 
     // Toggle card items expansion
@@ -524,10 +568,10 @@ const Orders = () => {
                         /* Paginated Order Cards Feed */
                         <div className="orders-cards-feed">
                             {paginatedOrders.map((order) => {
-                                const stepIndex = getStatusIndex(order.orderStatus);
+                                const stageIndex = getDeliveryStageIndex(order);
                                 const isCancelled = (order.orderStatus || "").toLowerCase() === "cancelled";
                                 const isDelivered = (order.orderStatus || "").toLowerCase() === "delivered";
-                                const isActive = ["placed", "confirmed", "preparing", "out for delivery"].includes(
+                                const isActive = ["placed", "confirmed", "preparing", "ready for pickup", "out for delivery"].includes(
                                     (order.orderStatus || "").toLowerCase()
                                 );
                                 const canCancel = (order.orderStatus || "").toLowerCase() === "placed";
@@ -537,6 +581,8 @@ const Orders = () => {
                                     : (order.items || []).slice(0, 2);
                                 const remainingCount = Math.max(0, (order.items?.length || 0) - 2);
 
+                                const restaurantName = order.items?.[0]?.restaurantId?.name || "FoodExpress Kitchen";
+
                                 return (
                                     <article key={order._id} className="order-summary-card">
                                         {/* Card Header */}
@@ -545,7 +591,7 @@ const Orders = () => {
                                                 <div className="order-id-tag">
                                                     <strong>{formatOrderId(order._id)}</strong>
                                                     <span className="order-restaurant-tag">
-                                                        🏪 FoodExpress Kitchen
+                                                        🏪 {restaurantName}
                                                     </span>
                                                 </div>
                                                 <div className="order-timestamp">
@@ -570,9 +616,9 @@ const Orders = () => {
                                         {isActive && !isCancelled && (
                                             <div className="card-inline-tracker">
                                                 <div className="tracker-steps-line">
-                                                    {TRACKING_STEPS.map((step, idx) => {
-                                                        const isCompleted = stepIndex >= idx;
-                                                        const isCurrent = stepIndex === idx;
+                                                    {DETAILED_TRACKING_STEPS.map((step, idx) => {
+                                                        const isCompleted = stageIndex > idx || (stageIndex === 8 && idx === 8);
+                                                        const isCurrent = stageIndex === idx && stageIndex !== 8;
 
                                                         return (
                                                             <div
@@ -617,12 +663,25 @@ const Orders = () => {
                                         {(() => {
                                             const partner = order.deliveryPartner || order.delivery?.deliveryPartner;
                                             if (partner && partner.name) {
+                                                const dStatus = (order.deliveryStatus || order.delivery?.status || "").toLowerCase();
+                                                let driverStatusText = "Driver Assigned";
+                                                if (dStatus === "accepted") driverStatusText = "Driver Accepted";
+                                                else if (dStatus === "going to restaurant") driverStatusText = "Going to Restaurant";
+                                                else if (dStatus === "arrived at restaurant") driverStatusText = "Arrived at Restaurant";
+                                                else if (dStatus === "order picked up") driverStatusText = "Picked Up";
+                                                else if (dStatus === "going to customer" || (order.orderStatus === "Out for Delivery" && !isDelivered)) driverStatusText = "Out for Delivery";
+                                                else if (dStatus === "arrived at customer") driverStatusText = "Arrived at Customer";
+                                                else if (dStatus === "delivered" || isDelivered) driverStatusText = "Delivered";
+
                                                 return (
                                                     <div className={`order-rider-strip ${isDelivered ? "delivered" : ""}`}>
                                                         <FaMotorcycle className="rider-strip-icon" />
                                                         <span>
                                                             Delivery Partner: <strong>{partner.name}</strong>
                                                             {partner.vehicleType ? ` (${partner.vehicleType})` : ""}
+                                                            <span style={{ marginLeft: "6px", color: isDelivered ? "#15803d" : "#0284c7", fontWeight: "700", fontSize: "12px" }}>
+                                                                • {driverStatusText}
+                                                            </span>
                                                         </span>
                                                         {partner.phone && !isDelivered && !isCancelled && (
                                                             <a href={`tel:${partner.phone}`} className="rider-strip-call">
@@ -636,12 +695,19 @@ const Orders = () => {
                                                 return (
                                                     <div className="order-rider-strip pending">
                                                         <FaMotorcycle className="rider-strip-icon" />
-                                                        <span>Delivery Partner: <em>Finding a delivery partner...</em></span>
+                                                        <span>Delivery Partner: <em>Not assigned yet</em></span>
                                                     </div>
                                                 );
                                             }
                                             return null;
                                         })()}
+
+                                        {/* Delivery Verification OTP Card */}
+                                        <CustomerDeliveryOtpCard
+                                            order={order}
+                                            onOtpUpdated={handleOtpUpdated}
+                                            showToast={showToast}
+                                        />
 
                                         {/* Food Items Preview */}
                                         <div className="card-items-section">
@@ -913,10 +979,10 @@ const Orders = () => {
                                 </div>
 
                                 <div className="modal-tracker-timeline">
-                                    {TRACKING_STEPS.map((step, idx) => {
-                                        const sIdx = getStatusIndex(selectedOrder.orderStatus);
-                                        const isCompleted = sIdx >= idx;
-                                        const isCurrent = sIdx === idx;
+                                    {DETAILED_TRACKING_STEPS.map((step, idx) => {
+                                        const sIdx = getDeliveryStageIndex(selectedOrder);
+                                        const isCompleted = sIdx > idx || (sIdx === 8 && idx === 8);
+                                        const isCurrent = sIdx === idx && sIdx !== 8;
 
                                         return (
                                             <div
@@ -927,7 +993,7 @@ const Orders = () => {
                                             >
                                                 <div className="step-circle-icon">{step.icon}</div>
                                                 <div className="step-desc-text">
-                                                    <strong>{step.label}</strong>
+                                                    <strong>{step.detailedLabel || step.label}</strong>
                                                     <small>{step.desc}</small>
                                                 </div>
                                             </div>
@@ -935,6 +1001,13 @@ const Orders = () => {
                                     })}
                                 </div>
                             </div>
+
+                            {/* Delivery Verification OTP Card */}
+                            <CustomerDeliveryOtpCard
+                                order={selectedOrder}
+                                onOtpUpdated={handleOtpUpdated}
+                                showToast={showToast}
+                            />
 
                             {/* Ordered Items Table */}
                             <div className="modal-detail-card">
@@ -1031,7 +1104,7 @@ const Orders = () => {
                                             <p style={{ margin: 0, color: "#64748b", fontSize: "13.5px" }}>
                                                 {["Delivered", "Cancelled"].includes(selectedOrder.orderStatus)
                                                     ? "No delivery partner recorded for this order."
-                                                    : "Finding a delivery partner... Our smart dispatch system will assign an available verified rider shortly."}
+                                                    : "Delivery Partner: Not assigned yet. Allocated by restaurant once food preparation is completed."}
                                             </p>
                                         </div>
                                     );
@@ -1161,11 +1234,18 @@ const Orders = () => {
                                 </p>
                             </div>
 
+                            {/* Delivery Verification OTP Card */}
+                            <CustomerDeliveryOtpCard
+                                order={trackingModalOrder}
+                                onOtpUpdated={handleOtpUpdated}
+                                showToast={showToast}
+                            />
+
                             <div className="tracking-timeline-detailed">
-                                {TRACKING_STEPS.map((step, idx) => {
-                                    const sIdx = getStatusIndex(trackingModalOrder.orderStatus);
-                                    const isDone = sIdx >= idx;
-                                    const isNow = sIdx === idx;
+                                {DETAILED_TRACKING_STEPS.map((step, idx) => {
+                                    const sIdx = getDeliveryStageIndex(trackingModalOrder);
+                                    const isDone = sIdx > idx || (sIdx === 8 && idx === 8);
+                                    const isNow = sIdx === idx && sIdx !== 8;
 
                                     return (
                                         <div
@@ -1176,7 +1256,7 @@ const Orders = () => {
                                         >
                                             <div className="timeline-node-circle">{step.icon}</div>
                                             <div className="timeline-content">
-                                                <h4>{step.label}</h4>
+                                                <h4>{step.detailedLabel || step.label}</h4>
                                                 <p>{step.desc}</p>
                                             </div>
                                         </div>
@@ -1214,8 +1294,8 @@ const Orders = () => {
                                     <div className="rider-contact-banner" style={{ background: "#f8fafc", border: "1px dashed #cbd5e1" }}>
                                         <div className="rider-avatar-small">🛵</div>
                                         <div className="rider-info">
-                                            <strong style={{ color: "#64748b" }}>Finding a delivery partner...</strong>
-                                            <small>Dispatching the nearest verified delivery partner</small>
+                                            <strong style={{ color: "#64748b" }}>Delivery Partner: Not assigned yet</strong>
+                                            <small>Allocated by restaurant once food is ready for pickup</small>
                                         </div>
                                     </div>
                                 );

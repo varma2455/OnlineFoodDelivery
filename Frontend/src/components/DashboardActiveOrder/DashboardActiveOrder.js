@@ -15,11 +15,13 @@ import {
   FaShoppingBag,
   FaCompass
 } from "react-icons/fa";
+import CustomerDeliveryOtpCard from "../CustomerDeliveryOtpCard/CustomerDeliveryOtpCard";
 
 const timelineStages = [
   { key: "Placed", label: "Order Placed", icon: "✓" },
   { key: "Confirmed", label: "Confirmed", icon: "✓" },
   { key: "Preparing", label: "Cooking in Kitchen", icon: "🍳" },
+  { key: "Ready for Pickup", label: "Ready for Pickup", icon: "📦" },
   { key: "Out for Delivery", label: "Out for Delivery", icon: "🛵" },
   { key: "Delivered", label: "Delivered", icon: "🏠" }
 ];
@@ -145,6 +147,8 @@ const DashboardActiveOrder = ({ onExploreClick }) => {
               <h3>
                 {activeOrder.orderStatus === "Out for Delivery"
                   ? "Your Order is on the Way! 🛵"
+                  : activeOrder.orderStatus === "Ready for Pickup"
+                  ? "Food is Ready! Assigning Rider 📦"
                   : activeOrder.orderStatus === "Preparing"
                   ? "Kitchen is Preparing your Food! 🍳"
                   : "Order Confirmed & Being Prepped! 🍲"}
@@ -181,6 +185,12 @@ const DashboardActiveOrder = ({ onExploreClick }) => {
           );
         })}
       </div>
+ 
+      {/* Delivery Verification OTP Card */}
+      <CustomerDeliveryOtpCard
+        order={activeOrder}
+        onOtpUpdated={(newOtp) => setActiveOrder((prev) => ({ ...prev, deliveryOtp: newOtp }))}
+      />
 
       {/* Details Bar & Contact */}
       <div className="active-card-details-row">
@@ -207,7 +217,7 @@ const DashboardActiveOrder = ({ onExploreClick }) => {
                 </>
               ) : (
                 <>
-                  Rider: <em>Finding a delivery partner...</em>
+                  Delivery Partner: <em>Not assigned yet</em>
                 </>
               )}
             </span>
@@ -224,7 +234,7 @@ const DashboardActiveOrder = ({ onExploreClick }) => {
             </a>
           ) : (
             <button className="btn-call-partner" disabled style={{ opacity: 0.6, cursor: "not-allowed" }}>
-              <FaPhoneAlt /> Finding Rider
+              <FaPhoneAlt /> Not Assigned Yet
             </button>
           )}
         </div>

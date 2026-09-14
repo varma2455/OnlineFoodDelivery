@@ -6,7 +6,9 @@ import {
     cancelOrder,
     getAllOrders,
     updateOrderStatus,
-    getOrderStatistics
+    getOrderStatistics,
+    getDeliveryOtp,
+    regenerateDeliveryOtp
 } from "../controllers/orderController.js";
 import {
     assignDeliveryPartnerToOrder,
@@ -39,6 +41,11 @@ router.put("/admin/:id/assign-delivery", protect, isAdmin, assignDeliveryPartner
 router.put("/:id/assign-delivery", protect, isAdmin, assignDeliveryPartnerToOrder);
 router.post("/admin/:id/auto-assign", protect, isAdmin, autoAssignDeliveryPartner);
 router.post("/:id/auto-assign", protect, isAdmin, autoAssignDeliveryPartner);
+
+// Customer Delivery OTP routes (per-order authentication)
+router.get("/:id/delivery-otp", protect, getDeliveryOtp);
+router.get("/:id/otp", protect, getDeliveryOtp);
+router.post("/:id/regenerate-delivery-otp", protect, regenerateDeliveryOtp);
 
 // Order details & Cancel
 router.get("/:id", protect, getOrderById);

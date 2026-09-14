@@ -12,6 +12,7 @@ import {
     generateDeliveryApplicationId
 } from "../utils/invitationUtils.js";
 import { verifyFirebaseToken } from "../config/firebaseAdmin.js";
+import { verifyDeliveryOtpHash } from "../utils/deliveryOtpUtils.js";
 import jwt from "jsonwebtoken";
 import axios from "axios";
 
@@ -26,6 +27,22 @@ const generateJwtToken = (userId, role = "delivery") => {
         process.env.JWT_SECRET || "foodexpress_secret_jwt_key_2025",
         { expiresIn: "7d" }
     );
+};
+
+/**
+ * Sanitize order object for delivery partner endpoints.
+ * Strictly guarantees that otpHash, otpEncrypted, and deliveryOtp are never leaked.
+ */
+const sanitizeDeliveryOrder = (order) => {
+    if (!order) return order;
+    const obj = typeof order.toObject === "function" ? order.toObject() : { ...order };
+    if (obj.delivery) {
+        obj.delivery = { ...obj.delivery };
+        delete obj.delivery.otpHash;
+        delete obj.delivery.otpEncrypted;
+    }
+    delete obj.deliveryOtp;
+    return obj;
 };
 
 // =========================================================================
@@ -607,11 +624,12 @@ export const getDeliveryDashboard = async (req, res, next) => {
             0
         );
 
-        // 2. Active delivery in progress (if any)
+        // 2. Active delivery in progress or assigned to this partner
         const activeDelivery = await Order.findOne({
             deliveryPartner: partner._id,
             deliveryStatus: {
                 $in: [
+                    "Assigned",
                     "Accepted",
                     "Going to Restaurant",
                     "Arrived at Restaurant",
@@ -718,11 +736,10 @@ export const getAvailableOrders = async (req, res, next) => {
     try {
         const partner = req.deliveryPartner;
 
-        // If offline, partner can still view orders or see notice
+        // Only show orders specifically assigned to THIS partner waiting for acceptance
         const orders = await Order.find({
-            orderStatus: { $in: ["Confirmed", "Preparing", "Out for Delivery"] },
-            deliveryPartner: null,
-            deliveryStatus: "Available"
+            deliveryPartner: partner._id,
+            deliveryStatus: "Assigned"
         })
             .populate("items.restaurantId", "name address phone")
             .populate("user", "fullName phone")
@@ -733,7 +750,7 @@ export const getAvailableOrders = async (req, res, next) => {
             success: true,
             total: orders.length,
             isOnline: partner.availabilityStatus === "online",
-            orders
+            orders: orders.map(sanitizeDeliveryOrder)
         });
     } catch (error) {
         next(error);
@@ -761,7 +778,7 @@ export const getOrderDetails = async (req, res, next) => {
 
         return res.status(200).json({
             success: true,
-            order
+            order: sanitizeDeliveryOrder(order)
         });
     } catch (error) {
         next(error);
@@ -798,28 +815,29 @@ export const acceptOrder = async (req, res, next) => {
             });
         }
 
-        // Atomic lock: Only accepts if deliveryPartner is still null and status is Available
+        // Atomic lock: Only accepts if assigned to THIS partner in "Assigned" status
+        const acceptedTime = new Date();
         const order = await Order.findOneAndUpdate(
             {
                 _id: req.params.id,
-                deliveryPartner: null,
-                deliveryStatus: "Available"
+                deliveryPartner: partner._id,
+                deliveryStatus: "Assigned"
             },
             {
                 $set: {
-                    deliveryPartner: partner._id,
                     deliveryStatus: "Accepted",
-                    orderStatus: "Out for Delivery",
-                    deliveryAssignedAt: new Date()
+                    deliveryAcceptedAt: acceptedTime,
+                    "delivery.status": "Accepted",
+                    "delivery.acceptedAt": acceptedTime
                 }
             },
             { new: true }
-        ).populate("items.restaurantId", "name address phone");
+        ).populate("items.restaurantId", "name address phone").populate("user", "fullName phone address");
 
         if (!order) {
             return res.status(400).json({
                 success: false,
-                message: "This order is no longer available or was accepted by another delivery partner."
+                message: "This order is not assigned to you or is no longer in 'Assigned' status."
             });
         }
 
@@ -847,6 +865,7 @@ export const updateDeliveryOrderStatus = async (req, res, next) => {
         const { deliveryStatus } = req.body;
 
         const validTransitions = {
+            Assigned: ["Accepted", "Cancelled"],
             Accepted: ["Going to Restaurant", "Cancelled"],
             "Going to Restaurant": ["Arrived at Restaurant"],
             "Arrived at Restaurant": ["Order Picked Up"],
@@ -867,7 +886,18 @@ export const updateDeliveryOrderStatus = async (req, res, next) => {
             });
         }
 
-        const currentStatus = order.deliveryStatus || "Accepted";
+        // Prevent delivery partner from marking an order Delivered without OTP verification
+        if (deliveryStatus === "Delivered") {
+            const isOtpVerified = Boolean(order.delivery?.otpVerifiedAt);
+            if (!isOtpVerified && req.user.role !== "admin") {
+                return res.status(400).json({
+                    success: false,
+                    message: "Delivery OTP verification required. Please verify the customer's 6-digit OTP to complete delivery."
+                });
+            }
+        }
+
+        const currentStatus = order.deliveryStatus || "Assigned";
         const allowedNext = validTransitions[currentStatus] || [];
 
         // Admin override allowed, but for partner must follow state transitions
@@ -879,16 +909,30 @@ export const updateDeliveryOrderStatus = async (req, res, next) => {
         }
 
         order.deliveryStatus = deliveryStatus;
+        if (!order.delivery) {
+            order.delivery = {};
+        }
+        order.delivery.status = deliveryStatus;
 
-        if (deliveryStatus === "Order Picked Up") {
-            order.deliveryPickedUpAt = new Date();
+        if (deliveryStatus === "Accepted") {
+            order.deliveryAcceptedAt = new Date();
+            order.delivery.acceptedAt = order.deliveryAcceptedAt;
+            partner.availabilityStatus = "busy";
+            await partner.save();
         }
 
-        // If marked Delivered
+        if (deliveryStatus === "Order Picked Up") {
+            order.orderStatus = "Out for Delivery";
+            order.deliveryPickedUpAt = new Date();
+            order.delivery.pickedUpAt = order.deliveryPickedUpAt;
+        }
+
+        // If marked Delivered (only reaches here if OTP was already verified or admin override)
         if (deliveryStatus === "Delivered") {
             order.orderStatus = "Delivered";
             order.paymentStatus = "Paid";
             order.deliveredAt = new Date();
+            order.delivery.deliveredAt = order.deliveredAt;
 
             const earnings = order.deliveryEarnings || 50;
 
@@ -933,6 +977,202 @@ export const updateDeliveryOrderStatus = async (req, res, next) => {
 };
 
 /**
+ * Verify Delivery OTP and Complete Handover
+ * POST /api/delivery/orders/:id/verify-otp
+ * POST /api/delivery-partner/orders/:id/verify-otp
+ */
+export const verifyDeliveryOtp = async (req, res, next) => {
+    try {
+        const partner = req.deliveryPartner;
+        const { otp } = req.body;
+        const orderId = req.params.orderId || req.params.id;
+
+        if (!partner) {
+            return res.status(403).json({
+                success: false,
+                message: "Access denied. Delivery Partner profile required."
+            });
+        }
+
+        const order = await Order.findById(orderId);
+        if (!order) {
+            return res.status(404).json({
+                success: false,
+                message: "Order not found."
+            });
+        }
+
+        // 1. DELIVERY PARTNER OWNERSHIP (Section 11 & 28)
+        // Verify order is assigned to THIS authenticated partner
+        const assignedPartnerId = (
+            order.deliveryPartner ||
+            order.deliveryPartnerId ||
+            order.delivery?.deliveryPartner ||
+            order.delivery?.deliveryPartnerId
+        )?.toString();
+
+        if (!assignedPartnerId || assignedPartnerId !== partner._id.toString()) {
+            return res.status(403).json({
+                success: false,
+                message: "Unauthorized delivery assignment. You can only verify delivery OTP for orders assigned to you."
+            });
+        }
+
+        // 2. ORDER STATUS VALIDATION (Section 12)
+        if (order.orderStatus === "Cancelled" || order.deliveryStatus === "Cancelled") {
+            return res.status(400).json({
+                success: false,
+                message: "Cannot verify OTP for a cancelled order."
+            });
+        }
+
+        if (order.orderStatus === "Delivered" || order.deliveryStatus === "Delivered" || order.delivery?.status === "Delivered") {
+            return res.status(400).json({
+                success: false,
+                message: "This order has already been marked as delivered."
+            });
+        }
+
+        if (["Placed", "Confirmed", "Preparing"].includes(order.orderStatus)) {
+            return res.status(400).json({
+                success: false,
+                message: `Cannot verify OTP while order is ${order.orderStatus}. Handover verification requires active delivery.`
+            });
+        }
+
+        // Handover stage validation
+        const allowableDeliveryStages = ["Arrived at Customer", "Going to Customer", "Order Picked Up"];
+        if (!allowableDeliveryStages.includes(order.deliveryStatus)) {
+            return res.status(400).json({
+                success: false,
+                message: `Cannot verify delivery OTP at current delivery stage "${order.deliveryStatus}". You must be delivering to the customer.`
+            });
+        }
+
+        // 3. BRUTE FORCE LOCKOUT PROTECTION (Section 15)
+        if (order.delivery?.otpLockedUntil && new Date() < new Date(order.delivery.otpLockedUntil)) {
+            const minutesLeft = Math.ceil((new Date(order.delivery.otpLockedUntil).getTime() - Date.now()) / (60 * 1000));
+            return res.status(429).json({
+                success: false,
+                locked: true,
+                message: `Too many incorrect OTP attempts. Verification is temporarily locked for ${minutesLeft} minute(s). Please contact support or ask the customer to regenerate their OTP.`
+            });
+        }
+
+        // 4. OTP EXPIRY VALIDATION (Section 16)
+        if (order.delivery?.otpExpiresAt && new Date() > new Date(order.delivery.otpExpiresAt)) {
+            return res.status(400).json({
+                success: false,
+                expired: true,
+                message: "Delivery verification code has expired. Please ask the customer to generate a new OTP."
+            });
+        }
+
+        // 5. INPUT VALIDATION
+        const cleanOtp = typeof otp === "string" ? otp.trim() : typeof otp === "number" ? String(otp).trim() : "";
+        if (!cleanOtp || !/^\d{6}$/.test(cleanOtp)) {
+            return res.status(400).json({
+                success: false,
+                message: "Please enter a valid 6-digit numeric delivery OTP."
+            });
+        }
+
+        if (!order.delivery?.otpHash) {
+            return res.status(400).json({
+                success: false,
+                message: "No delivery verification OTP is registered for this order. Please ask the customer to refresh their order page."
+            });
+        }
+
+        // 6. CRYPTOGRAPHIC HASH VERIFICATION (Section 10 & 35)
+        // Log safe metadata only - NEVER log raw OTP (Section 35)
+        console.log(`Delivery OTP verification attempted for order: ${order._id}`);
+
+        const isValid = verifyDeliveryOtpHash(cleanOtp, order.delivery.otpHash, order._id.toString());
+
+        if (!isValid) {
+            if (!order.delivery) order.delivery = {};
+            order.delivery.otpAttempts = (order.delivery.otpAttempts || 0) + 1;
+
+            if (order.delivery.otpAttempts >= 5) {
+                order.delivery.otpLockedUntil = new Date(Date.now() + 15 * 60 * 1000); // 15-minute lockout
+            }
+
+            await order.save();
+
+            // DO NOT reveal correct digits, hash, or which digit is wrong (Section 14)
+            const remainingAttempts = Math.max(0, 5 - order.delivery.otpAttempts);
+            return res.status(400).json({
+                success: false,
+                message: "Incorrect delivery OTP. Please ask the customer to provide the correct 6-digit delivery OTP.",
+                remainingAttempts: remainingAttempts > 0 ? remainingAttempts : 0
+            });
+        }
+
+        // 7. SUCCESSFUL VERIFICATION & DELIVERY COMPLETION (Section 13)
+        const completionTime = new Date();
+        if (!order.delivery) order.delivery = {};
+        order.delivery.otpVerifiedAt = completionTime;
+        order.delivery.status = "Delivered";
+        order.delivery.deliveredAt = completionTime;
+        order.delivery.otpAttempts = 0;
+        order.delivery.otpLockedUntil = null;
+
+        order.deliveryStatus = "Delivered";
+        order.orderStatus = "Delivered";
+        order.paymentStatus = "Paid";
+        order.deliveredAt = completionTime;
+
+        // Credit earnings using existing Transaction/Wallet system
+        const earnings = order.deliveryEarnings || 50;
+
+        partner.completedDeliveries = (partner.completedDeliveries || 0) + 1;
+        partner.totalDeliveries = (partner.totalDeliveries || 0) + 1;
+        partner.totalEarnings = (partner.totalEarnings || 0) + earnings;
+        partner.walletBalance = (partner.walletBalance || 0) + earnings;
+        partner.availabilityStatus = "online";
+        await partner.save();
+
+        const partnerUser = await User.findById(partner.userId || req.user._id);
+        if (partnerUser) {
+            partnerUser.wallet = (partnerUser.wallet || 0) + earnings;
+            await partnerUser.save();
+
+            await Transaction.create({
+                user: partnerUser._id,
+                type: "credit",
+                category: "delivery_earning",
+                amount: earnings,
+                balanceAfter: partnerUser.wallet,
+                paymentMethod: "Wallet",
+                description: `Delivery earnings for Order #${order._id.toString().slice(-6).toUpperCase()}`,
+                order: order._id,
+                status: "Success"
+            });
+        }
+
+        await order.save();
+
+        return res.status(200).json({
+            success: true,
+            message: "Delivery verified successfully.",
+            orderStatus: "Delivered",
+            deliveryStatus: "Delivered",
+            deliveredAt: completionTime,
+            order: {
+                _id: order._id,
+                orderStatus: "Delivered",
+                deliveryStatus: "Delivered",
+                deliveredAt: completionTime,
+                deliveryEarnings: earnings
+            }
+        });
+    } catch (error) {
+        next(error);
+    }
+};
+
+/**
  * Get My Assigned Deliveries
  * GET /api/delivery-partner/my-deliveries
  */
@@ -946,6 +1186,7 @@ export const getMyDeliveries = async (req, res, next) => {
         if (status === "Active") {
             filter.deliveryStatus = {
                 $in: [
+                    "Assigned",
                     "Accepted",
                     "Going to Restaurant",
                     "Arrived at Restaurant",
@@ -968,7 +1209,7 @@ export const getMyDeliveries = async (req, res, next) => {
         return res.status(200).json({
             success: true,
             total: deliveries.length,
-            deliveries
+            deliveries: deliveries.map(sanitizeDeliveryOrder)
         });
     } catch (error) {
         next(error);

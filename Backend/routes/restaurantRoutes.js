@@ -6,6 +6,8 @@ import {
     getRestaurantDashboard,
     getRestaurantOrders,
     updateRestaurantOrderStatus,
+    getAvailableDeliveryPartnersForRestaurant,
+    assignDeliveryPartnerByRestaurant,
     getRestaurantMenu,
     addRestaurantFood,
     updateRestaurantFood,
@@ -44,6 +46,11 @@ router.get("/reviews", protect, requireRestaurantOwner({ requireApproved: true }
 // ==========================================
 router.get("/orders", protect, requireRestaurantOwner({ requireApproved: true }), getRestaurantOrders);
 router.put("/orders/:id/status", protect, requireRestaurantOwner({ requireApproved: true }), updateRestaurantOrderStatus);
+
+// Delivery Partner Allocation
+router.get("/delivery-partners/available", protect, requireRestaurantOwner({ requireApproved: true }), getAvailableDeliveryPartnersForRestaurant);
+router.put("/orders/:orderId/assign-delivery", protect, requireRestaurantOwner({ requireApproved: true }), assignDeliveryPartnerByRestaurant);
+router.put("/orders/:id/assign-delivery", protect, requireRestaurantOwner({ requireApproved: true }), assignDeliveryPartnerByRestaurant);
 
 // Direct action shortcuts for order workflow
 router.put("/orders/:id/accept", protect, requireRestaurantOwner({ requireApproved: true }), (req, res, next) => {

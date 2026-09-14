@@ -1,14 +1,15 @@
 import express from "express";
 import Order from "../models/Order.js";
 import { protect } from "../middleware/authMiddleware.js";
-import authorize from "../middleware/roleMiddleware.js";
+import authorize, { requireDeliveryPartner } from "../middleware/roleMiddleware.js";
+import { verifyDeliveryOtp } from "../controllers/deliveryPartnerController.js";
 
 const router = express.Router();
 
-router.use(protect, authorize("delivery", "admin"));
+router.use(protect);
 
-// Get delivery orders
-router.get("/orders", async (req, res, next) => {
+// Get delivery orders (accessible to delivery and admin)
+router.get("/orders", authorize("delivery", "admin"), async (req, res, next) => {
     try {
         const orders = await Order.find({
             orderStatus: { $in: ["Preparing", "Out for Delivery", "Delivered"] }
@@ -28,10 +29,19 @@ router.get("/orders", async (req, res, next) => {
 });
 
 // Update delivery status
-router.put("/orders/:id/status", async (req, res, next) => {
+router.put("/orders/:id/status", authorize("delivery", "admin"), async (req, res, next) => {
     try {
-        const { orderStatus } = req.body;
-        const validStatuses = ["Out for Delivery", "Delivered"];
+        const orderStatus = req.body.orderStatus || req.body.status || req.body.deliveryStatus;
+
+        // Prevent bypass: "Delivered" status MUST NOT be set without successful OTP verification
+        if (orderStatus === "Delivered" || (orderStatus && orderStatus.toLowerCase() === "delivered")) {
+            return res.status(400).json({
+                success: false,
+                message: "Delivery OTP verification required. Please verify customer OTP before marking as delivered."
+            });
+        }
+
+        const validStatuses = ["Out for Delivery", "Going to Restaurant", "Arrived at Restaurant", "Order Picked Up", "Going to Customer", "Arrived at Customer"];
 
         if (!validStatuses.includes(orderStatus)) {
             return res.status(400).json({
@@ -40,15 +50,9 @@ router.put("/orders/:id/status", async (req, res, next) => {
             });
         }
 
-        const updateData = { orderStatus };
-        if (orderStatus === "Delivered") {
-            updateData.paymentStatus = "Paid";
-            updateData.deliveredAt = new Date();
-        }
-
         const order = await Order.findByIdAndUpdate(
             req.params.id,
-            updateData,
+            { orderStatus },
             { new: true }
         );
 
@@ -61,5 +65,8 @@ router.put("/orders/:id/status", async (req, res, next) => {
         next(error);
     }
 });
+
+// Verify Delivery OTP Handover endpoint (Section 10 & 33)
+router.post("/orders/:id/verify-otp", requireDeliveryPartner({ requireApproved: true }), verifyDeliveryOtp);
 
 export default router;

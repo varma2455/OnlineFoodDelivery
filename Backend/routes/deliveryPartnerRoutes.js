@@ -13,6 +13,7 @@ import {
     getOrderDetails,
     acceptOrder,
     updateDeliveryOrderStatus,
+    verifyDeliveryOtp,
     getMyDeliveries,
     getDeliveryEarnings,
     getDeliveryWallet
@@ -43,6 +44,7 @@ router.get("/orders", protect, requireDeliveryPartner({ requireApproved: true })
 router.get("/orders/:id", protect, requireDeliveryPartner({ requireApproved: true }), getOrderDetails);
 router.post("/orders/:id/accept", protect, requireDeliveryPartner({ requireApproved: true }), acceptOrder);
 router.put("/orders/:id/status", protect, requireDeliveryPartner({ requireApproved: true }), updateDeliveryOrderStatus);
+router.post("/orders/:id/verify-otp", protect, requireDeliveryPartner({ requireApproved: true }), verifyDeliveryOtp);
 router.get("/my-deliveries", protect, requireDeliveryPartner({ requireApproved: true }), getMyDeliveries);
 router.get("/earnings", protect, requireDeliveryPartner({ requireApproved: true }), getDeliveryEarnings);
 router.get("/wallet", protect, requireDeliveryPartner({ requireApproved: true }), getDeliveryWallet);

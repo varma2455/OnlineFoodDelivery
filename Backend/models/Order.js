@@ -132,6 +132,7 @@ const orderSchema = new mongoose.Schema(
         "Placed",
         "Confirmed",
         "Preparing",
+        "Ready for Pickup",
         "Out for Delivery",
         "Delivered",
         "Cancelled",
@@ -195,10 +196,19 @@ const orderSchema = new mongoose.Schema(
       index: true,
     },
 
+    deliveryPartnerId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "DeliveryPartner",
+      default: null,
+      index: true,
+    },
+
     deliveryStatus: {
       type: String,
       enum: [
+        "unassigned",
         "Available",
+        "Assigned",
         "Accepted",
         "Going to Restaurant",
         "Arrived at Restaurant",
@@ -208,7 +218,7 @@ const orderSchema = new mongoose.Schema(
         "Delivered",
         "Cancelled",
       ],
-      default: "Available",
+      default: "unassigned",
       index: true,
     },
 
@@ -219,10 +229,82 @@ const orderSchema = new mongoose.Schema(
 
     deliveryAssignedAt: {
       type: Date,
+      default: null,
+    },
+
+    deliveryAcceptedAt: {
+      type: Date,
+      default: null,
     },
 
     deliveryPickedUpAt: {
       type: Date,
+      default: null,
+    },
+
+    delivery: {
+      status: {
+        type: String,
+        default: "unassigned",
+      },
+      deliveryPartnerId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "DeliveryPartner",
+        default: null,
+      },
+      deliveryPartner: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "DeliveryPartner",
+        default: null,
+      },
+      assignedAt: {
+        type: Date,
+        default: null,
+      },
+      acceptedAt: {
+        type: Date,
+        default: null,
+      },
+      pickedUpAt: {
+        type: Date,
+        default: null,
+      },
+      deliveredAt: {
+        type: Date,
+        default: null,
+      },
+      otpHash: {
+        type: String,
+        default: null,
+      },
+      otpEncrypted: {
+        type: String,
+        default: null,
+      },
+      otpGeneratedAt: {
+        type: Date,
+        default: null,
+      },
+      otpVerifiedAt: {
+        type: Date,
+        default: null,
+      },
+      otpAttempts: {
+        type: Number,
+        default: 0,
+      },
+      otpLockedUntil: {
+        type: Date,
+        default: null,
+      },
+      otpExpiresAt: {
+        type: Date,
+        default: null,
+      },
+      emergencyOverride: {
+        type: mongoose.Schema.Types.Mixed,
+        default: null,
+      },
     },
   },
   {

@@ -3,6 +3,7 @@ import User from "../models/User.js";
 import Food from "../models/Food.js";
 import Order from "../models/Order.js";
 import Review from "../models/Review.js";
+import DeliveryPartner from "../models/DeliveryPartner.js";
 import { verifyFirebaseToken } from "../config/firebaseAdmin.js";
 import jwt from "jsonwebtoken";
 
@@ -391,7 +392,7 @@ export const getRestaurantDashboard = async (req, res, next) => {
 
             if (order.orderStatus === "Placed") pendingCount++;
             else if (order.orderStatus === "Confirmed" || order.orderStatus === "Preparing") preparingCount++;
-            else if (order.orderStatus === "Out for Delivery") readyCount++;
+            else if (order.orderStatus === "Ready for Pickup" || order.orderStatus === "Out for Delivery") readyCount++;
             else if (order.orderStatus === "Delivered") deliveredCount++;
 
             // Accumulate food sales
@@ -569,6 +570,7 @@ export const getRestaurantOrders = async (req, res, next) => {
 
         const orders = await Order.find(query)
             .populate("user", "fullName phone email")
+            .populate("deliveryPartner", "name phone profilePhoto rating vehicleType vehicleNumber availabilityStatus status")
             .sort({ createdAt: -1 });
 
         // Filter each order so it contains ONLY this restaurant's items
@@ -593,6 +595,17 @@ export const getRestaurantOrders = async (req, res, next) => {
                 paymentMethod: order.paymentMethod,
                 paymentStatus: order.paymentStatus,
                 orderStatus: order.orderStatus,
+                deliveryPartner: order.deliveryPartner || null,
+                deliveryPartnerId: order.deliveryPartner?._id || order.deliveryPartner || null,
+                deliveryStatus: order.deliveryStatus || "unassigned",
+                delivery: {
+                    status: order.deliveryStatus || "unassigned",
+                    deliveryPartner: order.deliveryPartner || null,
+                    assignedAt: order.deliveryAssignedAt || null,
+                    acceptedAt: order.deliveryAcceptedAt || null,
+                    pickedUpAt: order.deliveryPickedUpAt || null,
+                    deliveredAt: order.deliveredAt || null
+                },
                 createdAt: order.createdAt
             };
         }).filter((order) => order.items.length > 0);
@@ -634,9 +647,9 @@ export const updateRestaurantOrderStatus = async (req, res, next) => {
         if (action === "accept") targetStatus = "Confirmed";
         else if (action === "reject") targetStatus = "Cancelled";
         else if (action === "preparing") targetStatus = "Preparing";
-        else if (action === "ready") targetStatus = "Out for Delivery";
+        else if (action === "ready") targetStatus = "Ready for Pickup";
 
-        const validTransitions = ["Confirmed", "Preparing", "Out for Delivery", "Cancelled"];
+        const validTransitions = ["Confirmed", "Preparing", "Ready for Pickup", "Out for Delivery", "Cancelled"];
 
         if (!targetStatus || !validTransitions.includes(targetStatus)) {
             return res.status(400).json({
@@ -646,12 +659,209 @@ export const updateRestaurantOrderStatus = async (req, res, next) => {
         }
 
         order.orderStatus = targetStatus;
+
+        // When order is marked Ready for Pickup, ensure it is ready for restaurant driver selection
+        if (targetStatus === "Ready for Pickup") {
+            // Keep driver unassigned until restaurant explicitly assigns
+            if (!order.deliveryPartner) {
+                order.deliveryStatus = "unassigned";
+                order.delivery = {
+                    status: "unassigned",
+                    assignedAt: null,
+                    acceptedAt: null,
+                    pickedUpAt: null,
+                    deliveredAt: null,
+                    deliveryPartner: null
+                };
+            }
+        }
+
         await order.save();
 
         return res.status(200).json({
             success: true,
             message: `Order status updated to "${targetStatus}".`,
             orderStatus: order.orderStatus
+        });
+    } catch (error) {
+        next(error);
+    }
+};
+
+/**
+ * Get Available Online Delivery Partners for Restaurant
+ * GET /api/restaurant/delivery-partners/available
+ */
+export const getAvailableDeliveryPartnersForRestaurant = async (req, res, next) => {
+    try {
+        const approvedOnlinePartners = await DeliveryPartner.find({
+            status: "approved",
+            availabilityStatus: "online"
+        }).populate("userId", "role isBlocked");
+
+        const eligiblePartners = [];
+
+        for (const partner of approvedOnlinePartners) {
+            if (!partner.userId || partner.userId.role !== "delivery" || partner.userId.isBlocked) {
+                continue;
+            }
+
+            const activeDeliveriesCount = await Order.countDocuments({
+                deliveryPartner: partner._id,
+                deliveryStatus: {
+                    $in: [
+                        "Assigned",
+                        "Accepted",
+                        "Going to Restaurant",
+                        "Arrived at Restaurant",
+                        "Order Picked Up",
+                        "Going to Customer",
+                        "Arrived at Customer"
+                    ]
+                }
+            });
+
+            eligiblePartners.push({
+                _id: partner._id,
+                name: partner.name,
+                email: partner.email,
+                phone: partner.phone,
+                profilePhoto: partner.profilePhoto || "default-user.png",
+                vehicleType: partner.vehicleType || "Bike",
+                vehicleNumber: partner.vehicleNumber || "",
+                rating: partner.rating || 5.0,
+                availabilityStatus: partner.availabilityStatus,
+                city: partner.city || "Hyderabad",
+                activeDeliveriesCount
+            });
+        }
+
+        // Prioritize free drivers (0 active orders first), then highest rating
+        eligiblePartners.sort((a, b) => {
+            if (a.activeDeliveriesCount !== b.activeDeliveriesCount) {
+                return a.activeDeliveriesCount - b.activeDeliveriesCount;
+            }
+            return (b.rating || 5.0) - (a.rating || 5.0);
+        });
+
+        return res.status(200).json({
+            success: true,
+            totalPartners: eligiblePartners.length,
+            deliveryPartners: eligiblePartners
+        });
+    } catch (error) {
+        next(error);
+    }
+};
+
+/**
+ * Restaurant Assigns Delivery Partner to Order
+ * PUT /api/restaurant/orders/:orderId/assign-delivery
+ */
+export const assignDeliveryPartnerByRestaurant = async (req, res, next) => {
+    try {
+        const restaurantId = req.restaurant._id;
+        const orderId = req.params.orderId || req.params.id;
+        const { deliveryPartnerId } = req.body;
+
+        if (!deliveryPartnerId) {
+            return res.status(400).json({
+                success: false,
+                message: "Please select a delivery partner to assign."
+            });
+        }
+
+        // 1. Authenticated user's restaurant owns this order
+        const order = await Order.findOne({
+            _id: orderId,
+            "items.restaurantId": restaurantId
+        });
+
+        if (!order) {
+            return res.status(403).json({
+                success: false,
+                message: "Access denied. Order not found or does not belong to your restaurant."
+            });
+        }
+
+        // 2. Order MUST be in "Ready for Pickup"
+        if (order.orderStatus !== "Ready for Pickup") {
+            return res.status(400).json({
+                success: false,
+                message: `Delivery partners can only be assigned after the order is marked "Ready for Pickup". Current order status: "${order.orderStatus}".`
+            });
+        }
+
+        // 3. Prevent reassignment once driver has picked up
+        if (["Order Picked Up", "Going to Customer", "Arrived at Customer", "Delivered"].includes(order.deliveryStatus)) {
+            return res.status(400).json({
+                success: false,
+                message: `Cannot reassign delivery partner because the order is already "${order.deliveryStatus}".`
+            });
+        }
+
+        // 4. Validate DeliveryPartner
+        const partner = await DeliveryPartner.findById(deliveryPartnerId).populate("userId", "role isBlocked");
+        if (!partner) {
+            return res.status(404).json({
+                success: false,
+                message: "Selected delivery partner was not found."
+            });
+        }
+
+        if (!partner.userId || partner.userId.role !== "delivery") {
+            return res.status(400).json({
+                success: false,
+                message: "Selected user is not registered as a delivery partner."
+            });
+        }
+
+        if (partner.status !== "approved") {
+            return res.status(400).json({
+                success: false,
+                message: `Delivery partner is ${partner.status}. Only approved partners can be assigned.`
+            });
+        }
+
+        if (partner.userId.isBlocked) {
+            return res.status(400).json({
+                success: false,
+                message: "This delivery partner is blocked."
+            });
+        }
+
+        if (partner.availabilityStatus !== "online") {
+            return res.status(400).json({
+                success: false,
+                message: `Delivery partner "${partner.name}" is currently ${partner.availabilityStatus}. Only online delivery partners can be assigned.`
+            });
+        }
+
+        // 5. Assign to THIS order only
+        const assignedTime = new Date();
+        order.deliveryPartner = partner._id;
+        order.deliveryPartnerId = partner._id;
+        order.deliveryStatus = "Assigned";
+        order.deliveryAssignedAt = assignedTime;
+        order.delivery = {
+            status: "Assigned",
+            assignedAt: assignedTime,
+            acceptedAt: null,
+            pickedUpAt: null,
+            deliveredAt: null,
+            deliveryPartner: partner._id
+        };
+
+        await order.save();
+
+        const populatedOrder = await Order.findById(order._id)
+            .populate("user", "fullName phone email")
+            .populate("deliveryPartner", "name phone profilePhoto rating vehicleType vehicleNumber availabilityStatus status");
+
+        return res.status(200).json({
+            success: true,
+            message: `Delivery partner "${partner.name}" assigned to Order #${order._id.toString().slice(-6).toUpperCase()} successfully!`,
+            order: populatedOrder
         });
     } catch (error) {
         next(error);

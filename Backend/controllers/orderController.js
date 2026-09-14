@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import Order from "../models/Order.js";
 import Cart from "../models/Cart.js";
 import Food from "../models/Food.js";
@@ -7,6 +8,12 @@ import Offer from "../models/Offer.js";
 import RewardTransaction from "../models/RewardTransaction.js";
 import RewardVoucher from "../models/RewardVoucher.js";
 import DeliveryPartner from "../models/DeliveryPartner.js";
+import {
+    generateDeliveryOtp,
+    hashDeliveryOtp,
+    encryptDeliveryOtp,
+    decryptDeliveryOtp
+} from "../utils/deliveryOtpUtils.js";
 
 /**
  * Place Order
@@ -210,7 +217,15 @@ export const placeOrder = async (req, res, next) => {
 
         const paymentStatus = payment === "Cash on Delivery" ? "Pending" : "Paid";
 
+        const orderId = new mongoose.Types.ObjectId();
+        const rawDeliveryOtp = generateDeliveryOtp();
+        const otpGeneratedAt = new Date();
+        const otpExpiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000); // Valid for active order (24 hours)
+        const otpHash = hashDeliveryOtp(rawDeliveryOtp, orderId.toString());
+        const otpEncrypted = encryptDeliveryOtp(rawDeliveryOtp);
+
         const order = await Order.create({
+            _id: orderId,
             user: req.user._id,
             items,
             deliveryAddress: formattedAddress,
@@ -225,7 +240,26 @@ export const placeOrder = async (req, res, next) => {
             memberPlan: isMemberActive ? memberPlan : "",
             memberDeliveryBenefit,
             finalAmount,
-            estimatedDeliveryTime: 30
+            estimatedDeliveryTime: 30,
+            deliveryPartner: null,
+            deliveryPartnerId: null,
+            deliveryStatus: "unassigned",
+            delivery: {
+                status: "unassigned",
+                assignedAt: null,
+                acceptedAt: null,
+                pickedUpAt: null,
+                deliveredAt: null,
+                deliveryPartner: null,
+                deliveryPartnerId: null,
+                otpHash,
+                otpEncrypted,
+                otpGeneratedAt,
+                otpVerifiedAt: null,
+                otpAttempts: 0,
+                otpLockedUntil: null,
+                otpExpiresAt
+            }
         });
 
         // Record Transaction if Wallet was used
@@ -317,10 +351,17 @@ export const placeOrder = async (req, res, next) => {
             }
         }
 
+        const orderResponse = order.toObject ? order.toObject() : { ...order };
+        orderResponse.deliveryOtp = rawDeliveryOtp;
+        if (orderResponse.delivery) {
+            delete orderResponse.delivery.otpHash;
+            delete orderResponse.delivery.otpEncrypted;
+        }
+
         return res.status(201).json({
             success: true,
             message: "🎉 Order placed successfully!",
-            order
+            order: orderResponse
         });
     } catch (error) {
         next(error);
@@ -337,14 +378,35 @@ export const getMyOrders = async (req, res, next) => {
             user: req.user._id
         })
             .populate("items.food")
+            .populate("items.restaurantId", "name address phone email")
             .populate("deliveryPartner", "name phone profilePhoto rating vehicleType vehicleNumber availabilityStatus status")
             .sort({ createdAt: -1 });
 
         const orders = rawOrders.map(o => {
             const obj = o.toObject ? o.toObject() : { ...o };
+            obj.deliveryPartner = obj.deliveryPartner || null;
+            obj.deliveryPartnerId = obj.deliveryPartner?._id || obj.deliveryPartner || null;
+
+            const isDelivered = (obj.orderStatus || "").toLowerCase() === "delivered" || (obj.deliveryStatus || "").toLowerCase() === "delivered";
+            let deliveryOtp = null;
+            // Customer can view OTP only for active deliveries
+            if (!isDelivered && o.delivery?.otpEncrypted) {
+                deliveryOtp = decryptDeliveryOtp(o.delivery.otpEncrypted);
+            }
+
+            obj.deliveryOtp = deliveryOtp;
             obj.delivery = {
-                status: obj.deliveryStatus || "Available",
-                deliveryPartner: obj.deliveryPartner || null
+                status: obj.deliveryStatus || "unassigned",
+                deliveryPartner: obj.deliveryPartner || null,
+                deliveryPartnerId: obj.deliveryPartnerId,
+                assignedAt: obj.deliveryAssignedAt || null,
+                acceptedAt: obj.deliveryAcceptedAt || null,
+                pickedUpAt: obj.deliveryPickedUpAt || null,
+                deliveredAt: obj.deliveredAt || null,
+                otpGeneratedAt: o.delivery?.otpGeneratedAt || null,
+                otpExpiresAt: o.delivery?.otpExpiresAt || null,
+                otpVerifiedAt: o.delivery?.otpVerifiedAt || null,
+                otpStatus: o.delivery?.otpVerifiedAt ? "Verified" : "Pending Verification"
             };
             return obj;
         });
@@ -369,6 +431,7 @@ export const getOrderById = async (req, res, next) => {
         const orderDoc = await Order.findById(req.params.id)
             .populate("user", "fullName email phone")
             .populate("items.food")
+            .populate("items.restaurantId", "name address phone email")
             .populate("deliveryPartner", "name phone profilePhoto rating vehicleType vehicleNumber availabilityStatus status");
 
         if (!orderDoc) {
@@ -379,7 +442,7 @@ export const getOrderById = async (req, res, next) => {
         }
 
         // Customer can view their own, admin/restaurant/delivery can view all
-        const isOwner = orderDoc.user && orderDoc.user._id.toString() === req.user._id.toString();
+        const isOwner = orderDoc.user && (orderDoc.user._id || orderDoc.user).toString() === req.user._id.toString();
         const isStaff = ["admin", "restaurant", "delivery"].includes(req.user.role);
 
         if (!isOwner && !isStaff) {
@@ -390,15 +453,217 @@ export const getOrderById = async (req, res, next) => {
         }
 
         const order = orderDoc.toObject ? orderDoc.toObject() : { ...orderDoc };
+        order.deliveryPartner = order.deliveryPartner || null;
+        order.deliveryPartnerId = order.deliveryPartner?._id || order.deliveryPartner || null;
+
+        const isDelivered = (order.orderStatus || "").toLowerCase() === "delivered" || (order.deliveryStatus || "").toLowerCase() === "delivered";
+        let deliveryOtp = null;
+        // Authenticated customer who owns the order can see OTP for active orders
+        if (isOwner && !isDelivered && orderDoc.delivery?.otpEncrypted) {
+            deliveryOtp = decryptDeliveryOtp(orderDoc.delivery.otpEncrypted);
+        }
+
+        order.deliveryOtp = deliveryOtp;
         order.delivery = {
-            status: order.deliveryStatus || "Available",
-            deliveryPartner: order.deliveryPartner || null
+            status: order.deliveryStatus || "unassigned",
+            deliveryPartner: order.deliveryPartner || null,
+            deliveryPartnerId: order.deliveryPartnerId,
+            assignedAt: order.deliveryAssignedAt || null,
+            acceptedAt: order.deliveryAcceptedAt || null,
+            pickedUpAt: order.deliveryPickedUpAt || null,
+            deliveredAt: order.deliveredAt || null,
+            otpGeneratedAt: orderDoc.delivery?.otpGeneratedAt || null,
+            otpExpiresAt: orderDoc.delivery?.otpExpiresAt || null,
+            otpVerifiedAt: orderDoc.delivery?.otpVerifiedAt || null,
+            otpStatus: orderDoc.delivery?.otpVerifiedAt ? "Verified" : "Pending Verification"
         };
 
         return res.status(200).json({
             success: true,
             order,
             data: order
+        });
+    } catch (error) {
+        next(error);
+    }
+};
+
+/**
+ * Get Delivery OTP for Customer
+ * GET /api/orders/:id/delivery-otp or GET /api/orders/:id/otp
+ * Strict ownership check: customer owns the order.
+ */
+export const getDeliveryOtp = async (req, res, next) => {
+    try {
+        const orderId = req.params.orderId || req.params.id;
+        const order = await Order.findById(orderId).populate("user", "fullName email phone");
+
+        if (!order) {
+            return res.status(404).json({
+                success: false,
+                message: "Order not found."
+            });
+        }
+
+        // Security check: strictly verify authenticated customer ownership
+        const orderUserId = order.user?._id ? order.user._id.toString() : order.user.toString();
+        if (orderUserId !== req.user._id.toString()) {
+            return res.status(403).json({
+                success: false,
+                message: "Access denied. You can only view the delivery OTP for your own orders."
+            });
+        }
+
+        if (order.orderStatus === "Cancelled") {
+            return res.status(400).json({
+                success: false,
+                message: "This order was cancelled. Delivery OTP is not available."
+            });
+        }
+
+        const isDelivered = (order.orderStatus || "").toLowerCase() === "delivered" || (order.deliveryStatus || "").toLowerCase() === "delivered";
+        if (isDelivered) {
+            return res.status(200).json({
+                success: true,
+                delivered: true,
+                message: "Delivery verified successfully.",
+                otp: null,
+                otpVerifiedAt: order.delivery?.otpVerifiedAt || order.deliveredAt || null
+            });
+        }
+
+        // Check if OTP is expired
+        if (order.delivery?.otpExpiresAt && new Date() > new Date(order.delivery.otpExpiresAt)) {
+            return res.status(200).json({
+                success: false,
+                expired: true,
+                message: "Delivery verification code expired. Please generate a new OTP.",
+                otp: null
+            });
+        }
+
+        // If legacy order without encrypted OTP, lazily generate and store it
+        if (!order.delivery?.otpEncrypted) {
+            const rawOtp = generateDeliveryOtp();
+            const now = new Date();
+            const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000);
+            const hash = hashDeliveryOtp(rawOtp, order._id.toString());
+            const enc = encryptDeliveryOtp(rawOtp);
+
+            if (!order.delivery) order.delivery = {};
+            order.delivery.otpHash = hash;
+            order.delivery.otpEncrypted = enc;
+            order.delivery.otpGeneratedAt = now;
+            order.delivery.otpExpiresAt = expiresAt;
+            order.delivery.otpAttempts = 0;
+            order.delivery.otpLockedUntil = null;
+            order.delivery.otpVerifiedAt = null;
+
+            await order.save();
+
+            return res.status(200).json({
+                success: true,
+                orderId: order._id,
+                otp: rawOtp,
+                otpGeneratedAt: now,
+                otpExpiresAt,
+                deliveryStatus: order.deliveryStatus || order.delivery?.status || "unassigned",
+                verified: false
+            });
+        }
+
+        const decryptedOtp = decryptDeliveryOtp(order.delivery.otpEncrypted);
+
+        return res.status(200).json({
+            success: true,
+            orderId: order._id,
+            otp: decryptedOtp,
+            otpGeneratedAt: order.delivery.otpGeneratedAt,
+            otpExpiresAt: order.delivery.otpExpiresAt,
+            deliveryStatus: order.deliveryStatus || order.delivery?.status || "unassigned",
+            verified: false
+        });
+    } catch (error) {
+        next(error);
+    }
+};
+
+/**
+ * Regenerate Delivery OTP for Customer
+ * POST /api/orders/:id/regenerate-delivery-otp
+ */
+export const regenerateDeliveryOtp = async (req, res, next) => {
+    try {
+        const orderId = req.params.orderId || req.params.id;
+        const order = await Order.findById(orderId);
+
+        if (!order) {
+            return res.status(404).json({
+                success: false,
+                message: "Order not found."
+            });
+        }
+
+        // Ownership check
+        const orderUserId = order.user?._id ? order.user._id.toString() : order.user.toString();
+        if (orderUserId !== req.user._id.toString()) {
+            return res.status(403).json({
+                success: false,
+                message: "Access denied. You can only regenerate OTP for your own orders."
+            });
+        }
+
+        const isDelivered = (order.orderStatus || "").toLowerCase() === "delivered" || (order.deliveryStatus || "").toLowerCase() === "delivered";
+        if (isDelivered) {
+            return res.status(400).json({
+                success: false,
+                message: "Cannot regenerate OTP for an order that has already been delivered."
+            });
+        }
+
+        if (order.orderStatus === "Cancelled") {
+            return res.status(400).json({
+                success: false,
+                message: "Cannot regenerate OTP for a cancelled order."
+            });
+        }
+
+        // Rate limit regeneration: minimum 30 seconds
+        if (order.delivery?.otpGeneratedAt) {
+            const elapsedMs = Date.now() - new Date(order.delivery.otpGeneratedAt).getTime();
+            if (elapsedMs < 30000) {
+                const waitSeconds = Math.ceil((30000 - elapsedMs) / 1000);
+                return res.status(429).json({
+                    success: false,
+                    message: `Please wait ${waitSeconds}s before requesting a new OTP.`
+                });
+            }
+        }
+
+        const newRawOtp = generateDeliveryOtp();
+        const now = new Date();
+        const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000);
+        const hash = hashDeliveryOtp(newRawOtp, order._id.toString());
+        const enc = encryptDeliveryOtp(newRawOtp);
+
+        if (!order.delivery) order.delivery = {};
+        order.delivery.otpHash = hash;
+        order.delivery.otpEncrypted = enc;
+        order.delivery.otpGeneratedAt = now;
+        order.delivery.otpExpiresAt = expiresAt;
+        order.delivery.otpAttempts = 0;
+        order.delivery.otpLockedUntil = null;
+        order.delivery.otpVerifiedAt = null;
+
+        await order.save();
+
+        return res.status(200).json({
+            success: true,
+            message: "New delivery verification OTP generated successfully.",
+            orderId: order._id,
+            otp: newRawOtp,
+            otpGeneratedAt: now,
+            otpExpiresAt
         });
     } catch (error) {
         next(error);
@@ -474,14 +739,24 @@ export const getAllOrders = async (req, res, next) => {
         const rawOrders = await Order.find(query)
             .populate("user", "fullName email phone")
             .populate("items.food")
+            .populate("items.restaurantId", "name address phone email")
             .populate("deliveryPartner", "name phone profilePhoto rating vehicleType vehicleNumber availabilityStatus status")
             .sort({ createdAt: -1 });
 
         const orders = rawOrders.map(o => {
             const obj = o.toObject ? o.toObject() : { ...o };
+            obj.deliveryPartner = obj.deliveryPartner || null;
+            obj.deliveryPartnerId = obj.deliveryPartner?._id || obj.deliveryPartner || null;
             obj.delivery = {
-                status: obj.deliveryStatus || "Available",
-                deliveryPartner: obj.deliveryPartner || null
+                status: obj.deliveryStatus || "unassigned",
+                deliveryPartner: obj.deliveryPartner || null,
+                deliveryPartnerId: obj.deliveryPartner?._id || obj.deliveryPartner || null,
+                assignedAt: obj.deliveryAssignedAt || null,
+                acceptedAt: obj.deliveryAcceptedAt || null,
+                pickedUpAt: obj.deliveryPickedUpAt || null,
+                deliveredAt: obj.deliveredAt || null,
+                otpVerifiedAt: o.delivery?.otpVerifiedAt || null,
+                otpStatus: o.delivery?.otpVerifiedAt ? "Verified" : "Pending Verification"
             };
             return obj;
         });
@@ -530,13 +805,50 @@ export const updateOrderStatus = async (req, res, next) => {
             });
         }
 
-        order.orderStatus = newStatus;
-
         if (newStatus === "Delivered") {
+            if (req.user.role === "restaurant") {
+                return res.status(403).json({
+                    success: false,
+                    message: "Access denied. Restaurants cannot mark orders as delivered."
+                });
+            }
+
+            if (req.user.role === "delivery") {
+                return res.status(400).json({
+                    success: false,
+                    message: "Delivery OTP verification required. Delivery partner must verify customer OTP."
+                });
+            }
+
+            // Normal completion requires OTP verification unless admin explicitly uses emergency override
+            const isOtpVerified = Boolean(order.delivery?.otpVerifiedAt);
+            const isEmergencyOverride = req.user.role === "admin" && req.body.emergencyOverride === true && req.body.overrideReason;
+
+            if (!isOtpVerified && !isEmergencyOverride) {
+                return res.status(400).json({
+                    success: false,
+                    message: "Delivery OTP verification required. Normal delivery completion requires customer OTP verification."
+                });
+            }
+
+            if (isEmergencyOverride) {
+                if (!order.delivery) order.delivery = {};
+                order.delivery.emergencyOverride = {
+                    overriddenBy: req.user._id,
+                    reason: String(req.body.overrideReason).trim(),
+                    overriddenAt: new Date()
+                };
+            }
+
             order.paymentStatus = "Paid";
             order.deliveredAt = new Date();
+            order.deliveryStatus = "Delivered";
+            if (!order.delivery) order.delivery = {};
+            order.delivery.status = "Delivered";
+            order.delivery.deliveredAt = order.deliveredAt;
         }
 
+        order.orderStatus = newStatus;
         await order.save();
 
         return res.status(200).json({

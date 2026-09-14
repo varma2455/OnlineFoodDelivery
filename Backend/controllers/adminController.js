@@ -393,12 +393,35 @@ export const updateAdminOrderStatus = async (req, res, next) => {
             return res.status(404).json({ success: false, message: "Order not found." });
         }
 
-        order.orderStatus = newStatus;
         if (newStatus === "Delivered") {
+            const isOtpVerified = Boolean(order.delivery?.otpVerifiedAt);
+            const isEmergencyOverride = req.body.emergencyOverride === true && req.body.overrideReason;
+
+            if (!isOtpVerified && !isEmergencyOverride) {
+                return res.status(400).json({
+                    success: false,
+                    message: "Delivery OTP verification required. Normal delivery completion requires customer OTP verification."
+                });
+            }
+
+            if (isEmergencyOverride) {
+                if (!order.delivery) order.delivery = {};
+                order.delivery.emergencyOverride = {
+                    overriddenBy: req.user?._id || "admin",
+                    reason: String(req.body.overrideReason).trim(),
+                    overriddenAt: new Date()
+                };
+            }
+
             order.paymentStatus = "Paid";
             order.deliveredAt = new Date();
             order.deliveryStatus = "Delivered";
+            if (!order.delivery) order.delivery = {};
+            order.delivery.status = "Delivered";
+            order.delivery.deliveredAt = order.deliveredAt;
         }
+
+        order.orderStatus = newStatus;
         await order.save();
 
         return res.status(200).json({

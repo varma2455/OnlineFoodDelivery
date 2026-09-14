@@ -90,6 +90,8 @@ export const orderAPI = {
     getMyOrders: () => api.get("/api/orders/my-orders"),
     getOrderById: (id) => api.get(`/api/orders/${id}`),
     cancelOrder: (id) => api.put(`/api/orders/${id}/cancel`),
+    getDeliveryOtp: (orderId) => api.get(`/api/orders/${orderId}/delivery-otp`),
+    regenerateDeliveryOtp: (orderId) => api.post(`/api/orders/${orderId}/regenerate-delivery-otp`),
     assignDeliveryPartner: (orderId, deliveryPartnerId) => api.put(`/api/admin/orders/${orderId}/assign-delivery`, { deliveryPartnerId }),
     autoAssignDeliveryPartner: (orderId) => api.post(`/api/admin/orders/${orderId}/auto-assign`),
     getEligibleDrivers: () => api.get("/api/admin/orders/eligible-drivers")
@@ -201,7 +203,9 @@ export const restaurantAPI = {
     updateFoodStock: (id, stockData) => api.put(`/api/restaurant/menu/${id}/stock`, stockData),
     toggleAvailability: (id) => api.put(`/api/restaurant/foods/${id}/availability`),
     getAnalytics: () => api.get("/api/restaurant/analytics"),
-    getReviews: () => api.get("/api/restaurant/reviews")
+    getReviews: () => api.get("/api/restaurant/reviews"),
+    getAvailableDeliveryPartners: () => api.get("/api/restaurant/delivery-partners/available"),
+    assignDeliveryPartner: (orderId, deliveryPartnerId) => api.put(`/api/restaurant/orders/${orderId}/assign-delivery`, { deliveryPartnerId })
 };
 
 // ==============================
@@ -225,6 +229,7 @@ export const deliveryPartnerAPI = {
     getOrderDetails: (id) => api.get(`/api/delivery-partner/orders/${id}`),
     acceptOrder: (id) => api.post(`/api/delivery-partner/orders/${id}/accept`),
     updateOrderStatus: (id, deliveryStatus) => api.put(`/api/delivery-partner/orders/${id}/status`, { deliveryStatus }),
+    verifyDeliveryOtp: (id, otp) => api.post(`/api/delivery-partner/orders/${id}/verify-otp`, { otp }),
     getMyDeliveries: (params = {}) => api.get("/api/delivery-partner/my-deliveries", { params }),
     getEarnings: () => api.get("/api/delivery-partner/earnings"),
     getWallet: () => api.get("/api/delivery-partner/wallet"),
@@ -266,7 +271,8 @@ export const ui = {
 export const deliveryAPI = {
     ...deliveryPartnerAPI,
     getOrders: () => api.get("/api/delivery-partner/orders"),
-    updateDeliveryStatus: (id, orderStatus) => api.put(`/api/delivery-partner/orders/${id}/status`, { deliveryStatus: orderStatus })
+    updateDeliveryStatus: (id, orderStatus) => api.put(`/api/delivery-partner/orders/${id}/status`, { deliveryStatus: orderStatus }),
+    verifyDeliveryOtp: (id, otp) => api.post(`/api/delivery/orders/${id}/verify-otp`, { otp })
 };
 
 export const walletAPI = {

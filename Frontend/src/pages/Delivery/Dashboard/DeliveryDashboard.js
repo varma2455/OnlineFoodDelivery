@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useContext } from "react";
-import { Link, useOutletContext } from "react-router-dom";
+import { Link, useNavigate, useOutletContext } from "react-router-dom";
 import { StoreContext } from "../../../context/StoreContext";
 import { deliveryPartnerAPI } from "../../../services/api";
 import Loader from "../../../components/Loader/Loader";
@@ -18,17 +18,22 @@ import {
     FaMapMarkerAlt,
     FaPhoneAlt,
     FaArrowRight,
-    FaSyncAlt
+    FaSyncAlt,
+    FaCheck,
+    FaEye
 } from "react-icons/fa";
 
 const DeliveryDashboard = () => {
     const { user, showToast } = useContext(StoreContext);
+    const navigate = useNavigate();
     const outletContext = useOutletContext() || {};
     const { partner, availability } = outletContext;
 
     const [stats, setStats] = useState({
         todayDeliveries: 0,
         completedDeliveries: 0,
+        assignedDeliveries: 0,
+        activeDeliveries: 0,
         pendingDeliveries: 0,
         todayEarnings: 0,
         totalEarnings: 0,
@@ -36,9 +41,11 @@ const DeliveryDashboard = () => {
         rating: 5.0,
         availabilityStatus: "offline"
     });
+    const [assignedOrders, setAssignedOrders] = useState([]);
     const [activeDelivery, setActiveDelivery] = useState(null);
     const [loading, setLoading] = useState(true);
     const [actionLoading, setActionLoading] = useState(false);
+    const [acceptingId, setAcceptingId] = useState(null);
 
     const getGreeting = () => {
         const hour = new Date().getHours();
@@ -47,25 +54,48 @@ const DeliveryDashboard = () => {
         return "Good Evening";
     };
 
-    const fetchDashboard = useCallback(async () => {
+    const fetchDashboard = useCallback(async (isSilent = false) => {
         try {
-            setLoading(true);
+            if (!isSilent) setLoading(true);
             const { data } = await deliveryPartnerAPI.getDashboard();
             if (data.stats) {
                 setStats(data.stats);
             }
             setActiveDelivery(data.activeDelivery || null);
+            setAssignedOrders(data.assignedOrders || []);
         } catch (err) {
             console.error("Failed to load dashboard:", err);
-            showToast(err.message || "Failed to load dashboard statistics", "error");
+            if (!isSilent) {
+                showToast(err.message || "Failed to load dashboard statistics", "error");
+            }
         } finally {
-            setLoading(false);
+            if (!isSilent) setLoading(false);
         }
     }, [showToast]);
 
     useEffect(() => {
         fetchDashboard();
+        // Safe auto-refresh polling interval of 15 seconds so new restaurant assignments appear automatically
+        const interval = setInterval(() => {
+            fetchDashboard(true);
+        }, 15000);
+        return () => clearInterval(interval);
     }, [fetchDashboard]);
+
+    // Handle accepting an assigned order
+    const handleAcceptOrder = async (orderId) => {
+        try {
+            setAcceptingId(orderId);
+            const { data } = await deliveryPartnerAPI.acceptOrder(orderId);
+            showToast(data.message || "Order accepted! Navigate to kitchen pickup.", "success");
+            await fetchDashboard(true);
+        } catch (err) {
+            showToast(err.message || "Failed to accept order. It may have been modified.", "error");
+            fetchDashboard(true);
+        } finally {
+            setAcceptingId(null);
+        }
+    };
 
     // Handle delivery status transitions
     const handleUpdateDeliveryStatus = async (orderId, newStatus) => {
@@ -73,7 +103,7 @@ const DeliveryDashboard = () => {
             setActionLoading(true);
             const { data } = await deliveryPartnerAPI.updateOrderStatus(orderId, newStatus);
             showToast(data.message || `Delivery status updated to ${newStatus}`, "success");
-            fetchDashboard();
+            await fetchDashboard(true);
         } catch (err) {
             showToast(err.message || "Failed to update delivery status", "error");
         } finally {
@@ -105,7 +135,7 @@ const DeliveryDashboard = () => {
                     </p>
                 </div>
 
-                <button className="btn-dash-refresh" onClick={fetchDashboard}>
+                <button className="btn-dash-refresh" onClick={() => fetchDashboard(false)}>
                     <FaSyncAlt /> Refresh
                 </button>
             </div>
@@ -120,12 +150,22 @@ const DeliveryDashboard = () => {
             {/* KPI Statistics Cards */}
             <div className="dp-kpi-grid">
                 <div className="dp-kpi-card">
+                    <div className="kpi-icon-wrap orange">
+                        <FaClipboardList />
+                    </div>
+                    <div>
+                        <div className="kpi-label">Assigned Deliveries</div>
+                        <div className="kpi-value">{stats.assignedDeliveries ?? assignedOrders.length}</div>
+                    </div>
+                </div>
+
+                <div className="dp-kpi-card">
                     <div className="kpi-icon-wrap blue">
                         <FaMotorcycle />
                     </div>
                     <div>
-                        <div className="kpi-label">Today's Deliveries</div>
-                        <div className="kpi-value">{stats.todayDeliveries}</div>
+                        <div className="kpi-label">Active Deliveries</div>
+                        <div className="kpi-value">{stats.activeDeliveries ?? (activeDelivery ? 1 : 0)}</div>
                     </div>
                 </div>
 
@@ -134,18 +174,8 @@ const DeliveryDashboard = () => {
                         <FaCheckCircle />
                     </div>
                     <div>
-                        <div className="kpi-label">Completed Deliveries</div>
-                        <div className="kpi-value">{stats.completedDeliveries}</div>
-                    </div>
-                </div>
-
-                <div className="dp-kpi-card">
-                    <div className="kpi-icon-wrap orange">
-                        <FaClock />
-                    </div>
-                    <div>
-                        <div className="kpi-label">Pending Deliveries</div>
-                        <div className="kpi-value">{stats.pendingDeliveries}</div>
+                        <div className="kpi-label">Completed Today</div>
+                        <div className="kpi-value">{stats.todayDeliveries ?? 0}</div>
                     </div>
                 </div>
 
@@ -155,7 +185,7 @@ const DeliveryDashboard = () => {
                     </div>
                     <div>
                         <div className="kpi-label">Today's Earnings</div>
-                        <div className="kpi-value">₹{stats.todayEarnings}</div>
+                        <div className="kpi-value">₹{stats.todayEarnings ?? 0}</div>
                     </div>
                 </div>
 
@@ -170,12 +200,127 @@ const DeliveryDashboard = () => {
                 </div>
             </div>
 
-            {/* Active Delivery Card (If in progress) */}
-            {activeDelivery ? (
+            {/* =========================================================================
+                SECTION 1: MY ASSIGNED ORDERS (Assigned directly by restaurants)
+                ========================================================================= */}
+            <div className="dp-section-container">
+                <div className="dp-section-header">
+                    <div>
+                        <h2 className="dp-section-title">
+                            <FaMotorcycle color="#ff5200" /> My Assigned Deliveries ({assignedOrders.length})
+                        </h2>
+                        <p className="dp-section-sub">
+                            Orders specifically assigned to you by partner restaurants awaiting your acceptance
+                        </p>
+                    </div>
+                    {assignedOrders.length > 0 && (
+                        <span className="dp-badge-count-assigned">
+                            {assignedOrders.length} New
+                        </span>
+                    )}
+                </div>
+
+                {assignedOrders.length === 0 ? (
+                    <div className="dp-no-assigned-card">
+                        <div className="dp-no-assigned-icon">🛵</div>
+                        <h3>No Deliveries Assigned To You Yet</h3>
+                        <p>
+                            When a kitchen marks an order Ready for Pickup and assigns you, it will appear here instantly. You can also browse open orders in Available Deliveries.
+                        </p>
+                        <Link to="/delivery/orders" className="btn-browse-available">
+                            <FaBoxOpen /> Check Available Orders
+                        </Link>
+                    </div>
+                ) : (
+                    <div className="dp-assigned-cards-grid">
+                        {assignedOrders.map((order) => {
+                            const restaurant = order.items?.[0]?.restaurantId || {};
+                            const customerName = order.deliveryAddress?.fullName || order.user?.fullName || "Customer";
+                            const deliveryArea = order.deliveryAddress?.city
+                                ? `${order.deliveryAddress?.addressLine1 || ""}, ${order.deliveryAddress?.city}`
+                                : (order.deliveryAddress?.addressLine1 || "Customer Address");
+                            const earnings = order.deliveryEarnings || 50;
+                            const isAccepting = acceptingId === order._id;
+
+                            return (
+                                <div key={order._id} className="dp-assigned-order-card">
+                                    <div className="assigned-card-top-bar">
+                                        <div className="assigned-card-badge">
+                                            <FaMotorcycle /> New Delivery
+                                        </div>
+                                        <span className="assigned-card-id">
+                                            #{order._id.slice(-6).toUpperCase()}
+                                        </span>
+                                        <div className="assigned-card-earnings">
+                                            Earn ₹{earnings}
+                                        </div>
+                                    </div>
+
+                                    <div className="assigned-card-content">
+                                        {/* Restaurant Info */}
+                                        <div className="assigned-info-block restaurant">
+                                            <div className="assigned-block-label">RESTAURANT</div>
+                                            <div className="assigned-block-title">
+                                                {restaurant.name || "Partner Restaurant"}
+                                            </div>
+                                            <div className="assigned-block-desc">
+                                                <FaMapMarkerAlt size={12} /> {restaurant.address?.street || "Pickup Address"},{" "}
+                                                {restaurant.address?.city || "Hyderabad"}
+                                            </div>
+                                        </div>
+
+                                        {/* Customer Info */}
+                                        <div className="assigned-info-block customer">
+                                            <div className="assigned-block-label customer-label">CUSTOMER & DESTINATION</div>
+                                            <div className="assigned-block-title">
+                                                {customerName}
+                                            </div>
+                                            <div className="assigned-block-desc">
+                                                <FaMapMarkerAlt size={12} /> {deliveryArea}
+                                            </div>
+                                        </div>
+
+                                        <div className="assigned-status-strip">
+                                            <span>Status: <strong style={{ color: "#ea580c" }}>Assigned</strong></span>
+                                            <span>• Items: {order.items?.length || 1}</span>
+                                            <span>• Total: ₹{order.totalAmount}</span>
+                                        </div>
+                                    </div>
+
+                                    <div className="assigned-card-action-bar">
+                                        <Link to={`/delivery/orders/${order._id}`} className="btn-assigned-view">
+                                            <FaEye /> View Order
+                                        </Link>
+                                        <button
+                                            type="button"
+                                            className="btn-assigned-accept"
+                                            onClick={() => handleAcceptOrder(order._id)}
+                                            disabled={isAccepting || actionLoading}
+                                        >
+                                            {isAccepting ? (
+                                                "Accepting..."
+                                            ) : (
+                                                <>
+                                                    <FaCheck /> Accept Delivery
+                                                </>
+                                            )}
+                                        </button>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                )}
+            </div>
+
+            {/* =========================================================================
+                SECTION 2: ACTIVE DELIVERY CARD (In-progress delivery)
+                ========================================================================= */}
+            {activeDelivery && (
                 <div className="dp-active-order-card">
                     <div className="active-order-header">
                         <div className="order-tag">
-                            <span className="live-pulse"></span> {currentStatus === "Assigned" ? "NEW DELIVERY #" : "ACTIVE ORDER #"}
+                            <span className="live-pulse"></span> ACTIVE ORDER #
                             {activeDelivery._id.slice(-6).toUpperCase()}
                         </div>
                         <div className="order-earnings-pill">
@@ -229,21 +374,10 @@ const DeliveryDashboard = () => {
                     {/* Step Action Buttons based on valid transition */}
                     <div className="active-order-actions">
                         <div className="current-status-note">
-                            Current Status: <strong>{currentStatus === "Assigned" ? "Assigned (Waiting for Acceptance)" : currentStatus}</strong>
+                            Current Status: <strong>{currentStatus}</strong>
                         </div>
 
                         <div className="action-buttons-wrap">
-                            {currentStatus === "Assigned" && (
-                                <button
-                                    className="btn-step-action"
-                                    style={{ background: "#10b981", color: "#ffffff", borderColor: "#059669" }}
-                                    onClick={() => handleUpdateDeliveryStatus(activeDelivery._id, "Accepted")}
-                                    disabled={actionLoading}
-                                >
-                                    <FaCheckCircle /> Accept Delivery Order
-                                </button>
-                            )}
-
                             {currentStatus === "Accepted" && (
                                 <button
                                     className="btn-step-action"
@@ -302,22 +436,13 @@ const DeliveryDashboard = () => {
                                         customerName={activeDelivery.deliveryAddress?.fullName || activeDelivery.user?.fullName || "Customer"}
                                         onSuccess={(data) => {
                                             showToast(data.message || "Delivery verified successfully! 🎉", "success");
-                                            fetchDashboard();
+                                            fetchDashboard(false);
                                         }}
                                     />
                                 </div>
                             )}
                         </div>
                     </div>
-                </div>
-            ) : (
-                <div className="dp-no-active-order">
-                    <div className="idle-icon">🛵</div>
-                    <h3>No Active Delivery Right Now</h3>
-                    <p>You are ready for assignments! Check the available orders feed to accept your next delivery.</p>
-                    <Link to="/delivery/orders" className="btn-find-orders">
-                        <FaBoxOpen /> View Available Orders
-                    </Link>
                 </div>
             )}
 

@@ -380,12 +380,16 @@ export const getMyOrders = async (req, res, next) => {
             .populate("items.food")
             .populate("items.restaurantId", "name address phone email")
             .populate("deliveryPartner", "name phone profilePhoto rating vehicleType vehicleNumber availabilityStatus status")
+            .populate("deliveryPartnerId", "name phone profilePhoto rating vehicleType vehicleNumber availabilityStatus status")
+            .populate("delivery.deliveryPartner", "name phone profilePhoto rating vehicleType vehicleNumber availabilityStatus status")
+            .populate("delivery.deliveryPartnerId", "name phone profilePhoto rating vehicleType vehicleNumber availabilityStatus status")
             .sort({ createdAt: -1 });
 
         const orders = rawOrders.map(o => {
             const obj = o.toObject ? o.toObject() : { ...o };
-            obj.deliveryPartner = obj.deliveryPartner || null;
-            obj.deliveryPartnerId = obj.deliveryPartner?._id || obj.deliveryPartner || null;
+            const partnerObj = obj.deliveryPartner || obj.deliveryPartnerId || obj.delivery?.deliveryPartner || obj.delivery?.deliveryPartnerId || null;
+            obj.deliveryPartner = partnerObj;
+            obj.deliveryPartnerId = partnerObj?._id || partnerObj || null;
 
             const isDelivered = (obj.orderStatus || "").toLowerCase() === "delivered" || (obj.deliveryStatus || "").toLowerCase() === "delivered";
             let deliveryOtp = null;
@@ -396,13 +400,13 @@ export const getMyOrders = async (req, res, next) => {
 
             obj.deliveryOtp = deliveryOtp;
             obj.delivery = {
-                status: obj.deliveryStatus || "unassigned",
-                deliveryPartner: obj.deliveryPartner || null,
-                deliveryPartnerId: obj.deliveryPartnerId,
-                assignedAt: obj.deliveryAssignedAt || null,
-                acceptedAt: obj.deliveryAcceptedAt || null,
-                pickedUpAt: obj.deliveryPickedUpAt || null,
-                deliveredAt: obj.deliveredAt || null,
+                status: obj.deliveryStatus || obj.delivery?.status || "unassigned",
+                deliveryPartner: partnerObj,
+                deliveryPartnerId: partnerObj?._id || partnerObj || null,
+                assignedAt: obj.deliveryAssignedAt || obj.delivery?.assignedAt || null,
+                acceptedAt: obj.deliveryAcceptedAt || obj.delivery?.acceptedAt || null,
+                pickedUpAt: obj.deliveryPickedUpAt || obj.delivery?.pickedUpAt || null,
+                deliveredAt: obj.deliveredAt || obj.delivery?.deliveredAt || null,
                 otpGeneratedAt: o.delivery?.otpGeneratedAt || null,
                 otpExpiresAt: o.delivery?.otpExpiresAt || null,
                 otpVerifiedAt: o.delivery?.otpVerifiedAt || null,
@@ -432,7 +436,10 @@ export const getOrderById = async (req, res, next) => {
             .populate("user", "fullName email phone")
             .populate("items.food")
             .populate("items.restaurantId", "name address phone email")
-            .populate("deliveryPartner", "name phone profilePhoto rating vehicleType vehicleNumber availabilityStatus status");
+            .populate("deliveryPartner", "name phone profilePhoto rating vehicleType vehicleNumber availabilityStatus status")
+            .populate("deliveryPartnerId", "name phone profilePhoto rating vehicleType vehicleNumber availabilityStatus status")
+            .populate("delivery.deliveryPartner", "name phone profilePhoto rating vehicleType vehicleNumber availabilityStatus status")
+            .populate("delivery.deliveryPartnerId", "name phone profilePhoto rating vehicleType vehicleNumber availabilityStatus status");
 
         if (!orderDoc) {
             return res.status(404).json({
@@ -453,8 +460,9 @@ export const getOrderById = async (req, res, next) => {
         }
 
         const order = orderDoc.toObject ? orderDoc.toObject() : { ...orderDoc };
-        order.deliveryPartner = order.deliveryPartner || null;
-        order.deliveryPartnerId = order.deliveryPartner?._id || order.deliveryPartner || null;
+        const partnerObj = order.deliveryPartner || order.deliveryPartnerId || order.delivery?.deliveryPartner || order.delivery?.deliveryPartnerId || null;
+        order.deliveryPartner = partnerObj;
+        order.deliveryPartnerId = partnerObj?._id || partnerObj || null;
 
         const isDelivered = (order.orderStatus || "").toLowerCase() === "delivered" || (order.deliveryStatus || "").toLowerCase() === "delivered";
         let deliveryOtp = null;
@@ -465,13 +473,13 @@ export const getOrderById = async (req, res, next) => {
 
         order.deliveryOtp = deliveryOtp;
         order.delivery = {
-            status: order.deliveryStatus || "unassigned",
-            deliveryPartner: order.deliveryPartner || null,
-            deliveryPartnerId: order.deliveryPartnerId,
-            assignedAt: order.deliveryAssignedAt || null,
-            acceptedAt: order.deliveryAcceptedAt || null,
-            pickedUpAt: order.deliveryPickedUpAt || null,
-            deliveredAt: order.deliveredAt || null,
+            status: order.deliveryStatus || order.delivery?.status || "unassigned",
+            deliveryPartner: partnerObj,
+            deliveryPartnerId: partnerObj?._id || partnerObj || null,
+            assignedAt: order.deliveryAssignedAt || order.delivery?.assignedAt || null,
+            acceptedAt: order.deliveryAcceptedAt || order.delivery?.acceptedAt || null,
+            pickedUpAt: order.deliveryPickedUpAt || order.delivery?.pickedUpAt || null,
+            deliveredAt: order.deliveredAt || order.delivery?.deliveredAt || null,
             otpGeneratedAt: orderDoc.delivery?.otpGeneratedAt || null,
             otpExpiresAt: orderDoc.delivery?.otpExpiresAt || null,
             otpVerifiedAt: orderDoc.delivery?.otpVerifiedAt || null,
@@ -741,20 +749,24 @@ export const getAllOrders = async (req, res, next) => {
             .populate("items.food")
             .populate("items.restaurantId", "name address phone email")
             .populate("deliveryPartner", "name phone profilePhoto rating vehicleType vehicleNumber availabilityStatus status")
+            .populate("deliveryPartnerId", "name phone profilePhoto rating vehicleType vehicleNumber availabilityStatus status")
+            .populate("delivery.deliveryPartner", "name phone profilePhoto rating vehicleType vehicleNumber availabilityStatus status")
+            .populate("delivery.deliveryPartnerId", "name phone profilePhoto rating vehicleType vehicleNumber availabilityStatus status")
             .sort({ createdAt: -1 });
 
         const orders = rawOrders.map(o => {
             const obj = o.toObject ? o.toObject() : { ...o };
-            obj.deliveryPartner = obj.deliveryPartner || null;
-            obj.deliveryPartnerId = obj.deliveryPartner?._id || obj.deliveryPartner || null;
+            const partnerObj = obj.deliveryPartner || obj.deliveryPartnerId || obj.delivery?.deliveryPartner || obj.delivery?.deliveryPartnerId || null;
+            obj.deliveryPartner = partnerObj;
+            obj.deliveryPartnerId = partnerObj?._id || partnerObj || null;
             obj.delivery = {
-                status: obj.deliveryStatus || "unassigned",
-                deliveryPartner: obj.deliveryPartner || null,
-                deliveryPartnerId: obj.deliveryPartner?._id || obj.deliveryPartner || null,
-                assignedAt: obj.deliveryAssignedAt || null,
-                acceptedAt: obj.deliveryAcceptedAt || null,
-                pickedUpAt: obj.deliveryPickedUpAt || null,
-                deliveredAt: obj.deliveredAt || null,
+                status: obj.deliveryStatus || obj.delivery?.status || "unassigned",
+                deliveryPartner: partnerObj,
+                deliveryPartnerId: partnerObj?._id || partnerObj || null,
+                assignedAt: obj.deliveryAssignedAt || obj.delivery?.assignedAt || null,
+                acceptedAt: obj.deliveryAcceptedAt || obj.delivery?.acceptedAt || null,
+                pickedUpAt: obj.deliveryPickedUpAt || obj.delivery?.pickedUpAt || null,
+                deliveredAt: obj.deliveredAt || obj.delivery?.deliveredAt || null,
                 otpVerifiedAt: o.delivery?.otpVerifiedAt || null,
                 otpStatus: o.delivery?.otpVerifiedAt ? "Verified" : "Pending Verification"
             };

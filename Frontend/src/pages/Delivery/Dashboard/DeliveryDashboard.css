@@ -441,3 +441,282 @@
     color: #64748b;
     line-height: 1.35;
 }
+
+/* =========================================================================
+   MY ASSIGNED ORDERS SECTION
+   ========================================================================= */
+.dp-section-container {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 1.5rem;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.dp-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.25rem;
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 0.75rem;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.dp-section-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #0f172a;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0 0 0.25rem 0;
+}
+
+.dp-section-sub {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin: 0;
+}
+
+.dp-badge-count-assigned {
+    background: #ff5200;
+    color: #ffffff;
+    padding: 0.3rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+/* Empty assigned state */
+.dp-no-assigned-card {
+    background: #f8fafc;
+    border: 1px dashed #cbd5e1;
+    border-radius: 12px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dp-no-assigned-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.dp-no-assigned-card h3 {
+    margin: 0 0 0.4rem 0;
+    color: #0f172a;
+    font-size: 1.1rem;
+}
+
+.dp-no-assigned-card p {
+    color: #64748b;
+    font-size: 0.875rem;
+    max-width: 480px;
+    margin: 0 0 1rem 0;
+    line-height: 1.4;
+}
+
+.btn-browse-available {
+    background: #2563eb;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: background 0.2s ease;
+}
+
+.btn-browse-available:hover {
+    background: #1d4ed8;
+}
+
+/* Grid of Assigned Cards */
+.dp-assigned-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.25rem;
+}
+
+.dp-assigned-order-card {
+    border: 1.5px solid #ffedd5;
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(255, 82, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dp-assigned-order-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(255, 82, 0, 0.12);
+}
+
+.assigned-card-top-bar {
+    background: #fff7ed;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #ffedd5;
+}
+
+.assigned-card-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #ea580c;
+}
+
+.assigned-card-id {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+.assigned-card-earnings {
+    background: #dcfce7;
+    color: #15803d;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 0.2rem 0.6rem;
+    border-radius: 6px;
+}
+
+.assigned-card-content {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex: 1;
+}
+
+.assigned-info-block {
+    background: #f8fafc;
+    border-radius: 8px;
+    padding: 0.6rem 0.85rem;
+    border: 1px solid #f1f5f9;
+}
+
+.assigned-info-block.customer {
+    background: #f0fdf4;
+    border-color: #dcfce7;
+}
+
+.assigned-block-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.2rem;
+}
+
+.assigned-block-label.customer-label {
+    color: #15803d;
+}
+
+.assigned-block-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.assigned-block-desc {
+    font-size: 0.8rem;
+    color: #64748b;
+    margin-top: 0.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.assigned-status-strip {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: #64748b;
+    padding-top: 0.4rem;
+    border-top: 1px dashed #e2e8f0;
+}
+
+.assigned-badge {
+    background: #fff7ed;
+    color: #ea580c;
+    font-weight: 700;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #ffedd5;
+}
+
+.assigned-card-action-bar {
+    padding: 0.75rem 1rem;
+    background: #fafafa;
+    border-top: 1px solid #f1f5f9;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.btn-assigned-view {
+    flex: 1;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    color: #334155;
+    text-decoration: none;
+    text-align: center;
+    padding: 0.55rem 0.8rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    transition: all 0.2s ease;
+}
+
+.btn-assigned-view:hover {
+    background: #f1f5f9;
+    color: #0f172a;
+}
+
+.btn-assigned-accept {
+    flex: 1.5;
+    background: #10b981;
+    color: #ffffff;
+    border: none;
+    padding: 0.55rem 0.8rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.btn-assigned-accept:hover:not(:disabled) {
+    background: #059669;
+    transform: translateY(-1px);
+}
+
+.btn-assigned-accept:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+

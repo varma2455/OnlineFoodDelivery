@@ -571,6 +571,9 @@ export const getRestaurantOrders = async (req, res, next) => {
         const orders = await Order.find(query)
             .populate("user", "fullName phone email")
             .populate("deliveryPartner", "name phone profilePhoto rating vehicleType vehicleNumber availabilityStatus status")
+            .populate("deliveryPartnerId", "name phone profilePhoto rating vehicleType vehicleNumber availabilityStatus status")
+            .populate("delivery.deliveryPartner", "name phone profilePhoto rating vehicleType vehicleNumber availabilityStatus status")
+            .populate("delivery.deliveryPartnerId", "name phone profilePhoto rating vehicleType vehicleNumber availabilityStatus status")
             .sort({ createdAt: -1 });
 
         // Filter each order so it contains ONLY this restaurant's items
@@ -579,6 +582,7 @@ export const getRestaurantOrders = async (req, res, next) => {
                 (item) => item.restaurantId && item.restaurantId.toString() === restaurantId.toString()
             );
             const restaurantSubtotal = myItems.reduce((acc, item) => acc + (item.subtotal || 0), 0);
+            const partnerInfo = order.deliveryPartner || order.deliveryPartnerId || order.delivery?.deliveryPartner || order.delivery?.deliveryPartnerId || null;
 
             return {
                 _id: order._id,
@@ -595,16 +599,16 @@ export const getRestaurantOrders = async (req, res, next) => {
                 paymentMethod: order.paymentMethod,
                 paymentStatus: order.paymentStatus,
                 orderStatus: order.orderStatus,
-                deliveryPartner: order.deliveryPartner || null,
-                deliveryPartnerId: order.deliveryPartner?._id || order.deliveryPartner || null,
-                deliveryStatus: order.deliveryStatus || "unassigned",
+                deliveryPartner: partnerInfo,
+                deliveryPartnerId: partnerInfo?._id || partnerInfo || null,
+                deliveryStatus: order.deliveryStatus || order.delivery?.status || "unassigned",
                 delivery: {
-                    status: order.deliveryStatus || "unassigned",
-                    deliveryPartner: order.deliveryPartner || null,
-                    assignedAt: order.deliveryAssignedAt || null,
-                    acceptedAt: order.deliveryAcceptedAt || null,
-                    pickedUpAt: order.deliveryPickedUpAt || null,
-                    deliveredAt: order.deliveredAt || null
+                    status: order.deliveryStatus || order.delivery?.status || "unassigned",
+                    deliveryPartner: partnerInfo,
+                    assignedAt: order.deliveryAssignedAt || order.delivery?.assignedAt || null,
+                    acceptedAt: order.deliveryAcceptedAt || order.delivery?.acceptedAt || null,
+                    pickedUpAt: order.deliveryPickedUpAt || order.delivery?.pickedUpAt || null,
+                    deliveredAt: order.deliveredAt || order.delivery?.deliveredAt || null
                 },
                 createdAt: order.createdAt
             };
@@ -628,7 +632,7 @@ export const updateRestaurantOrderStatus = async (req, res, next) => {
     try {
         const restaurantId = req.restaurant._id;
         const { id } = req.params;
-        const { orderStatus, action } = req.body;
+        const { orderStatus, status, action } = req.body;
 
         const order = await Order.findOne({
             _id: id,
@@ -643,10 +647,10 @@ export const updateRestaurantOrderStatus = async (req, res, next) => {
         }
 
         // Determine target status
-        let targetStatus = orderStatus;
+        let targetStatus = orderStatus || status;
         if (action === "accept") targetStatus = "Confirmed";
         else if (action === "reject") targetStatus = "Cancelled";
-        else if (action === "preparing") targetStatus = "Preparing";
+        else if (action === "preparing" || action === "prepare") targetStatus = "Preparing";
         else if (action === "ready") targetStatus = "Ready for Pickup";
 
         const validTransitions = ["Confirmed", "Preparing", "Ready for Pickup", "Out for Delivery", "Cancelled"];
@@ -663,16 +667,15 @@ export const updateRestaurantOrderStatus = async (req, res, next) => {
         // When order is marked Ready for Pickup, ensure it is ready for restaurant driver selection
         if (targetStatus === "Ready for Pickup") {
             // Keep driver unassigned until restaurant explicitly assigns
-            if (!order.deliveryPartner) {
+            if (!order.deliveryPartner && !order.deliveryPartnerId && !order.delivery?.deliveryPartner) {
                 order.deliveryStatus = "unassigned";
-                order.delivery = {
-                    status: "unassigned",
-                    assignedAt: null,
-                    acceptedAt: null,
-                    pickedUpAt: null,
-                    deliveredAt: null,
-                    deliveryPartner: null
-                };
+                if (!order.delivery) {
+                    order.delivery = {};
+                }
+                order.delivery.status = "unassigned";
+                order.delivery.deliveryPartner = null;
+                order.delivery.deliveryPartnerId = null;
+                order.delivery.assignedAt = null;
             }
         }
 
@@ -707,7 +710,12 @@ export const getAvailableDeliveryPartnersForRestaurant = async (req, res, next) 
             }
 
             const activeDeliveriesCount = await Order.countDocuments({
-                deliveryPartner: partner._id,
+                $or: [
+                    { deliveryPartner: partner._id },
+                    { deliveryPartnerId: partner._id },
+                    { "delivery.deliveryPartner": partner._id },
+                    { "delivery.deliveryPartnerId": partner._id }
+                ],
                 deliveryStatus: {
                     $in: [
                         "Assigned",
@@ -843,20 +851,26 @@ export const assignDeliveryPartnerByRestaurant = async (req, res, next) => {
         order.deliveryPartnerId = partner._id;
         order.deliveryStatus = "Assigned";
         order.deliveryAssignedAt = assignedTime;
-        order.delivery = {
-            status: "Assigned",
-            assignedAt: assignedTime,
-            acceptedAt: null,
-            pickedUpAt: null,
-            deliveredAt: null,
-            deliveryPartner: partner._id
-        };
+
+        if (!order.delivery) {
+            order.delivery = {};
+        }
+        order.delivery.status = "Assigned";
+        order.delivery.assignedAt = assignedTime;
+        order.delivery.deliveryPartner = partner._id;
+        order.delivery.deliveryPartnerId = partner._id;
+        order.delivery.acceptedAt = null;
+        order.delivery.pickedUpAt = null;
+        order.delivery.deliveredAt = null;
 
         await order.save();
 
         const populatedOrder = await Order.findById(order._id)
             .populate("user", "fullName phone email")
-            .populate("deliveryPartner", "name phone profilePhoto rating vehicleType vehicleNumber availabilityStatus status");
+            .populate("deliveryPartner", "name phone profilePhoto rating vehicleType vehicleNumber availabilityStatus status")
+            .populate("deliveryPartnerId", "name phone profilePhoto rating vehicleType vehicleNumber availabilityStatus status")
+            .populate("delivery.deliveryPartner", "name phone profilePhoto rating vehicleType vehicleNumber availabilityStatus status")
+            .populate("delivery.deliveryPartnerId", "name phone profilePhoto rating vehicleType vehicleNumber availabilityStatus status");
 
         return res.status(200).json({
             success: true,

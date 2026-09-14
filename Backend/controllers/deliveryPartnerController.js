@@ -608,12 +608,21 @@ export const getDeliveryDashboard = async (req, res, next) => {
     try {
         const partner = req.deliveryPartner;
 
+        const partnerMatch = {
+            $or: [
+                { deliveryPartner: partner._id },
+                { deliveryPartnerId: partner._id },
+                { "delivery.deliveryPartner": partner._id },
+                { "delivery.deliveryPartnerId": partner._id }
+            ]
+        };
+
         const startOfToday = new Date();
         startOfToday.setHours(0, 0, 0, 0);
 
         // 1. Orders delivered today by this partner
         const todayDeliveredOrders = await Order.find({
-            deliveryPartner: partner._id,
+            ...partnerMatch,
             deliveryStatus: "Delivered",
             deliveredAt: { $gte: startOfToday }
         });
@@ -624,12 +633,20 @@ export const getDeliveryDashboard = async (req, res, next) => {
             0
         );
 
-        // 2. Active delivery in progress or assigned to this partner
+        // 2. Orders specifically assigned to THIS partner awaiting acceptance
+        const assignedOrders = await Order.find({
+            ...partnerMatch,
+            deliveryStatus: "Assigned"
+        })
+            .populate("items.restaurantId", "name address phone email")
+            .populate("user", "fullName phone address")
+            .sort({ createdAt: -1 });
+
+        // 3. Active delivery in progress (accepted and currently being handled by THIS partner)
         const activeDelivery = await Order.findOne({
-            deliveryPartner: partner._id,
+            ...partnerMatch,
             deliveryStatus: {
                 $in: [
-                    "Assigned",
                     "Accepted",
                     "Going to Restaurant",
                     "Arrived at Restaurant",
@@ -639,17 +656,20 @@ export const getDeliveryDashboard = async (req, res, next) => {
                 ]
             }
         })
-            .populate("items.restaurantId", "name address phone")
+            .populate("items.restaurantId", "name address phone email")
             .populate("user", "fullName phone address");
 
-        // 3. Pending deliveries count
-        const pendingCount = activeDelivery ? 1 : 0;
+        // 4. Counts
+        const activeDeliveriesCount = activeDelivery ? 1 : 0;
+        const pendingCount = assignedOrders.length + activeDeliveriesCount;
 
         return res.status(200).json({
             success: true,
             stats: {
                 todayDeliveries: todayDeliveriesCount,
                 completedDeliveries: partner.completedDeliveries || 0,
+                assignedDeliveries: assignedOrders.length,
+                activeDeliveries: activeDeliveriesCount,
                 pendingDeliveries: pendingCount,
                 todayEarnings,
                 totalEarnings: partner.totalEarnings || 0,
@@ -657,7 +677,8 @@ export const getDeliveryDashboard = async (req, res, next) => {
                 rating: partner.rating || 5.0,
                 availabilityStatus: partner.availabilityStatus
             },
-            activeDelivery,
+            assignedOrders: assignedOrders.map(sanitizeDeliveryOrder),
+            activeDelivery: activeDelivery ? sanitizeDeliveryOrder(activeDelivery) : null,
             deliveryPartner: partner
         });
     } catch (error) {
@@ -736,21 +757,48 @@ export const getAvailableOrders = async (req, res, next) => {
     try {
         const partner = req.deliveryPartner;
 
-        // Only show orders specifically assigned to THIS partner waiting for acceptance
-        const orders = await Order.find({
-            deliveryPartner: partner._id,
+        const partnerMatch = {
+            $or: [
+                { deliveryPartner: partner._id },
+                { deliveryPartnerId: partner._id },
+                { "delivery.deliveryPartner": partner._id },
+                { "delivery.deliveryPartnerId": partner._id }
+            ]
+        };
+
+        // 1. My Assigned Orders (specific to THIS authenticated partner waiting for acceptance)
+        const assignedOrders = await Order.find({
+            ...partnerMatch,
             deliveryStatus: "Assigned"
         })
-            .populate("items.restaurantId", "name address phone")
-            .populate("user", "fullName phone")
+            .populate("items.restaurantId", "name address phone email")
+            .populate("user", "fullName phone address")
+            .sort({ createdAt: -1 })
+            .limit(30);
+
+        // 2. Available/Unassigned Orders (claimable by any online driver, if unassigned)
+        const availableOrders = await Order.find({
+            deliveryPartner: null,
+            deliveryPartnerId: null,
+            "delivery.deliveryPartner": null,
+            "delivery.deliveryPartnerId": null,
+            deliveryStatus: { $in: ["unassigned", "Available"] },
+            orderStatus: { $in: ["Ready for Pickup", "Preparing"] }
+        })
+            .populate("items.restaurantId", "name address phone email")
+            .populate("user", "fullName phone address")
             .sort({ createdAt: -1 })
             .limit(30);
 
         return res.status(200).json({
             success: true,
-            total: orders.length,
+            total: assignedOrders.length + availableOrders.length,
+            assignedCount: assignedOrders.length,
+            availableCount: availableOrders.length,
             isOnline: partner.availabilityStatus === "online",
-            orders: orders.map(sanitizeDeliveryOrder)
+            assignedOrders: assignedOrders.map(sanitizeDeliveryOrder),
+            availableOrders: availableOrders.map(sanitizeDeliveryOrder),
+            orders: [...assignedOrders, ...availableOrders].map(sanitizeDeliveryOrder)
         });
     } catch (error) {
         next(error);
@@ -793,9 +841,18 @@ export const acceptOrder = async (req, res, next) => {
     try {
         const partner = req.deliveryPartner;
 
+        const partnerMatch = {
+            $or: [
+                { deliveryPartner: partner._id },
+                { deliveryPartnerId: partner._id },
+                { "delivery.deliveryPartner": partner._id },
+                { "delivery.deliveryPartnerId": partner._id }
+            ]
+        };
+
         // Check if partner already has an active incomplete delivery
         const existingActive = await Order.findOne({
-            deliveryPartner: partner._id,
+            ...partnerMatch,
             deliveryStatus: {
                 $in: [
                     "Accepted",
@@ -815,24 +872,41 @@ export const acceptOrder = async (req, res, next) => {
             });
         }
 
-        // Atomic lock: Only accepts if assigned to THIS partner in "Assigned" status
+        // Atomic lock: Only accepts if assigned to THIS partner in "Assigned" status or claimable unassigned
         const acceptedTime = new Date();
         const order = await Order.findOneAndUpdate(
             {
                 _id: req.params.id,
-                deliveryPartner: partner._id,
-                deliveryStatus: "Assigned"
+                $or: [
+                    {
+                        ...partnerMatch,
+                        deliveryStatus: "Assigned"
+                    },
+                    {
+                        deliveryPartner: null,
+                        deliveryPartnerId: null,
+                        "delivery.deliveryPartner": null,
+                        "delivery.deliveryPartnerId": null,
+                        deliveryStatus: { $in: ["unassigned", "Available"] }
+                    }
+                ]
             },
             {
                 $set: {
+                    deliveryPartner: partner._id,
+                    deliveryPartnerId: partner._id,
                     deliveryStatus: "Accepted",
                     deliveryAcceptedAt: acceptedTime,
                     "delivery.status": "Accepted",
-                    "delivery.acceptedAt": acceptedTime
+                    "delivery.acceptedAt": acceptedTime,
+                    "delivery.deliveryPartner": partner._id,
+                    "delivery.deliveryPartnerId": partner._id
                 }
             },
             { new: true }
-        ).populate("items.restaurantId", "name address phone").populate("user", "fullName phone address");
+        )
+            .populate("items.restaurantId", "name address phone email")
+            .populate("user", "fullName phone address");
 
         if (!order) {
             return res.status(400).json({
@@ -848,7 +922,7 @@ export const acceptOrder = async (req, res, next) => {
         return res.status(200).json({
             success: true,
             message: "Order accepted successfully! Please proceed to the restaurant.",
-            order
+            order: sanitizeDeliveryOrder(order)
         });
     } catch (error) {
         next(error);
@@ -874,9 +948,18 @@ export const updateDeliveryOrderStatus = async (req, res, next) => {
             "Arrived at Customer": ["Delivered"]
         };
 
+        const partnerMatch = {
+            $or: [
+                { deliveryPartner: partner._id },
+                { deliveryPartnerId: partner._id },
+                { "delivery.deliveryPartner": partner._id },
+                { "delivery.deliveryPartnerId": partner._id }
+            ]
+        };
+
         const order = await Order.findOne({
             _id: req.params.id,
-            deliveryPartner: partner._id
+            ...partnerMatch
         });
 
         if (!order) {
@@ -913,6 +996,8 @@ export const updateDeliveryOrderStatus = async (req, res, next) => {
             order.delivery = {};
         }
         order.delivery.status = deliveryStatus;
+        order.delivery.deliveryPartner = partner._id;
+        order.delivery.deliveryPartnerId = partner._id;
 
         if (deliveryStatus === "Accepted") {
             order.deliveryAcceptedAt = new Date();
@@ -925,6 +1010,16 @@ export const updateDeliveryOrderStatus = async (req, res, next) => {
             order.orderStatus = "Out for Delivery";
             order.deliveryPickedUpAt = new Date();
             order.delivery.pickedUpAt = order.deliveryPickedUpAt;
+        }
+
+        if (deliveryStatus === "Going to Customer") {
+            order.orderStatus = "Out for Delivery";
+        }
+
+        if (deliveryStatus === "Arrived at Customer") {
+            order.orderStatus = "Out for Delivery";
+            order.deliveryArrivedAt = new Date();
+            order.delivery.arrivedAt = order.deliveryArrivedAt;
         }
 
         // If marked Delivered (only reaches here if OTP was already verified or admin override)
@@ -1181,7 +1276,16 @@ export const getMyDeliveries = async (req, res, next) => {
         const partner = req.deliveryPartner;
         const { status } = req.query;
 
-        const filter = { deliveryPartner: partner._id };
+        const partnerMatch = {
+            $or: [
+                { deliveryPartner: partner._id },
+                { deliveryPartnerId: partner._id },
+                { "delivery.deliveryPartner": partner._id },
+                { "delivery.deliveryPartnerId": partner._id }
+            ]
+        };
+
+        const filter = { ...partnerMatch };
 
         if (status === "Active") {
             filter.deliveryStatus = {

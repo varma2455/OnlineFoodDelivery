@@ -32,48 +32,9 @@ import {
     FaKey
 } from "react-icons/fa";
 import CustomerDeliveryOtpCard from "../../components/CustomerDeliveryOtpCard/CustomerDeliveryOtpCard";
+import HorizontalOrderTimeline, { getOrderTrackingStageIndex } from "../../components/HorizontalOrderTimeline/HorizontalOrderTimeline";
 
-const DETAILED_TRACKING_STEPS = [
-    { key: "placed_confirmed", label: "Placed", detailedLabel: "Order Placed & Confirmed", desc: "Restaurant accepted your order", icon: <FaCheckCircle /> },
-    { key: "preparing", label: "Preparing", detailedLabel: "Food Being Prepared", desc: "Kitchen is preparing fresh dishes", icon: <FaUtensils /> },
-    { key: "ready", label: "Ready", detailedLabel: "Ready for Pickup", desc: "Food packed & waiting for pickup", icon: <FaBox /> },
-    { key: "assigned", label: "Assigned", detailedLabel: "Driver Assigned", desc: "Delivery partner assigned to order", icon: <FaMotorcycle /> },
-    { key: "heading_restaurant", label: "Accepted", detailedLabel: "Driver Accepted & On The Way", desc: "Heading towards restaurant for pickup", icon: <FaMotorcycle /> },
-    { key: "out_for_delivery", label: "Out for Delivery", detailedLabel: "Picked Up & Out for Delivery", desc: "Rider is en route to your location", icon: <FaMotorcycle /> },
-    { key: "arrived_customer", label: "Arrived", detailedLabel: "Driver Arrived at Your Location", desc: "Rider waiting outside with your order", icon: <FaMapMarkerAlt /> },
-    { key: "otp_verification", label: "🔐 OTP Handover", detailedLabel: "🔐 Delivery OTP Handover", desc: "Provide 6-digit OTP to complete delivery", icon: <FaShieldAlt /> },
-    { key: "delivered", label: "Delivered", detailedLabel: "Delivered Successfully", desc: "Handover verified. Enjoy your meal!", icon: <FaCheckCircle /> }
-];
-
-const getDeliveryStageIndex = (order) => {
-    if (!order) return 0;
-    const orderStatus = (order.orderStatus || "").toLowerCase();
-    const deliveryStatus = (order.deliveryStatus || order.delivery?.status || "").toLowerCase();
-    const hasPartner = Boolean(order.deliveryPartner || order.delivery?.deliveryPartner);
-
-    if (orderStatus === "delivered" || deliveryStatus === "delivered") {
-        return 8; // Stage 9: Delivered Successfully
-    }
-    if (deliveryStatus === "arrived at customer") {
-        return 7; // Stage 8: 🔐 Delivery OTP Handover / Verification
-    }
-    if (deliveryStatus === "going to customer" || deliveryStatus === "order picked up" || orderStatus === "out for delivery") {
-        return 5; // Stage 6: Food Picked Up / Out for Delivery
-    }
-    if (deliveryStatus === "going to restaurant" || deliveryStatus === "arrived at restaurant" || deliveryStatus === "accepted") {
-        return 4; // Stage 5: Driver Accepted & Heading to Restaurant
-    }
-    if (hasPartner) {
-        return 3; // Stage 4: Driver Assigned
-    }
-    if (orderStatus === "ready for pickup") {
-        return 2; // Stage 3: Ready for Pickup
-    }
-    if (orderStatus === "preparing") {
-        return 1; // Stage 2: Food Being Prepared
-    }
-    return 0; // Stage 1: Order Placed / Confirmed
-};
+const getDeliveryStageIndex = getOrderTrackingStageIndex;
 
 const formatOrderId = (id) => {
     if (!id) return "#FE0000";
@@ -612,35 +573,9 @@ const Orders = () => {
                                             </div>
                                         </div>
 
-                                        {/* Visual Tracking Progress Bar (for Active Orders) */}
+                                        {/* Horizontal Order Tracking Timeline (for Active Orders) */}
                                         {isActive && !isCancelled && (
-                                            <div className="card-inline-tracker">
-                                                <div className="tracker-steps-line">
-                                                    {DETAILED_TRACKING_STEPS.map((step, idx) => {
-                                                        const isCompleted = stageIndex > idx || (stageIndex === 8 && idx === 8);
-                                                        const isCurrent = stageIndex === idx && stageIndex !== 8;
-
-                                                        return (
-                                                            <div
-                                                                key={step.key}
-                                                                className={`tracker-step ${
-                                                                    isCompleted ? "completed" : ""
-                                                                } ${isCurrent ? "current" : ""}`}
-                                                            >
-                                                                <div className="step-node-icon">
-                                                                    {step.icon}
-                                                                </div>
-                                                                <span className="step-node-label">
-                                                                    {step.label}
-                                                                </span>
-                                                            </div>
-                                                        );
-                                                    })}
-                                                </div>
-                                                <div className="tracker-eta-pill">
-                                                    ⚡ Estimated Delivery: ~{order.estimatedDeliveryTime || 30} mins
-                                                </div>
-                                            </div>
+                                            <HorizontalOrderTimeline order={order} compact={false} />
                                         )}
 
                                         {/* Delivered Banner */}
@@ -978,27 +913,8 @@ const Orders = () => {
                                     </span>
                                 </div>
 
-                                <div className="modal-tracker-timeline">
-                                    {DETAILED_TRACKING_STEPS.map((step, idx) => {
-                                        const sIdx = getDeliveryStageIndex(selectedOrder);
-                                        const isCompleted = sIdx > idx || (sIdx === 8 && idx === 8);
-                                        const isCurrent = sIdx === idx && sIdx !== 8;
-
-                                        return (
-                                            <div
-                                                key={step.key}
-                                                className={`modal-step-node ${
-                                                    isCompleted ? "completed" : ""
-                                                } ${isCurrent ? "current" : ""}`}
-                                            >
-                                                <div className="step-circle-icon">{step.icon}</div>
-                                                <div className="step-desc-text">
-                                                    <strong>{step.detailedLabel || step.label}</strong>
-                                                    <small>{step.desc}</small>
-                                                </div>
-                                            </div>
-                                        );
-                                    })}
+                                <div className="modal-tracker-timeline-wrap" style={{ marginTop: "16px" }}>
+                                    <HorizontalOrderTimeline order={selectedOrder} />
                                 </div>
                             </div>
 
@@ -1241,31 +1157,12 @@ const Orders = () => {
                                 showToast={showToast}
                             />
 
-                            <div className="tracking-timeline-detailed">
-                                {DETAILED_TRACKING_STEPS.map((step, idx) => {
-                                    const sIdx = getDeliveryStageIndex(trackingModalOrder);
-                                    const isDone = sIdx > idx || (sIdx === 8 && idx === 8);
-                                    const isNow = sIdx === idx && sIdx !== 8;
-
-                                    return (
-                                        <div
-                                            key={step.key}
-                                            className={`tracking-timeline-row ${
-                                                isDone ? "is-done" : ""
-                                            } ${isNow ? "is-now" : ""}`}
-                                        >
-                                            <div className="timeline-node-circle">{step.icon}</div>
-                                            <div className="timeline-content">
-                                                <h4>{step.detailedLabel || step.label}</h4>
-                                                <p>{step.desc}</p>
-                                            </div>
-                                        </div>
-                                    );
-                                })}
-                            </div>
+                                <div className="live-horizontal-timeline-wrap" style={{ margin: "16px 0" }}>
+                                    <HorizontalOrderTimeline order={trackingModalOrder} />
+                                </div>
 
                             {(() => {
-                                const trackingPartner = trackingModalOrder.deliveryPartner || trackingModalOrder.delivery?.deliveryPartner;
+                                const trackingPartner = trackingModalOrder.deliveryPartner || trackingModalOrder.deliveryPartnerId || trackingModalOrder.delivery?.deliveryPartner || trackingModalOrder.delivery?.deliveryPartnerId;
                                 if (trackingPartner && trackingPartner.name) {
                                     return (
                                         <div className="rider-contact-banner">

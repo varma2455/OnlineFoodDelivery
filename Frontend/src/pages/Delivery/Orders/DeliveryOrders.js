@@ -12,7 +12,10 @@ import {
     FaClock,
     FaSyncAlt,
     FaExclamationTriangle,
-    FaCheck
+    FaCheck,
+    FaMotorcycle,
+    FaClipboardList,
+    FaEye
 } from "react-icons/fa";
 
 const DeliveryOrders = () => {
@@ -21,29 +24,36 @@ const DeliveryOrders = () => {
     const outletContext = useOutletContext() || {};
     const { availability } = outletContext;
 
-    const [orders, setOrders] = useState([]);
+    const [assignedOrders, setAssignedOrders] = useState([]);
+    const [availableOrders, setAvailableOrders] = useState([]);
+    const [activeTab, setActiveTab] = useState("assigned"); // "assigned" or "available"
     const [loading, setLoading] = useState(true);
     const [acceptingId, setAcceptingId] = useState(null);
 
-    const fetchAvailableOrders = useCallback(async () => {
+    const fetchOrdersFeed = useCallback(async (isSilent = false) => {
         try {
-            setLoading(true);
+            if (!isSilent) setLoading(true);
             const { data } = await deliveryPartnerAPI.getAvailableOrders();
-            setOrders(data.orders || []);
+            setAssignedOrders(data.assignedOrders || []);
+            setAvailableOrders(data.availableOrders || []);
         } catch (err) {
-            console.error("Error loading available orders:", err);
-            showToast(err.message || "Failed to fetch available orders", "error");
+            console.error("Error loading delivery orders:", err);
+            if (!isSilent) {
+                showToast(err.message || "Failed to fetch orders feed", "error");
+            }
         } finally {
-            setLoading(false);
+            if (!isSilent) setLoading(false);
         }
     }, [showToast]);
 
     useEffect(() => {
-        fetchAvailableOrders();
-        // Set up an auto-refresh polling interval of 20 seconds while on this tab
-        const interval = setInterval(fetchAvailableOrders, 20000);
+        fetchOrdersFeed();
+        // Auto-refresh polling every 15 seconds
+        const interval = setInterval(() => {
+            fetchOrdersFeed(true);
+        }, 15000);
         return () => clearInterval(interval);
-    }, [fetchAvailableOrders]);
+    }, [fetchOrdersFeed]);
 
     const handleAcceptOrder = async (orderId) => {
         try {
@@ -52,23 +62,117 @@ const DeliveryOrders = () => {
             showToast(data.message || "Order accepted! Navigate to pickup location.", "success");
             navigate("/delivery/dashboard");
         } catch (err) {
-            showToast(err.message || "Could not accept order. It may have been taken by another rider.", "error");
-            fetchAvailableOrders();
+            showToast(err.message || "Could not accept order. It may have expired or been reassigned.", "error");
+            fetchOrdersFeed(true);
         } finally {
             setAcceptingId(null);
         }
     };
 
+    const renderOrderCard = (order, isAssigned) => {
+        const restaurant = order.items?.[0]?.restaurantId || {};
+        const earnings = order.deliveryEarnings || 50;
+        const itemCount = order.items?.reduce((acc, it) => acc + (it.quantity || 1), 0) || 1;
+        const isAccepting = acceptingId === order._id;
+        const customerName = order.deliveryAddress?.fullName || order.user?.fullName || "Customer";
+        const customerAddress = order.deliveryAddress?.city
+            ? `${order.deliveryAddress?.addressLine1 || ""}, ${order.deliveryAddress?.city}`
+            : (order.deliveryAddress?.addressLine1 || "Customer Address");
+
+        return (
+            <div key={order._id} className={`dp-order-card ${isAssigned ? "is-assigned-border" : ""}`}>
+                <div className="order-card-header">
+                    <div className="order-num-pill">
+                        {isAssigned ? (
+                            <span style={{ color: "#ff5200", display: "inline-flex", alignItems: "center", gap: "4px" }}>
+                                <FaMotorcycle /> #{order._id.slice(-6).toUpperCase()}
+                            </span>
+                        ) : (
+                            `#${order._id.slice(-6).toUpperCase()}`
+                        )}
+                    </div>
+                    <div className="order-earn-badge">
+                        <FaMoneyBillWave /> Earn ₹{earnings}
+                    </div>
+                </div>
+
+                <div className="order-card-content">
+                    {isAssigned && (
+                        <div className="assigned-direct-tag">
+                            ⭐ Assigned to you by {restaurant.name || "Kitchen"}
+                        </div>
+                    )}
+
+                    {/* Pickup Info */}
+                    <div className="order-step-info pickup">
+                        <div className="step-icon"><FaUtensils /></div>
+                        <div className="step-details">
+                            <div className="step-tag">RESTAURANT PICKUP</div>
+                            <div className="step-title">{restaurant.name || "FoodExpress Kitchen"}</div>
+                            <div className="step-desc">
+                                {restaurant.address?.street || "Pickup Address"}, {restaurant.address?.city || "Hyderabad"}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Drop Info */}
+                    <div className="order-step-info drop">
+                        <div className="step-icon"><FaMapMarkerAlt /></div>
+                        <div className="step-details">
+                            <div className="step-tag customer">CUSTOMER DROP</div>
+                            <div className="step-title">{customerName}</div>
+                            <div className="step-desc">
+                                {customerAddress}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Order Meta */}
+                    <div className="order-card-meta">
+                        <span>
+                            <FaBoxOpen /> {itemCount} {itemCount === 1 ? "Item" : "Items"}
+                        </span>
+                        <span>
+                            <FaClock /> Ordered {new Date(order.createdAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+                        </span>
+                        <span>
+                            ₹{order.totalAmount} Total
+                        </span>
+                    </div>
+                </div>
+
+                <div className="order-card-actions">
+                    <button
+                        type="button"
+                        className="btn-accept-order"
+                        onClick={() => handleAcceptOrder(order._id)}
+                        disabled={isAccepting}
+                    >
+                        {isAccepting ? (
+                            "Accepting Task..."
+                        ) : (
+                            <>
+                                <FaCheck /> {isAssigned ? "Accept Assigned Task" : "Claim Delivery Task"}
+                            </>
+                        )}
+                    </button>
+                </div>
+            </div>
+        );
+    };
+
+    const displayedOrders = activeTab === "assigned" ? assignedOrders : availableOrders;
+
     return (
         <div className="dp-orders-page">
             <div className="dp-orders-header">
                 <div>
-                    <h2>Available Deliveries</h2>
-                    <p>New customer orders waiting for pickup and delivery</p>
+                    <h2>Deliveries Feed</h2>
+                    <p>Manage your restaurant assignments and browse nearby claimable orders</p>
                 </div>
                 <button
                     className="btn-refresh-orders"
-                    onClick={fetchAvailableOrders}
+                    onClick={() => fetchOrdersFeed(false)}
                     disabled={loading}
                 >
                     <FaSyncAlt className={loading ? "spin" : ""} /> Refresh Feed
@@ -79,103 +183,54 @@ const DeliveryOrders = () => {
                 <div className="dp-orders-alert-offline">
                     <FaExclamationTriangle />
                     <div>
-                        <strong>You are currently Offline.</strong> While offline, you can view incoming tasks, but we recommend switching to <strong>Online</strong> so the dispatcher prioritizes you.
+                        <strong>You are currently Offline.</strong> Switch to <strong>Online</strong> in the top header so restaurants can assign delivery tasks to you.
                     </div>
                 </div>
             )}
 
-            {loading && orders.length === 0 ? (
+            {/* Sub-tabs: My Assigned Orders vs Available Orders */}
+            <div className="dp-feed-tabs">
+                <button
+                    type="button"
+                    className={`dp-feed-tab-btn ${activeTab === "assigned" ? "active" : ""}`}
+                    onClick={() => setActiveTab("assigned")}
+                >
+                    <FaClipboardList /> My Assigned Orders ({assignedOrders.length})
+                </button>
+
+                <button
+                    type="button"
+                    className={`dp-feed-tab-btn ${activeTab === "available" ? "active" : ""}`}
+                    onClick={() => setActiveTab("available")}
+                >
+                    <FaBoxOpen /> Available Orders ({availableOrders.length})
+                </button>
+            </div>
+
+            {loading && displayedOrders.length === 0 ? (
                 <div className="dp-orders-loader">
                     <Loader />
                 </div>
-            ) : orders.length === 0 ? (
+            ) : displayedOrders.length === 0 ? (
                 <div className="dp-no-orders-box">
                     <div className="empty-icon"><FaBoxOpen /></div>
-                    <h3>No Available Orders Nearby</h3>
+                    <h3>
+                        {activeTab === "assigned"
+                            ? "No Deliveries Assigned to You Right Now"
+                            : "No Unassigned Orders Nearby"}
+                    </h3>
                     <p>
-                        There are no unassigned food orders at this moment. New orders will automatically appear here once kitchens confirm preparation.
+                        {activeTab === "assigned"
+                            ? "When restaurants confirm order preparation and assign you as their rider, tickets will show up here immediately."
+                            : "All current orders are assigned to riders. When new open orders become available for claiming, they will appear here."}
                     </p>
-                    <button className="btn-empty-refresh" onClick={fetchAvailableOrders}>
+                    <button className="btn-empty-refresh" onClick={() => fetchOrdersFeed(false)}>
                         <FaSyncAlt /> Check Again
                     </button>
                 </div>
             ) : (
                 <div className="dp-orders-grid">
-                    {orders.map((order) => {
-                        const restaurant = order.items?.[0]?.restaurantId || {};
-                        const earnings = order.deliveryEarnings || 50;
-                        const itemCount = order.items?.reduce((acc, it) => acc + (it.quantity || 1), 0) || 1;
-                        const isAccepting = acceptingId === order._id;
-
-                        return (
-                            <div key={order._id} className="dp-order-card">
-                                <div className="order-card-header">
-                                    <div className="order-num-pill">
-                                        #{order._id.slice(-6).toUpperCase()}
-                                    </div>
-                                    <div className="order-earn-badge">
-                                        <FaMoneyBillWave /> Earn ₹{earnings}
-                                    </div>
-                                </div>
-
-                                <div className="order-card-content">
-                                    {/* Pickup Info */}
-                                    <div className="order-step-info pickup">
-                                        <div className="step-icon"><FaUtensils /></div>
-                                        <div className="step-details">
-                                            <div className="step-tag">RESTAURANT PICKUP</div>
-                                            <div className="step-title">{restaurant.name || "FoodExpress Kitchen"}</div>
-                                            <div className="step-desc">
-                                                {restaurant.address?.street || "Pickup Address"}, {restaurant.address?.city || "Hyderabad"}
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    {/* Drop Info */}
-                                    <div className="order-step-info drop">
-                                        <div className="step-icon"><FaMapMarkerAlt /></div>
-                                        <div className="step-details">
-                                            <div className="step-tag customer">CUSTOMER DROP</div>
-                                            <div className="step-title">{order.deliveryAddress?.fullName || "Customer"}</div>
-                                            <div className="step-desc">
-                                                {order.deliveryAddress?.addressLine1 || order.deliveryAddress?.street || "Drop Address"},{" "}
-                                                {order.deliveryAddress?.city || "Hyderabad"}
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    {/* Order Meta */}
-                                    <div className="order-card-meta">
-                                        <span>
-                                            <FaBoxOpen /> {itemCount} {itemCount === 1 ? "Item" : "Items"}
-                                        </span>
-                                        <span>
-                                            <FaClock /> Ordered {new Date(order.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                                        </span>
-                                        <span>
-                                            ₹{order.totalAmount} Total Value
-                                        </span>
-                                    </div>
-                                </div>
-
-                                <div className="order-card-actions">
-                                    <button
-                                        className="btn-accept-order"
-                                        onClick={() => handleAcceptOrder(order._id)}
-                                        disabled={isAccepting}
-                                    >
-                                        {isAccepting ? (
-                                            "Claiming Task..."
-                                        ) : (
-                                            <>
-                                                <FaCheck /> Accept Delivery Task
-                                            </>
-                                        )}
-                                    </button>
-                                </div>
-                            </div>
-                        );
-                    })}
+                    {displayedOrders.map((order) => renderOrderCard(order, activeTab === "assigned"))}
                 </div>
             )}
         </div>
